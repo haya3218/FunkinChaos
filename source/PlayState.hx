@@ -812,7 +812,14 @@ class PlayState extends MusicBeatState
 
 			babyArrow.y -= 10;
 			babyArrow.alpha = 0;
-			FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+			if (PlayState.noMissVariable == 3 && PlayState.noMissVariable == 4)
+			{
+				babyArrow.alpha = 0;
+			}
+			if (PlayState.noMissVariable != 3 && PlayState.noMissVariable != 4)
+			{
+				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+			}
 
 			babyArrow.ID = i;
 
@@ -850,6 +857,8 @@ class PlayState extends MusicBeatState
 			babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
+
+				babyArrow.alpha = 0;
 		}
 	}
 

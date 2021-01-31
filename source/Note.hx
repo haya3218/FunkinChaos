@@ -64,6 +64,11 @@ class Note extends FlxSprite
 			alpha = 0;
 		}
 
+		if (PlayState.noMissVariable == 4)
+		{
+			alpha = 0;
+		}
+
 		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
 		antialiasing = true;
@@ -92,6 +97,8 @@ class Note extends FlxSprite
 			alpha = 0.6;
 
 			if (PlayState.noMissVariable == 2)
+				alpha = 0;
+			if (PlayState.noMissVariable == 4)
 				alpha = 0;
 
 			x += width / 2;
@@ -167,6 +174,8 @@ class Note extends FlxSprite
 				alpha = 0.3;
 
 			if (PlayState.noMissVariable == 2)
+				alpha = 0;
+			if (PlayState.noMissVariable == 4)
 				alpha = 0;
 		}
 	}

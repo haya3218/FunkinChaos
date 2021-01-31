@@ -340,8 +340,8 @@ class StoryMenuState extends MusicBeatState
 		curNoMiss += change;
 		
 		if (curNoMiss < 0)
-			curNoMiss = 2;
-		if (curNoMiss > 2)
+			curNoMiss = 4;
+		if (curNoMiss > 4)
 			curNoMiss = 0;
 		
 		switch (curNoMiss)
@@ -352,6 +352,12 @@ class StoryMenuState extends MusicBeatState
 				rankText.text = 'Modifier: DEATHLESS\nDescription: Turn off dying.';
 			case 2:
 				rankText.text = 'Modifier: NO NOTES\nDescription: Do not show notes.';
+			case 3:
+				rankText.text = 'Modifier: NO NOTES-\nDescription: Do not show arrows.';
+			case 4:
+				rankText.text = 'Modifier: NO NOTES+\nDescription: Do not show arrows and notes.';
+			case 5:
+				rankText.text = 'Modifier: PLACEHOLDER\nplaceholder bicheeeeeeees';
 		}
 	}
 
