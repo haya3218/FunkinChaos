@@ -44,6 +44,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
+	public static var noMissVariable:Int = 1;
 	
 
 	var halloweenLevel:Bool = false;
@@ -671,6 +672,7 @@ class PlayState extends MusicBeatState
 		notes = new FlxTypedGroup<Note>();
 		add(notes);
 
+
 		var noteData:Array<SwagSection>;
 
 		// NEW SHIT
@@ -735,6 +737,8 @@ class PlayState extends MusicBeatState
 				else
 				{
 				}
+
+
 			}
 			daBeats += 1;
 		}
@@ -1133,23 +1137,28 @@ class PlayState extends MusicBeatState
 		}
 
 		// fuck dying in debug mode
-		#if release
-		if (health <= 0)
+		if (noMissVariable == 0)
 		{
-			boyfriend.stunned = true;
+			if (health <= 0)
+			{
+				boyfriend.stunned = true;
 
-			persistentUpdate = false;
-			persistentDraw = false;
-			paused = true;
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
 
-			vocals.stop();
-			FlxG.sound.music.stop();
+				vocals.stop();
+				FlxG.sound.music.stop();
 
-			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 		}
-		#end
+		if (noMissVariable == 1)
+		{
+
+		}
 
 		// kay for some reason game not recognize fuction even if i did it right
 		function fuckingDie():Void

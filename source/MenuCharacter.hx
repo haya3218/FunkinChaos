@@ -16,6 +16,7 @@ class MenuCharacter extends FlxSprite
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/campaign_menu_UI_characters.png', 'assets/images/campaign_menu_UI_characters.xml');
 		frames = tex;
 
+		animation.addByPrefix('none', "Void", 24);
 		animation.addByPrefix('bf', "BF idle dance white", 24);
 		animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
 		animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);

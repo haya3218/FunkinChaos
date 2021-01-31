@@ -44,17 +44,6 @@ class OptionsState extends MusicBeatState
 			grpMenuShit.add(menuText);
 		}
 
-		thingText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		// scoreText.autoSize = false;
-		thingText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
-		// scoreText.alignment = RIGHT;
-
-		var thingBG:FlxSprite = new FlxSprite(thingText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
-		thingBG.alpha = 0.6;
-		add(thingBG);
-
-		add(thingText);
-
 		changeSelection();
 
 		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);

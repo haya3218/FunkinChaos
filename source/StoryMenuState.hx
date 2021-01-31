@@ -17,6 +17,7 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
+	var rankText:FlxText;
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial', 'MC-MENTAL-AT-HIS-BEST'],
@@ -32,6 +33,7 @@ class StoryMenuState extends MusicBeatState
 		['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Pico']
 	];
 	var curDifficulty:Int = 1;
+	var curNoMiss:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true, true, true];
 
@@ -75,14 +77,11 @@ class StoryMenuState extends MusicBeatState
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32);
 
-		var rankText:FlxText = new FlxText(0, 10);
-		rankText.text = 'SAMPL TEXT';
-		rankText.setFormat("assets/fonts/vcr.ttf", 32);
-		rankText.size = scoreText.size;
-		rankText.screenCenter(X);
-
 		var ui_tex = FlxAtlasFrames.fromSparrow('assets/images/campaign_menu_UI_assets.png', 'assets/images/campaign_menu_UI_assets.xml');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
+
+		rankText = new FlxText(FlxG.width * 0.01, yellowBG.x + yellowBG.height - 20, 0, "Modifier: DEATHLESS\nDescription: Turn off dying.", 32);
+		rankText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
@@ -99,7 +98,7 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in 0...weekData.length)
 		{
-			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
+			var weekThing:MenuItem = new MenuItem(10, yellowBG.y + yellowBG.height + 10, i);
 			weekThing.y += ((weekThing.height + 20) * i);
 			weekThing.targetY = i;
 			grpWeekText.add(weekThing);
@@ -135,7 +134,7 @@ class StoryMenuState extends MusicBeatState
 				case 'spooky':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.3));
 					weekCharacterThing.updateHitbox();
-					weekCharacterThing.y += 135;
+					weekCharacterThing.y += 200;
 				case 'bf':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.6));
 					weekCharacterThing.updateHitbox();
@@ -169,12 +168,13 @@ class StoryMenuState extends MusicBeatState
 		leftArrow.animation.addByPrefix('press', "arrow push left");
 		leftArrow.animation.play('idle');
 
-		sprDifficulty = new FlxSprite(leftArrow.x + 130, leftArrow.y);
+		sprDifficulty = new FlxSprite(leftArrow.x + 400, leftArrow.y);
 		sprDifficulty.frames = ui_tex;
 		sprDifficulty.animation.addByPrefix('easy', 'EASY');
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
 		sprDifficulty.animation.play('easy');
+		sprDifficulty.screenCenter(X);
 		changeDifficulty();
 
 		difficultySelectors.add(sprDifficulty);
@@ -184,7 +184,7 @@ class StoryMenuState extends MusicBeatState
 		add(yellowBG);
 		add(grpWeekCharacters);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height - 150, 0, "Tracks", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height - 250, 0, "Tracks", 32);
 		txtTracklist.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		add(txtTracklist);
 		add(rankText);
@@ -230,6 +230,10 @@ class StoryMenuState extends MusicBeatState
 					changeDifficulty(1);
 				if (controls.LEFT_P)
 					changeDifficulty(-1);
+				if (FlxG.keys.justPressed.L)
+					changeMode(1);
+				if (FlxG.keys.justPressed.J)
+					changeMode(-1);
 			}
 
 			if (controls.ACCEPT)
@@ -280,6 +284,7 @@ class StoryMenuState extends MusicBeatState
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
+			PlayState.noMissVariable = curNoMiss;
 
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
@@ -308,13 +313,13 @@ class StoryMenuState extends MusicBeatState
 		{
 			case 0:
 				sprDifficulty.animation.play('easy');
-				sprDifficulty.offset.x = 0;
+				sprDifficulty.offset.x = 20;
 			case 1:
 				sprDifficulty.animation.play('normal');
-				sprDifficulty.offset.x = 0;
+				sprDifficulty.offset.x = 70;
 			case 2:
 				sprDifficulty.animation.play('hard');
-				sprDifficulty.offset.x = 0;
+				sprDifficulty.offset.x = 20;
 		}
 
 		sprDifficulty.alpha = 0;
@@ -328,6 +333,26 @@ class StoryMenuState extends MusicBeatState
 		#end
 
 		FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07);
+	}
+
+	function changeMode(change:Int = 0)
+	{
+		curNoMiss += change;
+		
+		if (curNoMiss < 0)
+			curNoMiss = 2;
+		if (curNoMiss > 2)
+			curNoMiss = 0;
+		
+		switch (curNoMiss)
+		{
+			case 0:
+				rankText.text = 'Modifier: NONE\nDescription: None';
+			case 1:
+				rankText.text = 'Modifier: DEATHLESS\nDescription: Turn off dying.';
+			case 2:
+				rankText.text = 'Modifier: NO NOTES\nDescription: Do not show notes.';
+		}
 	}
 
 	var lerpScore:Int = 0;

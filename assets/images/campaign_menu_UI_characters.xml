@@ -2,6 +2,7 @@
 <TextureAtlas imagePath="campaign_menu_UI_characters.png">
 	<!-- Created with Adobe Animate version 20.0.0.17400 -->
 	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Void0000" x="0" y="0" width="1" height="1" frameX="0" frameY="0" frameWidth="1" frameHeight="1"/>
 	<SubTexture name="BF HEY!!0000" x="0" y="0" width="395" height="416" frameX="0" frameY="0" frameWidth="415" frameHeight="418"/>
 	<SubTexture name="BF HEY!!0001" x="0" y="0" width="395" height="416" frameX="0" frameY="0" frameWidth="415" frameHeight="418"/>
 	<SubTexture name="BF HEY!!0002" x="405" y="0" width="413" height="410" frameX="-1" frameY="-8" frameWidth="415" frameHeight="418"/>
