@@ -46,20 +46,21 @@ class Note extends FlxSprite
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 		frames = tex;
 		// fuck this shit im out
+		animation.addByPrefix('greenScroll', 'green0');
+		animation.addByPrefix('redScroll', 'red0');
+		animation.addByPrefix('blueScroll', 'blue0');
+		animation.addByPrefix('purpleScroll', 'purple0');
+		animation.addByPrefix('purpleholdend', 'pruple end hold');
+		animation.addByPrefix('greenholdend', 'green hold end');
+		animation.addByPrefix('redholdend', 'red hold end');
+		animation.addByPrefix('blueholdend', 'blue hold end');
+		animation.addByPrefix('purplehold', 'purple hold piece');
+		animation.addByPrefix('greenhold', 'green hold piece');
+		animation.addByPrefix('redhold', 'red hold piece');
+		animation.addByPrefix('bluehold', 'blue hold piece');
+
 		if (PlayState.noMissVariable == 2)
 		{
-			animation.addByPrefix('greenScroll', 'green0');
-			animation.addByPrefix('redScroll', 'red0');
-			animation.addByPrefix('blueScroll', 'blue0');
-			animation.addByPrefix('purpleScroll', 'purple0');
-			animation.addByPrefix('purpleholdend', 'pruple end hold');
-			animation.addByPrefix('greenholdend', 'green hold end');
-			animation.addByPrefix('redholdend', 'red hold end');
-			animation.addByPrefix('blueholdend', 'blue hold end');
-			animation.addByPrefix('purplehold', 'purple hold piece');
-			animation.addByPrefix('greenhold', 'green hold piece');
-			animation.addByPrefix('redhold', 'red hold piece');
-			animation.addByPrefix('bluehold', 'blue hold piece');
 			alpha = 0;
 		}
 
@@ -164,7 +165,7 @@ class Note extends FlxSprite
 		{
 			if (alpha > 0.3)
 				alpha = 0.3;
-			
+
 			if (PlayState.noMissVariable == 2)
 				alpha = 0;
 		}
