@@ -4,6 +4,21 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [CHAOS V.0.1] - 2021-02-01
+### Added
+- Modifiers! Spice up your game!
+- Re worked shit story mode menu
+- FUCKING ACCURACY LETS GOOOOOOOOOOOOOO ([Thanks to KadeDev for the code! Hope this gets added in the main game soon!](https://github.com/ninjamuffin99/Funkin/pull/249))
+- Hidden for now options menu
+- Bumped bpm meter up to 999999 bpm and note speed to 999
+- New introtext
+- Chaos starts here.
+### Changed
+- Simple bare bones maker text support (will add next update)
+### Fixed
+- Hair physics no longer defeat the laws of aviation ([Thanks to Injourn for the code!](https://github.com/ninjamuffin99/Funkin/pull/239))
+- Donate button works on linux, think I dont need to link the pull request but thanks to natis1!
+- Local original branch fixes
 ## [0.2.6] - 2021-01-20
 ### Added
 - 3 NEW CHRISTMAS SONGS. 2 BY KAWAISPRITE, 1 BY BASSETFILMS!!!!! BF WITH DRIP! SANTA HANGIN OUT!

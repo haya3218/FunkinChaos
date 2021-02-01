@@ -1146,7 +1146,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// fuck dying in debug mode
-		if (noMissVariable == 0)
+		if (noMissVariable != 1)
 		{
 			if (health <= 0)
 			{
@@ -1163,10 +1163,6 @@ class PlayState extends MusicBeatState
 
 				// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 			}
-		}
-		if (noMissVariable == 1)
-		{
-
 		}
 
 		// kay for some reason game not recognize fuction even if i did it right
@@ -1378,6 +1374,32 @@ class PlayState extends MusicBeatState
 			totalNotesHit += 0.05;
 			score = 50;
 			ss = false;
+			if (noMissVariable == 5)
+			{
+				boyfriend.stunned = true;
+
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+
+				vocals.stop();
+				FlxG.sound.music.stop();
+
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
+			if (noMissVariable == 6)
+			{
+				boyfriend.stunned = true;
+			
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+			
+				vocals.stop();
+				FlxG.sound.music.stop();
+			
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
@@ -1385,6 +1407,32 @@ class PlayState extends MusicBeatState
 			score = 100;
 			totalNotesHit += 0.10;
 			ss = false;
+			if (noMissVariable == 5)
+			{
+				boyfriend.stunned = true;
+
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+	
+				vocals.stop();
+				FlxG.sound.music.stop();
+	
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
+			if (noMissVariable == 6)
+			{
+				boyfriend.stunned = true;
+			
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+			
+				vocals.stop();
+				FlxG.sound.music.stop();
+			
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
@@ -1392,6 +1440,32 @@ class PlayState extends MusicBeatState
 			totalNotesHit += 0.65;
 			score = 200;
 			ss = false;
+			if (noMissVariable == 5)
+			{
+				boyfriend.stunned = true;
+	
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+
+				vocals.stop();
+				FlxG.sound.music.stop();
+
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
+			if (noMissVariable == 6)
+			{
+				boyfriend.stunned = true;
+				
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+				
+				vocals.stop();
+				FlxG.sound.music.stop();
+				
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 		}
 		else
 		{
@@ -1740,6 +1814,34 @@ class PlayState extends MusicBeatState
 		if (downP)
 			noteMiss(1);
 		updateAccuracy();
+
+		if (noMissVariable == 5)
+		{
+			boyfriend.stunned = true;
+
+			persistentUpdate = false;
+			persistentDraw = false;
+			paused = true;
+
+			vocals.stop();
+			FlxG.sound.music.stop();
+
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		}
+
+		if (noMissVariable == 6)
+		{
+			boyfriend.stunned = true;
+	
+			persistentUpdate = false;
+			persistentDraw = false;
+			paused = true;
+	
+			vocals.stop();
+			FlxG.sound.music.stop();
+	
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		}
 	}
 
 	function noteCheck(keyP:Bool, note:Note):Void

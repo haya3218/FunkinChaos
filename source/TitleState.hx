@@ -192,9 +192,14 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "DEBUG BUILD", 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		FlxG.mouse.visible = false;
+		FlxG.mouse.visible = true;
 
 		if (initialized)
 			skipIntro();
@@ -367,6 +372,19 @@ class TitleState extends MusicBeatState
 			// credTextShit.visible = true;
 			case 10:
 				addMoreText(curWacky[1]);
+				addMoreText(curWacky[2]);
+				addMoreText(curWacky[3]);
+				addMoreText(curWacky[4]);
+				addMoreText(curWacky[5]);
+				addMoreText(curWacky[6]);
+				addMoreText(curWacky[7]);
+				addMoreText(curWacky[8]);
+				addMoreText(curWacky[9]);
+				addMoreText(curWacky[10]);
+				addMoreText(curWacky[11]);
+				addMoreText(curWacky[12]);
+				addMoreText(curWacky[13]);
+				addMoreText(curWacky[14]);
 			// credTextShit.text += '\nlmao';
 			case 11:
 				deleteCoolText();
@@ -374,15 +392,15 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 12:
-				addMoreText('we present');
+				addMoreText('Friday');
 			// credTextShit.visible = true;
 			case 13:
-				addMoreText('Friday');
+				addMoreText('Night');
 			// credTextShit.text += '\nNight';
 			case 14:
-				addMoreText('Night'); // credTextShit.text += '\nFunkin';
+				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 			case 15:
-				addMoreText('Funkin Chaos'); // credTextShit.text += '\nFunkin';
+				addMoreText('Chaos'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();

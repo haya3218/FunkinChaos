@@ -18,11 +18,10 @@ class OutdatedSubState extends MusicBeatState
 		add(bg);
 		var ver = "v" + Application.current.meta.get('version');
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"HEY! You're running an outdated version of the game!\nCurrent version is "
+			"Hello, and welcome to your local chaos mod. "
+			+ "The current version of the main base game is "
 			+ ver
-			+ " while the most recent version is "
-			+ NGio.GAME_VER
-			+ "! Press Space to go to itch.io, or ESCAPE to ignore this!!",
+			+ " And the mod version is 0.1. Have fun!",
 			32);
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		txt.screenCenter();
@@ -32,10 +31,6 @@ class OutdatedSubState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if (controls.ACCEPT)
-		{
-			FlxG.openURL("https://ninja-muffin24.itch.io/funkin");
-		}
-		if (controls.BACK)
 		{
 			leftState = true;
 			FlxG.switchState(new MainMenuState());

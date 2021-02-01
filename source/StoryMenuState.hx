@@ -285,6 +285,8 @@ class StoryMenuState extends MusicBeatState
 
 			PlayState.storyDifficulty = curDifficulty;
 			PlayState.noMissVariable = curNoMiss;
+			if (curNoMiss == 6) // perfect plus no notes equals instant hard mode
+				PlayState.storyDifficulty = 2;
 
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
@@ -340,8 +342,8 @@ class StoryMenuState extends MusicBeatState
 		curNoMiss += change;
 		
 		if (curNoMiss < 0)
-			curNoMiss = 4;
-		if (curNoMiss > 4)
+			curNoMiss = 6;
+		if (curNoMiss > 6)
 			curNoMiss = 0;
 		
 		switch (curNoMiss)
@@ -357,8 +359,12 @@ class StoryMenuState extends MusicBeatState
 			case 4:
 				rankText.text = 'Modifier: NO NOTES+\nDescription: Do not show arrows and notes.';
 			case 5:
-				rankText.text = 'Modifier: PLACEHOLDER\nplaceholder bicheeeeeeees';
+				rankText.text = 'Modifier: PERFECT\nDescription: Want an extra challenge? Well fuck you.';
+			case 6:
+				rankText.text = 'Modifier: NO NOTES+ PERFECT HARD MODE\nDescription: You have been warned. Good luck.';
 		}
+
+		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 	}
 
 	var lerpScore:Int = 0;
