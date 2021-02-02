@@ -122,6 +122,42 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
+			case 'senpai':
+				// DAD ANIMATION LOADING CODE
+				tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpai.png', 'assets/images/weeb/senpai.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'Senpai Idle instance', 24);
+				animation.addByPrefix('singUP', 'SENPAI UP NOTE instance', 24);
+				animation.addByPrefix('singRIGHT', 'SENPAI RIGHT NOTE instance', 24);
+				animation.addByPrefix('singDOWN', 'SENPAI DOWN NOTE instance', 24);
+				animation.addByPrefix('singLEFT', 'SENPAI LEFT NOTE instance', 24);
+				setGraphicSize(512, 886);
+	
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+	
+				playAnim('idle');
+			case 'miku':
+				// DAD ANIMATION LOADING CODE
+				tex = FlxAtlasFrames.fromSparrow('assets/images/Miku_Assets.png', 'assets/images/Miku_Assets.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'Miku idle dance', 24);
+				animation.addByPrefix('singUP', 'Miku Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Miku Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Miku Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Miku Sing Note LEFT', 24);
+	
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+	
+				playAnim('idle');
+
 			case 'spooky':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/spooky_kids_assets.png', 'assets/images/spooky_kids_assets.xml');
 				frames = tex;
@@ -264,6 +300,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
+				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
+				animation.addByPrefix('ahfuckivebeenhit', 'BF hit', 24, false);
+				animation.addByPrefix('noscope', 'boyfriend dodge', 24, false);
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
@@ -285,6 +325,10 @@ class Character extends FlxSprite
 				addOffset('deathLoop', 37, 5);
 				addOffset('deathConfirm', 37, 69);
 				addOffset('scared', -4);
+				addOffset('preattack', -10, -44);
+				addOffset('attack', 291, 271);
+				addOffset('ahfuckivebeenhit', 23, 17);
+				addOffset('noscope', -7, 1);
 
 				flipX = true;
 
@@ -338,6 +382,30 @@ class Character extends FlxSprite
 				addOffset("singDOWNmiss", -11, -19);
 
 				flipX = true;
+			case 'bf-pixel':
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixel.png', 'assets/images/weeb/bfPixel.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'BF IDLE instance', 24, false);
+				animation.addByPrefix('singUP', 'BF UP NOTE instance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF LEFT NOTE instance', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE instance', 24, false);
+				animation.addByPrefix('singDOWN', 'BF DOWN NOTE instance', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF UP MISS instance', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS instance', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS instance', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS instance', 24, false);
+	
+				addOffset('idle', -5);
+				addOffset("singUP", -29, 27);
+				addOffset("singRIGHT", -38, -7);
+				addOffset("singLEFT", 12, -6);
+				addOffset("singDOWN", -10, -50);
+				addOffset("singUPmiss", -29, 27);
+				addOffset("singRIGHTmiss", -30, 21);
+				addOffset("singLEFTmiss", 12, 24);
+				addOffset("singDOWNmiss", -11, -19);
+	
+					flipX = true;
 			case 'parents-christmas':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/christmas/mom_dad_christmas_assets.png',
 					'assets/images/christmas/mom_dad_christmas_assets.xml');
@@ -441,6 +509,12 @@ class Character extends FlxSprite
 				case 'bf-christmas':
 					playAnim('idle');
 				case 'bf-car':
+					playAnim('idle');
+				case 'bf-pixel':
+					playAnim('idle');
+				case 'miku':
+					playAnim('idle');
+				case 'senpai':
 					playAnim('idle');
 				case 'gf':
 					if (!animation.curAnim.name.startsWith('hair'))

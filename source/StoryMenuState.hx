@@ -27,10 +27,7 @@ class StoryMenuState extends MusicBeatState
 		['Satin-Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Smash', 'Ridge', 'Ronald-McDonald-Insanity', 'Luci-Moment'],
-		['Friday-Night', 'Machine-Gun-Kiss', 'Judgement'],
-		['B-Sides-Bopeebo', 'B-Sides-Fresh', 'B-Sides-Dadbattle'],
-		['B-Sides-Spookeez', 'B-Sides-South'],
-		['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Pico']
+		['Friday-Night', 'Machine-Gun-Kiss', 'Judgement']
 	];
 	var curDifficulty:Int = 1;
 	var curNoMiss:Int = 1;
@@ -45,10 +42,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'gf', 'bf'],
 		['parents-christmas', 'gf', 'bf'],
 		['dad', 'gf', 'bf'],
-		['dad', 'gf', 'bf'],
-		['dad', 'gf', 'bf'],
-		['spooky', 'gf', 'bf'],
-		['pico', 'gf', 'bf']
+		['dad', 'gf', 'bf']
 	];
 	var curWeek:Int = 0;
 
@@ -340,6 +334,7 @@ class StoryMenuState extends MusicBeatState
 	function changeMode(change:Int = 0)
 	{
 		curNoMiss += change;
+		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 		
 		if (curNoMiss < 0)
 			curNoMiss = 6;
@@ -363,8 +358,6 @@ class StoryMenuState extends MusicBeatState
 			case 6:
 				rankText.text = 'Modifier: NO NOTES+ PERFECT HARD MODE\nDescription: You have been warned. Good luck.';
 		}
-
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 	}
 
 	var lerpScore:Int = 0;

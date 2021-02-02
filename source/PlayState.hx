@@ -586,46 +586,58 @@ class PlayState extends MusicBeatState
 			switch (swagCounter)
 			{
 				case 0:
-					FlxG.sound.play('assets/sounds/intro3' + TitleState.soundExt, 0.6);
+					if (SONG.song.toLowerCase() == 'senpai')
+						FlxG.sound.play('assets/sounds/intro3-pixel' + TitleState.soundExt, 0.6);
+					else
+						FlxG.sound.play('assets/sounds/intro3' + TitleState.soundExt, 0.6);
 				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic('assets/images/ready.png');
-					ready.scrollFactor.set();
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						}
-					});
-					FlxG.sound.play('assets/sounds/intro2' + TitleState.soundExt, 0.6);
+						var ready:FlxSprite = new FlxSprite().loadGraphic('assets/images/ready.png');
+						ready.scrollFactor.set();
+						ready.screenCenter();
+						add(ready);
+						FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								ready.destroy();
+							}
+						});
+					if (SONG.song.toLowerCase() == 'senpai')
+						FlxG.sound.play('assets/sounds/intro2-pixel' + TitleState.soundExt, 0.6);
+					else
+						FlxG.sound.play('assets/sounds/intro2' + TitleState.soundExt, 0.6);
 				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic('assets/images/set.png');
-					set.scrollFactor.set();
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
-					FlxG.sound.play('assets/sounds/intro1' + TitleState.soundExt, 0.6);
+						var set:FlxSprite = new FlxSprite().loadGraphic('assets/images/set.png');
+						set.scrollFactor.set();
+						set.screenCenter();
+						add(set);
+						FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								set.destroy();
+							}
+						});
+					if (SONG.song.toLowerCase() == 'senpai')
+						FlxG.sound.play('assets/sounds/intro1-pixel' + TitleState.soundExt, 0.6);
+					else
+						FlxG.sound.play('assets/sounds/intro1' + TitleState.soundExt, 0.6);
 				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic('assets/images/go.png');
-					go.scrollFactor.set();
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
-					FlxG.sound.play('assets/sounds/introGo' + TitleState.soundExt, 0.6);
+						var go:FlxSprite = new FlxSprite().loadGraphic('assets/images/go.png');
+						go.scrollFactor.set();
+						go.screenCenter();
+						add(go);
+						FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								go.destroy();
+							}
+						});
+					if (SONG.song.toLowerCase() == 'senpai')
+						FlxG.sound.play('assets/sounds/introGo-pixel' + TitleState.soundExt, 0.6);
+					else
+						FlxG.sound.play('assets/sounds/introGo' + TitleState.soundExt, 0.6);
 				case 4:
 			}
 
@@ -820,7 +832,6 @@ class PlayState extends MusicBeatState
 			{
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
-
 			babyArrow.ID = i;
 
 			if (player == 1)
@@ -1142,7 +1153,31 @@ class PlayState extends MusicBeatState
 		{
 			health += 1;	// ditto.
 			songScore += 999;	// of course but theres a catch ;)
+			rank += 'SS';
+			accuracy == 100;
+			misses == 0;
 			trace("User is cheating!");
+		}
+
+		if (FlxG.keys.pressed.Z)
+		{
+			boyfriend.playAnim("preattack");
+		}
+		if (FlxG.keys.justReleased.Z)
+		{
+			FlxG.sound.load("assets/sounds/micwoosh", 1, false);
+			boyfriend.playAnim("attack");
+			health += 0.075;
+		}
+		if (FlxG.keys.justPressed.C)
+		{
+			boyfriend.playAnim("ahfuckivebeenhit");
+			health -= 0.075;
+		}
+		if (FlxG.keys.justPressed.V)
+		{
+			boyfriend.playAnim("noscope");
+			health -= 0.075;
 		}
 
 		// fuck dying in debug mode
@@ -2071,6 +2106,7 @@ class PlayState extends MusicBeatState
 		if (totalBeats % 8 == 7 && curSong == 'Bopeebo')
 		{
 			boyfriend.playAnim('hey', true);
+			gf.playAnim('cheer', true);
 
 			if (SONG.song == 'Tutorial' && dad.curCharacter == 'gf')
 			{

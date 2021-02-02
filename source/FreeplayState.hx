@@ -92,6 +92,8 @@ class FreeplayState extends MusicBeatState
 			songs.push('B-Sides-Philly');
 			songs.push('B-Sides-Blammed');
 			songs.push('Ronald-McDonald-Insanity');
+			songs.push('Disappear');
+			songs.push('Senpai');
 		}
 
 		// LOAD MUSIC
