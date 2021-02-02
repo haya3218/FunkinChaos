@@ -4,6 +4,19 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased (CHAOS VO.2 - 2021-4-??)
+### Added
+- Miku and a song to die to
+- Senpai cos of a new leak thanks ninja
+- Modifiers in Freeplay
+- removed other introtext
+- efeefgd
+- Attack, dodge, and stun animations now available with a hotkey
+### Changed
+- Moved B-sides to its own menu
+- Some other stuff
+### Fixed
+- GF not doing the good ol fashioned cheer animation on Bopeebo
 ## [CHAOS V.0.1] - 2021-02-01
 ### Added
 - Modifiers! Spice up your game!
