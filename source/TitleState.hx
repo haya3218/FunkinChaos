@@ -22,7 +22,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
-import lime.utils.Assets;
+import openfl.Assets;
 import polymod.Polymod;
 
 using StringTools;
@@ -44,7 +44,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		Polymod.init({modRoot: "assets/mods", dirs: CoolUtil.coolTextFile('assets/mods/modList.txt')});
+		Polymod.init({modRoot: "mods", dirs: ['introMod']});
 
 		#if (!web)
 		TitleState.soundExt = '.ogg';
@@ -121,7 +121,9 @@ class TitleState extends MusicBeatState
 			// music.loadStream('assets/music/freakyMenu' + TitleState.soundExt);
 			// FlxG.sound.list.add(music);
 			// music.play();
-			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt, 70);
+			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt, 0);
+
+			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
 		Conductor.changeBPM(102);
@@ -190,14 +192,9 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "DEBUG BUILD", 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		FlxG.mouse.visible = true;
+		FlxG.mouse.visible = false;
 
 		if (initialized)
 			skipIntro();
@@ -340,7 +337,7 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 2:
+			case 1:
 				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
@@ -368,37 +365,22 @@ class TitleState extends MusicBeatState
 			case 9:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
-			case 10:
-				addMoreText(curWacky[1]);
-				addMoreText(curWacky[2]);
-				addMoreText(curWacky[3]);
-				addMoreText(curWacky[4]);
-				addMoreText(curWacky[5]);
-				addMoreText(curWacky[6]);
-				addMoreText(curWacky[7]);
-				addMoreText(curWacky[8]);
-				addMoreText(curWacky[9]);
-				addMoreText(curWacky[10]);
-				addMoreText(curWacky[11]);
-				addMoreText(curWacky[12]);
-				addMoreText(curWacky[13]);
-				addMoreText(curWacky[14]);
-			// credTextShit.text += '\nlmao';
 			case 11:
+				addMoreText(curWacky[1]);
+			// credTextShit.text += '\nlmao';
+			case 12:
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
-			case 12:
+			case 13:
 				addMoreText('Friday');
 			// credTextShit.visible = true;
-			case 13:
+			case 14:
 				addMoreText('Night');
 			// credTextShit.text += '\nNight';
-			case 14:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 			case 15:
-				addMoreText('Chaos'); // credTextShit.text += '\nFunkin';
+				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();
@@ -416,7 +398,6 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
-			Conductor.changeBPM(999999);
 		}
 	}
 }

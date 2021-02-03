@@ -19,11 +19,9 @@ class FreeplayState extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
-	var curNoMiss:Int = 1;
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
-	var rankText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
@@ -75,25 +73,12 @@ class FreeplayState extends MusicBeatState
 			songs.push('Winter-Horrorland');
 		}
 
-		if (StoryMenuState.weekUnlocked[1] || isDebug)
+		if (StoryMenuState.weekUnlocked[6] || isDebug)
 		{
-			songs.push('Monster');
-			songs.push('Smash');
-			songs.push('Ridge');
-			songs.push('Luci-Moment');
-			songs.push('MC-MENTAL-AT-HIS-BEST');
-			songs.push('B-Sides-Tutorial');
-			songs.push('B-Sides-Bopeebo');
-			songs.push('B-Sides-Fresh');
-			songs.push('B-Sides-Dadbattle');
-			songs.push('B-Sides-Spookeez');
-			songs.push('B-Sides-South');
-			songs.push('B-Sides-Pico');
-			songs.push('B-Sides-Philly');
-			songs.push('B-Sides-Blammed');
-			songs.push('Ronald-McDonald-Insanity');
-			songs.push('Disappear');
 			songs.push('Senpai');
+			songs.push('Roses');
+			songs.push('Thorns');
+			// songs.push('Winter-Horrorland');
 		}
 
 		// LOAD MUSIC
@@ -132,13 +117,8 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		rankText = new FlxText(5, FlxG.height - 30, 0, "DEATHLESS", 32);
-		rankText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(rankText);
-
 		changeSelection();
 		changeDiff();
-		changeMode();
 
 		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
@@ -203,10 +183,6 @@ class FreeplayState extends MusicBeatState
 			changeDiff(-1);
 		if (controls.RIGHT_P)
 			changeDiff(1);
-		if (FlxG.keys.justPressed.J)
-			changeMode(-1);
-		if (FlxG.keys.justPressed.L)
-			changeMode(1);
 
 		if (controls.BACK)
 		{
@@ -222,9 +198,6 @@ class FreeplayState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
-			PlayState.noMissVariable = curNoMiss;
-			if (curNoMiss == 6) // perfect plus no notes equals instant hard mode
-				PlayState.storyDifficulty = 2;
 			FlxG.switchState(new PlayState());
 			if (FlxG.sound.music != null)
 				FlxG.sound.music.stop();
@@ -253,36 +226,6 @@ class FreeplayState extends MusicBeatState
 			case 2:
 				diffText.text = "HARD";
 		}
-	}
-
-	function changeMode(change:Int = 0)
-	{
-		curNoMiss += change;
-			
-		if (curNoMiss < 0)
-			curNoMiss = 6;
-		if (curNoMiss > 6)
-			curNoMiss = 0;
-		
-		switch (curNoMiss)
-		{
-			case 0:
-				rankText.text = 'NONE';
-			case 1:
-				rankText.text = 'DEATHLESS';
-			case 2:
-				rankText.text = 'NO NOTES';
-			case 3:
-				rankText.text = 'NO NOTES-';
-			case 4:
-				rankText.text = 'NO NOTES+';
-			case 5:
-				rankText.text = 'PERFECT';
-			case 6:
-				rankText.text = 'ULTRA HARD';
-		}
-	
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 	}
 
 	function changeSelection(change:Int = 0)

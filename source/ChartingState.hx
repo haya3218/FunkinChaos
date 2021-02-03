@@ -217,20 +217,15 @@ class ChartingState extends MusicBeatState
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);
 
-		var stepperSpeed:FlxUINumericStepper = new FlxUINumericStepper(10, 80, 0.1, 1, 0.1, 999, 1);
+		var stepperSpeed:FlxUINumericStepper = new FlxUINumericStepper(10, 80, 0.1, 1, 0.1, 10, 1);
 		stepperSpeed.value = _song.speed;
 		stepperSpeed.name = 'song_speed';
 
-		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 65, 1, 1, 1, 999999, 0);
+		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 65, 1, 1, 1, 339, 0);
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 
 		var characters:Array<String> = CoolUtil.coolTextFile('assets/data/characterList.txt');
-
-		for (i in Assets.getText('assets/images/custom_chars/charlist.txt').split('\n'))
-		{
-			characters.push(i);
-		}
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -664,10 +659,13 @@ class ChartingState extends MusicBeatState
 
 	function changeNoteSustain(value:Float):Void
 	{
-		if (curSelectedNote[2] != null)
+		if (curSelectedNote != null)
 		{
-			curSelectedNote[2] += value;
-			curSelectedNote[2] = Math.max(curSelectedNote[2], 0);
+			if (curSelectedNote[2] != null)
+			{
+				curSelectedNote[2] += value;
+				curSelectedNote[2] = Math.max(curSelectedNote[2], 0);
+			}
 		}
 
 		updateNoteUI();
@@ -796,7 +794,8 @@ class ChartingState extends MusicBeatState
 
 	function updateNoteUI():Void
 	{
-		stepperSusLength.value = curSelectedNote[2];
+		if (curSelectedNote != null)
+			stepperSusLength.value = curSelectedNote[2];
 	}
 
 	function updateGrid():Void
