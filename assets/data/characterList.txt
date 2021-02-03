@@ -10,4 +10,7 @@ parents-christmas
 monster-christmas
 bf-christmas
 gf-christmas
-miku
+monster
+bf-pixel
+senpai
+spirit
