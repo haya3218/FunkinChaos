@@ -886,7 +886,11 @@ class PlayState extends MusicBeatState
 		{
 			dad.dance();
 			gf.dance();
-			boyfriend.playAnim('idle');
+			if(boyfriend.curCharacter == 'bf-car')
+				boyfriend.dance();
+			else
+				boyfriend.playAnim('idle');
+
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ready.png', "set.png", "go.png"]);
@@ -2358,7 +2362,7 @@ class PlayState extends MusicBeatState
 
 		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
 		{
-			boyfriend.playAnim('idle');
+			boyfriend.dance();
 		}
 
 		if (totalBeats % 8 == 7 && curSong == 'Bopeebo')

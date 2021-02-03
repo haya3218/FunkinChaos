@@ -547,6 +547,12 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
+			case 'mom-car':
+				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
+					playAnim('idle',false,false,11);
+			case 'bf-car':
+				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
+					playAnim('idle',false,false,11);
 		}
 
 		super.update(elapsed);
@@ -605,6 +611,16 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				
+				case 'mom-car':
+					if(danced)
+						playAnim('idle',true);
+					danced = !danced;
+				
+				case 'bf-car':
+					if(danced)
+						playAnim('idle',true);
+					danced = !danced;
 
 				case 'spooky':
 					danced = !danced;
