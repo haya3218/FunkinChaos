@@ -1525,7 +1525,19 @@ class PlayState extends MusicBeatState
 		if (controls.CHEAT)
 		{
 			health += 1;
+			ss = true;
+			misses == 0;
+			accuracy == 100;
 			trace("User is cheating!");
+		}
+
+		if (FlxG.keys.pressed.Z)
+		{
+			boyfriend.playAnim("preattack", true);
+		}
+		if (FlxG.keys.justReleased.Z)
+		{
+			boyfriend.playAnim("attack", true);
 		}
 
 		if (health <= 0)
