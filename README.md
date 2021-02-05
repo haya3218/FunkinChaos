@@ -1,3 +1,8 @@
+### Update
+
+Not exactly cancelled, but released the whole bunch o shit for use with other mods.
+No, this wont be on gaybanana soon tho.
+
 # Friday Night Funkin' Chaos
 
 This is the repository for Friday Night Funkin' Chaos, a fork of Friday Night Funkin', a game originally made for Ludum Dare 47 "Stuck In a Loop".
