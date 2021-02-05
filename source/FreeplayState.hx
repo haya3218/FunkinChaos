@@ -95,6 +95,9 @@ class FreeplayState extends MusicBeatState
 			songs.push('B-Sides-Pico');
 			songs.push('B-Sides-Philly');
 			songs.push('B-Sides-Blammed');
+			songs.push('Friday-Night');
+			songs.push('Judgement');
+			songs.push('Machine-Gun-Kiss');
 			// songs.push('Winter-Horrorland');
 		}
 
