@@ -77,6 +77,9 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 
+				if (PlayState.hasModifier == 2)
+					alpha = 0;
+
 			case 'schoolEvil': // COPY PASTED CUZ I AM LAZY
 				loadGraphic('assets/images/weeb/pixelUI/arrows-pixels.png', true, 17, 17);
 
@@ -102,6 +105,9 @@ class Note extends FlxSprite
 
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
+			
+				if (PlayState.hasModifier == 2)
+					alpha = 0;
 
 			default:
 				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
@@ -124,6 +130,9 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
 				antialiasing = true;
+
+				if (PlayState.hasModifier == 2)
+					alpha = 0;
 		}
 
 		switch (noteData)
@@ -222,7 +231,10 @@ class Note extends FlxSprite
 		if (tooLate)
 		{
 			if (alpha > 0.3)
-				alpha = 0.3;
+				if (PlayState.hasModifier == 2)
+					alpha = 0;
+				else
+					alpha = 0.3;
 		}
 	}
 }

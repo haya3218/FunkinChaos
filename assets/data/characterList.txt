@@ -10,7 +10,13 @@ parents-christmas
 monster-christmas
 bf-christmas
 gf-christmas
+gf-car
 monster
 bf-pixel
+gf-pixel
 senpai
+senpai-angry
+bf-boxman
+bf-yakuza
+smile
 spirit

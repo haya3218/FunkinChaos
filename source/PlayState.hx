@@ -49,6 +49,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
+	public static var hasModifier:Int = 0;
 
 	var halloweenLevel:Bool = false;
 
@@ -152,20 +153,11 @@ class PlayState extends MusicBeatState
 			case 'tutorial':
 				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
 			case 'bopeebo':
-				dialogue = [
-					'HEY!',
-					"You think you can just sing\nwith my daughter like that?",
-					"If you want to date her...",
-					"You're going to have to go \nthrough ME first!"
-				];
+				dialogue = CoolUtil.coolTextFile('assets/data/bopeebo/bopeeboDialogue.txt');
 			case 'fresh':
-				dialogue = ["Not too shabby boy.", ""];
+				dialogue = CoolUtil.coolTextFile('assets/data/fresh/freshDialogue.txt');
 			case 'dadbattle':
-				dialogue = [
-					"gah you think you're hot stuff?",
-					"If you can beat me here...",
-					"Only then I will even CONSIDER letting you\ndate my daughter!"
-				];
+				dialogue = CoolUtil.coolTextFile('assets/data/dadbattle/dadbattleDialogue.txt');
 			case 'senpai':
 				dialogue = CoolUtil.coolTextFile('assets/data/senpai/senpaiDialogue.txt');
 			case 'roses':
@@ -484,6 +476,26 @@ class PlayState extends MusicBeatState
 				add(waveSpriteFG);
 			 */
 		}
+		else if (SONG.song.toLowerCase() == 'friday-night' || SONG.song.toLowerCase() == 'judgement' || SONG.song.toLowerCase() == 'machine-gun-kiss')
+		{
+			defaultCamZoom = 0.9;
+			curStage = 'yakuza';
+			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/yakuzaback.png');
+			// bg.setGraphicSize(Std.int(bg.width * 2.5));
+			// bg.updateHitbox();
+			bg.antialiasing = true;
+			bg.scrollFactor.set(0.9, 0.9);
+			bg.active = false;
+			add(bg);
+	
+			var yakuzaFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/yakuzafront.png');
+			yakuzaFront.setGraphicSize(Std.int(yakuzaFront.width * 1.1));
+			yakuzaFront.updateHitbox();
+			yakuzaFront.antialiasing = true;
+			yakuzaFront.scrollFactor.set(0.9, 0.9);
+			yakuzaFront.active = false;
+			add(yakuzaFront);
+		}
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -516,22 +528,7 @@ class PlayState extends MusicBeatState
 
 		var gfVersion:String = 'gf';
 
-		switch (curStage)
-		{
-			case 'limo':
-				gfVersion = 'gf-car';
-			case 'mall':
-				gfVersion = 'gf-christmas';
-			case 'mallEvil':
-				gfVersion = 'gf-christmas';
-			case 'school':
-				gfVersion = 'gf-pixel';
-			case 'schoolEvil':
-				gfVersion = 'gf-pixel';
-		}
-
-		if (curStage == 'limo')
-			gfVersion = 'gf-car';
+		gfVersion = SONG.gf;
 
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
@@ -583,6 +580,45 @@ class PlayState extends MusicBeatState
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
+
+		switch (SONG.player1)
+		{
+			case 'gf':
+				boyfriend.setPosition(gf.x, gf.y);
+				gf.visible = false;
+				if (isStoryMode)
+				{
+					camPos.x += 600;
+					tweenCamIn();
+				}
+				boyfriend.flipX = true;
+
+			case "spooky":
+				boyfriend.y += 200;
+			case "monster":
+				boyfriend.y += 100;
+			case 'monster-christmas':
+				boyfriend.y += 130;
+			case 'dad':
+				camPos.x += 400;
+			case 'pico':
+				camPos.x += 600;
+				boyfriend.y += 300;
+			case 'parents-christmas':
+				boyfriend.x -= 500;
+			case 'senpai':
+				boyfriend.x += 150;
+				boyfriend.y += 360;
+				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
+			case 'senpai-angry':
+				boyfriend.x += 150;
+				boyfriend.y += 360;
+				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
+			case 'spirit':
+				boyfriend.x -= 150;
+				boyfriend.y += 100;
+				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
+		}
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -658,7 +694,7 @@ class PlayState extends MusicBeatState
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (60.0 / MusicBeatState.funkyFramerate));
 		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
@@ -746,6 +782,12 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play('assets/sounds/ANGRY' + TitleState.soundExt);
 					schoolIntro(doof);
 				case 'thorns':
+					schoolIntro(doof);
+				case 'bopeebo':
+					schoolIntro(doof);
+				case 'fresh':
+					schoolIntro(doof);
+				case 'dadbattle':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -921,7 +963,7 @@ class PlayState extends MusicBeatState
 
 			{
 				case 0:
-					FlxG.sound.play('assets/sounds/intro3' + altSuffix + TitleState.soundExt, 0.6);
+					FlxG.sound.playMusic('assets/sounds/intro3' + altSuffix + TitleState.soundExt, 0.6, false);
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic('assets/images/' + introAlts[0]);
 					ready.scrollFactor.set();
@@ -1147,6 +1189,15 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
 
+					if (hasModifier == 3)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
+					if (hasModifier == 4)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
+
 				case 'schoolEvil':
 					// ALL THIS IS COPY PASTED CUZ IM LAZY
 
@@ -1184,6 +1235,15 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
 
+					if (hasModifier == 3)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
+					if (hasModifier == 4)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
+
 				default:
 					babyArrow.frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
@@ -1217,6 +1277,15 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
 							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
 					}
+
+					if (hasModifier == 3)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
+					if (hasModifier == 4)
+						babyArrow.alpha = 0;
+					else
+						trace ('User is in no arrows mode!');
 			}
 
 			babyArrow.updateHitbox();
@@ -1517,7 +1586,16 @@ class PlayState extends MusicBeatState
 		// RESET = Quick Game Over Screen
 		if (controls.RESET)
 		{
-			health = 0;
+			boyfriend.stunned = true;
+
+			persistentUpdate = false;
+			persistentDraw = false;
+			paused = true;
+
+			vocals.stop();
+			FlxG.sound.music.stop();
+
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 			trace("RESET = True");
 		}
 
@@ -1525,9 +1603,6 @@ class PlayState extends MusicBeatState
 		if (controls.CHEAT)
 		{
 			health += 1;
-			ss = true;
-			misses == 0;
-			accuracy == 100;
 			trace("User is cheating!");
 		}
 
@@ -1535,11 +1610,25 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.playAnim("preattack", true);
 		}
+
 		if (FlxG.keys.justReleased.Z)
 		{
+			health += 0.075;
 			boyfriend.playAnim("attack", true);
 		}
+		
+		if (FlxG.keys.justPressed.C)
+		{
+			health -= 0.1;
+			boyfriend.playAnim("ahfuckivebeenhit", true);
+		}
+		
+		if (FlxG.keys.justPressed.V)
+		{
+			boyfriend.playAnim("noscope", true);
+		}
 
+		#if release
 		if (health <= 0)
 		{
 			boyfriend.stunned = true;
@@ -1552,8 +1641,18 @@ class PlayState extends MusicBeatState
 			FlxG.sound.music.stop();
 
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		}
+		#end
 
-			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		function bfDie()
+		{
+			boyfriend.stunned = true;
+			persistentUpdate = false;
+			persistentDraw = false;
+			paused = true;
+			vocals.stop();
+			FlxG.sound.music.stop();
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
 
 		if (unspawnNotes[0] != null)
@@ -1761,6 +1860,16 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0.05;
 				score = 50;
 				ss = false;
+				if (hasModifier == 6)
+				{
+					boyfriend.stunned = true;
+					persistentUpdate = false;
+					persistentDraw = false;
+					paused = true;
+					vocals.stop();
+					FlxG.sound.music.stop();
+					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				}
 			}
 			else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 			{
@@ -1768,6 +1877,16 @@ class PlayState extends MusicBeatState
 				score = 100;
 				totalNotesHit += 0.10;
 				ss = false;
+				if (hasModifier == 6)
+				{
+					boyfriend.stunned = true;
+					persistentUpdate = false;
+					persistentDraw = false;
+					paused = true;
+					vocals.stop();
+					FlxG.sound.music.stop();
+					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				}
 			}
 			else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 			{
@@ -2104,6 +2223,16 @@ class PlayState extends MusicBeatState
 			}
 			misses += 1;
 			combo = 0;
+			if (hasModifier == 6)
+			{
+				boyfriend.stunned = true;
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+				vocals.stop();
+				FlxG.sound.music.stop();
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 
 			songScore -= 10;
 
@@ -2151,6 +2280,16 @@ class PlayState extends MusicBeatState
 		if (downP)
 			noteMiss(1);
 		updateAccuracy();
+		if (hasModifier == 6)
+		{
+			boyfriend.stunned = true;
+			persistentUpdate = false;
+			persistentDraw = false;
+			paused = true;
+			vocals.stop();
+			FlxG.sound.music.stop();
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		}
 	}
 
 	function noteCheck(keyP:Bool, note:Note):Void

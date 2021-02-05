@@ -506,6 +506,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.CHEAT, [X]);
 			case Duo(true):
 				inline bindKeys(Control.UP, [W]);
 				inline bindKeys(Control.DOWN, [S]);
@@ -515,6 +516,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [H, X]);
 				inline bindKeys(Control.PAUSE, [ONE]);
 				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.CHEAT, [X]);
 			case Duo(false):
 				inline bindKeys(Control.UP, [FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [FlxKey.DOWN]);
@@ -524,6 +526,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [P]);
 				inline bindKeys(Control.PAUSE, [ENTER]);
 				inline bindKeys(Control.RESET, [BACKSPACE]);
+				inline bindKeys(Control.CHEAT, [X]);
 			case None: // nothing
 			case Custom: // nothing
 		}
@@ -539,6 +542,7 @@ class Controls extends FlxActionSet
 				bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				bindKeys(Control.RESET, [R]);
+				bindKeys(Control.CHEAT, [X]);
 			case Duo(true):
 				bindKeys(Control.UP, [W]);
 				bindKeys(Control.DOWN, [S]);
@@ -548,6 +552,7 @@ class Controls extends FlxActionSet
 				bindKeys(Control.BACK, [H, X]);
 				bindKeys(Control.PAUSE, [ONE]);
 				bindKeys(Control.RESET, [R]);
+				bindKeys(Control.CHEAT, [X]);
 			case Duo(false):
 				bindKeys(Control.UP, [FlxKey.UP]);
 				bindKeys(Control.DOWN, [FlxKey.DOWN]);
@@ -557,6 +562,7 @@ class Controls extends FlxActionSet
 				bindKeys(Control.BACK, [P]);
 				bindKeys(Control.PAUSE, [ENTER]);
 				bindKeys(Control.RESET, [BACKSPACE]);
+				bindKeys(Control.CHEAT, [X]);
 			case None: // nothing
 			case Custom: // nothing
 		}

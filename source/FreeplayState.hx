@@ -50,6 +50,7 @@ class FreeplayState extends MusicBeatState
 		{
 			songs.push('Spookeez');
 			songs.push('South');
+			songs.push('Monster');
 		}
 
 		if (StoryMenuState.weekUnlocked[3] || isDebug)
@@ -78,6 +79,22 @@ class FreeplayState extends MusicBeatState
 			songs.push('Senpai');
 			songs.push('Roses');
 			songs.push('Thorns');
+			songs.push('Smash');
+			songs.push('Ridge');
+			songs.push('Ronald-McDonald-Insanity');
+			songs.push('The-Funkin-Experience');
+			songs.push('MC-MENTAL-AT-HIS-BEST');
+			songs.push('Luci-Moment');
+			songs.push('Disappear');
+			songs.push('B-Sides-Tutorial');
+			songs.push('B-Sides-Bopeebo');
+			songs.push('B-Sides-Fresh');
+			songs.push('B-Sides-Dadbattle');
+			songs.push('B-Sides-Spookeez');
+			songs.push('B-Sides-South');
+			songs.push('B-Sides-Pico');
+			songs.push('B-Sides-Philly');
+			songs.push('B-Sides-Blammed');
 			// songs.push('Winter-Horrorland');
 		}
 

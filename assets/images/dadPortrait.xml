@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dadPortrait.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Dad Portrait Enter instance 10000" x="0" y="0" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10001" x="1024" y="0" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10002" x="1024" y="0" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10003" x="0" y="620" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10004" x="0" y="620" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10005" x="1024" y="620" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10006" x="1024" y="620" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10007" x="1024" y="620" width="1024" height="580"/>
+	<SubTexture name="Dad Portrait Enter instance 10008" x="1024" y="620" width="1024" height="580"/>
+</TextureAtlas>

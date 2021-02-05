@@ -4,7 +4,11 @@ import Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
-
+#if sys
+import sys.io.File;
+import lime.system.System;
+import haxe.io.Path;
+#end
 using StringTools;
 
 typedef SwagSong =
@@ -19,6 +23,7 @@ typedef SwagSong =
 
 	var player1:String;
 	var player2:String;
+	var gf:String;
 	var validScore:Bool;
 }
 
@@ -34,6 +39,7 @@ class Song
 
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
+	public var gf:String = 'gf';
 
 	public function new(song, notes, bpm, sections)
 	{
@@ -50,33 +56,30 @@ class Song
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
+		#if sys
+		var rawJson = File.getContent(Path.normalize(System.applicationDirectory+"/assets/data/"+folder.toLowerCase()+"/"+jsonInput.toLowerCase()+'.json')).trim();
+		#else
 		var rawJson = Assets.getText('assets/data/' + folder.toLowerCase() + '/' + jsonInput.toLowerCase() + '.json').trim();
-
+		#end
 		while (!rawJson.endsWith("}"))
 		{
 			rawJson = rawJson.substr(0, rawJson.length - 1);
 			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
 		}
-
-		// FIX THE CASTING ON WINDOWS/NATIVE
-		// Windows???
-		// trace(songData);
-
-		// trace('LOADED FROM JSON: ' + songData.notes);
-		/* 
-			for (i in 0...songData.notes.length)
-			{
-				trace('LOADED FROM JSON: ' + songData.notes[i].sectionNotes);
-				// songData.notes[i].sectionNotes = songData.notes[i].sectionNotes
+		var parsedJson = parseJSONshit(rawJson);
+		if (parsedJson.gf == null) {
+			switch (parsedJson.song.toLowerCase()) {
+				case 'limo':
+					parsedJson.gf = 'gf-car';
+				case 'mall':
+					parsedJson.gf = 'gf-christmas';
+				case 'mallEvil':
+					parsedJson.gf = 'gf-christmas';
+				default:
+					parsedJson.gf = 'gf';
 			}
-
-				daNotes = songData.notes;
-				daSong = songData.song;
-				daSections = songData.sections;
-				daBpm = songData.bpm;
-				daSectionLengths = songData.sectionLengths; */
-
-		return parseJSONshit(rawJson);
+		}
+		return parsedJson;
 	}
 
 	public static function parseJSONshit(rawJson:String):SwagSong
