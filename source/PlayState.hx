@@ -2520,12 +2520,17 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
+
+			if (dad.curCharacter == 'gf')
+				dad.playAnim('cheer', true);
 		}
 
 		if (totalBeats % 8 == 7 && curSong == 'Friday-Night')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
+			if (dad.curCharacter == 'gf')
+				dad.playAnim('cheer', true);
 		}
 
 		switch (curStage)
