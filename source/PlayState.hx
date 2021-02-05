@@ -2516,9 +2516,10 @@ class PlayState extends MusicBeatState
 			boyfriend.dance();
 		}
 
-		if (totalBeats % 8 == 7 && curSong == 'Bopeebo')
+		if (totalBeats % 8 == 7 && curSong == 'Bopeebo' && curSong == 'Friday-Night')
 		{
 			boyfriend.playAnim('hey', true);
+			gf.playAnim('cheer', true);
 
 			if (SONG.song == 'Tutorial' && dad.curCharacter == 'gf')
 			{
