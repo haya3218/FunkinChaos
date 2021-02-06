@@ -82,7 +82,10 @@ class MainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 		}
 
-		FlxG.camera.follow(camFollow, null, 0.06);
+		if (PlayState.hasPlayedOnce)
+			FlxG.camera.follow(camFollow, null, 0.06);
+		else
+			FlxG.camera.follow(camFollow, null, 0.06 * (60.0 / MusicBeatState.funkyFramerate));
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();

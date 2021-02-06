@@ -50,6 +50,7 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 	public static var hasModifier:Int = 0;
+	public static var hasPlayedOnce:Bool = false;
 
 	var halloweenLevel:Bool = false;
 
@@ -1546,8 +1547,8 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
-			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95 * (60.0 / MusicBeatState.funkyFramerate));
+			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95 * (60.0 / MusicBeatState.funkyFramerate));
 		}
 
 		FlxG.watch.addQuick("beatShit", totalBeats);
