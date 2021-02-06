@@ -20,3 +20,4 @@ bf-boxman
 bf-yakuza
 smile
 spirit
+miku
