@@ -270,7 +270,6 @@ class BSidesMenuState extends MusicBeatState
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
-			PlayState.noMissVariable = curNoMiss;
 			if (curNoMiss == 6) // perfect plus no notes equals instant hard mode
 				PlayState.storyDifficulty = 2;
 
