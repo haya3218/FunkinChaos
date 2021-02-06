@@ -1556,8 +1556,8 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95 * (60.0 / MusicBeatState.funkyFramerate));
-			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95 * (60.0 / MusicBeatState.funkyFramerate));
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
 		FlxG.watch.addQuick("beatShit", totalBeats);
