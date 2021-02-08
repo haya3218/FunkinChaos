@@ -24,6 +24,8 @@ import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 import polymod.Polymod;
+import openfl.Lib;
+import flash.system.System;
 
 using StringTools;
 
@@ -221,6 +223,11 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.ESCAPE)
+			{
+				System.exit(0);
+			}
+			
 		Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 

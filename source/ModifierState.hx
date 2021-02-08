@@ -9,6 +9,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import flixel.util.FlxTimer;
 #if sys
 import sys.io.File;
 #end
@@ -31,8 +32,7 @@ class ModifierState extends MusicBeatState
 	public static var scoreMultiplier:Float = 1;
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		menuBG.color = 0xFFea71fd;
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuModifier.png');
 		grpAlphabet = new FlxTypedGroup<Alphabet>();
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -64,7 +64,7 @@ class ModifierState extends MusicBeatState
 		}
 
 		for (modifier in 0...modifiers.length) {
-			var swagModifier = new Alphabet(0, 10, "   "+modifiers[modifier].name, true, false);
+			var swagModifier = new Alphabet(0, 10, "         "+modifiers[modifier].name, true, false);
 			swagModifier.isMenuItem = true;
 			swagModifier.targetY = modifier;
 			var coolCheckmark:FlxSprite = new FlxSprite().loadGraphic('assets/images/checkmark.png');
@@ -152,7 +152,10 @@ class ModifierState extends MusicBeatState
 			calculateMultiplier();
 			multiTxt.text = "Multiplier: "+scoreMultiplier;
 		} else {
-			FlxG.switchState(new PlayState());
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					FlxG.switchState(new PlayState());
+				});
 		}
 
 	}
