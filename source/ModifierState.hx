@@ -81,7 +81,14 @@ class ModifierState extends MusicBeatState
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 		if (controls.BACK) {
-			FlxG.switchState(new FreeplayState());
+			if (PlayState.isStoryMode)
+			{
+				FlxG.switchState(new StoryMenuState());
+			}
+			else
+			{
+				FlxG.switchState(new FreeplayState());
+			}
 		}
 		if (controls.UP_P)
 		{
