@@ -118,6 +118,7 @@ class PlayState extends MusicBeatState
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
+	var trueScore:Int = 0;
 	var scoreTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
@@ -129,6 +130,21 @@ class PlayState extends MusicBeatState
 
 	var inCutscene:Bool = false;
 
+	var fullComboMode:Bool = false;
+	var perfectMode:Bool = false;
+	var practiceMode:Bool = false;
+	var healthGainModifier:Float = 0;
+	var healthLossModifier:Float = 0;
+	var supLove:Bool = false;
+	var poisonExr:Bool = false;
+	var poisonPlus:Bool = false;
+	var beingPoisioned:Bool = false;
+	var poisonTimes:Int = 0;
+	var flippedNotes:Bool = false;
+	var noteSpeed:Float = 0.45;
+	var sickFastTimer:FlxTimer;
+	var accelNotes:Bool = false;
+	private var regenTimer:FlxTimer;
 	override public function create()
 	{
 		// var gameCam:FlxCamera = FlxG.camera;
@@ -143,6 +159,32 @@ class PlayState extends MusicBeatState
 
 		persistentUpdate = true;
 		persistentDraw = true;
+		fullComboMode = ModifierState.modifiers[1].value;
+		perfectMode = ModifierState.modifiers[0].value;
+		practiceMode = ModifierState.modifiers[2].value;
+		flippedNotes = ModifierState.modifiers[10].value;
+		accelNotes= ModifierState.modifiers[13].value;
+		if (ModifierState.modifiers[3].value) {
+			healthGainModifier += 0.02;
+		} else if (ModifierState.modifiers[4].value) {
+			healthGainModifier -= 0.01;
+		}
+		if (ModifierState.modifiers[5].value) {
+			healthLossModifier += 0.02;
+		} else if (ModifierState.modifiers[6].value) {
+			healthLossModifier -= 0.02;
+		}
+		if (ModifierState.modifiers[11].value)
+			noteSpeed = 0.3;
+		if (accelNotes) {
+			noteSpeed = 0.2;
+			trace("accel arrows");
+		}
+		if (ModifierState.modifiers[12].value)
+			noteSpeed = 0.9;
+		supLove = ModifierState.modifiers[7].value;
+		poisonExr = ModifierState.modifiers[8].value;
+		poisonPlus = ModifierState.modifiers[9].value;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
@@ -152,7 +194,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
+				dialogue = CoolUtil.coolTextFile('assets/data/tutorial/tutorialDialogue.txt');
 			case 'bopeebo':
 				dialogue = CoolUtil.coolTextFile('assets/data/bopeebo/bopeeboDialogue.txt');
 			case 'fresh':
@@ -615,7 +657,7 @@ class PlayState extends MusicBeatState
 				camPos.x += 600;
 				boyfriend.y += 300;
 			case 'parents-christmas':
-				boyfriend.x -= 500;
+				boyfriend.x += 500;
 			case 'senpai':
 				boyfriend.x += 150;
 				boyfriend.y += 360;
@@ -799,6 +841,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'dadbattle':
 					schoolIntro(doof);
+				case 'tutorial':
+					schoolIntro(doof);
 				default:
 					startCountdown();
 			}
@@ -918,7 +962,6 @@ class PlayState extends MusicBeatState
 	}
 
 	var startTimer:FlxTimer;
-	var perfectMode:Bool = false;
 
 	function startCountdown():Void
 	{
@@ -1034,6 +1077,19 @@ class PlayState extends MusicBeatState
 			swagCounter += 1;
 			// generateSong('fresh');
 		}, 5);
+		regenTimer = new FlxTimer().start(2, function (tmr:FlxTimer) {
+			if (poisonExr)
+				health -= 0.005;
+			if (supLove)
+				health +=  0.005;
+		}, 0);
+		sickFastTimer = new FlxTimer().start(2, function (tmr:FlxTimer) {
+			if (accelNotes) {
+				trace("tick:" + noteSpeed);
+				noteSpeed += 0.01;
+			}
+
+		}, 0);
 	}
 
 	var previousFrameTime:Int = 0;
@@ -1105,6 +1161,10 @@ class PlayState extends MusicBeatState
 					oldNote = null;
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				if (!swagNote.isSustainNote) {
+					swagNote.flipX = flippedNotes;
+					swagNote.flipY = flippedNotes;
+				}
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -1161,7 +1221,8 @@ class PlayState extends MusicBeatState
 		{
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
-
+			babyArrow.flipX = flippedNotes;
+			babyArrow.flipY = flippedNotes;
 			switch (curStage)
 			{
 				case 'school':
@@ -1446,6 +1507,15 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
+		if (poisonTimes == 0) {
+			if (healthBar.percent < 20)
+				iconP1.animation.curAnim.curFrame = 1;
+			else
+				iconP1.animation.curAnim.curFrame = 0;
+		} else {
+			iconP1.animation.curAnim.curFrame = 2;
+		}
+
 		if (healthBar.percent < 20)
 			iconP1.animation.curAnim.curFrame = 1;
 		else
@@ -1638,8 +1708,7 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim("noscope", true);
 		}
 
-		#if release
-		if (health <= 0)
+		if (health <= 0 && !practiceMode)
 		{
 			boyfriend.stunned = true;
 
@@ -1652,7 +1721,6 @@ class PlayState extends MusicBeatState
 
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
-		#end
 
 		function bfDie()
 		{
@@ -1738,8 +1806,23 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
-						health -= 0.075;
+						health -= 0.075  + healthLossModifier;
 						vocals.volume = 0;
+						if (poisonPlus && poisonTimes < 5) {
+							poisonTimes += 1;
+							var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+								health -= 0.05;
+							}, 0);
+							// stop timer after 3 seconds
+							new FlxTimer().start(3, function (tmr:FlxTimer) {
+								poisonPlusTimer.cancel();
+								poisonTimes -= 1;
+							});
+						}
+						if (fullComboMode || perfectMode) {
+							// you signed up for this your fault
+							health = 0;
+						}
 					}
 
 					daNote.active = false;
@@ -2226,7 +2309,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!boyfriend.stunned)
 		{
-			health -= 0.04;
+			health -= 0.04 + healthLossModifier;
 			if (combo > 5)
 			{
 				gf.playAnim('sad');
@@ -2327,9 +2410,9 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 1;
 
 			if (note.noteData >= 0)
-				health += 0.023;
+				health += 0.023 + healthGainModifier;
 			else
-				health += 0.004;
+				health += 0.004 + healthGainModifier;
 
 			switch (note.noteData)
 			{

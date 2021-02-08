@@ -78,15 +78,15 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		{
-			portraitLeft = new FlxSprite(-200, 150);
+			portraitLeft = new FlxSprite(0, 0);
 			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortrait.png', 'assets/images/gfPortrait.xml');
-			portraitLeft.animation.addByPrefix('enter', 'Dad Portrait Enter', 24, false);
+			portraitLeft.animation.addByPrefix('enter', 'Gf portrait enter', 24, false);
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 		}
 		else 
 		{
-			portraitLeft = new FlxSprite(0, 150);
+			portraitLeft = new FlxSprite(0, 0);
 			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/dadPortrait.png', 'assets/images/dadPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'Dad Portrait Enter', 24, false);
 			portraitLeft.updateHitbox();
@@ -108,7 +108,7 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitRight = new FlxSprite(100, 150);
+			portraitRight = new FlxSprite(0, 0);
 			portraitRight.frames = FlxAtlasFrames.fromSparrow('assets/images/bfPortrait.png', 'assets/images/bfPortrait.xml');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait Enter', 24, false);
 			portraitRight.updateHitbox();
@@ -170,7 +170,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		else
 		{
-			box.y += 315;
+			box.y += 300;
 		}
 		box.updateHitbox();
 		add(box);
@@ -327,6 +327,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.flipX = false;
 					portraitRight.animation.play('enter');
 				}
+			/*
 			case 'gf':
 				portraitLeft.visible = false;
 				portraitRight.visible = false;
@@ -335,6 +336,7 @@ class DialogueBox extends FlxSpriteGroup
 					portraitRightGF.visible = true;
 					portraitRightGF.animation.play('entergf');
 				}
+			*/
 		}
 	}
 
