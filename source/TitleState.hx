@@ -43,6 +43,7 @@ class TitleState extends MusicBeatState
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
+	static public var versionGhi:String = " DEBUG";
 
 	override public function create():Void
 	{
@@ -50,6 +51,10 @@ class TitleState extends MusicBeatState
 
 		#if (!web)
 		TitleState.soundExt = '.ogg';
+		#end
+
+		#if (!debug)
+		TitleState.versionGhi = " BETA";
 		#end
 
 		PlayerSettings.init();

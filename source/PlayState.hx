@@ -807,8 +807,9 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
-		scoreTxt.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 200, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2, 1);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1848,7 +1849,7 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
-						health -= 0.075  + healthLossModifier;
+						health -= 0.035  + healthLossModifier;
 						vocals.volume = 0;
 						if (poisonPlus && poisonTimes < 5) {
 							poisonTimes += 1;
@@ -1995,16 +1996,6 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0.05;
 				score = 50;
 				ss = false;
-				if (hasModifier == 6)
-				{
-					boyfriend.stunned = true;
-					persistentUpdate = false;
-					persistentDraw = false;
-					paused = true;
-					vocals.stop();
-					FlxG.sound.music.stop();
-					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				}
 			}
 			else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 			{
@@ -2012,16 +2003,6 @@ class PlayState extends MusicBeatState
 				score = 100;
 				totalNotesHit += 0.10;
 				ss = false;
-				if (hasModifier == 6)
-				{
-					boyfriend.stunned = true;
-					persistentUpdate = false;
-					persistentDraw = false;
-					paused = true;
-					vocals.stop();
-					FlxG.sound.music.stop();
-					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				}
 			}
 			else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 			{
