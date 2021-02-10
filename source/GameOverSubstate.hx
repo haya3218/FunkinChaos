@@ -74,7 +74,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
 		{
-			FlxG.camera.follow(camFollow, LOCKON, 0.01);
+			FlxG.camera.follow(camFollow, LOCKON, 0.01 * (60.0 / MusicBeatState.funkyFramerate));
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
