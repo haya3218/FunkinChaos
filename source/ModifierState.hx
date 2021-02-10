@@ -4,6 +4,7 @@ import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.effects.FlxFlicker;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -149,6 +150,7 @@ class ModifierState extends MusicBeatState
 		}
 	}
 	function toggleSelection() {
+		FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 		if (modifiers[curSelected].name != 'Play'){
 			checkmarks[curSelected].visible = !checkmarks[curSelected].visible;
 			modifiers[curSelected].value = checkmarks[curSelected].visible;
@@ -159,6 +161,7 @@ class ModifierState extends MusicBeatState
 			calculateMultiplier();
 			multiTxt.text = "Multiplier: "+scoreMultiplier;
 		} else {
+			FlxFlicker.flicker(grpAlphabet.members[curSelected],0);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					FlxG.switchState(new PlayState());

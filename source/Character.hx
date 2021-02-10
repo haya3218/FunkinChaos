@@ -228,6 +228,27 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 20, -160);
 
 				playAnim('idle');
+
+			case 'mom-glitch':
+				tex = FlxAtlasFrames.fromSparrow('assets/images/glitchCar.png', 'assets/images/glitchCar.xml');
+				frames = tex;
+	
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+				// CUZ DAVE IS DUMB!
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+	
+				addOffset('idle');
+				addOffset("singUP", 14, 71);
+				addOffset("singRIGHT", 10, -60);
+				addOffset("singLEFT", 250, -23);
+				addOffset("singDOWN", 20, -160);
+	
+				playAnim('idle');
+			
 			case 'monster':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/Monster_Assets.png', 'assets/images/Monster_Assets.xml');
 				frames = tex;
@@ -363,6 +384,53 @@ class Character extends FlxSprite
 
 				flipX = true;
 
+			case 'bf-cursed':
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/LOVEY.png', 'assets/images/LOVEY.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
+				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
+				animation.addByPrefix('ahfuckivebeenhit', 'BF hit', 24, false);
+				animation.addByPrefix('noscope', 'boyfriend dodge', 24, false);
+
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+	
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+	
+				addOffset('idle', -5);
+				addOffset("singUP", -29, 27);
+				addOffset("singRIGHT", -38, -7);
+				addOffset("singLEFT", 12, -6);
+				addOffset("singDOWN", -10, -50);
+				addOffset("singUPmiss", -29, 27);
+				addOffset("singRIGHTmiss", -30, 21);
+				addOffset("singLEFTmiss", 12, 24);
+				addOffset("singDOWNmiss", -11, -19);
+				addOffset("hey", 7, 4);
+				addOffset('firstDeath', 37, 11);
+				addOffset('deathLoop', 37, 5);
+				addOffset('deathConfirm', 37, 69);
+				addOffset('scared', -4);
+				addOffset('preattack', -10, -44);
+				addOffset('attack', 291, 271);
+				addOffset('ahfuckivebeenhit', 23, 17);
+				addOffset('noscope', -7, 1);
+
+				playAnim('idle');
+	
+				flipX = true;
+	
 			case 'bf-icon':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/BF_Icon.png', 'assets/images/BF_Icon.xml');
 				frames = tex;
@@ -720,6 +788,30 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+	
+			case 'lucky':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/lucky.png', 'assets/images/lucky.xml');
+				animation.addByPrefix('idle', 'lucky guitar idle', 24, false);
+				animation.addByPrefix('singUP', 'lucky UP NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'lucky DOWN note', 24, false);
+				animation.addByPrefix('singLEFT', 'lucky sing left', 24, false);
+				animation.addByPrefix('singRIGHT', 'lucky sing right', 24, false);
+				animation.addByPrefix('singUPmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'lucky guitar miss', 24, false);
+	
+				addOffset('idle', 92, -143);
+				addOffset("singUP", 287, -133);
+				addOffset("singRIGHT", 287, -133);
+				addOffset("singLEFT", 287, -133);
+				addOffset("singDOWN", 237, -143);
+				addOffset("singUPmiss", -29, 27);
+				addOffset("singRIGHTmiss", -30, 21);
+				addOffset("singLEFTmiss", 12, 24);
+				addOffset("singDOWNmiss", -11, -19);
+	
+				playAnim('idle');
 		}
 
 		dance();
@@ -773,6 +865,9 @@ class Character extends FlxSprite
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
 			case 'mom-car':
+				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
+					playAnim('idle',false,false,11);
+			case 'mom-glitch':
 				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
 					playAnim('idle',false,false,11);
 			case 'bf-car':
@@ -842,6 +937,11 @@ class Character extends FlxSprite
 						playAnim('idle',true);
 					danced = !danced;
 				
+				case 'mom-glitch':
+					if(danced)
+						playAnim('idle',true);
+					danced = !danced;
+					
 				case 'bf-car':
 					if(danced)
 						playAnim('idle',true);

@@ -1,5 +1,6 @@
 package;
 
+import flixel.system.FlxAssets.FlxBitmapFontGraphicAsset;
 import Section.SwagSection;
 import Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
@@ -115,6 +116,9 @@ class PlayState extends MusicBeatState
 
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
+
+	var mtc:FlxSprite;
+	var beepbop:FlxSprite;
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
@@ -312,6 +316,49 @@ class PlayState extends MusicBeatState
 			limo.antialiasing = true;
 
 			fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarLol.png');
+			// add(limo);
+		}
+		else if (SONG.song.toLowerCase() == 'mtc')
+		{
+			curStage = 'mtc';
+			defaultCamZoom = 0.90;
+	
+			var glitchBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic('assets/images/weeb2/limoSunset.png');
+			glitchBG.scrollFactor.set(0.1, 0.1);
+			add(glitchBG);
+
+			beepbop = new FlxSprite(-240, -90);
+			beepbop.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb2/upperBop.png', 'assets/images/weeb2/upperBop.xml');
+			beepbop.animation.addByPrefix('bop', "Upper Crowd Bob", 24, false);
+			beepbop.antialiasing = true;
+			beepbop.scrollFactor.set(0.33, 0.33);
+			beepbop.setGraphicSize(Std.int(beepbop.width * 0.85));
+			beepbop.updateHitbox();
+			add(beepbop);
+	
+			var bgLimo2:FlxSprite = new FlxSprite(-200, 480);
+			bgLimo2.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb2/bgLimo.png', 'assets/images/weeb2/bgLimo.xml');
+			bgLimo2.animation.addByPrefix('drive', "background limo pink", 24);
+			bgLimo2.animation.play('drive');
+			bgLimo2.scrollFactor.set(0.4, 0.4);
+			add(bgLimo2);
+	
+			// add(overlayShit);
+	
+			// var shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
+	
+			// FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
+	
+			// overlayShit.shader = shaderBullshit;
+
+			var limoTex = FlxAtlasFrames.fromSparrow('assets/images/weeb2/limoDrive.png', 'assets/images/weeb2/limoDrive.xml');
+
+			mtc = new FlxSprite(-120, 550);
+			mtc.frames = limoTex;
+			mtc.animation.addByPrefix('drive', "Limo stage", 24);
+			mtc.animation.play('drive');
+			mtc.antialiasing = true;
+
 			// add(limo);
 		}
 		else if (SONG.song.toLowerCase() == 'cocoa' || SONG.song.toLowerCase() == 'eggnog')
@@ -579,6 +626,8 @@ class PlayState extends MusicBeatState
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
+		if (curStage == 'mtc')
+			add(mtc);
 
 		dad = new Character(100, 100, SONG.player2);
 
@@ -646,30 +695,18 @@ class PlayState extends MusicBeatState
 				boyfriend.flipX = true;
 
 			case "spooky":
-				boyfriend.y += 200;
+				boyfriend.y += 800;
 			case "monster":
-				boyfriend.y += 100;
+				boyfriend.y += 900;
 			case 'monster-christmas':
-				boyfriend.y += 130;
+				boyfriend.y += 970;
 			case 'dad':
-				camPos.x += 400;
+				camPos.x += 600;
 			case 'pico':
 				camPos.x += 600;
 				boyfriend.y += 300;
 			case 'parents-christmas':
 				boyfriend.x += 500;
-			case 'senpai':
-				boyfriend.x += 150;
-				boyfriend.y += 360;
-				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
-			case 'senpai-angry':
-				boyfriend.x += 150;
-				boyfriend.y += 360;
-				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
-			case 'spirit':
-				boyfriend.x -= 150;
-				boyfriend.y += 100;
-				camPos.set(boyfriend.getGraphicMidpoint().x + 300, boyfriend.getGraphicMidpoint().y);
 		}
 
 		// REPOSITIONING PER STAGE
@@ -706,6 +743,9 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+			case 'mtc':
+				boyfriend.y -= 220;
+				boyfriend.x += 260;
 		}
 
 		add(gf);
@@ -1615,6 +1655,8 @@ class PlayState extends MusicBeatState
 					case 'schoolEvil':
 						camFollow.x = boyfriend.getMidpoint().x - 200;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
+					case 'mtc':
+						camFollow.x = boyfriend.getMidpoint().x - 300;
 				}
 
 				if (SONG.song.toLowerCase() == 'tutorial')
@@ -2666,6 +2708,8 @@ class PlayState extends MusicBeatState
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();
 				}
+			case "mtc":
+				beepbop.animation.play('bop', true);
 		}
 
 		if (isHalloween && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)

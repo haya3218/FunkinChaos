@@ -101,6 +101,8 @@ class FreeplayState extends MusicBeatState
 			songs.push('Friday-Night');
 			songs.push('Judgement');
 			songs.push('Machine-Gun-Kiss');
+			songs.push('Bopeebo-Inst');
+			songs.push('MTC');
 			// songs.push('Winter-Horrorland');
 		}
 
@@ -221,9 +223,7 @@ class FreeplayState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
-			FlxG.switchState(new PlayState());
-			if (FlxG.sound.music != null)
-				FlxG.sound.music.stop();
+			FlxG.switchState(new ModifierState());
 		}
 	}
 

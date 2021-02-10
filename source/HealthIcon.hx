@@ -38,6 +38,9 @@ class HealthIcon extends FlxSprite
 		animation.add('bf-yakuza', [26, 27], 0, false, isPlayer);
 		animation.add('smile', [28, 29], 0, false, isPlayer);
 		animation.add('default', [0, 1], 0, false, isPlayer);
+		animation.add('lucky', [30], 0, false, isPlayer);
+		animation.add('mom-glitch', [31], 0, false, isPlayer);
+		animation.add('bf-cursed', [32, 33], 0, false, isPlayer);
 		animation.play(char);
 		scrollFactor.set();
 	}
