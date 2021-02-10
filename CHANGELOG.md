@@ -4,7 +4,33 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased (CHAOS VO.2 - 2021-4-??)
+## [CHAOS V0.3.1 - MTC UPDATE] - 2021-2-10
+### Added
+- MTC Song + Hard mode
+- Recoded modifiers
+- CUSSDJBFDFBNDJHFBDFDHFNBDJJD CUTSCENES IN TUTORIAL AND WEEK 1
+- FriedFrick dies confirmed
+- First stable debug release!
+### Changed
+- tweaked fps from 240 to 420 (see what i did there :letrollishere:)
+- Customizable gf
+### Fixed
+- HAIR BLOWING FIXED
+
+## [0.2.7] - 2021-02-02
+### Added
+- PIXEL DAY UPDATE LOL 1 WEEK LATER
+- 3 New songs by Kawaisprite!
+- COOL CUTSCENES
+- WEEK 6 YOYOYOYOY
+- Swaggy pixel art by Moawling!
+### Changed
+- Made it so you lose sliiiightly more health when you miss a note.
+- Removed the default HaxeFlixel pause screen when the game window loses focus, can get screenshots of the game easier hehehe
+### Fixed
+- Idle animation bug with BF christmas and BF hair blow sprites ([Thanks to Injourn for the Pull Request!](https://github.com/ninjamuffin99/Funkin/pull/237))
+
+## [CHAOS VO.2] - 2021-1-31
 ### Added
 - Miku and a song to die to
 - Senpai cos of a new leak thanks ninja
@@ -17,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Some other stuff
 ### Fixed
 - GF not doing the good ol fashioned cheer animation on Bopeebo
-## [CHAOS V.0.1] - 2021-02-01
+
+## [CHAOS V0.1] - 2021-02-01
 ### Added
 - Modifiers! Spice up your game!
 - Re worked shit story mode menu
@@ -32,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Hair physics no longer defeat the laws of aviation ([Thanks to Injourn for the code!](https://github.com/ninjamuffin99/Funkin/pull/239))
 - Donate button works on linux, think I dont need to link the pull request but thanks to natis1!
 - Local original branch fixes
+
 ## [0.2.6] - 2021-01-20
 ### Added
 - 3 NEW CHRISTMAS SONGS. 2 BY KAWAISPRITE, 1 BY BASSETFILMS!!!!! BF WITH DRIP! SANTA HANGIN OUT!
