@@ -682,20 +682,20 @@ class Character extends FlxSprite
 	
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 		
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
-				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
+				addOffset('idle');
+				addOffset("singUP", -47, 26);
+				addOffset("singRIGHT", -47, -8);
+				addOffset("singLEFT", 8, -7);
+				addOffset("singDOWN", -6, -53);
+				addOffset("singUPmiss", -55, 47);
+				addOffset("singRIGHTmiss", -40, 3);
+				addOffset("singLEFTmiss", 15, 1);
+				addOffset("singDOWNmiss", -3, -59);
+				addOffset("hey", 0, 13);
+				addOffset('firstDeath', 28, 8);
+				addOffset('deathLoop', 28, 8);
+				addOffset('deathConfirm', 28, 74);
+				addOffset('scared', 4);
 		
 				playAnim('idle');
 		
