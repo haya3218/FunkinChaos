@@ -35,22 +35,19 @@ class NGio
 		trace('INIT NOLOGIN');
 		GAME_VER = "v" + Application.current.meta.get('version');
 
-		if (api.length != 0)
+		NG.create(api);
+
+		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
-			NG.create(api);
-
-			new FlxTimer().start(2, function(tmr:FlxTimer)
+			var call = NG.core.calls.app.getCurrentVersion(GAME_VER).addDataHandler(function(response:Response<GetCurrentVersionResult>)
 			{
-				var call = NG.core.calls.app.getCurrentVersion(GAME_VER).addDataHandler(function(response:Response<GetCurrentVersionResult>)
-				{
-					GAME_VER = response.result.data.current_version;
-					trace('CURRENT NG VERSION: ' + GAME_VER);
-					gotOnlineVer = true;
-				});
-
-				call.send();
+				GAME_VER = response.result.data.current_version;
+				trace('CURRENT NG VERSION: ' + GAME_VER);
+				gotOnlineVer = true;
 			});
-		}
+
+			call.send();
+		});
 	}
 
 	public function new(api:String, encKey:String, ?sessionId:String)
