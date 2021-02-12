@@ -21,3 +21,4 @@ bf-yakuza
 smile
 spirit
 miku
+diva
