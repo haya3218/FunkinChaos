@@ -650,12 +650,6 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		// Shitty layering but whatev it works LOL
-		if (curStage == 'limo')
-			add(limo);
-		if (curStage == 'mtc')
-			add(mtc);
-
 		dad = new Character(100, 100, SONG.player2);
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -758,14 +752,6 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 			case 'schoolEvil':
-				// trailArea.scrollFactor.set();
-
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-				// evilTrail.changeValuesEnabled(false, false, false, false);
-				// evilTrail.changeGraphic()
-				add(evilTrail);
-				// evilTrail.scrollFactor.set(1.1, 1.1);
-
 				boyfriend.x += 200;
 				boyfriend.y += 220;
 				gf.x += 180;
@@ -775,7 +761,20 @@ class PlayState extends MusicBeatState
 				boyfriend.x += 260;
 		}
 
+		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
+		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
+		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
 		add(gf);
+
+		// Shitty layering but whatev it works LOL
+		if (curStage == 'limo')
+			add(limo);
+		if (curStage == 'mtc')
+			add(mtc);
+		if (curStage == 'schoolEvil')
+			add(evilTrail);
+
+
 		add(dad);
 		add(boyfriend);
 
@@ -911,6 +910,12 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'tutorial':
 					schoolIntro(doof);
+				case 'mc-mental-at-his-best':
+					// SHITTY TRAIL STUFF BUT WORKS ANYWAY
+					add(evilTrail);
+					add(evilTrail2);
+					add(evilTrail3);
+					startCountdown();
 				default:
 					startCountdown();
 			}
@@ -920,6 +925,12 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				default:
+					startCountdown();
+				case 'mc-mental-at-his-best':
+					// DITTO
+					add(evilTrail);
+					add(evilTrail2);
+					add(evilTrail3);
 					startCountdown();
 			}
 		}
@@ -1736,6 +1747,8 @@ class PlayState extends MusicBeatState
 					// FlxG.switchState(new PlayState());
 			}
 		}
+
+
 		// better streaming of shit
 
 		// RESET = Quick Game Over Screen
