@@ -633,18 +633,6 @@ class PlayState extends MusicBeatState
 
 		var gfVersion:String = 'gf';
 
-		switch (curStage)
-		{
-			case 'limo':
-				gfVersion = 'gf-car';
-			case 'mall' | 'mallEvil':
-				gfVersion = 'gf-christmas';
-			case 'school':
-				gfVersion = 'gf-pixel';
-			case 'schoolEvil':
-				gfVersion = 'gf-pixel';
-		}
-
 		gfVersion = SONG.gf;
 
 		gf = new Character(400, 130, gfVersion);
@@ -913,7 +901,6 @@ class PlayState extends MusicBeatState
 				case 'mc-mental-at-his-best':
 					// SHITTY TRAIL STUFF BUT WORKS ANYWAY
 					add(evilTrail);
-					add(evilTrail2);
 					add(evilTrail3);
 					startCountdown();
 				default:
@@ -929,7 +916,6 @@ class PlayState extends MusicBeatState
 				case 'mc-mental-at-his-best':
 					// DITTO
 					add(evilTrail);
-					add(evilTrail2);
 					add(evilTrail3);
 					startCountdown();
 			}
