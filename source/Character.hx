@@ -363,10 +363,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 	
 				addOffset('idle');
-				addOffset("singUP", -19, 67);
-				addOffset("singRIGHT", 45, -15);
-				addOffset("singLEFT", 48, 2);
-				addOffset("singDOWN", 6, -57);
+				addOffset("singUP", -30, -1);
+				addOffset("singRIGHT", 45, -4);
+				addOffset("singLEFT", 48, -19);
+				addOffset("singDOWN", 6, -61);
 	
 				playAnim('idle');
 	
@@ -505,7 +505,7 @@ class Character extends FlxSprite
 	
 				flipX = true;
 	
-			case 'miku':
+			case 'diva':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/DIVA.png', 'assets/images/DIVA.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
@@ -845,6 +845,24 @@ class Character extends FlxSprite
 				addOffset("singRIGHTmiss", -30, 21);
 				addOffset("singLEFTmiss", 12, 24);
 				addOffset("singDOWNmiss", -11, -19);
+	
+				playAnim('idle');
+
+			case 'miku':
+				// MIKU SHIT
+				tex = FlxAtlasFrames.fromSparrow('assets/images/Miku_Assets.png', 'assets/images/Miku_Assets.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'Miku idle dance', 24);
+				animation.addByPrefix('singUP', 'Miku Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Miku Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Miku Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Miku Sing Note LEFT', 24);
+	
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
 	
 				playAnim('idle');
 		}
