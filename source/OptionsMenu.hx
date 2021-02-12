@@ -14,11 +14,21 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'SAMPLE TEXT', 'SAMPLE TEXT2', 'SAMPLE TEXT3', 'SAMPLE TEXT4', 'SAMPLE TEXT5', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
+
+	var shittyNames:Array<String> = [
+		"BROKEN MENU FT. SHIT CODE",
+		"UNNEEDED SHITSHOWS",
+		"THE PAIN ROOM",
+		"CREDITS, DUH.",
+		"bye bye"
+	];
+
+	var txtOptionTitle:FlxText;
 
 	override function create()
 	{
@@ -54,6 +64,11 @@ class OptionsMenu extends MusicBeatState
 		header.antialiasing = true;
 		add(header);
 
+		txtOptionTitle = new FlxText(FlxG.width * 0.7, 10, 0, "dfgdfgdg", 32);
+		txtOptionTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
+		txtOptionTitle.alpha = 0.7;
+		add(txtOptionTitle);
+
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
@@ -63,6 +78,9 @@ class OptionsMenu extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		txtOptionTitle.text = shittyNames[curSelected].toUpperCase();
+		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
+
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
@@ -96,8 +114,32 @@ class OptionsMenu extends MusicBeatState
 					{
 						FlxG.switchState(new MainMenuState());
 					});
+				case "OFFSET MENU":
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new AnimationDebug());
+					});
+				case "FREEPLAY PLUS":
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new FreeplayPlusState());
+					});
+				case "CREDITS":
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new FreeplayPlusState());
+					});
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());
+				default:
+					// so it doesnt crash lol
+					trace('what the fuck');
 			}
 		}
 
@@ -148,6 +190,12 @@ class OptionsMenu extends MusicBeatState
 				txtDescription.text = 'Access the\nchart editor.\n \nCurrently, it\nis broken, so\n I dont\nrecommend\nit for now.';
 			case "OTHER OPTIONS":
 				txtDescription.text = 'Change other\nsettings.\n \nMost options\nthat change\nsimple things\ngo here.';
+			case "OFFSET MENU":
+				txtDescription.text = 'Access the\noffset editor.\n \nMade specifically\nfor editing\n offsets\nand isnt meant\nfor the public.';
+			case "FREEPLAY PLUS":
+				txtDescription.text = 'Better freeplay\nmenu.';
+			case "CREDITS":
+				txtDescription.text = 'No use.';
 			case "Exit to menu":
 				txtDescription.text = 'Says it\nall.';
 			default:
