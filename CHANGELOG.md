@@ -4,6 +4,18 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased [CHAOS v0.5] - 2021 i guess
+### Added
+- Updated MC MENTAL and Luci Moment hard charts
+- Added a fantastic rating (mine) and a late or early function on the good rating ([Fucking Pull request by Rafraud!](https://github.com/ninjamuffin99/Funkin/pull/373))
+- waht
+- OPTIONS MENU BABY
+### Changed
+- removed b-sides menu entirely; accesible in freeplay anyways
+### Fixed
+- Limo layering bug
+- Spirit trail layering bug. Thanks to Smokey#4891 for the fix!
+
 ## [CHAOS V0.3.1 - MTC UPDATE] - 2021-2-10
 ### Added
 - MTC Song + Hard mode
