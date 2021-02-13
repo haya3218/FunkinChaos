@@ -788,7 +788,7 @@ class PlayState extends MusicBeatState
 		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
 		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
-		if (curStage == 'trick')
+		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail3);
 		add(gf);
 
@@ -799,11 +799,11 @@ class PlayState extends MusicBeatState
 			add(mtc);
 		if (curStage == 'schoolEvil')
 			add(evilTrail);
-		if (curStage == 'trick')
+		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail);
 
 		add(dad);
-		if (curStage == 'trick')
+		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail2);
 		add(boyfriend);
 
