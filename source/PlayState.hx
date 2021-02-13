@@ -193,7 +193,6 @@ class PlayState extends MusicBeatState
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
 
-		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
 		switch (SONG.song.toLowerCase())
@@ -1702,7 +1701,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
-		FlxG.watch.addQuick("beatShit", curBeats);
+		FlxG.watch.addQuick("beatShit", totalBeats);
 		FlxG.watch.addQuick("stepShit", curStep);
 
 		if (curSong == 'Fresh')
@@ -1726,7 +1725,7 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'Bopeebo')
 		{
-			switch (curBeats)
+			switch (totalBeats)
 			{
 				case 128, 129, 130:
 					vocals.volume = 0;
@@ -2586,7 +2585,6 @@ class PlayState extends MusicBeatState
 
 	override function stepHit()
 	{
-		super.stepHit();
 		if (SONG.needsVoices)
 		{
 			if (vocals.time > Conductor.songPosition + 20 || vocals.time < Conductor.songPosition - 20)
@@ -2595,11 +2593,12 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (dad.curCharacter == 'spooky' && curSteps % 4 == 2)
+		if (dad.curCharacter == 'spooky' && totalSteps % 4 == 2)
 		{
 			// dad.dance();
 		}
 
+		super.stepHit();
 	}
 
 	var lightningStrikeBeat:Int = 0;
@@ -2607,6 +2606,7 @@ class PlayState extends MusicBeatState
 
 	override function beatHit()
 	{
+		wiggleShit.update(Conductor.crochet);
 		super.beatHit();
 
 		if (generatedMusic)
@@ -2621,24 +2621,23 @@ class PlayState extends MusicBeatState
 				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
 				FlxG.log.add('CHANGED BPM!');
 			}
-			//else
-				//Conductor.changeBPM(SONG.bpm);
+			else
+				Conductor.changeBPM(SONG.bpm);
 
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		wiggleShit.update(Conductor.crochet);
 
 		// HARDCODING FOR MILF ZOOMS!
-		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat <= 200 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeats % 4 == 0)
+		if (camZooming && FlxG.camera.zoom < 1.35 && totalBeats % 4 == 0)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
@@ -2650,7 +2649,7 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-		if (curBeats % gfSpeed == 0)
+		if (totalBeats % gfSpeed == 0)
 		{
 			gf.dance();
 		}
@@ -2660,7 +2659,7 @@ class PlayState extends MusicBeatState
 			boyfriend.dance();
 		}
 
-		if (curBeats % 8 == 7 && curSong == 'Bopeebo')
+		if (totalBeats % 8 == 7 && curSong == 'Bopeebo')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
@@ -2669,7 +2668,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 		}
 
-		if (curBeats % 8 == 7 && curSong == 'Friday-Night')
+		if (totalBeats % 8 == 7 && curSong == 'Friday-Night')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
@@ -2699,7 +2698,7 @@ class PlayState extends MusicBeatState
 				if (!trainMoving)
 					trainCooldown += 1;
 
-				if (curBeats % 4 == 0)
+				if (totalBeats % 4 == 0)
 				{
 					phillyCityLights.forEach(function(light:FlxSprite)
 					{
@@ -2712,7 +2711,7 @@ class PlayState extends MusicBeatState
 					// phillyCityLights.members[curLight].alpha = 1;
 				}
 
-				if (curBeats % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+				if (totalBeats % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
 				{
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();
