@@ -517,6 +517,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('sad', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('cheer', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
 				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
@@ -531,6 +533,7 @@ class Character extends FlxSprite
 	
 				addOffset('idle', -5);
 				addOffset("singUP", -29, 27);
+				addOffset("cheer", -29, 27);
 				addOffset("singRIGHT", -38, -7);
 				addOffset("singLEFT", 12, -6);
 				addOffset("singDOWN", -10, -50);
@@ -538,6 +541,7 @@ class Character extends FlxSprite
 				addOffset("singRIGHTmiss", -30, 21);
 				addOffset("singLEFTmiss", 12, 24);
 				addOffset("singDOWNmiss", -11, -19);
+				addOffset("sad", -11, -19);
 				addOffset("hey", 7, 4);
 				addOffset('firstDeath', 37, 11);
 				addOffset('deathLoop', 37, 5);

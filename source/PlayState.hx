@@ -668,9 +668,11 @@ class PlayState extends MusicBeatState
 		switch (SONG.gf)
 		{
 			case 'bf':
-				gf.y -= 300;
+				gf.y += 500;
+				gf.x += 100;
 			case 'diva':
-				gf.y -= 300;
+				gf.y += 500;
+				gf.x += 100;
 		}
 
 		dad = new Character(100, 100, SONG.player2);
