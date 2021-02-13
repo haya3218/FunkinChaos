@@ -603,6 +603,33 @@ class PlayState extends MusicBeatState
 			mikuFront.active = false;
 			add(mikuFront);
 		}
+		else if (SONG.song.toLowerCase() == 'mc-mental-at-his-best')
+		{
+			defaultCamZoom = 0.9;
+			curStage = 'trick';
+			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/stageback.png');
+			bg.antialiasing = true;
+			bg.scrollFactor.set(0.9, 0.9);
+			bg.active = false;
+			add(bg);
+	
+			var stageFront2:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/stagefront.png');
+			stageFront2.setGraphicSize(Std.int(stageFront2.width * 1.1));
+			stageFront2.updateHitbox();
+			stageFront2.antialiasing = true;
+			stageFront2.scrollFactor.set(0.9, 0.9);
+			stageFront2.active = false;
+			add(stageFront2);
+	
+			var stageCurtains2:FlxSprite = new FlxSprite(-500, -300).loadGraphic('assets/images/stagecurtains.png');
+			stageCurtains2.setGraphicSize(Std.int(stageCurtains2.width * 0.9));
+			stageCurtains2.updateHitbox();
+			stageCurtains2.antialiasing = true;
+			stageCurtains2.scrollFactor.set(1.3, 1.3);
+			stageCurtains2.active = false;
+	
+			add(stageCurtains2);
+		}
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -678,7 +705,7 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case 'miku':
+			case 'diva':
 				camPos.x += 700;
 				dad.y += 400;
 			case 'bf':
@@ -752,6 +779,8 @@ class PlayState extends MusicBeatState
 		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
 		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
+		if (curStage == 'trick')
+			add(evilTrail3);
 		add(gf);
 
 		// Shitty layering but whatev it works LOL
@@ -761,9 +790,12 @@ class PlayState extends MusicBeatState
 			add(mtc);
 		if (curStage == 'schoolEvil')
 			add(evilTrail);
-
+		if (curStage == 'trick')
+			add(evilTrail);
 
 		add(dad);
+		if (curStage == 'trick')
+			add(evilTrail2);
 		add(boyfriend);
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
@@ -898,11 +930,6 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'tutorial':
 					schoolIntro(doof);
-				case 'mc-mental-at-his-best':
-					// SHITTY TRAIL STUFF BUT WORKS ANYWAY
-					add(evilTrail);
-					add(evilTrail3);
-					startCountdown();
 				default:
 					startCountdown();
 			}
@@ -912,11 +939,6 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				default:
-					startCountdown();
-				case 'mc-mental-at-his-best':
-					// DITTO
-					add(evilTrail);
-					add(evilTrail3);
 					startCountdown();
 			}
 		}
