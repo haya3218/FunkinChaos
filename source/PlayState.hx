@@ -665,6 +665,14 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
+		switch (SONG.gf)
+		{
+			case 'bf':
+				gf.y -= 300;
+			case 'diva':
+				gf.y -= 300;
+		}
+
 		dad = new Character(100, 100, SONG.player2);
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -728,7 +736,6 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-				boyfriend.flipX = true;
 
 			case "spooky":
 				boyfriend.y += 800;
@@ -737,10 +744,10 @@ class PlayState extends MusicBeatState
 			case 'monster-christmas':
 				boyfriend.y += 970;
 			case 'dad':
-				camPos.x += 600;
+				camPos.x -= 600;
+				boyfriend.y -= 350;
 			case 'pico':
 				camPos.x += 600;
-				boyfriend.y += 300;
 			case 'parents-christmas':
 				boyfriend.x += 500;
 		}
