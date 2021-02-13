@@ -799,7 +799,7 @@ class PlayState extends MusicBeatState
 			add(mtc);
 		if (curStage == 'schoolEvil')
 			add(evilTrail);
-		if (curStage == 'trick' || curStage == 'miku')
+		if (curStage == 'trick' || curStage == 'miku' || curStage == 'mtc')
 			add(evilTrail);
 
 		add(dad);
