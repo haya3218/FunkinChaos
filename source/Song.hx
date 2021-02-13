@@ -16,8 +16,6 @@ typedef SwagSong =
 	var song:String;
 	var notes:Array<SwagSection>;
 	var bpm:Int;
-	var sections:Int;
-	var sectionLengths:Array<Dynamic>;
 	var needsVoices:Bool;
 	var speed:Float;
 
@@ -32,8 +30,6 @@ class Song
 	public var song:String;
 	public var notes:Array<SwagSection>;
 	public var bpm:Int;
-	public var sections:Int;
-	public var sectionLengths:Array<Dynamic> = [];
 	public var needsVoices:Bool = true;
 	public var speed:Float = 1;
 
@@ -41,17 +37,11 @@ class Song
 	public var player2:String = 'dad';
 	public var gf:String = 'gf';
 
-	public function new(song, notes, bpm, sections)
+	public function new(song, notes, bpm)
 	{
 		this.song = song;
 		this.notes = notes;
 		this.bpm = bpm;
-		this.sections = sections;
-
-		for (i in 0...notes.length)
-		{
-			this.sectionLengths.push(notes[i]);
-		}
 	}
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
@@ -79,6 +69,24 @@ class Song
 					parsedJson.gf = 'gf';
 			}
 		}
+		
+		// FIX THE CASTING ON WINDOWS/NATIVE
+		// Windows???
+		// trace(songData);
+		// trace('LOADED FROM JSON: ' + songData.notes);
+		/* 
+			for (i in 0...songData.notes.length)
+			{
+				trace('LOADED FROM JSON: ' + songData.notes[i].sectionNotes);
+				// songData.notes[i].sectionNotes = songData.notes[i].sectionNotes
+			}
+				daNotes = songData.notes;
+				daSong = songData.song;
+				daSections = songData.sections;
+				daBpm = songData.bpm;
+				daSectionLengths = songData.sectionLengths; */
+				daBpm = songData.bpm; */
+				
 		return parsedJson;
 	}
 
