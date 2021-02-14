@@ -41,6 +41,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
+		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf']
 	];
 
@@ -52,7 +53,8 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"hating simulator ft. moawling",
-		"WHERE'S YOUR LIFE LICENSE?"
+		"WHERE'S YOUR LIFE LICENSE?",
+		"LUCI STOOPID"
 	];
 
 	var txtWeekTitle:FlxText;
