@@ -234,18 +234,18 @@ class ChartingState extends MusicBeatState
 		});
 		player1DropDown.selectedLabel = _song.player1;
 
-		var player2DropDown = new FlxUIDropDownMenu(140, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var player2DropDown = new FlxUIDropDownMenu(160, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player2 = characters[Std.parseInt(character)];
 		});
 
-		player2DropDown.selectedLabel = _song.player2;
+		player2DropDown.selectedLabel = _song.gf;
 
-		var gfDropDown = new FlxUIDropDownMenu(70, 150, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var gfDropDown = new FlxUIDropDownMenu(70, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gf = characters[Std.parseInt(character)];
 		});
-			
+	
 		gfDropDown.selectedLabel = _song.gf;
 
 		var tab_group_song = new FlxUI(null, UI_box);
@@ -262,7 +262,6 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stepperSpeed);
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(player2DropDown);
-		tab_group_song.add(gfDropDown);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();
@@ -465,18 +464,18 @@ class ChartingState extends MusicBeatState
 	}*/
 
 	function sectionStartTime():Float
+	{
+		var daBPM:Int = _song.bpm;
+		var daPos:Float = 0;
+		for (i in 0...curSection)
 		{
-			var daBPM:Int = _song.bpm;
-			var daPos:Float = 0;
-			for (i in 0...curSection)
-			{
-				if (_song.notes[i].changeBPM) {
-					daBPM = _song.notes[i].bpm;
-				}
-				daPos += 4 * (1000 * 60 / daBPM);
+			if (_song.notes[i].changeBPM) {
+				daBPM = _song.notes[i].bpm;
 			}
-			return daPos;
+			daPos += 4 * (1000 * 60 / daBPM);
 		}
+		return daPos;
+	}
 
 	override function update(elapsed:Float)
 	{
@@ -495,9 +494,9 @@ class ChartingState extends MusicBeatState
 
 			if (_song.notes[curSection + 1] == null)
 			{
-					addSection();
-		    }
-		    
+				addSection();
+			}
+
 			changeSection(curSection + 1, false);
 		}
 
@@ -835,6 +834,7 @@ class ChartingState extends MusicBeatState
 		if (_song.notes[curSection].changeBPM && _song.notes[curSection].bpm > 0)
 		{
 			Conductor.changeBPM(_song.notes[curSection].bpm);
+			FlxG.log.add('CHANGED BPM!');
 		}
 		else
 		{
@@ -981,7 +981,8 @@ class ChartingState extends MusicBeatState
 	{
 		return FlxMath.remapToRange(strumTime, 0, 16 * Conductor.stepCrochet, gridBG.y, gridBG.y + gridBG.height);
 	}
-    /*
+
+	/*
 	function calculateSectionLengths(?sec:SwagSection):Int
 	{
 		var daLength:Int = 0;
