@@ -241,7 +241,7 @@ class ChartingState extends MusicBeatState
 
 		player2DropDown.selectedLabel = _song.gf;
 
-		var gfDropDown = new FlxUIDropDownMenu(70, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var gfDropDown = new FlxUIDropDownMenu(70, 75, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gf = characters[Std.parseInt(character)];
 		});
@@ -262,6 +262,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stepperSpeed);
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(player2DropDown);
+		tab_group_song.add(gfDropDown);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();
