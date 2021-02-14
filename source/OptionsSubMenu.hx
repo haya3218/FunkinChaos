@@ -12,9 +12,9 @@ import flixel.effects.FlxFlicker;
 import flixel.util.FlxTimer;
 import lime.utils.Assets;
 
-class OptionsMenu extends MusicBeatState
+class OptionsSubMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'Exit to menu'];
+	var menuItems:Array<String> = ['FRAMERATE', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 

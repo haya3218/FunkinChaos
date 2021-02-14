@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxSave;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -26,7 +27,7 @@ import openfl.Assets;
 import polymod.Polymod;
 import openfl.Lib;
 import flash.system.System;
-
+import haxe.Json;
 using StringTools;
 
 class TitleState extends MusicBeatState
@@ -43,6 +44,9 @@ class TitleState extends MusicBeatState
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
+	var shittySave:FlxSave;
+	static public var vocalSave:Float = 0;
+	static public var musicSave:Float = 0;
 	static public var versionGhi:String = " DEBUG";
 
 	override public function create():Void
@@ -72,7 +76,8 @@ class TitleState extends MusicBeatState
 		trace('NEWGROUNDS LOL');
 		#end
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
+		FlxG.save.bind("funkin"+optionsJson.preferredSave, 'ninjamuffin99');
 
 		Highscore.load();
 
