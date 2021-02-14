@@ -1733,7 +1733,11 @@ class PlayState extends MusicBeatState
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
+<<<<<<< Updated upstream
 		FlxG.watch.addQuick("beatShit", totalBeats);
+=======
+		FlxG.watch.addQuick("beatShit", curBeat);
+>>>>>>> Stashed changes
 		FlxG.watch.addQuick("stepShit", curStep);
 
 		if (curSong == 'Fresh')
@@ -1757,7 +1761,11 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'Bopeebo')
 		{
+<<<<<<< Updated upstream
 			switch (totalBeats)
+=======
+			switch (curBeat)
+>>>>>>> Stashed changes
 			{
 				case 128, 129, 130:
 					vocals.volume = 0;
@@ -2682,7 +2690,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+<<<<<<< Updated upstream
 		if (dad.curCharacter == 'spooky' && totalSteps % 4 == 2)
+=======
+		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
+>>>>>>> Stashed changes
 		{
 			// dad.dance();
 		}
@@ -2726,7 +2738,11 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
+<<<<<<< Updated upstream
 		if (camZooming && FlxG.camera.zoom < 1.35 && totalBeats % 4 == 0)
+=======
+		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+>>>>>>> Stashed changes
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
@@ -2738,7 +2754,11 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
+<<<<<<< Updated upstream
 		if (totalBeats % gfSpeed == 0)
+=======
+		if (curBeat % gfSpeed == 0)
+>>>>>>> Stashed changes
 		{
 			gf.dance();
 		}
@@ -2748,7 +2768,11 @@ class PlayState extends MusicBeatState
 			boyfriend.dance();
 		}
 
+<<<<<<< Updated upstream
 		if (totalBeats % 8 == 7 && curSong == 'Bopeebo')
+=======
+		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
+>>>>>>> Stashed changes
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
@@ -2757,7 +2781,11 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 		}
 
+<<<<<<< Updated upstream
 		if (totalBeats % 8 == 7 && curSong == 'Friday-Night')
+=======
+		if (curBeat % 8 == 7 && curSong == 'Friday-Night')
+>>>>>>> Stashed changes
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
@@ -2787,7 +2815,11 @@ class PlayState extends MusicBeatState
 				if (!trainMoving)
 					trainCooldown += 1;
 
+<<<<<<< Updated upstream
 				if (totalBeats % 4 == 0)
+=======
+				if (curBeat % 4 == 0)
+>>>>>>> Stashed changes
 				{
 					phillyCityLights.forEach(function(light:FlxSprite)
 					{
@@ -2800,7 +2832,11 @@ class PlayState extends MusicBeatState
 					// phillyCityLights.members[curLight].alpha = 1;
 				}
 
+<<<<<<< Updated upstream
 				if (totalBeats % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+=======
+				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+>>>>>>> Stashed changes
 				{
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();

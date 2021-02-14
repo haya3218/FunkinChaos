@@ -79,9 +79,28 @@ class Song
 					parsedJson.gf = 'gf';
 			}
 		}
+<<<<<<< Updated upstream
 		return parsedJson;
 	}
+=======
+		
+		// FIX THE CASTING ON WINDOWS/NATIVE
+		// Windows???
+		// trace(songData);
+		// trace('LOADED FROM JSON: ' + songData.notes);
+		/* 
+			for (i in 0...songData.notes.length)
+			{
+				trace('LOADED FROM JSON: ' + songData.notes[i].sectionNotes);
+				// songData.notes[i].sectionNotes = songData.notes[i].sectionNotes
+			}
+				daNotes = songData.notes;
+				daSong = songData.song;
+				daBpm = songData.bpm; */
+>>>>>>> Stashed changes
 
+		return parseJSONshit(rawJson);
+    	}
 	public static function parseJSONshit(rawJson:String):SwagSong
 	{
 		var swagShit:SwagSong = cast Json.parse(rawJson).song;
