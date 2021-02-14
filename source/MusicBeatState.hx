@@ -5,6 +5,8 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
+import lime.utils.Assets;
+import haxe.Json;
 
 class MusicBeatState extends FlxUIState
 {
@@ -18,12 +20,18 @@ class MusicBeatState extends FlxUIState
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
 	public static var funkyFramerate:Int = 420;
+	public static var vocalVolume:Float = 0;
+	public static var musicVolume:Float = 0;
+	public static var sfxVolume:Float = 0;
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
 	override function create()
 	{
+		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
+		vocalVolume = optionsJson.vocalShiz;
+		musicVolume = optionsJson.musicVolume;
 		if (transIn != null)
 			trace('reg ' + transIn.region);
 

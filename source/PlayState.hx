@@ -1201,7 +1201,7 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		if (!paused)
-			FlxG.sound.playMusic("assets/music/" + SONG.song + "_Inst" + TitleState.soundExt, 1, false);
+			FlxG.sound.playMusic("assets/music/" + SONG.song + "_Inst" + TitleState.soundExt, 1 - MusicBeatState.musicVolume, false);
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 	}
@@ -1575,6 +1575,7 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%";
+		scoreTxt.screenCenter(X);
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1691,7 +1692,7 @@ class PlayState extends MusicBeatState
 				}
 
 				if (dad.curCharacter == 'mom')
-					vocals.volume = 1;
+					vocals.volume = 1 - MusicBeatState.vocalVolume;
 
 				if (SONG.song.toLowerCase() == 'tutorial')
 				{
@@ -1893,7 +1894,7 @@ class PlayState extends MusicBeatState
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
-						vocals.volume = 1;
+						vocals.volume = 1 - MusicBeatState.vocalVolume;
 
 					daNote.kill();
 					notes.remove(daNote, true);
@@ -2034,7 +2035,7 @@ class PlayState extends MusicBeatState
 	{
 		var noteDiff:Float = strumtime - Conductor.songPosition;
 		// boyfriend.playAnim('hey');
-		vocals.volume = 1;
+		vocals.volume = 1 - MusicBeatState.vocalVolume;
 
 		var placement:String = Std.string(combo);
 
@@ -2573,7 +2574,7 @@ class PlayState extends MusicBeatState
 			});
 
 			note.wasGoodHit = true;
-			vocals.volume = 1;
+			vocals.volume = 1 - MusicBeatState.vocalVolume;
 
 			note.kill();
 			notes.remove(note, true);
