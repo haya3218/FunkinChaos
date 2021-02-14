@@ -30,8 +30,6 @@ class Song
 	public var song:String;
 	public var notes:Array<SwagSection>;
 	public var bpm:Int;
-	public var sections:Int;
-	public var sectionLengths:Array<Dynamic> = [];
 	public var needsVoices:Bool = true;
 	public var speed:Float = 1;
 
