@@ -869,6 +869,53 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 	
 				playAnim('idle');
+
+			case 'bf-pain':
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/pain.png', 'assets/images/pain.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
+				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
+				animation.addByPrefix('ahfuckivebeenhit', 'BF hit', 24, false);
+				animation.addByPrefix('noscope', 'boyfriend dodge', 24, false);
+
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+
+				addOffset('idle', -4, 2);
+				addOffset("singUP", -38, 16);
+				addOffset("singRIGHT", -38, 16);
+				addOffset("singLEFT", -10, 16);
+				addOffset("singDOWN", -7, -23);
+				addOffset("singUPmiss", -37, 14);
+				addOffset("singRIGHTmiss", -40, 18);
+				addOffset("singLEFTmiss", -10, 16);
+				addOffset("singDOWNmiss", -11, -23);
+				addOffset("hey", -3, 3);
+				addOffset('firstDeath', 25, 5);
+				addOffset('deathLoop', 25, -2);
+				addOffset('deathConfirm', 25, 63);
+				addOffset('scared', -4);
+				addOffset('preattack', -20, -41);
+				addOffset('attack', 297, 270);
+				addOffset('ahfuckivebeenhit', 16, 17);
+				addOffset('noscope', -3, -10);
+
+				playAnim('idle');
+
+				flipX = true;
 		}
 
 		dance();

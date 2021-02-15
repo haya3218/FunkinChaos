@@ -42,6 +42,7 @@ class HealthIcon extends FlxSprite
 		animation.add('mom-glitch', [31], 0, false, isPlayer);
 		animation.add('bf-cursed', [32, 33], 0, false, isPlayer);
 		animation.add('miku', [34], 0, false, isPlayer);
+		animation.add('bf-pain', [37, 38], 0, false, isPlayer);
 		animation.play(char);
 		scrollFactor.set();
 	}
