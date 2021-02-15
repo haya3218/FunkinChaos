@@ -863,12 +863,6 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 200, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2, 1);
-		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
-
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
@@ -877,6 +871,12 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 200, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2, 1);
+		scoreTxt.scrollFactor.set();
+		add(scoreTxt);
+		
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1888,35 +1888,26 @@ class PlayState extends MusicBeatState
 
 				if (daNote.y < -daNote.height)
 				{
-					if (daNote.isSustainNote && !daNote.wasGoodHit)
+					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
-						vocals.volume = 1;
+						health -= 0.0475 + healthLossModifier;
+						vocals.volume = 0;
+						if (poisonPlus && poisonTimes < 5) {
+							poisonTimes += 1;
+							var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+								health -= 0.05;
+							}, 0);
+							// stop timer after 3 seconds
+							new FlxTimer().start(3, function (tmr:FlxTimer) {
+								poisonPlusTimer.cancel();
+								poisonTimes -= 1;
+							});
+						}
 					}
-					else
-					{
-						if (daNote.tooLate || !daNote.wasGoodHit)
-						{
-							health -= 0.0475 + healthLossModifier;
-							vocals.volume = 0;
-							if (poisonPlus && poisonTimes < 5) {
-								poisonTimes += 1;
-								var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-									health -= 0.05;
-								}, 0);
-								// stop timer after 3 seconds
-								new FlxTimer().start(3, function (tmr:FlxTimer) {
-									poisonPlusTimer.cancel();
-									poisonTimes -= 1;
-								});
-							}
-						}
-						if (fullComboMode || perfectMode) {
-							// you signed up for this your fault
-							health = 0;
-						}
+					if (fullComboMode || perfectMode) {
+						// you signed up for this your fault
+						health = 0;
+					}
 
 						daNote.active = false;
 						daNote.visible = false;
@@ -1924,7 +1915,6 @@ class PlayState extends MusicBeatState
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
-					}
 				}
 			});
 		}
@@ -2566,12 +2556,9 @@ class PlayState extends MusicBeatState
 			note.wasGoodHit = true;
 			vocals.volume = 1;
 
-			if (!note.isSustainNote)
-			{
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
-			}
+			note.kill();
+			notes.remove(note, true);
+			note.destroy();
 			
 			updateAccuracy();
 		}
