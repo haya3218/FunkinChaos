@@ -100,7 +100,10 @@ class TitleState extends MusicBeatState
 		#elseif CHARTING
 		FlxG.switchState(new ChartingState());
 		#else
-		startIntro();
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		{
+			startIntro();
+		});
 		#end
 	}
 
@@ -238,7 +241,8 @@ class TitleState extends MusicBeatState
 				System.exit(0);
 			}
 			
-		Conductor.songPosition = FlxG.sound.music.time;
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
 		if (FlxG.keys.justPressed.F)

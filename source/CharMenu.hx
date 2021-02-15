@@ -1,5 +1,6 @@
 package;
 
+import haxe.rtti.CType.Abstractdef;
 import flash.text.TextField;
 import Section.SwagSection;
 import Song.SwagSong;
@@ -19,6 +20,7 @@ class CharMenu extends MusicBeatState
 	var menuItems:Array<String> = ['BOYFRIEND', 'PICO', 'DEFAULT'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
+	var shitCharacter:FlxSprite;
 	public static var SONG:SwagSong;
 	public var targetY:Float = 0;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
@@ -71,6 +73,13 @@ class CharMenu extends MusicBeatState
 		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
+
+		shitCharacter = new FlxSprite(0, -20).loadGraphic('assets/images/pissboyfriend.png');
+		shitCharacter.setGraphicSize(-5);
+		shitCharacter.screenCenter(XY);
+		shitCharacter.updateHitbox();
+		shitCharacter.antialiasing = true;
+		add(shitCharacter);
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 100, 'CHARACTER SELECT', true, false);
 		charSelHeaderText.screenCenter(X);
@@ -172,14 +181,33 @@ class CharMenu extends MusicBeatState
 			item.x = bullShit - curSelected;
 			bullShit++;
 
-			item.alpha = 0.6;
+			item.alpha = 0;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 	
 			if (item.x == 0)
 			{
-				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
 			}
+		}
+
+		charCheckLmao();
+	}
+
+	function charCheckLmao()
+	{
+		var daSelected:String = menuItems[curSelected];
+
+		switch (daSelected)
+		{
+			case "PICO":
+				shitCharacter.loadGraphic('assets/images/picodegallo.png');
+			case "BOYFRIEND":
+				shitCharacter.loadGraphic('assets/images/pissboyfriend.png');
+			case 'DEFAULT':
+				shitCharacter.loadGraphic('assets/images/defaultChar.png');
+			default:
+				// so it doesnt crash lol
+				shitCharacter.loadGraphic('assets/images/defaultChar.png');
 		}
 	}
 }

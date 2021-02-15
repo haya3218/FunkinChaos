@@ -241,13 +241,13 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 
-		if (FlxG.keys.justPressed.SPACE)
+		if (FlxG.keys.justPressed.SPACE  && dialogueStarted == true)
 		{
 			remove(dialogue);
 
 			FlxG.sound.play('assets/sounds/clickText' + TitleState.soundExt, 0.8);
 
-			if (dialogueList[1] == null)
+			if (dialogueList[1] == null && dialogueList[0] != null)
 			{
 				if (!isEnding)
 				{
