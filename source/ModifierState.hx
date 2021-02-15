@@ -163,9 +163,10 @@ class ModifierState extends MusicBeatState
 			multiTxt.text = "Multiplier: "+scoreMultiplier;
 		} else {
 			FlxFlicker.flicker(grpAlphabet.members[curSelected],0);
+			checkmarks[curSelected].visible = false;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					FlxG.switchState(new PlayState());
+					FlxG.switchState(new CharMenu());
 				});
 		}
 

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a fantastic rating (mine) and a late or early function on the good rating ([Fucking Pull request by Rafraud!](https://github.com/ninjamuffin99/Funkin/pull/373))
 - waht
 - OPTIONS MENU BABY
+- Chart's and chart editor now support changeBPM, GOD BLESS MTH FOR THIS ONE I BEEN STRUGGLIN WIT THAT SINCE OCTOBER LMAO ([GOD BLESS MTH](https://github.com/ninjamuffin99/Funkin/pull/382))
+- Fixed sustain note trails ALSO THANKS TO MTH U A REAL ONE ([MTH VERY POWERFUL](https://github.com/ninjamuffin99/Funkin/pull/415))
 ### Changed
 - removed b-sides menu entirely; accesible in freeplay anyways
 ### Fixed
