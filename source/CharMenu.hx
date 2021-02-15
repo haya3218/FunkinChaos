@@ -16,14 +16,14 @@ import lime.utils.Assets;
 
 class CharMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['PICO', 'BOYFRIEND'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'PICO', 'DEFAULT'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	public static var SONG:SwagSong;
 	public var targetY:Float = 0;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
 
-	private var grpMenuShit:FlxTypedGroup<FlxSprite>;
+	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 
 	var shittyNames:Array<String> = [
@@ -43,14 +43,14 @@ class CharMenu extends MusicBeatState
 
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGOptions.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBG.png');
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		add(menuBG);
 
-		grpMenuShit = new FlxTypedGroup<FlxSprite>();
+		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
 
 		grpMenuShiz = new FlxTypedGroup<FlxSprite>();
@@ -58,9 +58,9 @@ class CharMenu extends MusicBeatState
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(3, (70 * i) + 30, menuItems[i], true, false);
-			songText.screenCenter(X);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
 			songText.isOptionItem = true;
+			songText.screenCenter(X);
 			songText.targetY = i;
 			grpMenuShit.add(songText);
 		}
@@ -72,9 +72,14 @@ class CharMenu extends MusicBeatState
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
 
-		var charSelHeaderText:Alphabet = new Alphabet(0, -1, 'CHARACTER SELECT', true, false);
+		var charSelHeaderText:Alphabet = new Alphabet(0, 100, 'CHARACTER SELECT', true, false);
 		charSelHeaderText.screenCenter(X);
 		add(charSelHeaderText);
+
+		var shittyArrows:FlxSprite = new FlxSprite().loadGraphic('assets/images/arrowsz.png');
+		shittyArrows.screenCenter();
+		shittyArrows.antialiasing = true;
+		add(shittyArrows);
 
 		changeSelection();
 
@@ -116,10 +121,23 @@ class CharMenu extends MusicBeatState
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					PlayState.SONG.player1 = 'bf';
+					if (PlayState.SONG.song.toLowerCase() == 'mtc')
+						PlayState.SONG.player1 = 'bf-cursed';
+					if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
+						PlayState.SONG.player1 = 'bf-yakuza';
+					if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
+						PlayState.SONG.player1 = 'bf-car';
 					if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
 						PlayState.SONG.player1 = 'bf-christmas';
 					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
 						PlayState.SONG.player1 = 'bf-pixel';
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new PlayState());
+					});
+				case 'DEFAULT':
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
 						FlxG.switchState(new PlayState());
