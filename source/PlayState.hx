@@ -2110,6 +2110,11 @@ class PlayState extends MusicBeatState
 			pixelShitPart1 = 'weeb/pixelUI/';
 			pixelShitPart2 = '-pixel';
 		}
+		if (SONG.player1 == 'bf-pain')
+		{
+			pixelShitPart1 = 'pain/';
+			pixelShitPart2 = '-bad';
+		}
 
 		rating.loadGraphic('assets/images/' + pixelShitPart1 + daRating + pixelShitPart2 + ".png");
 		rating.screenCenter();
@@ -2126,6 +2131,7 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.y -= 150;
 
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
+		add(comboSpr);
 		
 		if(daTiming != "")
 		{
