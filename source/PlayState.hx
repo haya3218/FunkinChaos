@@ -1880,6 +1880,7 @@ class PlayState extends MusicBeatState
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
+						vocals.volume = 1;
 					}
 					else
 					{
