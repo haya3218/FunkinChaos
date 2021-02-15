@@ -3,6 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxTimer;
 
 class GitarooPause extends MusicBeatState
 {
@@ -19,7 +21,7 @@ class GitarooPause extends MusicBeatState
 	override function create()
 	{
 		if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
+			FlxG.sound.playMusic('assets/music/title.ogg', 1, true);
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/pauseAlt/pauseBG.png');
 		add(bg);
@@ -57,13 +59,25 @@ class GitarooPause extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
+            FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 			if (replaySelect)
 			{
-				FlxG.switchState(new PlayState());
+                FlxFlicker.flicker(replayButton,0);
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+                {
+                    FlxG.switchState(new PlayState());
+                });
 			}
 			else
 			{
-				FlxG.switchState(new MainMenuState());
+                FlxFlicker.flicker(cancelButton,0);
+                new FlxTimer().start(1, function(tmr:FlxTimer)
+                {
+                    if (PlayState.isStoryMode)
+                        FlxG.switchState(new StoryMenuState());
+                    else
+                        FlxG.switchState(new FreeplayState());
+                });
 			}
 		}
 
@@ -72,6 +86,7 @@ class GitarooPause extends MusicBeatState
 
 	function changeThing():Void
 	{
+        FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 		replaySelect = !replaySelect;
 
 		if (replaySelect)
