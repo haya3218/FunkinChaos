@@ -116,6 +116,10 @@ class CharMenu extends MusicBeatState
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					PlayState.SONG.player1 = 'bf';
+					if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
+						PlayState.SONG.player1 = 'bf-christmas';
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+						PlayState.SONG.player1 = 'bf-pixel';
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
 						FlxG.switchState(new PlayState());

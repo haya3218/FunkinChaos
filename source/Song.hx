@@ -89,7 +89,7 @@ class Song
 			}
 		}
 		if (parsedJson.gf == null) {
-			switch (parsedJson.song.toLowerCase()) {
+			switch (parsedJson.stage.toLowerCase()) {
 				case 'limo':
 					parsedJson.gf = 'gf-car';
 				case 'mall':
