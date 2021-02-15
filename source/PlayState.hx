@@ -214,7 +214,7 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile('assets/data/thorns/thornsDialogue.txt');
 		}
 
-		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south')
+		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south' || SONG.stage == 'spooky')
 		{
 			curStage = "spooky";
 			halloweenLevel = true;
@@ -231,7 +231,7 @@ class PlayState extends MusicBeatState
 
 			isHalloween = true;
 		}
-		else if (SONG.song.toLowerCase() == 'pico' || SONG.song.toLowerCase() == 'blammed' || SONG.song.toLowerCase() == 'philly')
+		else if (SONG.song.toLowerCase() == 'pico' || SONG.song.toLowerCase() == 'blammed' || SONG.song.toLowerCase() == 'philly' || SONG.stage == 'philly')
 		{
 			curStage = 'philly';
 
@@ -273,7 +273,7 @@ class PlayState extends MusicBeatState
 			var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic('assets/images/philly/street.png');
 			add(street);
 		}
-		else if (SONG.song.toLowerCase() == 'milf' || SONG.song.toLowerCase() == 'satin-panties' || SONG.song.toLowerCase() == 'high')
+		else if (SONG.song.toLowerCase() == 'milf' || SONG.song.toLowerCase() == 'satin-panties' || SONG.song.toLowerCase() == 'high' || SONG.stage == 'limo')
 		{
 			curStage = 'limo';
 			defaultCamZoom = 0.90;
@@ -320,7 +320,7 @@ class PlayState extends MusicBeatState
 			fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarLol.png');
 			// add(limo);
 		}
-		else if (SONG.song.toLowerCase() == 'mtc')
+		else if (SONG.song.toLowerCase() == 'mtc' || SONG.stage == 'mtc')
 		{
 			curStage = 'mtc';
 			defaultCamZoom = 0.90;
@@ -363,7 +363,7 @@ class PlayState extends MusicBeatState
 
 			// add(limo);
 		}
-		else if (SONG.song.toLowerCase() == 'cocoa' || SONG.song.toLowerCase() == 'eggnog')
+		else if (SONG.song.toLowerCase() == 'cocoa' || SONG.song.toLowerCase() == 'eggnog' || SONG.stage == 'mall')
 		{
 			curStage = 'mall';
 
@@ -419,7 +419,7 @@ class PlayState extends MusicBeatState
 			santa.antialiasing = true;
 			add(santa);
 		}
-		else if (SONG.song.toLowerCase() == 'winter-horrorland')
+		else if (SONG.song.toLowerCase() == 'winter-horrorland' || SONG.stage == 'mallEvil')
 		{
 			curStage = 'mallEvil';
 			var bg:FlxSprite = new FlxSprite(-400, -500).loadGraphic('assets/images/christmas/evilBG.png');
@@ -439,7 +439,7 @@ class PlayState extends MusicBeatState
 			evilSnow.antialiasing = true;
 			add(evilSnow);
 		}
-		else if (SONG.song.toLowerCase() == 'senpai' || SONG.song.toLowerCase() == 'roses')
+		else if (SONG.song.toLowerCase() == 'senpai' || SONG.song.toLowerCase() == 'roses' || SONG.stage == 'school')
 		{
 			curStage = 'school';
 
@@ -506,7 +506,7 @@ class PlayState extends MusicBeatState
 			bgGirls.updateHitbox();
 			add(bgGirls);
 		}
-		else if (SONG.song.toLowerCase() == 'thorns')
+		else if (SONG.song.toLowerCase() == 'thorns' || SONG.stage == 'schoolEvil')
 		{
 			curStage = 'schoolEvil';
 
@@ -568,7 +568,7 @@ class PlayState extends MusicBeatState
 				add(waveSpriteFG);
 			 */
 		}
-		else if (SONG.song.toLowerCase() == 'friday-night' || SONG.song.toLowerCase() == 'judgement' || SONG.song.toLowerCase() == 'machine-gun-kiss')
+		else if (SONG.song.toLowerCase() == 'friday-night' || SONG.song.toLowerCase() == 'judgement' || SONG.song.toLowerCase() == 'machine-gun-kiss' || SONG.stage == 'yakuza')
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'yakuza';
@@ -586,7 +586,7 @@ class PlayState extends MusicBeatState
 			yakuzaFront.active = false;
 			add(yakuzaFront);
 		}
-		else if (SONG.song.toLowerCase() == 'luci-moment' || SONG.song.toLowerCase() == 'disappear')
+		else if (SONG.song.toLowerCase() == 'luci-moment' || SONG.song.toLowerCase() == 'disappear' || SONG.stage == 'miku')
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'miku';
@@ -604,7 +604,7 @@ class PlayState extends MusicBeatState
 			mikuFront.active = false;
 			add(mikuFront);
 		}
-		else if (SONG.song.toLowerCase() == 'mc-mental-at-his-best')
+		else if (SONG.song.toLowerCase() == 'mc-mental-at-his-best' || SONG.stage == 'trick')
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'trick';

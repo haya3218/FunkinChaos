@@ -1,0 +1,12 @@
+stage
+spooky
+philly
+limo
+mtc
+mall
+mallEvil
+school
+schoolEvil
+yakuza
+miku
+trick

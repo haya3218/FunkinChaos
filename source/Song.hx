@@ -22,6 +22,7 @@ typedef SwagSong =
 	var player1:String;
 	var player2:String;
 	var gf:String;
+	var stage:String;
 	var validScore:Bool;
 }
 
@@ -36,6 +37,8 @@ class Song
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
 	public var gf:String = 'gf';
+
+	public var stage:String = 'stage';
 
 	public function new(song, notes, bpm)
 	{
@@ -57,6 +60,34 @@ class Song
 			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
 		}
 		var parsedJson = parseJSONshit(rawJson);
+		// CUSTOM STAGES SHIT
+		if (parsedJson.stage == null) {
+			if (parsedJson.song.toLowerCase() == 'spookeez'|| parsedJson.song.toLowerCase() == 'monster' || parsedJson.song.toLowerCase() == 'south') {
+				parsedJson.stage = 'spooky';
+			} else if (parsedJson.song.toLowerCase() == 'pico' || parsedJson.song.toLowerCase() == 'philly' || parsedJson.song.toLowerCase() == 'blammed') {
+				parsedJson.stage = 'philly';
+			} else if (parsedJson.song.toLowerCase() == 'milf' || parsedJson.song.toLowerCase() == 'high' || parsedJson.song.toLowerCase() == 'satin-panties') {
+				parsedJson.stage = 'limo';
+			} else if (parsedJson.song.toLowerCase() == 'mtc') {
+				parsedJson.stage = 'mtc';
+			} else if (parsedJson.song.toLowerCase() == 'cocoa' || parsedJson.song.toLowerCase() == 'eggnog') {
+				parsedJson.stage = 'mall';
+			} else if (parsedJson.song.toLowerCase() == 'winter-horrorland') {
+				parsedJson.stage = 'mallEvil';
+			} else if (parsedJson.song.toLowerCase() == 'senpai' || parsedJson.song.toLowerCase() == 'roses') {
+				parsedJson.stage = 'school';
+			} else if (parsedJson.song.toLowerCase() == 'thorns') {
+				parsedJson.stage = 'schoolEvil';
+			} else if (parsedJson.song.toLowerCase() == 'friday-night' || parsedJson.song.toLowerCase() == 'judgement' || parsedJson.song.toLowerCase() == 'machine-gun-kiss') {
+				parsedJson.stage = 'schoolEvil';
+			} else if (parsedJson.song.toLowerCase() == 'luci-moment' || parsedJson.song.toLowerCase() == 'disappear'){
+				parsedJson.stage = 'miku';
+			} else if (parsedJson.song.toLowerCase() == 'mc-mental-at-his-best'){
+				parsedJson.stage = 'trick';
+			} else {
+				parsedJson.stage = 'stage';
+			}
+		}
 		if (parsedJson.gf == null) {
 			switch (parsedJson.song.toLowerCase()) {
 				case 'limo':
