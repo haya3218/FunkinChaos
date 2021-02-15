@@ -165,9 +165,12 @@ class ModifierState extends MusicBeatState
 			FlxFlicker.flicker(grpAlphabet.members[curSelected],0);
 			checkmarks[curSelected].visible = false;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
+			{
+				if (PlayState.isStoryMode == true)
+					FlxG.switchState(new PlayState());
+				else
 					FlxG.switchState(new CharMenu());
-				});
+			});
 		}
 
 	}

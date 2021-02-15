@@ -90,12 +90,14 @@ class Song
 		}
 		if (parsedJson.gf == null) {
 			switch (parsedJson.stage.toLowerCase()) {
-				case 'limo':
+				case 'limo' | 'mtc':
 					parsedJson.gf = 'gf-car';
 				case 'mall':
 					parsedJson.gf = 'gf-christmas';
 				case 'mallEvil':
 					parsedJson.gf = 'gf-christmas';
+				case 'school' | 'schoolEvil':
+					parsedJson.gf = 'gf-pixel';
 				default:
 					parsedJson.gf = 'gf';
 			}
