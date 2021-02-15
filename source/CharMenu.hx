@@ -79,6 +79,7 @@ class CharMenu extends MusicBeatState
 		shitCharacter.screenCenter(XY);
 		shitCharacter.updateHitbox();
 		shitCharacter.antialiasing = true;
+		shitCharacter.y -= 40;
 		add(shitCharacter);
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 100, 'CHARACTER SELECT', true, false);
@@ -115,6 +116,7 @@ class CharMenu extends MusicBeatState
 		if (accepted)
 		{
 			var daSelected:String = menuItems[curSelected];
+			FlxFlicker.flicker(shitCharacter, 0);
 
 			switch (daSelected)
 			{
