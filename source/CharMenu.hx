@@ -14,6 +14,12 @@ import flixel.util.FlxColor;
 import flixel.effects.FlxFlicker;
 import flixel.util.FlxTimer;
 import lime.utils.Assets;
+import haxe.Json;
+typedef CharacterMenu = {
+	var name:String;
+	var characterName:String;
+	var portrait:String;
+}
 
 class CharMenu extends MusicBeatState
 {
@@ -25,16 +31,16 @@ class CharMenu extends MusicBeatState
 	public static var SONG:SwagSong;
 	public var targetY:Float = 0;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
+	public static var characterShit:Array<CharacterMenu>;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 
 	var shittyNames:Array<String> = [
-		"BROKEN MENU FT. SHIT CODE",
-		"UNNEEDED SHITSHOWS",
-		"THE PAIN ROOM",
-		"CREDITS, DUH.",
-		"bye bye"
+		"BOYFRIEND",
+		"BOYFRIEND AS WELL",
+		"PICO",
+		"DEFAULT"
 	];
 
 	var weekCharacters:Array<Dynamic> = [
@@ -83,14 +89,19 @@ class CharMenu extends MusicBeatState
 		shitCharacter.y += 40;
 		add(shitCharacter);
 
-		var charSelHeaderText:Alphabet = new Alphabet(0, 100, 'CHARACTER SELECT', true, false);
+		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CHARACTER SELECT', true, false);
 		charSelHeaderText.screenCenter(X);
 		add(charSelHeaderText);
 
-		var shittyArrows:FlxSprite = new FlxSprite().loadGraphic('assets/images/arrowsz.png');
+		var shittyArrows:FlxSprite = new FlxSprite().loadGraphic('assets/images/charSelect/arrowsz.png');
 		shittyArrows.screenCenter();
 		shittyArrows.antialiasing = true;
 		add(shittyArrows);
+
+		txtOptionTitle = new FlxText(FlxG.width * 0.7, 10, 0, "dfgdfgdg", 32);
+		txtOptionTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
+		txtOptionTitle.alpha = 0.7;
+		add(txtOptionTitle);
 
 		changeSelection();
 
@@ -101,6 +112,9 @@ class CharMenu extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		txtOptionTitle.text = shittyNames[curSelected].toUpperCase();
+		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
+		
 		var upP = controls.LEFT_P;
 		var downP = controls.RIGHT_P;
 		var accepted = controls.ACCEPT;
