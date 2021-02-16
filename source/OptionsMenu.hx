@@ -135,6 +135,8 @@ class OptionsMenu extends MusicBeatState
 					{
 						PlayState.SONG = Song.loadFromJson('dadbattle-credits', 'dadbattle-credits');
 						PlayState.isStoryMode = false;
+						PlayState.isCreditsMode = true;
+						PlayState.hasPlayedOnce = true;
 						FlxG.switchState(new ModifierState());
 					});
 				case "Exit to menu":

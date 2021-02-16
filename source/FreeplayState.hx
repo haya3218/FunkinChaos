@@ -221,6 +221,8 @@ class FreeplayState extends MusicBeatState
 
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 			PlayState.isStoryMode = false;
+			PlayState.isCreditsMode = false;
+			PlayState.hasPlayedOnce = true;
 			PlayState.storyDifficulty = curDifficulty;
 			FlxG.switchState(new ModifierState());
 		}

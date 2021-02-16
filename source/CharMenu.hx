@@ -114,7 +114,12 @@ class CharMenu extends MusicBeatState
 	{
 		txtOptionTitle.text = shittyNames[curSelected].toUpperCase();
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
-		
+		if (txtOptionTitle.text == '')
+		{
+			trace('NO FUCKING TEXT LMAO');
+			txtOptionTitle.text = 'NO DESCRIPTION';
+		}
+
 		var upP = controls.LEFT_P;
 		var downP = controls.RIGHT_P;
 		var accepted = controls.ACCEPT;
