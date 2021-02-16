@@ -242,9 +242,9 @@ class ChartingState extends MusicBeatState
 			_song.player2 = characters[Std.parseInt(character)];
 		});
 
-		player2DropDown.selectedLabel = _song.gf;
+		player2DropDown.selectedLabel = _song.player2;
 
-		var gfDropDown = new FlxUIDropDownMenu(70, 75, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var gfDropDown = new FlxUIDropDownMenu(100, 130, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gf = characters[Std.parseInt(character)];
 		});

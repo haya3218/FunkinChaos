@@ -17,7 +17,7 @@ import lime.utils.Assets;
 
 class CharMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['BOYFRIEND', 'PICO', 'DEFAULT'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIEND2', 'PICO', 'DEFAULT'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
@@ -75,7 +75,7 @@ class CharMenu extends MusicBeatState
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
 
-		shitCharacter = new FlxSprite(0, -20).loadGraphic('assets/images/pissboyfriend.png');
+		shitCharacter = new FlxSprite(0, -20).loadGraphic('assets/images/charSelect/pissboyfriend.png');
 		shitCharacter.setGraphicSize(-5);
 		shitCharacter.screenCenter(XY);
 		shitCharacter.updateHitbox();
@@ -130,6 +130,24 @@ class CharMenu extends MusicBeatState
 						FlxG.switchState(new PlayState());
 					});
 				case "BOYFRIEND":
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					PlayState.SONG.player1 = 'bf';
+					if (PlayState.SONG.song.toLowerCase() == 'mtc')
+						PlayState.SONG.player1 = 'bf-cursed';
+					if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
+						PlayState.SONG.player1 = 'bf-yakuza';
+					if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
+						PlayState.SONG.player1 = 'bf-car';
+					if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
+						PlayState.SONG.player1 = 'bf-christmas';
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+						PlayState.SONG.player1 = 'bf-pixel';
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new PlayState());
+					});
+				case "BOYFRIEND2":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					PlayState.SONG.player1 = 'bf';
@@ -203,17 +221,21 @@ class CharMenu extends MusicBeatState
 		switch (daSelected)
 		{
 			case "PICO":
-				shitCharacter.loadGraphic('assets/images/picodegallo.png');
+				shitCharacter.loadGraphic('assets/images/charSelect/picodegallo.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 			case "BOYFRIEND":
-				shitCharacter.loadGraphic('assets/images/pissboyfriend.png');
+				shitCharacter.loadGraphic('assets/images/charSelect/pissboyfriend.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
+			case "BOYFRIEND2":
+				shitCharacter.loadGraphic('assets/images/charSelect/boyfriend.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
+				menuBG.color = 0x0351A3;
 			case 'DEFAULT':
-				shitCharacter.loadGraphic('assets/images/defaultChar.png');
+				shitCharacter.loadGraphic('assets/images/charSelect/defaultChar.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
 			default:
 				// so it doesnt crash lol
-				shitCharacter.loadGraphic('assets/images/defaultChar.png');
+				shitCharacter.loadGraphic('assets/images/charSelect/defaultChar.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 		}
 	}
