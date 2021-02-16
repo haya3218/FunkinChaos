@@ -994,6 +994,9 @@ class Character extends FlxSprite
 			case 'gf-d':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
+			case 'gaming':
+				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+					playAnim('danceRight');
 			case 'mom-car':
 				if(animation.curAnim.name == 'idle' && animation.curAnim.finished)
 					playAnim('idle',false,false,11);
@@ -1029,7 +1032,17 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				case 'gaming':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
 
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
+	
 				case 'gf-christmas':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -1117,7 +1130,7 @@ class Character extends FlxSprite
 		else
 			offset.set(0, 0);
 
-		if (!curCharacter.startsWith('gf'))
+		if (!curCharacter.startsWith('gf') && !curCharacter.startsWith('gaming'))
 		{
 			if (AnimName == 'singLEFT')
 			{

@@ -101,7 +101,6 @@ class FreeplayState extends MusicBeatState
 			songs.push('Friday-Night');
 			songs.push('Judgement');
 			songs.push('Machine-Gun-Kiss');
-			songs.push('Bopeebo-Inst');
 			songs.push('MTC');
 			// songs.push('Winter-Horrorland');
 		}

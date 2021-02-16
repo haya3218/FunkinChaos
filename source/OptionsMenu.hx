@@ -133,7 +133,9 @@ class OptionsMenu extends MusicBeatState
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						FlxG.switchState(new FreeplayPlusState());
+						PlayState.SONG = Song.loadFromJson('dadbattle-credits', 'dadbattle-credits');
+						PlayState.isStoryMode = false;
+						FlxG.switchState(new ModifierState());
 					});
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());

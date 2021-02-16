@@ -17,7 +17,7 @@ import lime.utils.Assets;
 
 class CharMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIEND2', 'PICO', 'DEFAULT'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIENDSECOND', 'PICO', 'DEFAULT'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
@@ -129,7 +129,7 @@ class CharMenu extends MusicBeatState
 					{
 						FlxG.switchState(new PlayState());
 					});
-				case "BOYFRIEND":
+				case "BOYFRIENDSECOND":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					PlayState.SONG.player1 = 'bf';
@@ -147,7 +147,7 @@ class CharMenu extends MusicBeatState
 					{
 						FlxG.switchState(new PlayState());
 					});
-				case "BOYFRIEND2":
+				case "BOYFRIEND":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					PlayState.SONG.player1 = 'bf';
@@ -225,8 +225,8 @@ class CharMenu extends MusicBeatState
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 			case "BOYFRIEND":
 				shitCharacter.loadGraphic('assets/images/charSelect/pissboyfriend.png');
-				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
-			case "BOYFRIEND2":
+				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
+			case "BOYFRIENDSECOND":
 				shitCharacter.loadGraphic('assets/images/charSelect/boyfriend.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
 				menuBG.color = 0x0351A3;
