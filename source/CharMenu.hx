@@ -137,6 +137,7 @@ class CharMenu extends MusicBeatState
 		{
 			var daSelected:String = menuItems[curSelected];
 			FlxFlicker.flicker(shitCharacter, 0);
+			PlayState.hasPlayedOnce = true;
 
 			switch (daSelected)
 			{
