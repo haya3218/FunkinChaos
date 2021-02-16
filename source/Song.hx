@@ -79,7 +79,7 @@ class Song
 			} else if (parsedJson.song.toLowerCase() == 'thorns') {
 				parsedJson.stage = 'schoolEvil';
 			} else if (parsedJson.song.toLowerCase() == 'friday-night' || parsedJson.song.toLowerCase() == 'judgement' || parsedJson.song.toLowerCase() == 'machine-gun-kiss') {
-				parsedJson.stage = 'schoolEvil';
+				parsedJson.stage = 'yakuza';
 			} else if (parsedJson.song.toLowerCase() == 'luci-moment' || parsedJson.song.toLowerCase() == 'disappear'){
 				parsedJson.stage = 'miku';
 			} else if (parsedJson.song.toLowerCase() == 'mc-mental-at-his-best'){

@@ -223,20 +223,24 @@ class CharMenu extends MusicBeatState
 			case "PICO":
 				shitCharacter.loadGraphic('assets/images/charSelect/picodegallo.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
+				menuBG.color = 0xFFFFFF;
 			case "BOYFRIEND":
 				shitCharacter.loadGraphic('assets/images/charSelect/pissboyfriend.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
+				menuBG.color = 0xFFFFFF;
 			case "BOYFRIENDSECOND":
 				shitCharacter.loadGraphic('assets/images/charSelect/boyfriend.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
 				menuBG.color = 0x0351A3;
 			case 'DEFAULT':
 				shitCharacter.loadGraphic('assets/images/charSelect/defaultChar.png');
-				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
+				menuBG.color = 0xFFFFFF;
 			default:
 				// so it doesnt crash lol
 				shitCharacter.loadGraphic('assets/images/charSelect/defaultChar.png');
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
+				menuBG.color = 0xFFFFFF;
 		}
 	}
 }
