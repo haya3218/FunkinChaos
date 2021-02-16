@@ -28,11 +28,12 @@ class StoryMenuState extends MusicBeatState
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
-		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
+		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC'],
+		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -42,6 +43,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
+		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf']
 	];
@@ -55,7 +57,8 @@ class StoryMenuState extends MusicBeatState
 		"RED SNOW",
 		"hating simulator ft. moawling",
 		"WHERE'S YOUR LIFE LICENSE?",
-		"LUCI STOOPID"
+		"LUCI STOOPID",
+		"''GAME ABOUT GANGSTERS DOING BAD THINGS''"
 	];
 
 	var txtWeekTitle:FlxText;
