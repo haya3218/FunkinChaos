@@ -726,6 +726,15 @@ class PlayState extends MusicBeatState
 			case 'smile':
 				camPos.x += 600;
 				dad.y += 300;
+			case 'gaming':
+				dad.setPosition(gf.x, gf.y);
+				gf.visible = false;
+				if (isStoryMode)
+				{
+					camPos.x += 600;
+					tweenCamIn();
+				}
+			
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
