@@ -21,6 +21,7 @@ class CharMenu extends MusicBeatState
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
+	var menuBG:FlxSprite;
 	public static var SONG:SwagSong;
 	public var targetY:Float = 0;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
@@ -45,7 +46,7 @@ class CharMenu extends MusicBeatState
 
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBG.png');
+		menuBG = new FlxSprite().loadGraphic('assets/images/charSelect/BG4.png');
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -100,8 +101,8 @@ class CharMenu extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		var upP = controls.UP_P;
-		var downP = controls.DOWN_P;
+		var upP = controls.LEFT_P;
+		var downP = controls.RIGHT_P;
 		var accepted = controls.ACCEPT;
 
 		if (upP)
@@ -203,13 +204,17 @@ class CharMenu extends MusicBeatState
 		{
 			case "PICO":
 				shitCharacter.loadGraphic('assets/images/picodegallo.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 			case "BOYFRIEND":
 				shitCharacter.loadGraphic('assets/images/pissboyfriend.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
 			case 'DEFAULT':
 				shitCharacter.loadGraphic('assets/images/defaultChar.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
 			default:
 				// so it doesnt crash lol
 				shitCharacter.loadGraphic('assets/images/defaultChar.png');
+				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 		}
 	}
 }
