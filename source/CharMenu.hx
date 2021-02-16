@@ -86,7 +86,7 @@ class CharMenu extends MusicBeatState
 		shitCharacter.screenCenter(XY);
 		shitCharacter.updateHitbox();
 		shitCharacter.antialiasing = true;
-		shitCharacter.y += 40;
+		shitCharacter.y += 30;
 		add(shitCharacter);
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CHARACTER SELECT', true, false);
