@@ -262,9 +262,9 @@ class TitleState extends MusicBeatState
 		txt.y = Math.sin(sinMod)*60+100;
 		shittyReminder.y = Math.sin(sinMod)*60+30;
 		if (FlxG.keys.justPressed.ESCAPE)
-			{
-				System.exit(0);
-			}
+		{
+			System.exit(0);
+		}
 			
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
@@ -373,7 +373,7 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 2:
-				createCoolText(['haya', 'friedfrick', 'bulbyvr', 'and others']);
+				createCoolText(['haya', 'friedfrick', 'og creators', 'and others']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
