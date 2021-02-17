@@ -17,7 +17,7 @@ class MusicBeatState extends FlxUIState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
-	public static var funkyFramerate:Int = 420;
+	public static var funkyFramerate:Int = 160;
 	public static var vocalVolume:Float = 0;
 	public static var musicVolume:Float = 0;
 	public static var sfxVolume:Float = 0;

@@ -515,8 +515,9 @@ class PlayState extends MusicBeatState
 			var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
 
 			var posX = 400;
-			var posY = 200;
+			var posY = 400;
 
+			/*
 			var bg:FlxSprite = new FlxSprite(posX, posY);
 			bg.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/animatedEvilSchool.png', 'assets/images/weeb/animatedEvilSchool.xml');
 			bg.animation.addByPrefix('idle', 'background 2', 24);
@@ -524,50 +525,42 @@ class PlayState extends MusicBeatState
 			bg.scrollFactor.set(0.8, 0.9);
 			bg.scale.set(6, 6);
 			add(bg);
+			*/
 
-			/* 
-				var bg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/weeb/evilSchoolBG.png');
-				bg.scale.set(6, 6);
-				// bg.setGraphicSize(Std.int(bg.width * 6));
-				// bg.updateHitbox();
-				add(bg);
+			var bg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/weeb/evilSchoolBG.png');
+			bg.scale.set(6, 6);
+			// bg.setGraphicSize(Std.int(bg.width * 6));
+			// bg.updateHitbox();
+			add(bg);
 
-				var fg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/weeb/evilSchoolFG.png');
-				fg.scale.set(6, 6);
-				// fg.setGraphicSize(Std.int(fg.width * 6));
-				// fg.updateHitbox();
-				add(fg);
+			var fg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/weeb/evilSchoolFG.png');
+			fg.scale.set(6, 6);
+			// fg.setGraphicSize(Std.int(fg.width * 6));
+			// fg.updateHitbox();
+			add(fg);
 
-				wiggleShit.effectType = WiggleEffectType.DREAMY;
-				wiggleShit.waveAmplitude = 0.01;
-				wiggleShit.waveFrequency = 60;
-				wiggleShit.waveSpeed = 0.8;
-			 */
+			wiggleShit.effectType = WiggleEffectType.DREAMY;
+			wiggleShit.waveAmplitude = 0.01;
+			wiggleShit.waveFrequency = 60;
+			wiggleShit.waveSpeed = 0.8;
 
-			// bg.shader = wiggleShit.shader;
-			// fg.shader = wiggleShit.shader;
+			bg.shader = wiggleShit.shader;
+			fg.shader = wiggleShit.shader;
 
-			/* 
-				var waveSprite = new FlxEffectSprite(bg, [waveEffectBG]);
-				var waveSpriteFG = new FlxEffectSprite(fg, [waveEffectFG]);
+			var waveSprite = new FlxEffectSprite(bg, [waveEffectBG]);
+			var waveSpriteFG = new FlxEffectSprite(fg, [waveEffectFG]);
 
-				// Using scale since setGraphicSize() doesnt work???
-				waveSprite.scale.set(6, 6);
-				waveSpriteFG.scale.set(6, 6);
-				waveSprite.setPosition(posX, posY);
-				waveSpriteFG.setPosition(posX, posY);
+			// Using scale since setGraphicSize() doesnt work???
+			waveSprite.scale.set(6, 6);
+			waveSpriteFG.scale.set(6, 6);
+			waveSprite.setPosition(posX, posY);
+			waveSpriteFG.setPosition(posX, posY);
 
-				waveSprite.scrollFactor.set(0.7, 0.8);
-				waveSpriteFG.scrollFactor.set(0.9, 0.8);
+			waveSprite.scrollFactor.set(0.7, 0.8);
+			waveSpriteFG.scrollFactor.set(0.9, 0.8);
 
-				// waveSprite.setGraphicSize(Std.int(waveSprite.width * 6));
-				// waveSprite.updateHitbox();
-				// waveSpriteFG.setGraphicSize(Std.int(fg.width * 6));
-				// waveSpriteFG.updateHitbox();
-
-				add(waveSprite);
-				add(waveSpriteFG);
-			 */
+			add(waveSprite);
+			add(waveSpriteFG);
 		}
 		else if (SONG.song.toLowerCase() == 'friday-night' || SONG.song.toLowerCase() == 'judgement' || SONG.song.toLowerCase() == 'machine-gun-kiss' || SONG.stage == 'yakuza')
 		{

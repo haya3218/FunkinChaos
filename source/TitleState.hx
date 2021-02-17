@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.util.FlxSave;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -8,6 +9,8 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
+import flixel.addons.effects.chainable.FlxGlitchEffect;
+import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
@@ -51,13 +54,16 @@ class TitleState extends MusicBeatState
 	static public var shittyPieceofShitScreenDetectorCosImDumbLmao:Bool = false;
 
 	var sinMod:Float = 0;
+	var shittyBG:FlxSprite;
+	var bg:FlxSprite;
+	var ranbowTexto:FlxRainbowEffect;
 	var shittyReminder:Alphabet;
 	var txt:FlxText = new FlxText(0, 360, FlxG.width,
 	"FNF: Chaos may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.\n\n"
 	+ "FNF: Chaos is a non-profit modification, aimed for entertainment purposes, and wasn't meant to be an attack on Ninjamuffin99"
 	+ " and/or any other modmakers out there. I was not aiming for replacing what Friday Night Funkin' was, won't be aiming for that and never"
 	+ " will be aiming for that. It was made for fun and from the love for the game itself. All of the comparisons between this and other mods are purely coincidental, unless stated otherwise.\n\n"
-	+ "Now with that out of the way, I hope you'll enjoy this FNF mod.\nFunk all the way.\nWait for the game to load.",
+	+ "Now with that out of the way, I hope you'll enjoy this FNF mod.\nFunk all the way.\n\nNow loading...",
 	32);
 
 	var doneTalking:Bool = false;
@@ -82,6 +88,9 @@ class TitleState extends MusicBeatState
 		// DEBUG BULLSHIT
 
 		super.create();
+		shittyBG = new FlxSprite().loadGraphic('assets/images/menuLoading.png');
+		add(shittyBG);
+		ranbowTexto = new FlxRainbowEffect(1, 1, 0.5, 1);
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		add(txt);
 		shittyReminder = new Alphabet(0, 50, "WARNING", true, false);
@@ -123,6 +132,8 @@ class TitleState extends MusicBeatState
 		{
 			remove(txt);
 			remove(shittyReminder);
+			remove(shittyBG);
+			add(bg);
 			doneTalking = true;
 			startIntro();
 		});
@@ -164,11 +175,10 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		// bg.antialiasing = true;
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
-		add(bg);
 
 		logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');

@@ -96,7 +96,9 @@ class Song
 					parsedJson.gf = 'gf-christmas';
 				case 'mallEvil':
 					parsedJson.gf = 'gf-christmas';
-				case 'school' | 'schoolEvil':
+				case 'school':
+					parsedJson.gf = 'gf-pixel';
+				case 'schoolEvil':
 					parsedJson.gf = 'gf-pixel';
 				default:
 					parsedJson.gf = 'gf';
