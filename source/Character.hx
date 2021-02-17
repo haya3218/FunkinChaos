@@ -159,7 +159,7 @@ class Character extends FlxSprite
 
 			case 'bishop-gaming':
 				// BISHOP GAMING
-				tex = FlxAtlasFrames.fromSparrow('assets/images/BISHOP-GAMING.png', 'assets/images/BISHOP-GAMING.xml');
+				tex = FlxAtlasFrames.fromSparrow('assets/images/bishop-gaming.png', 'assets/images/bishop-gaming.xml');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
