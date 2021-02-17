@@ -3,6 +3,7 @@ package;
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -33,6 +34,7 @@ class ModifierState extends MusicBeatState
 	var curSelected:Int = 0;
 	var checkmarks:Array<FlxSprite> = [];
 	var multiTxt:FlxText;
+	var camFollow:FlxObject;
 	public static var scoreMultiplier:Float = 1;
 	override function create()
 	{
@@ -92,18 +94,20 @@ class ModifierState extends MusicBeatState
 		add(menuBG);
 		add(grpAlphabet);
 		add(multiTxt);
+
 		super.create();
 	}
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 		if (controls.BACK) {
 			if (PlayState.isStoryMode)
-			{
 				FlxG.switchState(new StoryMenuState());
-			}
 			else
 			{
-				FlxG.switchState(new FreeplayState());
+				if (PlayState.isCreditsMode)
+					FlxG.switchState(new OptionsMenu());
+				else
+					FlxG.switchState(new FreeplayState());
 			}
 		}
 		if (controls.UP_P)
