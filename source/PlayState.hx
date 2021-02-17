@@ -515,7 +515,7 @@ class PlayState extends MusicBeatState
 			var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
 
 			var posX = 400;
-			var posY = 400;
+			var posY = 350;
 
 			/*
 			var bg:FlxSprite = new FlxSprite(posX, posY);
