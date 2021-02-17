@@ -48,6 +48,7 @@ class TitleState extends MusicBeatState
 	static public var vocalSave:Float = 0;
 	static public var musicSave:Float = 0;
 	static public var versionGhi:String = " DEBUG";
+	static public var shittyPieceofShitScreenDetectorCosImDumbLmao:Bool = false;
 
 	override public function create():Void
 	{
@@ -61,9 +62,18 @@ class TitleState extends MusicBeatState
 		TitleState.versionGhi = " BETA";
 		#end
 
+		if (shittyPieceofShitScreenDetectorCosImDumbLmao = false)
+		{
+			FlxG.switchState(new NewGameState());
+		}
+		else
+			trace ('DONE IT ALREADY LMAO');
+
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
+
+
 
 		// DEBUG BULLSHIT
 
