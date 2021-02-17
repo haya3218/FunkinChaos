@@ -29,12 +29,15 @@ class NewGameState extends MusicBeatState
 		
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		add(txt);
+
+        TitleState.shittyPieceofShitScreenDetectorCosImDumbLmao = true;
 	}
 
 	override function update(elapsed:Float)
 	{
 		sinMod += 0.007;
 		txt.y = Math.sin(sinMod)*60+100;
+        TitleState.shittyPieceofShitScreenDetectorCosImDumbLmao = true;
 
 		if (controls.ACCEPT)
 		{
