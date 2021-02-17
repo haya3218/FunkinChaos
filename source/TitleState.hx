@@ -127,17 +127,16 @@ class TitleState extends MusicBeatState
 		FlxG.switchState(new FreeplayState());
 		#elseif CHARTING
 		FlxG.switchState(new ChartingState());
-		#else
-		new FlxTimer().start(7, function(tmr:FlxTimer)
-		{
-			remove(txt);
-			remove(shittyReminder);
-			remove(shittyBG);
-			add(bg);
-			doneTalking = true;
-			startIntro();
-		});
 		#end
+
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			txt.text = "FNF: Chaos may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.\n\n"
+			+ "FNF: Chaos is a non-profit modification, aimed for entertainment purposes, and wasn't meant to be an attack on Ninjamuffin99"
+			+ " and/or any other modmakers out there. I was not aiming for replacing what Friday Night Funkin' was, won't be aiming for that and never"
+			+ " will be aiming for that. It was made for fun and from the love for the game itself. All of the comparisons between this and other mods are purely coincidental, unless stated otherwise.\n\n"
+			+ "Now with that out of the way, I hope you'll enjoy this FNF mod.\nFunk all the way.\n\nPRESS ENTER TO CONTINUE";
+		});
 	}
 
 	var logoBl:FlxSprite;
@@ -325,13 +324,24 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
 
-		if (pressedEnter && !skippedIntro)
+		if (pressedEnter && doneTalking == false)
+		{
+			remove(txt);
+			remove(shittyReminder);
+			remove(shittyBG);
+			add(bg);
+			doneTalking = true;
+			startIntro();
+		}
+		else if (pressedEnter && !skippedIntro)
 		{
 			if (doneTalking == true)
 				skipIntro();
 			else
 				trace('YOURE IMPATIENT, USER!');
 		}
+
+		
 
 		super.update(elapsed);
 	}

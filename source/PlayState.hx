@@ -792,6 +792,8 @@ class PlayState extends MusicBeatState
 		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
 		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
+
+		var evilGlitchLMAO = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
 		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail3);
 		add(gf);
@@ -807,6 +809,13 @@ class PlayState extends MusicBeatState
 			add(evilTrail);
 
 		add(dad);
+		if (curStage == 'mtc')
+		{
+			var waveSprite = new FlxEffectSprite(dad, [evilGlitchLMAO]);
+			waveSprite.y = dad.y;
+			waveSprite.x = dad.x;
+			add(waveSprite);
+		}
 		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail2);
 		add(boyfriend);
@@ -1588,7 +1597,7 @@ class PlayState extends MusicBeatState
 			iconP1.animation.curAnim.curFrame = 0;
 
 		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
+			iconP2.animation.curAnim.curFrame = 2;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 

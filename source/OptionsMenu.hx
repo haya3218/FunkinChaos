@@ -14,9 +14,10 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
+	var shittyFPS:Bool = false;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 
@@ -121,13 +122,20 @@ class OptionsMenu extends MusicBeatState
 					{
 						FlxG.switchState(new AnimationDebug());
 					});
-				case "FREEPLAY PLUS":
+				case "LIMIT FPS":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					new FlxTimer().start(1, function(tmr:FlxTimer)
+					if (shittyFPS == false)
 					{
-						FlxG.switchState(new FreeplayPlusState());
-					});
+						MusicBeatState.funkyFramerate = 60;
+						FlxG.drawFramerate = 60;
+						shittyFPS = true;
+					}
+					else
+					{
+						MusicBeatState.funkyFramerate = 160;
+						FlxG.drawFramerate = 160;
+						shittyFPS = false;
+					}
 				case "CREDITS":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
