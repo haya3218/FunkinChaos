@@ -16,6 +16,7 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
@@ -794,6 +795,7 @@ class PlayState extends MusicBeatState
 		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
 
 		var evilGlitchLMAO = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
+		var ranbowGlitchLMAO = new FlxRainbowEffect(1, 1, 0.5);
 		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail3);
 		add(gf);
@@ -807,7 +809,6 @@ class PlayState extends MusicBeatState
 			add(evilTrail);
 		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail);
-
 		add(dad);
 		if (curStage == 'mtc')
 		{
