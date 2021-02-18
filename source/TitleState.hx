@@ -130,7 +130,7 @@ class TitleState extends MusicBeatState
 		FlxG.switchState(new ChartingState());
 		#end
 
-		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
 			txt.text = "FNF: Chaos may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.\n\n"
 			+ "FNF: Chaos is a non-profit modification, aimed for entertainment purposes, and wasn't meant to be an attack on Ninjamuffin99"
@@ -325,24 +325,25 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
 
-		if (pressedEnter && doneTalking == false)
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
-			remove(txt);
-			remove(shittyReminder);
-			remove(shittyBG);
-			add(bg);
-			doneTalking = true;
-			startIntro();
-		}
-		else if (pressedEnter && !skippedIntro)
-		{
-			if (doneTalking == true)
-				skipIntro();
-			else
-				trace('YOURE IMPATIENT, USER!');
-		}
-
-		
+			if (pressedEnter && doneTalking == false)
+			{
+				remove(txt);
+				remove(shittyReminder);
+				remove(shittyBG);
+				add(bg);
+				doneTalking = true;
+				startIntro();
+			}
+			else if (pressedEnter && !skippedIntro)
+			{
+				if (doneTalking == true)
+					skipIntro();
+				else
+					trace('YOURE IMPATIENT, USER!');
+			}
+		});
 
 		super.update(elapsed);
 	}
