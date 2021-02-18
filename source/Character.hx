@@ -583,18 +583,18 @@ class Character extends FlxSprite
 	
 				flipX = true;
 	
-			case 'bf-icon':
-				var tex = FlxAtlasFrames.fromSparrow('assets/images/BF_Icon.png', 'assets/images/BF_Icon.xml');
+			case 'bf-cursed-wh':
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/aa.png', 'assets/images/aa.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 	
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
