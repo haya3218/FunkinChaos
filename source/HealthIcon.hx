@@ -47,6 +47,7 @@ class HealthIcon extends FlxSprite
 		animation.add('miku', [34], 0, false, isPlayer);
 		animation.add('bf-pain', [37, 38], 0, false, isPlayer);
 		animation.add('bishop-gaming', [39], 0, false, isPlayer);
+		animation.add('bf-cursed-wh', [40], 0, false, isPlayer);
 		animation.play(char);
 		scrollFactor.set();
 	}
