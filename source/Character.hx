@@ -584,7 +584,7 @@ class Character extends FlxSprite
 				flipX = true;
 	
 			case 'bf-cursed-wh':
-				var tex = FlxAtlasFrames.fromSparrow('assets/images/aa.png', 'assets/images/aa.xml');
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/Boyfriend_Assets_CURSED.png', 'assets/images/Boyfriend_Assets_CURSED.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
