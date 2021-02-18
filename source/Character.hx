@@ -584,7 +584,7 @@ class Character extends FlxSprite
 				flipX = true;
 	
 			case 'bf-cursed-wh':
-				var tex = FlxAtlasFrames.fromSparrow('assets/images/Boyfriend_Assets_CURSED.png', 'assets/images/Boyfriend_Assets_CURSED.xml');
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/BoyFriend_Assets_CURSED.png', 'assets/images/BoyFriend_Assets_CURSED.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -604,19 +604,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
 				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
 				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
+				addOffset("singLEFT", 12, -12);
+				addOffset("singUP", -33, 2);
+				addOffset("singDOWN", -15, -54);
 				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
+				addOffset('firstDeath', 37, 2);
+				addOffset('deathLoop', 37, -6);
+				addOffset('deathConfirm', 37, 59);
+				addOffset('scared', 3, 1);
 	
 				playAnim('idle');
 	

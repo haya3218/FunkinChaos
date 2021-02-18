@@ -32,6 +32,11 @@ class OptionsMenu extends MusicBeatState
 
 	override function create()
 	{
+		if (!FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+		}
+
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGOptions.png');
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
