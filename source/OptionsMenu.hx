@@ -14,18 +14,17 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OTHER OPTIONS', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
-	var shittyFPS:Bool = false;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var shittyNames:Array<String> = [
 		"BROKEN MENU FT. SHIT CODE",
-		"UNNEEDED SHITSHOWS",
 		"THE PAIN ROOM",
 		"CREDITS, DUH.",
+		"FPS LIMIT LOL",
 		"bye bye"
 	];
 
@@ -48,14 +47,22 @@ class OptionsMenu extends MusicBeatState
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
 			songText.isOptionItem = true;
 			songText.screenCenter(X);
-			songText.x += 150;
+			songText.x += 250;
 			songText.targetY = i;
 			grpMenuShit.add(songText);
 		}
 
-		txtDescription = new FlxText(FlxG.width * 0.075, menuBG.y + 200, 0, "", 32);
+		var shittyBeggarWindow:FlxSprite = new FlxSprite(60, 60).loadGraphic('assets/images/Modifiers_Window.png');
+		shittyBeggarWindow.setGraphicSize(Std.int(shittyBeggarWindow.width * 0.8));
+		shittyBeggarWindow.updateHitbox();
+        shittyBeggarWindow.antialiasing = true;
+        shittyBeggarWindow.scrollFactor.x = 0;
+		shittyBeggarWindow.scrollFactor.y = 0;
+		add(shittyBeggarWindow);
+		
+		txtDescription = new FlxText(0, menuBG.y + 200, 0, "", 32);
 		txtDescription.alignment = CENTER;
-		txtDescription.setFormat("assets/fonts/vcr.ttf", 32);
+		txtDescription.setFormat("assets/fonts/vcr.ttf", 36);
 		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
@@ -81,6 +88,9 @@ class OptionsMenu extends MusicBeatState
 	{
 		txtOptionTitle.text = shittyNames[curSelected].toUpperCase();
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
+
+		txtDescription.screenCenter(X);
+		txtDescription.x -= 350;
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -108,13 +118,6 @@ class OptionsMenu extends MusicBeatState
 					{
 						FlxG.switchState(new ChartingState());
 					});
-				case "OTHER OPTIONS":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					new FlxTimer().start(1, function(tmr:FlxTimer)
-					{
-						FlxG.switchState(new MainMenuState());
-					});
 				case "OFFSET MENU":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
@@ -124,17 +127,17 @@ class OptionsMenu extends MusicBeatState
 					});
 				case "LIMIT FPS":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					if (shittyFPS == false)
+					if (TitleState.shittyFPS == false)
 					{
 						MusicBeatState.funkyFramerate = 60;
 						FlxG.drawFramerate = 60;
-						shittyFPS = true;
+						TitleState.shittyFPS = true;
 					}
 					else
 					{
 						MusicBeatState.funkyFramerate = 160;
 						FlxG.drawFramerate = 160;
-						shittyFPS = false;
+						TitleState.shittyFPS = false;
 					}
 				case "CREDITS":
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);

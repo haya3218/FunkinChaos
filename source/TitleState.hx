@@ -52,6 +52,7 @@ class TitleState extends MusicBeatState
 	static public var musicSave:Float = 0;
 	static public var versionGhi:String = " DEBUG";
 	static public var shittyPieceofShitScreenDetectorCosImDumbLmao:Bool = false;
+	public static var shittyFPS:Bool = false;
 
 	var sinMod:Float = 0;
 	var shittyBG:FlxSprite;

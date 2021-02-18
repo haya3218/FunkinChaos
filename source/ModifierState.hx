@@ -76,6 +76,7 @@ class ModifierState extends MusicBeatState
 			swagModifier.isOptionItem = true;
 			swagModifier.screenCenter(X);
 			swagModifier.targetY = modifier;
+			swagModifier.x += 250;
 			var coolCheckmark:FlxSprite = new FlxSprite(-90, -10).loadGraphic('assets/images/checkmark.png');
 			coolCheckmark.visible = modifiers[modifier].value;
 			var menuItem:FlxSprite = new FlxSprite(-100, -20);
