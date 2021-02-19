@@ -28,8 +28,8 @@ class StoryMenuState extends MusicBeatState
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
-		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC'],
-		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss']
+		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss'],
+		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
 	];
 	var curDifficulty:Int = 1;
 
@@ -57,8 +57,8 @@ class StoryMenuState extends MusicBeatState
 		"RED SNOW",
 		"hating simulator ft. moawling",
 		"WHERE'S YOUR LIFE LICENSE?",
-		"LUCI STOOPID",
-		"''GAME ABOUT GANGSTERS DOING BAD THINGS''"
+		"GAME ABOUT GANGSTERS DOING BAD THINGS",
+		"LUCI STOOPID"
 	];
 
 	var txtWeekTitle:FlxText;
