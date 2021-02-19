@@ -4,8 +4,8 @@
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="Accel Notes Idle0000" x="5" y="5" width="132" height="121"/>
 	<SubTexture name="Accel Notes Select0000" x="142" y="5" width="132" height="121"/>
-	<SubTexture name="Blinding Idle0000" x="279" y="5" width="132" height="121"/>
-	<SubTexture name="Blinding Select0000" x="416" y="5" width="132" height="121"/>
+	<SubTexture name="Autoplay Idle0000" x="279" y="5" width="132" height="121"/>
+	<SubTexture name="Autoplay Select0000" x="416" y="5" width="132" height="121"/>
 	<SubTexture name="Camera Spin Idle0000" x="553" y="5" width="132" height="121"/>
 	<SubTexture name="Camera Spin Select0000" x="690" y="5" width="132" height="121"/>
 	<SubTexture name="Drunk Notes Idle0000" x="827" y="5" width="132" height="121"/>

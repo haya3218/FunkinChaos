@@ -151,13 +151,9 @@ class PlayState extends MusicBeatState
 	var noteSpeed:Float = 0.45;
 	var sickFastTimer:FlxTimer;
 	var accelNotes:Bool = false;
-	var autoMode:Bool = false;
-	var cameraSick:Bool = false;
+	public static var autoMode:Bool = false;
 	var cameraUpside:Bool = false;
-	var cameraTurn:Bool = false;
-	var cameraSickModifier:Int = 0;
-	var cameraUpsideModifier:Int = 0;
-	var cameraTurnModifier:Int = 0;
+	var earthDeath:Bool = false;
 	private var regenTimer:FlxTimer;
 	override public function create()
 	{
@@ -199,16 +195,9 @@ class PlayState extends MusicBeatState
 		supLove = ModifierState.modifiers[7].value;
 		poisonExr = ModifierState.modifiers[8].value;
 		poisonPlus = ModifierState.modifiers[9].value;
-		autoMode = false;
-		cameraSick = ModifierState.modifiers[10].value;
-		cameraUpside = ModifierState.modifiers[11].value;
-		cameraTurn = ModifierState.modifiers[12].value;
-		if (cameraSick)
-			cameraSickModifier == 1;
-		if (cameraUpside)
-			cameraUpsideModifier == 1;
-		if (cameraTurn)
-			cameraTurnModifier == 1;
+		autoMode = ModifierState.modifiers[16].value;
+		cameraUpside = ModifierState.modifiers[14].value;
+		earthDeath = ModifierState.modifiers[15].value;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
@@ -1534,11 +1523,18 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
-		// so fucking sorry
-		CameraSpin += 1 * (cameraTurnModifier * 2.5);
+		// actual fuck shit
+		if (cameraUpside)
+		{
+			FlxG.camera.angle = 180;
+			camHUD.angle = 180;
+		}
 
-		FlxG.camera.angle = 180 * (cameraUpsideModifier * 2.5)  + CameraSpin + (Math.sin(songTime/300)*8 * (cameraSickModifier * 2.5));
-		camHUD.angle = 180 * (cameraUpsideModifier * 2.5) + CameraSpin + (Math.sin(songTime/300)*8 * (cameraSickModifier * 2.5));
+		if (earthDeath)
+		{
+			FlxG.camera.x = Math.sin(songTime)*40 * 1*2;
+			camHUD.x = Math.sin(songTime)*97 * 1*2;
+		}
 
 		if (FlxG.keys.justPressed.NINE)
 		{
@@ -1855,6 +1851,10 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
+				var possibleNotes:Array<Note> = [];
+
+				var ignoreList:Array<Int> = [];
+
 				if (daNote.y > FlxG.height)
 				{
 					daNote.active = false;
@@ -1865,6 +1865,14 @@ class PlayState extends MusicBeatState
 					daNote.visible = true;
 					daNote.active = true;
 				}
+				if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate)
+					{
+						// the sorting probably doesn't need to be in here? who cares lol
+						possibleNotes.push(daNote);
+						possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+	
+						ignoreList.push(daNote.noteData);
+					}
 
 				daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
@@ -1897,8 +1905,6 @@ class PlayState extends MusicBeatState
 					if (daNote.isSustainNote)
 						noteAnim = '-long';
 
-					if (!autoMode)
-					{
 						switch (Math.abs(daNote.noteData))
 						{
 							case 0:
@@ -1910,41 +1916,56 @@ class PlayState extends MusicBeatState
 							case 3:
 								dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
 						}
-					}
-					else
-					{
-						switch (Math.abs(daNote.noteData))
-						{
-							case 0:
-								dad.playAnim('singLEFT' + altAnim + noteAnim, true);
-							case 1:
-								dad.playAnim('singDOWN' + altAnim + noteAnim, true);
-							case 2:
-								dad.playAnim('singUP' + altAnim + noteAnim, true);
-							case 3:
-								dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
-						}
-
-						switch (daNote.noteData)
-						{
-							case 0:
-								boyfriend.playAnim('singLEFT' + altAnim + noteAnim, true);
-							case 1:
-								boyfriend.playAnim('singDOWN' + altAnim + noteAnim, true);
-							case 2:
-								boyfriend.playAnim('singUP' + altAnim + noteAnim, true);
-							case 3:
-								boyfriend.playAnim('singRIGHT' + altAnim + noteAnim, true);
-						}
-					}
 
 					dad.holdTimer = 0;
-					if (autoMode)
-						boyfriend.holdTimer = 0;
 
 					if (SONG.needsVoices)
 						vocals.volume = 1;
 
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				}
+
+				if (daNote.canBeHit && daNote.mustPress && autoMode)
+				{
+					switch (Math.abs(daNote.noteData))
+					{
+						case 0:
+							boyfriend.playAnim('singLEFT', true);
+							// goodNoteHit(daNote);
+							new FlxTimer().start(2, function(tmr:FlxTimer)
+							{
+								boyfriend.playAnim('idle', true);
+							});
+						case 1:
+							boyfriend.playAnim('singDOWN', true);
+							// goodNoteHit(daNote);
+							new FlxTimer().start(2, function(tmr:FlxTimer)
+							{
+								boyfriend.playAnim('idle', true);
+							});
+						case 2:
+							boyfriend.playAnim('singUP', true);
+							// goodNoteHit(daNote);
+							new FlxTimer().start(2, function(tmr:FlxTimer)
+							{
+								boyfriend.playAnim('idle', true);
+							});
+						case 3:
+							boyfriend.playAnim('singRIGHT', true);
+							// goodNoteHit(daNote);
+							new FlxTimer().start(2, function(tmr:FlxTimer)
+							{
+								boyfriend.playAnim('idle', true);
+							});
+					}
+	
+					boyfriend.holdTimer = 0;
+	
+					if (SONG.needsVoices)
+						vocals.volume = 1;
+	
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();

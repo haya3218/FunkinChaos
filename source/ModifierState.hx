@@ -68,9 +68,9 @@ class ModifierState extends MusicBeatState
 				{name: "Slow Notes", value: false, conflicts: [12,13], multi: -0.3},
 				{name: "Fast Notes", value: false, conflicts: [11,13], multi: 0.8},
 				{name : "Accel Notes", value: false, conflicts: [11,12], multi: 0.4},
-				{name : "Seasick", value: false, conflicts: [], multi: 0.4},
 				{name : "Upside Down", value: false, conflicts: [], multi: 0.4},
-				{name : "Camera Spin", value: false, conflicts: [], multi: 0.4},
+				{name : "Earthquake", value: false, conflicts: [], multi: 0.4},
+				{name : "Autoplay", value: false, conflicts: [], multi: 0.4},
 				{name: "z", value: false, conflicts: [], multi: 1, times:true}
 			];
 		}
