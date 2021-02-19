@@ -1031,7 +1031,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bf-speen':
-				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIEND.png', 'assets/images/BOYFRIEND.xml');
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIENDSPIN.png', 'assets/images/BOYFRIENDSPIN.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
