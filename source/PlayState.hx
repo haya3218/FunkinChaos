@@ -1934,31 +1934,15 @@ class PlayState extends MusicBeatState
 						case 0:
 							boyfriend.playAnim('singLEFT', true);
 							// goodNoteHit(daNote);
-							new FlxTimer().start(2, function(tmr:FlxTimer)
-							{
-								boyfriend.playAnim('idle', true);
-							});
 						case 1:
 							boyfriend.playAnim('singDOWN', true);
 							// goodNoteHit(daNote);
-							new FlxTimer().start(2, function(tmr:FlxTimer)
-							{
-								boyfriend.playAnim('idle', true);
-							});
 						case 2:
 							boyfriend.playAnim('singUP', true);
 							// goodNoteHit(daNote);
-							new FlxTimer().start(2, function(tmr:FlxTimer)
-							{
-								boyfriend.playAnim('idle', true);
-							});
 						case 3:
 							boyfriend.playAnim('singRIGHT', true);
 							// goodNoteHit(daNote);
-							new FlxTimer().start(2, function(tmr:FlxTimer)
-							{
-								boyfriend.playAnim('idle', true);
-							});
 					}
 	
 					boyfriend.holdTimer = 0;
@@ -1969,6 +1953,10 @@ class PlayState extends MusicBeatState
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();
+					if (!daNote.isSustainNote)
+						popUpScore(daNote.strumTime);
+
+					idleShit();
 				}
 
 				// WIP interpolation shit? Need to fix the pause issue
@@ -2351,6 +2339,18 @@ class PlayState extends MusicBeatState
 		var rightR = controls.RIGHT_R;
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
+
+		if (cameraUpside)
+		{
+			up = controls.DOWN;
+			down = controls.UP;
+			right = controls.LEFT;
+			left = controls.RIGHT;
+			upP = controls.DOWN_P;
+			downP = controls.UP_P;
+			rightP = controls.LEFT_P;
+			leftP = controls.RIGHT_P;
+		}
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
@@ -2897,4 +2897,12 @@ class PlayState extends MusicBeatState
 	}
 
 	var curLight:Int = 0;
+
+	function idleShit()
+	{
+		new FlxTimer().start(4, function(tmr:FlxTimer)
+		{
+			boyfriend.playAnim('idle');
+		});
+	}
 }
