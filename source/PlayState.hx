@@ -155,9 +155,9 @@ class PlayState extends MusicBeatState
 	var cameraSick:Bool = false;
 	var cameraUpside:Bool = false;
 	var cameraTurn:Bool = false;
-	var cameraSickModifier:Int;
-	var cameraUpsideModifier:Int;
-	var cameraTurnModifier:Int;
+	var cameraSickModifier:Int = 0;
+	var cameraUpsideModifier:Int = 0;
+	var cameraTurnModifier:Int = 0;
 	private var regenTimer:FlxTimer;
 	override public function create()
 	{
@@ -203,18 +203,12 @@ class PlayState extends MusicBeatState
 		cameraSick = ModifierState.modifiers[10].value;
 		cameraUpside = ModifierState.modifiers[11].value;
 		cameraTurn = ModifierState.modifiers[12].value;
-		if (cameraSick = true)
-			cameraSickModifier = 1;
-		else
-			cameraSickModifier = 0;
-		if (cameraUpside = true)
-			cameraUpsideModifier = 1;
-		else
-			cameraUpsideModifier = 0;
-		if (cameraTurn = true)
-			cameraTurnModifier = 1;
-		else
-			cameraTurnModifier = 0;
+		if (cameraSick)
+			cameraSickModifier == 1;
+		if (cameraUpside)
+			cameraUpsideModifier == 1;
+		if (cameraTurn)
+			cameraTurnModifier == 1;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
