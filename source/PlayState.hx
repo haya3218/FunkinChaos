@@ -56,6 +56,7 @@ class PlayState extends MusicBeatState
 	public static var hasPlayedOnce:Bool = false;
 
 	var halloweenLevel:Bool = false;
+	var CameraSpin:Float = 0;
 
 	private var vocals:FlxSound;
 
@@ -151,6 +152,12 @@ class PlayState extends MusicBeatState
 	var sickFastTimer:FlxTimer;
 	var accelNotes:Bool = false;
 	var autoMode:Bool = false;
+	var cameraSick:Bool = false;
+	var cameraUpside:Bool = false;
+	var cameraTurn:Bool = false;
+	var cameraSickModifier:Int;
+	var cameraUpsideModifier:Int;
+	var cameraTurnModifier:Int;
 	private var regenTimer:FlxTimer;
 	override public function create()
 	{
@@ -193,6 +200,21 @@ class PlayState extends MusicBeatState
 		poisonExr = ModifierState.modifiers[8].value;
 		poisonPlus = ModifierState.modifiers[9].value;
 		autoMode = false;
+		cameraSick = ModifierState.modifiers[10].value;
+		cameraUpside = ModifierState.modifiers[11].value;
+		cameraTurn = ModifierState.modifiers[11].value;
+		if (cameraSick = true)
+			cameraSickModifier = 1;
+		else
+			cameraSickModifier = 0;
+		if (cameraUpside = true)
+			cameraUpsideModifier = 1;
+		else
+			cameraUpsideModifier = 0;
+		if (cameraTurn = true)
+			cameraTurnModifier = 1;
+		else
+			cameraTurnModifier = 0;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
@@ -1517,6 +1539,12 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
+
+		// so fucking sorry
+		CameraSpin += 1 * (cameraTurnModifier * 2.5);
+
+		FlxG.camera.angle = 180 * (cameraUpsideModifier * 2.5)  + CameraSpin + (Math.sin(songTime/300)*8 * (cameraSickModifier * 2.5));
+		camHUD.angle = 180 * (cameraUpsideModifier * 2.5) + CameraSpin + (Math.sin(songTime/300)*8 * (cameraSickModifier * 2.5));
 
 		if (FlxG.keys.justPressed.NINE)
 		{
