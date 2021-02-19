@@ -202,7 +202,7 @@ class PlayState extends MusicBeatState
 		autoMode = false;
 		cameraSick = ModifierState.modifiers[10].value;
 		cameraUpside = ModifierState.modifiers[11].value;
-		cameraTurn = ModifierState.modifiers[11].value;
+		cameraTurn = ModifierState.modifiers[12].value;
 		if (cameraSick = true)
 			cameraSickModifier = 1;
 		else
