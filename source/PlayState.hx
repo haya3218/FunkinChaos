@@ -150,6 +150,7 @@ class PlayState extends MusicBeatState
 	var noteSpeed:Float = 0.45;
 	var sickFastTimer:FlxTimer;
 	var accelNotes:Bool = false;
+	var autoMode:Bool = false;
 	private var regenTimer:FlxTimer;
 	override public function create()
 	{
@@ -191,6 +192,7 @@ class PlayState extends MusicBeatState
 		supLove = ModifierState.modifiers[7].value;
 		poisonExr = ModifierState.modifiers[8].value;
 		poisonPlus = ModifierState.modifiers[9].value;
+		autoMode = false;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
@@ -1770,24 +1772,24 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.pressed.Z)
 		{
-			boyfriend.playAnim("preattack", true);
+			boyfriend.playAnim("singpreattack", true);
 		}
 
 		if (FlxG.keys.justReleased.Z)
 		{
 			health += 0.075;
-			boyfriend.playAnim("attack", true);
+			boyfriend.playAnim("singattack", true);
 		}
 		
 		if (FlxG.keys.justPressed.C)
 		{
 			health -= 0.1;
-			boyfriend.playAnim("ahfuckivebeenhit", true);
+			boyfriend.playAnim("singahfuckivebeenhit", true);
 		}
 		
 		if (FlxG.keys.justPressed.V)
 		{
-			boyfriend.playAnim("noscope", true);
+			boyfriend.playAnim("singnoscope", true);
 		}
 
 		if (health <= 0 && !practiceMode)
@@ -1862,6 +1864,7 @@ class PlayState extends MusicBeatState
 						camZooming = true;
 
 					var altAnim:String = "";
+					var noteAnim:String = "";
 
 					if (SONG.notes[Math.floor(curStep / 16)] != null)
 					{
@@ -1869,19 +1872,53 @@ class PlayState extends MusicBeatState
 							altAnim = '-alt';
 					}
 
-					switch (Math.abs(daNote.noteData))
+					if (daNote.isSustainNote)
+						noteAnim = '-long';
+
+					if (!autoMode)
 					{
-						case 0:
-							dad.playAnim('singLEFT' + altAnim, true);
-						case 1:
-							dad.playAnim('singDOWN' + altAnim, true);
-						case 2:
-							dad.playAnim('singUP' + altAnim, true);
-						case 3:
-							dad.playAnim('singRIGHT' + altAnim, true);
+						switch (Math.abs(daNote.noteData))
+						{
+							case 0:
+								dad.playAnim('singLEFT' + altAnim + noteAnim, true);
+							case 1:
+								dad.playAnim('singDOWN' + altAnim + noteAnim, true);
+							case 2:
+								dad.playAnim('singUP' + altAnim + noteAnim, true);
+							case 3:
+								dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
+						}
+					}
+					else
+					{
+						switch (Math.abs(daNote.noteData))
+						{
+							case 0:
+								dad.playAnim('singLEFT' + altAnim + noteAnim, true);
+							case 1:
+								dad.playAnim('singDOWN' + altAnim + noteAnim, true);
+							case 2:
+								dad.playAnim('singUP' + altAnim + noteAnim, true);
+							case 3:
+								dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
+						}
+
+						switch (daNote.noteData)
+						{
+							case 0:
+								boyfriend.playAnim('singLEFT' + altAnim + noteAnim, true);
+							case 1:
+								boyfriend.playAnim('singDOWN' + altAnim + noteAnim, true);
+							case 2:
+								boyfriend.playAnim('singUP' + altAnim + noteAnim, true);
+							case 3:
+								boyfriend.playAnim('singRIGHT' + altAnim + noteAnim, true);
+						}
 					}
 
 					dad.holdTimer = 0;
+					if (autoMode)
+						boyfriend.holdTimer = 0;
 
 					if (SONG.needsVoices)
 						vocals.volume = 1;
@@ -1894,40 +1931,40 @@ class PlayState extends MusicBeatState
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
-				if (daNote.y < -daNote.height)
-				{
-					if (daNote.tooLate || !daNote.wasGoodHit)
+					if (daNote.y < -daNote.height)
 					{
-						health -= 0.0475 + healthLossModifier;
-						vocals.volume = 0;
-						if (poisonPlus && poisonTimes < 5) {
-							poisonTimes += 1;
-							var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-								health -= 0.05;
-							}, 0);
-							// stop timer after 3 seconds
-							new FlxTimer().start(3, function (tmr:FlxTimer) {
-								poisonPlusTimer.cancel();
-								poisonTimes -= 1;
-							});
+						if (daNote.tooLate || !daNote.wasGoodHit)
+						{
+							health -= 0.0475 + healthLossModifier;
+							vocals.volume = 0;
+							if (poisonPlus && poisonTimes < 5) {
+								poisonTimes += 1;
+								var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									health -= 0.05;
+								}, 0);
+								// stop timer after 3 seconds
+								new FlxTimer().start(3, function (tmr:FlxTimer) {
+									poisonPlusTimer.cancel();
+									poisonTimes -= 1;
+								});
+							}
 						}
-					}
-					if (fullComboMode || perfectMode) {
-						// you signed up for this your fault
-						health = 0;
-					}
+						if (fullComboMode || perfectMode) {
+							// you signed up for this your fault
+							health = 0;
+						}
 
-						daNote.active = false;
-						daNote.visible = false;
+							daNote.active = false;
+							daNote.visible = false;
 
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
-				}
+							daNote.kill();
+							notes.remove(daNote, true);
+							daNote.destroy();
+					}
 			});
 		}
 
-		if (!inCutscene)
+		if (!inCutscene && !autoMode)
 			keyShit();
 
 		#if debug

@@ -325,9 +325,9 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
 
-		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		if (pressedEnter && doneTalking == false)
 		{
-			if (pressedEnter && doneTalking == false)
+			new FlxTimer().start(0.5, function(tmr:FlxTimer)
 			{
 				remove(txt);
 				remove(shittyReminder);
@@ -335,15 +335,15 @@ class TitleState extends MusicBeatState
 				add(bg);
 				doneTalking = true;
 				startIntro();
-			}
-			else if (pressedEnter && !skippedIntro)
-			{
-				if (doneTalking == true)
-					skipIntro();
-				else
-					trace('YOURE IMPATIENT, USER!');
-			}
-		});
+			});
+		}
+		else if (pressedEnter && !skippedIntro)
+		{
+			if (doneTalking == true)
+				skipIntro();
+			else
+				trace('YOURE IMPATIENT, USER!');
+		}
 
 		super.update(elapsed);
 	}

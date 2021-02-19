@@ -32,12 +32,10 @@ class OptionsMenu extends MusicBeatState
 
 	override function create()
 	{
-		if (!FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
-		}
+		FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGOptions.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		menuBG.color = 0x013164;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -56,14 +54,6 @@ class OptionsMenu extends MusicBeatState
 			songText.targetY = i;
 			grpMenuShit.add(songText);
 		}
-
-		var shittyBeggarWindow:FlxSprite = new FlxSprite(60, 60).loadGraphic('assets/images/Modifiers_Window.png');
-		shittyBeggarWindow.setGraphicSize(Std.int(shittyBeggarWindow.width * 0.8));
-		shittyBeggarWindow.updateHitbox();
-        shittyBeggarWindow.antialiasing = true;
-        shittyBeggarWindow.scrollFactor.x = 0;
-		shittyBeggarWindow.scrollFactor.y = 0;
-		add(shittyBeggarWindow);
 		
 		txtDescription = new FlxText(0, menuBG.y + 200, 0, "", 32);
 		txtDescription.alignment = CENTER;
@@ -82,6 +72,14 @@ class OptionsMenu extends MusicBeatState
 		txtOptionTitle.alpha = 0.7;
 		add(txtOptionTitle);
 
+		var shittyArrow:FlxText = new FlxText(0, 0, 0, ">", 42);
+		shittyArrow.setFormat("Funkin", 100, FlxColor.WHITE);
+		shittyArrow.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 5, 2.5);
+		shittyArrow.screenCenter(XY);
+		shittyArrow.x -= 100;
+		shittyArrow.y += 15;
+		add(shittyArrow);
+
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
@@ -95,7 +93,7 @@ class OptionsMenu extends MusicBeatState
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
 
 		txtDescription.screenCenter(X);
-		txtDescription.x -= 350;
+		txtDescription.x -= 425;
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -155,6 +153,8 @@ class OptionsMenu extends MusicBeatState
 						FlxG.switchState(new ModifierState());
 					});
 				case "Exit to menu":
+					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
 					FlxG.switchState(new MainMenuState());
 				default:
 					// so it doesnt crash lol

@@ -29,7 +29,9 @@ typedef TModifier = {
 class ModifierState extends MusicBeatState
 {
 	public static var modifiers:Array<TModifier>;
-	var menuItems:Array<FlxSprite> = [];
+	var menuItem:FlxSprite;
+	var menuItems:FlxTypedGroup<FlxSprite>;
+	var menuItemSprite:Array<FlxSprite> = [];
 	var grpAlphabet:FlxTypedGroup<Alphabet>;
 	var curSelected:Int = 0;
 	var checkmarks:Array<FlxSprite> = [];
@@ -38,7 +40,8 @@ class ModifierState extends MusicBeatState
 	public static var scoreMultiplier:Float = 1;
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuModifier.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		menuBG.color = 0x379708;
 		grpAlphabet = new FlxTypedGroup<Alphabet>();
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -54,10 +57,10 @@ class ModifierState extends MusicBeatState
 				{name: "Perfect", value: false, conflicts: [1,2,3,4,5,6,7,8,9], multi: 3, times: true},
 				{name:"FC Mode", value: false, conflicts: [0,2,3,4,5,6,7,8,9], multi: 2, times: true},
 				{name: "Practice", value: false, conflicts: [0,1], multi: 0, times:true},
-				{name: "HP Gain M", value: false, conflicts: [0,1,4], multi: -0.5},
-				{name: "HP Gain P", value: false, conflicts: [0,1,3], multi: 0.5},
-			 	{name: "HP Loss M", value: false, conflicts: [0,1,6], multi: 0.5},
-			 	{name: "HP Loss P", value: false, conflicts: [0,1,5], multi: -0.5},
+				{name: "HP Gain P", value: false, conflicts: [0,1,4], multi: -0.5},
+				{name: "HP Gain M", value: false, conflicts: [0,1,3], multi: 0.5},
+			 	{name: "HP Loss P", value: false, conflicts: [0,1,6], multi: 0.5},
+			 	{name: "HP Loss M", value: false, conflicts: [0,1,5], multi: -0.5},
 				{name: "Sup Love", value: false, conflicts: [0,1,8], multi: -0.4},
 				{name: "Psn Fright", value: false, conflicts: [0,1,7], multi: 0.4},
 				{name: "Paparazzi", value: false, conflicts: [0,1], multi: 1},
@@ -79,14 +82,14 @@ class ModifierState extends MusicBeatState
 			swagModifier.x += 250;
 			var coolCheckmark:FlxSprite = new FlxSprite(-90, -10).loadGraphic('assets/images/checkmark.png');
 			coolCheckmark.visible = modifiers[modifier].value;
-			var menuItem:FlxSprite = new FlxSprite(-100, -20);
+			menuItem = new FlxSprite(-150, -20);
 			menuItem.frames = tex;
             menuItem.animation.addByPrefix('Idle', modifiers[modifier].name + " Idle", 24, true);
             menuItem.animation.addByPrefix('Select', modifiers[modifier].name + " Select", 24, true);
 			menuItem.animation.play('Idle');
 			menuItem.ID = modifier;
 			menuItem.scrollFactor.set(50);
-			menuItems.push(menuItem);
+			menuItemSprite.push(menuItem);
 			checkmarks.push(coolCheckmark);
 			swagModifier.add(menuItem);
 			swagModifier.add(coolCheckmark);
