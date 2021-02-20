@@ -1933,16 +1933,16 @@ class PlayState extends MusicBeatState
 					{
 						case 0:
 							boyfriend.playAnim('singLEFT', true);
-							// goodNoteHit(daNote);
+							goodNoteHit(daNote);
 						case 1:
 							boyfriend.playAnim('singDOWN', true);
-							// goodNoteHit(daNote);
+							goodNoteHit(daNote);
 						case 2:
 							boyfriend.playAnim('singUP', true);
-							// goodNoteHit(daNote);
+							goodNoteHit(daNote);
 						case 3:
 							boyfriend.playAnim('singRIGHT', true);
-							// goodNoteHit(daNote);
+							goodNoteHit(daNote);
 					}
 	
 					boyfriend.holdTimer = 0;
@@ -1953,10 +1953,8 @@ class PlayState extends MusicBeatState
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();
-					if (!daNote.isSustainNote)
-						popUpScore(daNote.strumTime);
 
-					idleShit();
+					// idleShit();
 				}
 
 				// WIP interpolation shit? Need to fix the pause issue
@@ -2647,13 +2645,16 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('singRIGHT', true);
 			}
 
-			playerStrums.forEach(function(spr:FlxSprite)
+			if (!autoMode)
 			{
-				if (Math.abs(note.noteData) == spr.ID)
+				playerStrums.forEach(function(spr:FlxSprite)
 				{
-					spr.animation.play('confirm', true);
-				}
-			});
+					if (Math.abs(note.noteData) == spr.ID)
+					{
+						spr.animation.play('confirm', true);
+					}
+				});
+			}
 
 			note.wasGoodHit = true;
 			vocals.volume = 1;
@@ -2796,6 +2797,8 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
+			if (SONG.notes[Math.floor(curStep / 16)] != null)
+				boyfriend.playAnim('idle');
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
