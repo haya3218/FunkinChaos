@@ -28,7 +28,7 @@ Support the original project on the itch.io page: https://ninja-muffin24.itch.io
 - [Saff](https://example.com) - Logo
 - [Bishop](https://example.com) - for being cute lmao
 - [LuciDin](https://example.com) - cool guy
-- [Smokey](https://example.com), [Rozebud](https://example.com), [KadeDev](https://example.com) and [Cval](https://example.com) - for being cool lmao
+- [Smokey](https://example.com), [Rozebud](https://example.com), [KadeDev](https://example.com), [Verwex](https://example.com) and [Cval](https://example.com) - for being cool lmao
 - OTHERS I FORGOT FOR HELPING ME AND SOME OTHER SHIT THANK YALL
 
 This game was made with love to Newgrounds and it's community. Extra love to Tom Fulp.
