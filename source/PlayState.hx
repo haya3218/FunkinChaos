@@ -2798,7 +2798,10 @@ class PlayState extends MusicBeatState
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
 			if (SONG.notes[Math.floor(curStep / 16)] != null)
-				boyfriend.playAnim('idle');
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					boyfriend.playAnim('idle');
+				});
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
