@@ -1,11 +1,14 @@
 ### Update
 
-Not exactly cancelled, but released the whole bunch o shit for use with other mods.
-No, this wont be on gaybanana soon tho.
+FULLY RELEASED LMAOOOOOOOOO
+CURRENTLY IN BETA
+UPDATES SOON
 
 # Friday Night Funkin' Chaos
 
 This is the repository for Friday Night Funkin' Chaos, a fork of Friday Night Funkin', a game originally made for Ludum Dare 47 "Stuck In a Loop".
+Chaos is not responsible for the burning of your eyes and mouth.
+All proceeds go to no one.
 
 Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-funkin
 Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371
@@ -13,9 +16,19 @@ Support the original project on the itch.io page: https://ninja-muffin24.itch.io
 
 ## Credits / shoutouts
 
+### Original Game
 - [ninjamuffin99 (me!)](https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
+
+### Mod Makers
+- [haya (me, the one who kicked this off)](https://example.com) - Programmer
+- [FriedFrick](https://example.com) - Second Programmer and the one who game me the idea
+- [Keaton Hoshida](https://example.com) - Art maker for some of the characters
+- [Saff](https://example.com) - Logo
+- [Bishop](https://example.com) - for being cute lmao
+- [LuciDin](https://example.com) - cool guy
+- [Smokey](https://example.com), [Rozebud](https://example.com), [KadeDev](https://example.com) and [Cval](https://example.com) - for being cool lmao
 
 This game was made with love to Newgrounds and it's community. Extra love to Tom Fulp.
 
