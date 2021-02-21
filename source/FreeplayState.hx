@@ -30,6 +30,8 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		// LOAD MUSIC
+
 		songs = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
 
 		/* 
@@ -46,67 +48,11 @@ class FreeplayState extends MusicBeatState
 		isDebug = true;
 		#end
 
-		if (StoryMenuState.weekUnlocked[2] || isDebug)
+		if (TitleState.crazyBusUnlocked || isDebug)
 		{
-			songs.push('Spookeez');
-			songs.push('South');
-			songs.push('Monster');
-		}
-
-		if (StoryMenuState.weekUnlocked[3] || isDebug)
-		{
-			songs.push('Pico');
-			songs.push('Philly');
-			songs.push('Blammed');
-		}
-
-		if (StoryMenuState.weekUnlocked[4] || isDebug)
-		{
-			songs.push('Satin-Panties');
-			songs.push('High');
-			songs.push('Milf');
-		}
-
-		if (StoryMenuState.weekUnlocked[5] || isDebug)
-		{
-			songs.push('Cocoa');
-			songs.push('Eggnog');
-			songs.push('Winter-Horrorland');
-		}
-
-		if (StoryMenuState.weekUnlocked[6] || isDebug)
-		{
-			songs.push('Senpai');
-			songs.push('Roses');
-			songs.push('Thorns');
-			songs.push('Smash');
-			songs.push('Ridge');
-			songs.push('Ronald-McDonald-Insanity');
 			songs.push('The-Funkin-Experience');
-			songs.push('MC-MENTAL-AT-HIS-BEST');
-			songs.push('Luci-Moment');
-			songs.push('Disappear');
-			songs.push('B-Sides-Tutorial');
-			songs.push('B-Sides-Bopeebo');
-			songs.push('B-Sides-Fresh');
-			songs.push('B-Sides-Dadbattle');
-			songs.push('B-Sides-Spookeez');
-			songs.push('B-Sides-South');
-			songs.push('B-Sides-Pico');
-			songs.push('B-Sides-Philly');
-			songs.push('B-Sides-Blammed');
-			songs.push('B-Sides-Satin-Panties');
-			songs.push('B-Sides-High');
-			songs.push('B-Sides-Milf');
-			songs.push('Friday-Night');
-			songs.push('Judgement');
-			songs.push('Machine-Gun-Kiss');
-			songs.push('MTC');
-			songs.push('Spin');
-			// songs.push('Winter-Horrorland');
+			songs.push('CrazyShit');
 		}
-
-		// LOAD MUSIC
 
 		// LOAD CHARACTERS
 
@@ -156,7 +102,7 @@ class FreeplayState extends MusicBeatState
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
-		/* 
+		/*
 			var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
 
 			var texFel:TextField = new TextField();
@@ -170,7 +116,7 @@ class FreeplayState extends MusicBeatState
 			// scoreText.textField.htmlText = md;
 
 			trace(md);
-		 */
+		*/
 
 		super.create();
 	}
@@ -222,11 +168,16 @@ class FreeplayState extends MusicBeatState
 
 			trace(poop);
 
-			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
-			PlayState.isStoryMode = false;
-			PlayState.isCreditsMode = false;
-			PlayState.storyDifficulty = curDifficulty;
-			FlxG.switchState(new ModifierState());
+			if (songs[curSelected] != 'CUSTOM-SONGS')
+			{
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
+				PlayState.isStoryMode = false;
+				PlayState.isCreditsMode = false;
+				PlayState.storyDifficulty = curDifficulty;
+				FlxG.switchState(new ModifierState());
+			}
+			else
+				trace('CUSTOM SONGS LMAOOO');
 		}
 	}
 
@@ -277,7 +228,8 @@ class FreeplayState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 
-		FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
+		if (songs[curSelected] != 'CUSTOM-SONGS')
+			FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
 
 		var bullShit:Int = 0;
 

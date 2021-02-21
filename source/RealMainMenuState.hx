@@ -104,15 +104,20 @@ class RealMainMenuState extends MusicBeatState
 		bgHeader.antialiasing = true;
 		add(bgHeader);
 
-		txtTitle = new FlxText(5, FlxG.height + 18, 0, "", 32);
+		txtTitle = new FlxText(5, FlxG.height - 64, 0, "", 32);
 		txtTitle.scrollFactor.set();
 		txtTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txtTitle.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		add(txtTitle);
 
-		txtDescription = new FlxText(5, FlxG.height + 8, 0, "", 24);
-		txtDescription .scrollFactor.set();
-		txtDescription .setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txtDescription = new FlxText(5, FlxG.height - 30, 0, "", 24);
+		txtDescription.scrollFactor.set();
+		txtDescription.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		add(txtDescription);
+
+		txtTitle.text = 'SINGLEPLAYER MODE';
+		txtDescription.text = 'Challenge an enemy to a beep bop rap battle!';
 
 		super.create();
 	}
@@ -197,14 +202,20 @@ class RealMainMenuState extends MusicBeatState
 	}
 
 	function optionDescription()
-		{
-			var daDescription:String = menuSht[curSelected];
+	{
+		var daDescription:String = menuSht[curSelected];
 	
-			switch (daDescription)
-			{
-				default:
-					txtTitle.text = 'SAMPLE TEXT';
-					txtDescription.text = 'No description\nprovided.';
-			}
+		switch (daDescription)
+		{
+			case '1':
+				txtTitle.text = 'SINGLEPLAYER MODE';
+				txtDescription.text = 'Challenge an enemy to a beep bop rap battle!';
+			case '2':
+				txtTitle.text = 'OPTIONS MENU';
+				txtDescription.text = 'Edit your preferences here! (Currently doesnt save between sessions)';
+			default:
+				txtTitle.text = 'EXIT GAME';
+				txtDescription.text = 'See ya next time!';
 		}
+	}
 }
