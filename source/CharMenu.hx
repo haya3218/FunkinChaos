@@ -35,6 +35,7 @@ class CharMenu extends MusicBeatState
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
+	var alreadySelectedShit:Bool = false;
 
 	var shittyNames:Array<String> = [
 		"BOYFRIEND",
@@ -124,82 +125,86 @@ class CharMenu extends MusicBeatState
 		var downP = controls.RIGHT_P;
 		var accepted = controls.ACCEPT;
 
-		if (upP)
+		if (!alreadySelectedShit)
 		{
-			changeSelection(-1);
+			if (upP)
+				{
+					changeSelection(-1);
+				}
+				if (downP)
+				{
+					changeSelection(1);
+				}
+		
+				if (accepted)
+				{
+					alreadySelectedShit = true;
+					var daSelected:String = menuItems[curSelected];
+					FlxFlicker.flicker(shitCharacter, 0);
+					PlayState.hasPlayedOnce = true;
+		
+					switch (daSelected)
+					{
+						case "PICO":
+							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+							PlayState.SONG.player1 = 'pico';
+							new FlxTimer().start(1, function(tmr:FlxTimer)
+							{
+								FlxG.switchState(new PlayState());
+							});
+						case "BOYFRIENDSECOND":
+							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+							PlayState.SONG.player1 = 'bf';
+							if (PlayState.SONG.song.toLowerCase() == 'mtc')
+								PlayState.SONG.player1 = 'bf-cursed';
+							if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
+								PlayState.SONG.player1 = 'bf-yakuza';
+							if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
+								PlayState.SONG.player1 = 'bf-car';
+							if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
+								PlayState.SONG.player1 = 'bf-christmas';
+							if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+								PlayState.SONG.player1 = 'bf-pixel';
+							new FlxTimer().start(1, function(tmr:FlxTimer)
+							{
+								FlxG.switchState(new PlayState());
+							});
+						case "BOYFRIEND":
+							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+							PlayState.SONG.player1 = 'bf';
+							if (PlayState.SONG.song.toLowerCase() == 'mtc')
+								PlayState.SONG.player1 = 'bf-cursed';
+							if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
+								PlayState.SONG.player1 = 'bf-yakuza';
+							if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
+								PlayState.SONG.player1 = 'bf-car';
+							if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
+								PlayState.SONG.player1 = 'bf-christmas';
+							if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+								PlayState.SONG.player1 = 'bf-pixel';
+							new FlxTimer().start(1, function(tmr:FlxTimer)
+							{
+								FlxG.switchState(new PlayState());
+							});
+						case 'DEFAULT':
+							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+							new FlxTimer().start(1, function(tmr:FlxTimer)
+							{
+								FlxG.switchState(new PlayState());
+							});
+						default:
+							// so it doesnt crash lol
+							trace('what the fuck');
+					}
+				}
+		
+				if (controls.BACK)
+					FlxG.switchState(new MainMenuState());
 		}
-		if (downP)
-		{
-			changeSelection(1);
-		}
-
-		if (accepted)
-		{
-			var daSelected:String = menuItems[curSelected];
-			FlxFlicker.flicker(shitCharacter, 0);
-			PlayState.hasPlayedOnce = true;
-
-			switch (daSelected)
-			{
-				case "PICO":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					PlayState.SONG.player1 = 'pico';
-					new FlxTimer().start(1, function(tmr:FlxTimer)
-					{
-						FlxG.switchState(new PlayState());
-					});
-				case "BOYFRIENDSECOND":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					PlayState.SONG.player1 = 'bf';
-					if (PlayState.SONG.song.toLowerCase() == 'mtc')
-						PlayState.SONG.player1 = 'bf-cursed';
-					if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
-						PlayState.SONG.player1 = 'bf-yakuza';
-					if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
-						PlayState.SONG.player1 = 'bf-car';
-					if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
-						PlayState.SONG.player1 = 'bf-christmas';
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
-						PlayState.SONG.player1 = 'bf-pixel';
-					new FlxTimer().start(1, function(tmr:FlxTimer)
-					{
-						FlxG.switchState(new PlayState());
-					});
-				case "BOYFRIEND":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					PlayState.SONG.player1 = 'bf';
-					if (PlayState.SONG.song.toLowerCase() == 'mtc')
-						PlayState.SONG.player1 = 'bf-cursed';
-					if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
-						PlayState.SONG.player1 = 'bf-yakuza';
-					if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
-						PlayState.SONG.player1 = 'bf-car';
-					if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
-						PlayState.SONG.player1 = 'bf-christmas';
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
-						PlayState.SONG.player1 = 'bf-pixel';
-					new FlxTimer().start(1, function(tmr:FlxTimer)
-					{
-						FlxG.switchState(new PlayState());
-					});
-				case 'DEFAULT':
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-					new FlxTimer().start(1, function(tmr:FlxTimer)
-					{
-						FlxG.switchState(new PlayState());
-					});
-				default:
-					// so it doesnt crash lol
-					trace('what the fuck');
-			}
-		}
-
-		if (controls.BACK)
-			FlxG.switchState(new MainMenuState());
 
 		super.update(elapsed);
 	}

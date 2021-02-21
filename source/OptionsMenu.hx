@@ -17,6 +17,7 @@ class OptionsMenu extends MusicBeatState
 	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
+	var alreadySelectedShit:Bool = false;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 
@@ -99,14 +100,16 @@ class OptionsMenu extends MusicBeatState
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
 
-		if (upP)
+		if (!alreadySelectedShit)
 		{
-			changeSelection(-1);
-		}
-		if (downP)
-		{
-			changeSelection(1);
-		}
+			if (upP)
+			{
+				changeSelection(-1);
+			}
+			if (downP)
+			{
+				changeSelection(1);
+			}
 
 		if (accepted)
 		{
@@ -115,6 +118,7 @@ class OptionsMenu extends MusicBeatState
 			switch (daSelected)
 			{
 				case "DEBUG MENU":
+					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -122,6 +126,7 @@ class OptionsMenu extends MusicBeatState
 						FlxG.switchState(new ChartingState());
 					});
 				case "OFFSET MENU":
+					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -143,6 +148,7 @@ class OptionsMenu extends MusicBeatState
 						TitleState.shittyFPS = false;
 					}
 				case "CREDITS":
+					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -153,17 +159,16 @@ class OptionsMenu extends MusicBeatState
 						FlxG.switchState(new ModifierState());
 					});
 				case "Exit to menu":
+					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(new RealMainMenuState());
 				default:
 					// so it doesnt crash lol
 					trace('what the fuck');
 			}
 		}
-
-		if (controls.BACK)
-			FlxG.switchState(new MainMenuState());
+		}
 
 		super.update(elapsed);
 	}

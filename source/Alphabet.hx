@@ -10,7 +10,7 @@ import flixel.util.FlxTimer;
 using StringTools;
 
 /**
- * Loosley based on FlxTypeText lolol
+ * Loosley based on FlxTypeText lolol (with edits cos ninja suk)
  */
 class Alphabet extends FlxSpriteGroup
 {
@@ -22,6 +22,8 @@ class Alphabet extends FlxSpriteGroup
 	public var isMenuItem:Bool = false;
 	public var isOptionItem:Bool = false;
 	public var isXItem:Bool = false;
+	public static var invis:Bool = false;
+	public var invisModifier:Bool = false;
 
 	public var text:String = "";
 
@@ -243,6 +245,9 @@ class Alphabet extends FlxSpriteGroup
 			x = FlxMath.lerp(x, (targetY * 20) + 90, 0.16);
 		}
 
+		if (invisModifier)
+			invis == true;
+
 		super.update(elapsed);
 	}
 }
@@ -257,10 +262,16 @@ class AlphaCharacter extends FlxSprite
 
 	public var row:Int = 0;
 
+	public var invis:Bool = Alphabet.invis;
+
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
+
+		if (invis)
+			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabetinvis.png', 'assets/images/alphabetinvis.xml');
+
 		frames = tex;
 
 		antialiasing = true;
