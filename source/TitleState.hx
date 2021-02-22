@@ -328,15 +328,12 @@ class TitleState extends MusicBeatState
 
 		if (pressedEnter && doneTalking == false)
 		{
-			new FlxTimer().start(0.5, function(tmr:FlxTimer)
-			{
 				remove(txt);
 				remove(shittyReminder);
 				remove(shittyBG);
 				add(bg);
 				doneTalking = true;
 				startIntro();
-			});
 		}
 		else if (pressedEnter && !skippedIntro)
 		{

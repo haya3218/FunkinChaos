@@ -239,7 +239,7 @@ class ChartingState extends MusicBeatState
 
 		player1DropDown.selectedLabel = _song.player1;
 
-		var player1DropDown2 = new FlxUIDropDownMenu(20, 110, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		var player1DropDown2 = new FlxUIDropDownMenu(20, 120, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
 		{
 			_song.player1 = characters2[Std.parseInt(character)];
 		});
@@ -253,7 +253,7 @@ class ChartingState extends MusicBeatState
 
 		player2DropDown.selectedLabel = _song.player2;
 
-		var player2DropDown2 = new FlxUIDropDownMenu(170, 110, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		var player2DropDown2 = new FlxUIDropDownMenu(170, 120, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
 		{
 			_song.player2 = characters2[Std.parseInt(character)];
 		});
@@ -267,7 +267,7 @@ class ChartingState extends MusicBeatState
 
 		gfDropDown.selectedLabel = _song.gf;
 
-		var gfDropDown2 = new FlxUIDropDownMenu(110, 140, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		var gfDropDown2 = new FlxUIDropDownMenu(110, 150, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
 		{
 			_song.gf = characters2[Std.parseInt(character)];
 		});
