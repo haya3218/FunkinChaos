@@ -646,21 +646,16 @@ class PlayState extends MusicBeatState
 				skyBG.scrollFactor.set(0.1, 0.1);
 				add(skyBG);
 
-				var giantlemon:FlxSprite = new FlxSprite(300, 900);
-				giantlemon.frames = FlxAtlasFrames.fromSparrow('assets/images/Monster_Assets.png', 'assets/images/Monster_Assets.xml');
-				giantlemon.animation.addByPrefix('idle', "monster idle", 24);
-				giantlemon.animation.play('idle');
+				var giantlemon:FlxSprite = new FlxSprite(40, 450);
+				giantlemon.frames = FlxAtlasFrames.fromSparrow('assets/images/christmas/monsterChristmas.png', 'assets/images/christmas/monsterChristmas.xml');
+				giantlemon.animation.addByPrefix('smile', "Monster Right note", 24);
+				giantlemon.animation.play('smile');
 				giantlemon.scrollFactor.set(0.4, 0.4);
-				giantlemon.scale.set (4,4);
+				giantlemon.scale.set (2.5,2.5);
 				giantlemon.antialiasing = true;
 				add(giantlemon);
 //send me weed i'm empty again
 				
-
-				
-
-
-	
 				var bgLimo:FlxSprite = new FlxSprite(-200, 480);
 				bgLimo.frames = FlxAtlasFrames.fromSparrow('assets/images/lemonhell/bgLimo.png', 'assets/images/lemonhell/bgLimo.xml');
 				bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
@@ -680,13 +675,7 @@ class PlayState extends MusicBeatState
 	
 				var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic('assets/images/lemonhell/limoOverlay.png');
 				overlayShit.alpha = 0.5;
-				// add(overlayShit);
-	
-				// var shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
-	
-				// FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
-	
-				// overlayShit.shader = shaderBullshit;
+				
 	
 				var limoTex = FlxAtlasFrames.fromSparrow('assets/images/lemonhell/limoDrivelemon.png', 'assets/images/lemonhell/limoDrivelemon.xml');
 	
