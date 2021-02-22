@@ -1930,7 +1930,7 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					new FlxTimer().start(0.0875, function(tmr:FlxTimer)
+					new FlxTimer().start(0.075, function(tmr:FlxTimer)
 					{
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2805,9 +2805,13 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
-			if (SONG.notes[Math.floor(curStep / 16)] != null)
-				if (FlxG.random.bool(60))
-					boyfriend.playAnim('idle');
+			// Boyfriend on auto no longer holds the last animation FOREVER. Somewhat of a stupid fix but does the job anyways lmao
+			if (autoMode)
+			{
+				if (SONG.notes[Math.floor(curStep / 16)] != null)
+					if (FlxG.random.bool(60))
+						boyfriend.playAnim('idle');
+			}
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
@@ -2819,8 +2823,25 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
+		// OH GOD WHY
+		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			if (storyDifficulty == 2)
+			{
+				FlxG.camera.zoom += 0.015;
+				camHUD.zoom += 0.03;
+				FlxG.camera.angle = 180;
+				camHUD.angle = 180;
+			}
+		}
+
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
+			if (!cameraUpside)
+			{
+				FlxG.camera.angle = 0;
+				camHUD.angle = 0;
+			}
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
