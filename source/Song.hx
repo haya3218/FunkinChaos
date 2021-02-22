@@ -68,6 +68,8 @@ class Song
 				parsedJson.stage = 'philly';
 			} else if (parsedJson.song.toLowerCase() == 'milf' || parsedJson.song.toLowerCase() == 'high' || parsedJson.song.toLowerCase() == 'satin-panties') {
 				parsedJson.stage = 'limo';
+			} else if (parsedJson.song.toLowerCase() == 'lemon-hell') {
+				parsedJson.stage = 'lemonhell';
 			} else if (parsedJson.song.toLowerCase() == 'mtc') {
 				parsedJson.stage = 'mtc';
 			} else if (parsedJson.song.toLowerCase() == 'cocoa' || parsedJson.song.toLowerCase() == 'eggnog') {
@@ -92,6 +94,8 @@ class Song
 			switch (parsedJson.stage.toLowerCase()) {
 				case 'limo' | 'mtc':
 					parsedJson.gf = 'gf-car';
+				case 'lemonhell':
+					parsedJson.gf = 'sexy-lemon';
 				case 'mall':
 					parsedJson.gf = 'gf-christmas';
 				case 'mallEvil':

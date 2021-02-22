@@ -112,6 +112,7 @@ class PlayState extends MusicBeatState
 
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
+	var grpLemonDancers:FlxTypedGroup<LemonDancer>;
 	var fastCar:FlxSprite;
 
 	var upperBoppers:FlxSprite;
@@ -634,6 +635,70 @@ class PlayState extends MusicBeatState
 	
 			add(stageCurtains2);
 		}
+
+//Carol R34 don't leak
+		else if (SONG.song.toLowerCase() == 'Lemon-Hell' ||  SONG.stage == 'lemonhell')
+			{
+				curStage = 'lemonhell';
+				defaultCamZoom = 0.9;
+	
+				var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic('assets/images/lemonhell/limoSunset.png');
+				skyBG.scrollFactor.set(0.1, 0.1);
+				add(skyBG);
+
+				var giantlemon:FlxSprite = new FlxSprite(300, 900);
+				giantlemon.frames = FlxAtlasFrames.fromSparrow('assets/images/Monster_Assets.png', 'assets/images/Monster_Assets.xml');
+				giantlemon.animation.addByPrefix('idle', "monster idle", 24);
+				giantlemon.animation.play('idle');
+				giantlemon.scrollFactor.set(0.4, 0.4);
+				giantlemon.scale.set (4,4);
+				giantlemon.antialiasing = true;
+				add(giantlemon);
+//send me weed i'm empty again
+				
+
+				
+
+
+	
+				var bgLimo:FlxSprite = new FlxSprite(-200, 480);
+				bgLimo.frames = FlxAtlasFrames.fromSparrow('assets/images/lemonhell/bgLimo.png', 'assets/images/lemonhell/bgLimo.xml');
+				bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
+				bgLimo.animation.play('drive');
+				bgLimo.scrollFactor.set(0.4, 0.4);
+				add(bgLimo);
+	
+				grpLemonDancers = new FlxTypedGroup<LemonDancer>();
+				add(grpLemonDancers);
+	
+				for (i in 0...5)
+				{
+					var dancer:LemonDancer = new LemonDancer((370 * i) + 130, bgLimo.y - 400);
+					dancer.scrollFactor.set(0.4, 0.4);
+					grpLemonDancers.add(dancer);
+				}
+	
+				var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic('assets/images/lemonhell/limoOverlay.png');
+				overlayShit.alpha = 0.5;
+				// add(overlayShit);
+	
+				// var shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
+	
+				// FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
+	
+				// overlayShit.shader = shaderBullshit;
+	
+				var limoTex = FlxAtlasFrames.fromSparrow('assets/images/lemonhell/limoDrivelemon.png', 'assets/images/lemonhell/limoDrivelemon.xml');
+	
+				limo = new FlxSprite(-120, 550);
+				limo.frames = limoTex;
+				limo.animation.addByPrefix('drive', "Limo stage", 24);
+				limo.animation.play('drive');
+				limo.antialiasing = true;
+	
+				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/lemonhell/fastCarLol.png');
+				// add(limo);
+			}
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -776,6 +841,12 @@ class PlayState extends MusicBeatState
 
 				resetFastCar();
 				add(fastCar);
+			case 'lemonhell':
+				boyfriend.y -= 220;
+				boyfriend.x += 260;
+	
+				resetFastCar();
+				add(fastCar);
 
 			case 'mall':
 				boyfriend.x += 200;
@@ -810,6 +881,8 @@ class PlayState extends MusicBeatState
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
+			add(limo);
+		if (curStage == 'lemonhell')
 			add(limo);
 		if (curStage == 'mtc')
 			add(mtc);
@@ -2873,6 +2946,12 @@ class PlayState extends MusicBeatState
 				{
 					dancer.dance();
 				});
+
+				case 'lemonhell':
+					grpLemonDancers.forEach(function(dancer:LemonDancer)
+					{
+						dancer.dance();
+					});
 
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
