@@ -1791,6 +1791,9 @@ class PlayState extends MusicBeatState
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
+		if (combo == 1000)
+			combo == 0;
+
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
 
@@ -1997,16 +2000,12 @@ class PlayState extends MusicBeatState
 						switch (Math.abs(daNote.noteData))
 						{
 							case 0:
-								boyfriend.playAnim('singLEFT', true);
 								goodNoteHit(daNote);
 							case 1:
-								boyfriend.playAnim('singDOWN', true);
 								goodNoteHit(daNote);
 							case 2:
-								boyfriend.playAnim('singUP', true);
 								goodNoteHit(daNote);
 							case 3:
-								boyfriend.playAnim('singRIGHT', true);
 								goodNoteHit(daNote);
 						}
 		
