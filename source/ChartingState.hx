@@ -228,6 +228,7 @@ class ChartingState extends MusicBeatState
 		stepperBPM.name = 'song_bpm';
 
 		var characters:Array<String> = CoolUtil.coolTextFile('assets/data/characterList.txt');
+		var characters2:Array<String> = CoolUtil.coolTextFile('assets/data/characterListPt2.txt');
 
 		var stages:Array<String> = CoolUtil.coolTextFile('assets/data/stages.txt');
 
@@ -235,7 +236,15 @@ class ChartingState extends MusicBeatState
 		{
 			_song.player1 = characters[Std.parseInt(character)];
 		});
+
 		player1DropDown.selectedLabel = _song.player1;
+
+		var player1DropDown2 = new FlxUIDropDownMenu(20, 110, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		{
+			_song.player1 = characters2[Std.parseInt(character)];
+		});
+	
+		player1DropDown2.selectedLabel = _song.player1;
 
 		var player2DropDown = new FlxUIDropDownMenu(160, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -244,12 +253,26 @@ class ChartingState extends MusicBeatState
 
 		player2DropDown.selectedLabel = _song.player2;
 
+		var player2DropDown2 = new FlxUIDropDownMenu(170, 110, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		{
+			_song.player2 = characters2[Std.parseInt(character)];
+		});
+	
+		player2DropDown2.selectedLabel = _song.player2;
+
 		var gfDropDown = new FlxUIDropDownMenu(100, 130, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gf = characters[Std.parseInt(character)];
 		});
 
 		gfDropDown.selectedLabel = _song.gf;
+
+		var gfDropDown2 = new FlxUIDropDownMenu(110, 140, FlxUIDropDownMenu.makeStrIdLabelArray(characters2, true), function(character:String)
+		{
+			_song.gf = characters2[Std.parseInt(character)];
+		});
+	
+		gfDropDown2.selectedLabel = _song.gf;
 
 		var stageDropDown = new FlxUIDropDownMenu(140, 160, FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
 		{
@@ -273,6 +296,9 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(gfDropDown);
+		tab_group_song.add(player1DropDown2);
+		tab_group_song.add(player2DropDown2);
+		tab_group_song.add(gfDropDown2);
 		tab_group_song.add(stageDropDown);
 
 		UI_box.addGroup(tab_group_song);
