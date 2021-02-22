@@ -99,12 +99,12 @@ class TitleState extends MusicBeatState
 		shittyReminder.screenCenter(X);
 		add(shittyReminder);
 
-		NGio.noLogin(APIStuff.API);
+		// NGio.noLogin(APIStuff.API);
 
-		#if ng
-		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		trace('NEWGROUNDS LOL');
-		#end
+		// #if ng
+		// var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		// trace('NEWGROUNDS LOL');
+		// #end
 
 		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
 		FlxG.save.bind("funkin"+optionsJson.preferredSave, 'ninjamuffin99');
