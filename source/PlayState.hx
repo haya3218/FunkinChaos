@@ -48,6 +48,7 @@ class PlayState extends MusicBeatState
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
+	public static var skippedSong:Bool = false;
 	public static var isCreditsMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
@@ -1929,32 +1930,35 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					switch (Math.abs(daNote.noteData))
+					new FlxTimer().start(0.0875, function(tmr:FlxTimer)
 					{
-						case 0:
-							boyfriend.playAnim('singLEFT', true);
-							goodNoteHit(daNote);
-						case 1:
-							boyfriend.playAnim('singDOWN', true);
-							goodNoteHit(daNote);
-						case 2:
-							boyfriend.playAnim('singUP', true);
-							goodNoteHit(daNote);
-						case 3:
-							boyfriend.playAnim('singRIGHT', true);
-							goodNoteHit(daNote);
-					}
+						switch (Math.abs(daNote.noteData))
+						{
+							case 0:
+								boyfriend.playAnim('singLEFT', true);
+								goodNoteHit(daNote);
+							case 1:
+								boyfriend.playAnim('singDOWN', true);
+								goodNoteHit(daNote);
+							case 2:
+								boyfriend.playAnim('singUP', true);
+								goodNoteHit(daNote);
+							case 3:
+								boyfriend.playAnim('singRIGHT', true);
+								goodNoteHit(daNote);
+						}
+		
+						boyfriend.holdTimer = 0;
+		
+						if (SONG.needsVoices)
+							vocals.volume = 1;
+		
+						daNote.kill();
+						notes.remove(daNote, true);
+						daNote.destroy();
 	
-					boyfriend.holdTimer = 0;
-	
-					if (SONG.needsVoices)
-						vocals.volume = 1;
-	
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-
-					// idleShit();
+						// idleShit();
+					});
 				}
 
 				// WIP interpolation shit? Need to fix the pause issue
@@ -2000,10 +2004,14 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
 		#end
+
+		if (skippedSong)
+			endSong();
 	}
 
 	function endSong():Void
 	{
+		skippedSong = false;
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
@@ -2798,10 +2806,8 @@ class PlayState extends MusicBeatState
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
 			if (SONG.notes[Math.floor(curStep / 16)] != null)
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
+				if (FlxG.random.bool(60))
 					boyfriend.playAnim('idle');
-				});
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);

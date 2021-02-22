@@ -80,7 +80,6 @@ class RealMainMenuState extends MusicBeatState
 		for (i in 0...menuSht.length) {
 			var swagModifier = new Alphabet(0, 0, menuSht[i], true, false);
 			swagModifier.isOptionItem = true;
-			swagModifier.invisModifier = true;
 			swagModifier.screenCenter(X);
 			swagModifier.targetY = i;
 			menuItem = new FlxSprite(0, 0);
