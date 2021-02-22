@@ -203,7 +203,7 @@ class CharMenu extends MusicBeatState
 				}
 		
 				if (controls.BACK)
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(new ModifierState());
 		}
 
 		super.update(elapsed);
