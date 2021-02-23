@@ -14,7 +14,10 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
+	var bg:FlxSprite;
 	var songs:Array<String> = [];
+	var songText:Alphabet;
+	var scoreBG:FlxSprite;
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
@@ -56,7 +59,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
+		bg = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -64,7 +67,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i], true, false);
+			songText = new Alphabet(0, (70 * i) + 30, songs[i], true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -78,15 +81,12 @@ class FreeplayState extends MusicBeatState
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
-		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
+		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
-		add(scoreBG);
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
-		add(diffText);
-
-		add(scoreText);
+		
 
 		changeSelection();
 		changeDiff();
@@ -135,7 +135,20 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-		scoreText.text = "PERSONAL BEST:" + lerpScore;
+		if (songs[curSelected] != 'CUSTOM-SONGS')
+		{
+			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			add(scoreBG);
+			add(diffText);
+			add(scoreText);
+		}
+		else
+		{
+			scoreText.text = "";
+			remove(scoreBG);
+			remove(diffText);
+			remove(scoreText);
+		}
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -150,10 +163,13 @@ class FreeplayState extends MusicBeatState
 			changeSelection(1);
 		}
 
-		if (controls.LEFT_P)
-			changeDiff(-1);
-		if (controls.RIGHT_P)
-			changeDiff(1);
+		if (songs[curSelected] != 'CUSTOM-SONGS')
+		{
+			if (controls.LEFT_P)
+				changeDiff(-1);
+			if (controls.RIGHT_P)
+				changeDiff(1);
+		}
 
 		if (controls.BACK)
 		{

@@ -46,7 +46,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -79,7 +79,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 					addOffset('cheer');
-					addOffset('sad', -2, -2);
+					addOffset('sad', -2, -12);
 					addOffset('danceLeft', 0, -9);
 					addOffset('danceRight', 0, -9);
 	
@@ -111,7 +111,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -143,7 +143,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -175,7 +175,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -207,7 +207,7 @@ class Character extends FlxSprite
 			    animation.addByPrefix('scared', 'GF FEAR', 24);
 			
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 				
@@ -238,7 +238,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -299,7 +299,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -334,7 +334,7 @@ class Character extends FlxSprite
 				updateHitbox();
 
 				addOffset('cheer');
-				addOffset('sad', -2, -2);
+				addOffset('sad', -2, -12);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -1139,7 +1139,7 @@ class Character extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		// i am so fucking sorry for this long if statement
-		if (!curCharacter.startsWith('bf') && !curCharacter.startsWith('pico'))
+		if (!curCharacter.startsWith('bf') && !curCharacter.startsWith('pico') && !PlayState.autoMode)
 		{
 			if (animation.curAnim.name.startsWith('sing'))
 			{
@@ -1177,6 +1177,9 @@ class Character extends FlxSprite
 					playAnim('danceRight');
 				
 			case 'gaming-christmaslights':
+				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+					playAnim('danceRight');
+			case 'bishop-gaming':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
 			case 'mom-car':
@@ -1301,6 +1304,16 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 				
+				case 'bishop-gaming':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+	
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
 				case 'mom-car':
 					if(danced)
 						playAnim('idle',true);
@@ -1345,7 +1358,7 @@ class Character extends FlxSprite
 		else
 			offset.set(0, 0);
 
-		if (!curCharacter.startsWith('gf') && !curCharacter.startsWith('gaming'))
+		if (!curCharacter.startsWith('gf') && !curCharacter.startsWith('gaming')  && !curCharacter.startsWith('bishop'))
 		{
 			if (AnimName == 'singLEFT')
 			{

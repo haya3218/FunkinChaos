@@ -81,7 +81,7 @@ class PlayState extends MusicBeatState
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
 
-	private var gfSpeed:Int = 1;
+	private var gfSpeed:Float = 1;
 	private var health:Float = 1;
 	private var combo:Int = 0;
 	private var misses:Int = 0;
@@ -1839,6 +1839,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (curSong == 'Dadbattle' && storyDifficulty == 2)
+			gfSpeed == 0.1;
+
 
 		// better streaming of shit
 
@@ -2006,7 +2009,7 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					new FlxTimer().start(0.075, function(tmr:FlxTimer)
+					new FlxTimer().start(0.0675, function(tmr:FlxTimer)
 					{
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2886,12 +2889,25 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
-			// Boyfriend on auto no longer holds the last animation FOREVER. Somewhat of a stupid fix but does the job anyways lmao
+			// Boyfriend on auto no longer holds the last animation FOREVER. 
+			// Somewhat of a stupid fix but does the job anyways lmao
 			if (autoMode)
 			{
-				if (SONG.notes[Math.floor(curStep / 16)] != null)
-					if (FlxG.random.bool(60))
-						boyfriend.playAnim('idle');
+				// if it aint a must hit section then a 50/50 chance per hit resets the animation
+				if (!SONG.notes[Math.floor(curStep / 16)].mustHitSection)
+					if (FlxG.random.bool(50))
+						if (SONG.player1 == 'bf-car')
+							boyfriend.dance();
+						else
+							boyfriend.playAnim('idle');
+				// and just in case heres another chance of the game resetting the animation
+				// i am shit at coding why am i doing this
+				if (SONG.notes[Math.floor(curStep / 64)] != null)
+					if (FlxG.random.bool(20))
+						if (SONG.player1 == 'bf-car')
+							boyfriend.dance();
+						else
+							boyfriend.playAnim('idle');		
 			}
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
