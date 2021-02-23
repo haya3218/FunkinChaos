@@ -1817,6 +1817,16 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (curSong == 'Spookeez')
+		{
+			switch (curBeat)
+			{
+				case 39:
+					// for later lmao
+					// dad.playAnim('hey', true);
+			}
+		}	
+
 		if (curSong == 'Bopeebo')
 		{
 
@@ -2073,7 +2083,6 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
-		skippedSong = false;
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
@@ -2096,6 +2105,7 @@ class PlayState extends MusicBeatState
 
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
+				skippedSong = false;
 
 				FlxG.switchState(new StoryMenuState());
 
@@ -2135,8 +2145,17 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play('assets/sounds/Lights_Shut_off' + TitleState.soundExt);
 				}
 
-				FlxTransitionableState.skipNextTransIn = true;
-				FlxTransitionableState.skipNextTransOut = true;
+				if (!skippedSong)
+				{
+					FlxTransitionableState.skipNextTransIn = true;
+					FlxTransitionableState.skipNextTransOut = true;
+				}
+				else 
+				{
+					FlxTransitionableState.skipNextTransIn = false;
+					FlxTransitionableState.skipNextTransOut = false;
+				}
+				skippedSong = false;
 				prevCamFollow = camFollow;
 
 				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
