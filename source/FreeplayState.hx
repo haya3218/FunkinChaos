@@ -186,7 +186,19 @@ class FreeplayState extends MusicBeatState
 
 			if (songs[curSelected] != 'CUSTOM-SONGS')
 			{
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
+				var diffic = "";
+
+				switch (curDifficulty)
+				{
+					case 0:
+						diffic = '-easy';
+					case 2:
+						diffic = '-hard';
+					case 3:
+						diffic = '-hell';
+				}
+
+				PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].toLowerCase());
 				PlayState.isStoryMode = false;
 				PlayState.isCreditsMode = false;
 				PlayState.storyDifficulty = curDifficulty;
