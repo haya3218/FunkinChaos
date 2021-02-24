@@ -2848,8 +2848,8 @@ class PlayState extends MusicBeatState
 				// shitty idle shit
 				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
 				// Somewhat of a stupid fix but does the job anyways lmao
-				new FlxTimer(FlxTimer.globalManager).cancel();
-				new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.7, 1.3);, 
+				FlxTimer.globalManager.clear();
+				new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
 				function(tmr:FlxTimer)
 				{
 					if (SONG.player1 == 'bf-car')
