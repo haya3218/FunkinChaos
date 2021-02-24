@@ -4,6 +4,7 @@
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="EASY0000" x="432" y="178" width="196" height="65"/>
 	<SubTexture name="HARD0000" x="628" y="178" width="211" height="67"/>
+	<SubTexture name="HELL0000" x="731" y="363" width="211" height="67"/>
 	<SubTexture name="NORMAL0000" x="0" y="266" width="308" height="67"/>
 	<SubTexture name="WEEK 40000" x="308" y="266" width="355" height="89"/>
 	<SubTexture name="WEEK10000" x="663" y="266" width="360" height="89"/>

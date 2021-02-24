@@ -192,14 +192,6 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 				FlxG.switchState(new ModifierState());
 			}
-			if (songs[curSelected] == 'Dadbattle' && isDebug)
-			{
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
-				PlayState.isStoryMode = false;
-				PlayState.isCreditsMode = false;
-				PlayState.storyDifficulty = 3;
-				FlxG.switchState(new ModifierState());
-			}
 			else
 				FlxG.switchState(new CustomSongsState());
 		}
@@ -215,8 +207,8 @@ class FreeplayState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
 			curDifficulty = 0;
 
 		#if !switch
@@ -231,6 +223,8 @@ class FreeplayState extends MusicBeatState
 				diffText.text = 'NORMAL';
 			case 2:
 				diffText.text = "HARD";
+			case 3:
+				diffText.text = "HELLBEATS PLS NO";
 		}
 	}
 
