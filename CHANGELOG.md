@@ -4,7 +4,21 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased [CHAOS v0.5] - 2021 i guess
+## Unreleased [CHAOS v1.0-beta-1] - 2021
+### Added
+- HELL MODE
+- New characters lmaooooo
+- fixed combo shit
+- NEW MENUS FOR SHIT
+- Options menu updated
+- New weeks
+- AUTOPLAY REST IN PIECE FNF BOT /j
+### Changed
+- Fixed weeks
+### Fixed
+- some other stuff that doesnt work
+
+## [CHAOS v0.5] - 2021-2-21
 ### Added
 - Updated MC MENTAL and Luci Moment hard charts
 - Added a fantastic rating (mine) and a late or early function on the good rating ([Fucking Pull request by Rafraud!](https://github.com/ninjamuffin99/Funkin/pull/373))
@@ -46,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Idle animation bug with BF christmas and BF hair blow sprites ([Thanks to Injourn for the Pull Request!](https://github.com/ninjamuffin99/Funkin/pull/237))
 
-## [CHAOS VO.2] - 2021-1-31
+## [CHAOS V0.2] - 2021-1-31
 ### Added
 - Miku and a song to die to
 - Senpai cos of a new leak thanks ninja

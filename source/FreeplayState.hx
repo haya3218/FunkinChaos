@@ -190,10 +190,6 @@ class FreeplayState extends MusicBeatState
 
 				switch (curDifficulty)
 				{
-					case 0:
-						diffic = '-easy';
-					case 2:
-						diffic = '-hard';
 					case 3:
 						diffic = '-hell';
 				}

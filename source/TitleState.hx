@@ -50,7 +50,7 @@ class TitleState extends MusicBeatState
 	var shittySave:FlxSave;
 	static public var vocalSave:Float = 0;
 	static public var musicSave:Float = 0;
-	static public var versionGhi:String = " DEBUG";
+	static public var versionGhi:String = " DEBUG VERSION";
 	static public var shittyPieceofShitScreenDetectorCosImDumbLmao:Bool = false;
 	public static var shittyFPS:Bool = false;
 	public static var crazyBusUnlocked:Bool = false;
@@ -80,7 +80,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		#if (!debug)
-		TitleState.versionGhi = " BETA";
+		TitleState.versionGhi = " BETA-1";
 		#end
 
 		PlayerSettings.init();

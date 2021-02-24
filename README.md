@@ -9,6 +9,8 @@ UPDATES SOON
 This is the repository for Friday Night Funkin' Chaos, a fork of Friday Night Funkin', a game originally made for Ludum Dare 47 "Stuck In a Loop".
 Chaos is not responsible for the burning of your eyes and mouth.
 All proceeds go to no one.
+Chaos is a mod in which to goal is to jam as many shitty things into it as possible until it fits.
+Also better mod support lel
 
 Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-funkin
 Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371
@@ -37,7 +39,7 @@ This game was made with love to Newgrounds and it's community. Extra love to Tom
 
 ### Installing shit
 
-First you need to install Haxe and HaxeFlixel. I'm too lazy to write and keep updated with that setup (which is pretty simple). 
+First you need to install Haxe 4.1.5 and HaxeFlixel. I'm too lazy to write and keep updated with that setup (which is pretty simple). 
 The link to that is on the [HaxeFlixel website](https://haxeflixel.com/documentation/getting-started/)
 
 That should give you HaxeFlixel and all of it's setup and shit. If you run into issues, ask them in the #flixel channel in the [Haxe Discord Server](https://discord.gg/5ybrNNWx9S).
@@ -72,7 +74,7 @@ To run it from your desktop (Windows, Mac, Linux) it can be a bit more involved.
 
 # Building to Linux
 
-For Linux, you only need to open a terminal in the project directory and run 'lime test linux -debug' and then run the executible file in export/release/linux/bin. 
+For Linux, you only need to open a terminal in the project directory and run 'lime test linux -debug' and then run the executable file in export/release/linux/bin. 
 
 # Building to Windows
 
