@@ -12,7 +12,7 @@ import lime.utils.Assets;
 
 using StringTools;
 
-class FreeplayState extends MusicBeatState
+class CustomSongsState extends MusicBeatState
 {
 	var bg:FlxSprite;
 	var songs:Array<String> = [];
@@ -27,8 +27,6 @@ class FreeplayState extends MusicBeatState
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
-	var currentAlbum:Bool;
-	var isDebug:Bool;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -36,7 +34,9 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		// LOAD MUSIC
-		songs = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
+
+		songs.push('CrazyShit');
+		songs = CoolUtil.coolTextFile('assets/data/customSonglist.txt');
 
 		/* 
 			if (FlxG.sound.music != null)
@@ -46,7 +46,7 @@ class FreeplayState extends MusicBeatState
 			}
 		 */
 
-		isDebug = false;
+		var isDebug:Bool = false;
 
 		#if debug
 		isDebug = true;
@@ -54,7 +54,8 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
+		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		bg.color = 0xE29E27;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -120,11 +121,6 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (!currentAlbum)
-			songs = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
-		else
-			songs = CoolUtil.coolTextFile('assets/data/customSonglist.txt');
-
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -135,7 +131,7 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-		if (songs[curSelected] != 'CUSTOM-SONGS')
+		if (songs[curSelected] != 'GAME-SONGS')
 		{
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
 			add(scoreBG);
@@ -163,7 +159,7 @@ class FreeplayState extends MusicBeatState
 			changeSelection(1);
 		}
 
-		if (songs[curSelected] != 'CUSTOM-SONGS')
+		if (songs[curSelected] != 'GAME-SONGS')
 		{
 			if (controls.LEFT_P)
 				changeDiff(-1);
@@ -184,7 +180,7 @@ class FreeplayState extends MusicBeatState
 
 			trace(poop);
 
-			if (songs[curSelected] != 'CUSTOM-SONGS')
+			if (songs[curSelected] != 'GAME-SONGS')
 			{
 				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 				PlayState.isStoryMode = false;
@@ -192,22 +188,9 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 				FlxG.switchState(new ModifierState());
 			}
-			if (songs[curSelected] == 'Dadbattle' && isDebug)
-			{
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
-				PlayState.isStoryMode = false;
-				PlayState.isCreditsMode = false;
-				PlayState.storyDifficulty = 3;
-				FlxG.switchState(new ModifierState());
-			}
 			else
-				FlxG.switchState(new CustomSongsState());
+				FlxG.switchState(new FreeplayState());
 		}
-
-		/*
-		if (FlxG.keys.justPressed.I)
-			changeAlbum();
-		*/
 	}
 
 	function changeDiff(change:Int = 0)
@@ -257,7 +240,7 @@ class FreeplayState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 
-		if (songs[curSelected] != 'CUSTOM-SONGS')
+		if (songs[curSelected] != 'GAME-SONGS')
 			FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
 
 		var bullShit:Int = 0;
@@ -277,27 +260,4 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 	}
-
-	// shitty fuckshit doesnt work (unused lmaoooo)
-	/*
-	function changeAlbum()
-	{
-		currentAlbum = !currentAlbum;
-		grpSongs.remove(songText);
-		remove(grpSongs);
-		for (i in 0...songs.length)
-		{
-			songText = new Alphabet(0, (70 * i) + 30, songs[i], true, false);
-			songText.isMenuItem = true;
-			songText.targetY = i;
-			grpSongs.add(songText);
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
-		}
-		add(grpSongs);
-		changeSelection();
-		changeDiff();
-	}
-	*/
 }

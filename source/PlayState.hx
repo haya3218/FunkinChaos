@@ -157,6 +157,10 @@ class PlayState extends MusicBeatState
 	var cameraUpside:Bool = false;
 	var earthDeath:Bool = false;
 	private var regenTimer:FlxTimer;
+
+	 /**
+	 * hello and welcome to code hell
+	 */
 	override public function create()
 	{
 		// var gameCam:FlxCamera = FlxG.camera;
@@ -1039,6 +1043,9 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
+	 /**
+	 * hi kade
+	 */
 	function updateAccuracy()
 		{
 
@@ -1058,6 +1065,12 @@ class PlayState extends MusicBeatState
 		
 		}
 
+	 /**
+	 * DIALOGUE INTRO SHIT
+	 *
+	 * @param	DialogueBox		Dialogue box, its fuking obvious.
+	 *
+	 */
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -1144,6 +1157,9 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 
+	 /**
+	 * countdown shit
+	 */
 	function startCountdown():Void
 	{
 		inCutscene = false;
@@ -1277,6 +1293,9 @@ class PlayState extends MusicBeatState
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
+	 /**
+	 * song start
+	 */
 	function startSong():Void
 	{
 		startingSong = false;
@@ -1292,6 +1311,12 @@ class PlayState extends MusicBeatState
 
 	var debugNum:Int = 0;
 
+	 /**
+	 * song generation
+	 *
+	 * @param	dataPath	Path of the song, duh.
+	 *
+	 */
 	private function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
@@ -1396,6 +1421,12 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
 	}
 
+	 /**
+	 * static arrow generation
+	 *
+	 * @param	Player		Which side of the arrows are generated.
+	 *
+	 */
 	private function generateStaticArrows(player:Int):Void
 	{
 		for (i in 0...4)
@@ -1524,6 +1555,9 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
 	}
 
+	 /**
+	 * open substate
+	 */
 	override function openSubState(SubState:FlxSubState)
 	{
 		if (paused)
@@ -1541,6 +1575,9 @@ class PlayState extends MusicBeatState
 		super.openSubState(SubState);
 	}
 
+	 /**
+	 * pause close function
+	 */
 	override function closeSubState()
 	{
 		if (paused)
@@ -1558,6 +1595,9 @@ class PlayState extends MusicBeatState
 		super.closeSubState();
 	}
 
+	 /**
+	 * vocal resync
+	 */
 	function resyncVocals():Void
 	{
 		vocals.pause();
@@ -1572,6 +1612,9 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	 /**
+	 * no idea what this does
+	 */
 	function truncateFloat( number : Float, precision : Int): Float {
 		var num = number;
 		num = num * Math.pow(10, precision);
@@ -1579,7 +1622,9 @@ class PlayState extends MusicBeatState
 		return num;
 		}
 
-
+	 /**
+	 * says it all lmao
+	 */
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -2084,6 +2129,9 @@ class PlayState extends MusicBeatState
 			endSong();
 	}
 
+	/**
+	 * says it all lmao
+	 */
 	function endSong():Void
 	{
 		canPause = false;
@@ -2133,6 +2181,9 @@ class PlayState extends MusicBeatState
 
 				if (storyDifficulty == 2)
 					difficulty = '-hard';
+
+				if (storyDifficulty == 3)
+					difficulty = '-hell';
 
 				trace('LOADING NEXT SONG');
 				trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
@@ -2185,6 +2236,12 @@ class PlayState extends MusicBeatState
 
 	var endingSong:Bool = false;
 
+	/**
+	 * Rating score function
+	 *
+	 * @param	Strumtime	How much early or late the note was hit.
+	 *
+	 */
 	private function popUpScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = strumtime - Conductor.songPosition;
@@ -2412,6 +2469,9 @@ class PlayState extends MusicBeatState
 		curSection += 1;
 	}
 
+	/**
+	 * key checking
+	 */
 	private function keyShit():Void
 	{
 		// HOLDING
@@ -2616,6 +2676,12 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	/**
+	 * Note miss check
+	 *
+	 * @param	Direction	Which direction was used to miss.
+	 *
+	 */
 	function noteMiss(direction:Int = 1):Void
 	{
 		if (!boyfriend.stunned)
@@ -2666,6 +2732,9 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	/**
+	 * very bad note check cos U R DUMB AT PLAYING THE DAME HAHA NOOB
+	 */
 	function badNoteCheck()
 	{
 		// just double pasting this shit cuz fuk u
@@ -2696,6 +2765,14 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	/**
+	 * Note check for shits
+	 *
+	 * @param	Key			What key was pressed. Either its 'controlArray[daNote.noteData]' or a simple true statement.
+	 *
+	 * @param	Note		What note should it hit.
+	 * 						Either 'daNote' or 'note' is the name of the variable cos ninja is dumb
+	 */
 	function noteCheck(keyP:Bool, note:Note):Void
 	{
 		if (keyP)
@@ -2708,6 +2785,12 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	/**
+	 * Hits the note properly and as a hit note. Useful for cheats and other stuff.
+	 *
+	 * @param	Note		What note should it hit.
+	 * 						Either 'daNote' or 'note' is the name of the variable cos ninja is dumb
+	 */
 	function goodNoteHit(note:Note):Void
 	{
 		if (!note.wasGoodHit)
@@ -2756,6 +2839,28 @@ class PlayState extends MusicBeatState
 			note.destroy();
 			
 			updateAccuracy();
+
+			// shitty idle shit
+			// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
+			// Somewhat of a stupid fix but does the job anyways lmao
+			if (autoMode)
+			{
+				// basically flxtimer shit which i cant explain in detail
+				var autoTimer:FlxTimerManager;
+				autoTimer = new FlxTimerManager();
+				new FlxTimer(autoTimer).cancel();
+				new FlxTimer(autoTimer).destroy();
+				if (!note.isSustainNote)
+				{
+					new FlxTimer(autoTimer).start(1, function(tmr:FlxTimer)
+					{
+						if (SONG.player1 == 'bf-car')
+							boyfriend.dance();
+						else
+							boyfriend.playAnim('idle');	
+					});
+				}
+			}
 		}
 	}
 
@@ -2823,6 +2928,9 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	/**
+	 * pico stage train reset
+	 */
 	function trainReset():Void
 	{
 		gf.playAnim('hairFall');
@@ -2835,6 +2943,9 @@ class PlayState extends MusicBeatState
 		startedMoving = false;
 	}
 
+	/**
+	 * ooooooooo spooky
+	 */
 	function lightningStrikeShit():Void
 	{
 		FlxG.sound.play('assets/sounds/thunder_' + FlxG.random.int(1, 2) + TitleState.soundExt);
@@ -2847,6 +2958,9 @@ class PlayState extends MusicBeatState
 		gf.playAnim('scared', true);
 	}
 
+	/**
+	 * Step hit shit
+	 */
 	override function stepHit()
 	{
 		super.stepHit();
@@ -2867,6 +2981,9 @@ class PlayState extends MusicBeatState
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 
+	/**
+	 * Beat thingy i guess lmao
+	 */
 	override function beatHit()
 	{
 		super.beatHit();
@@ -2889,25 +3006,17 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
-			// Boyfriend on auto no longer holds the last animation FOREVER. 
+			// Boyfriend on auto no longer holds the last animation FOREVER. (part 2)
 			// Somewhat of a stupid fix but does the job anyways lmao
 			if (autoMode)
 			{
-				// if it aint a must hit section then a 50/50 chance per hit resets the animation
-				if (!SONG.notes[Math.floor(curStep / 16)].mustHitSection)
-					if (FlxG.random.bool(50))
+				// if it aint a must hit section game resets the animation after a certain amount of time.
+				if (FlxG.random.bool(40))
+					if (!SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 						if (SONG.player1 == 'bf-car')
 							boyfriend.dance();
 						else
-							boyfriend.playAnim('idle');
-				// and just in case heres another chance of the game resetting the animation
-				// i am shit at coding why am i doing this
-				if (SONG.notes[Math.floor(curStep / 64)] != null)
-					if (FlxG.random.bool(20))
-						if (SONG.player1 == 'bf-car')
-							boyfriend.dance();
-						else
-							boyfriend.playAnim('idle');		
+							boyfriend.playAnim('idle');	
 			}
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
@@ -3034,6 +3143,9 @@ class PlayState extends MusicBeatState
 
 	var curLight:Int = 0;
 
+	/**
+	 * Unused shit
+	 */
 	function idleShit()
 	{
 		new FlxTimer().start(4, function(tmr:FlxTimer)

@@ -242,7 +242,7 @@ class Alphabet extends FlxSpriteGroup
 
 		if (isXItem)
 		{
-			x = FlxMath.lerp(x, (targetY * 20) + 90, 0.16);
+			x = FlxMath.lerp(x, (targetY * 20) + (FlxG.width * 0.48), 0.16);
 		}
 
 		if (invisModifier)
