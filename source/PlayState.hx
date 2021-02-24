@@ -2843,7 +2843,7 @@ class PlayState extends MusicBeatState
 			
 			updateAccuracy();
 
-			if (autoMode)
+			if (autoMode && !note.isSustainNote)
 			{
 				// shitty idle shit
 				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
