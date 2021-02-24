@@ -35,6 +35,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
+import flixel.util.FlxTimer.FlxTimerManager;
 import haxe.Json;
 import lime.utils.Assets;
 import openfl.display.BlendMode;
@@ -157,6 +158,7 @@ class PlayState extends MusicBeatState
 	var cameraUpside:Bool = false;
 	var earthDeath:Bool = false;
 	private var regenTimer:FlxTimer;
+	var autoTimer:FlxTimerManager;
 
 	 /**
 	 * hello and welcome to code hell
@@ -180,6 +182,7 @@ class PlayState extends MusicBeatState
 		practiceMode = ModifierState.modifiers[2].value;
 		flippedNotes = ModifierState.modifiers[10].value;
 		accelNotes= ModifierState.modifiers[13].value;
+		autoTimer = new FlxTimerManager();
 		if (ModifierState.modifiers[3].value) {
 			healthGainModifier += 0.02;
 		} else if (ModifierState.modifiers[4].value) {
@@ -2840,26 +2843,20 @@ class PlayState extends MusicBeatState
 			
 			updateAccuracy();
 
-			// shitty idle shit
-			// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
-			// Somewhat of a stupid fix but does the job anyways lmao
 			if (autoMode)
 			{
-				// basically flxtimer shit which i cant explain in detail
-				var autoTimer:FlxTimerManager;
-				autoTimer = new FlxTimerManager();
-				new FlxTimer(autoTimer).cancel();
-				new FlxTimer(autoTimer).destroy();
-				if (!note.isSustainNote)
+				// shitty idle shit
+				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
+				// Somewhat of a stupid fix but does the job anyways lmao
+				new FlxTimer(FlxTimer.globalManager).cancel();
+				new FlxTimer(FlxTimer.globalManager).start(0.7, 
+				function(tmr:FlxTimer)
 				{
-					new FlxTimer(autoTimer).start(1, function(tmr:FlxTimer)
-					{
-						if (SONG.player1 == 'bf-car')
-							boyfriend.dance();
-						else
-							boyfriend.playAnim('idle');	
-					});
-				}
+					if (SONG.player1 == 'bf-car')
+						boyfriend.dance();
+					else
+						boyfriend.playAnim('idle');	
+				});
 			}
 		}
 	}
