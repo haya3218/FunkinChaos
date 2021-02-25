@@ -9,10 +9,11 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import FreeplayState.SongMetadata;
 
 using StringTools;
 
-class FreeplayState extends MusicBeatState
+class BSidesState extends MusicBeatState
 {
 	var bg:FlxSprite;
 	var songs:Array<SongMetadata> = [];
@@ -37,24 +38,13 @@ class FreeplayState extends MusicBeatState
 	{
 		// LOAD MUSIC
 		
-		addWeek(['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle'], 1);
+		addWeek(['B-Sides-Tutorial', 'B-Sides-Bopeebo', 'B-Sides-Fresh', 'B-Sides-Dadbattle'], 1);
 
-		addWeek(['Spookeez', 'South', 'Monster'], 2);
+		addWeek(['B-Sides-Spookeez', 'B-Sides-South', 'B-Sides-Monster'], 2);
 
-		addWeek(['Pico', 'Philly', 'Blammed'], 3);
+		addWeek(['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Blammed'], 3);
 
-		addWeek(['Satin-Panties', 'High', 'Milf'], 4);
-
-		addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5);
-
-		addWeek(['Senpai', 'Roses', 'Thorns'], 6);
-
-		var initSonglist = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
-
-		for (i in 0...initSonglist.length)
-		{
-			songs.push(new SongMetadata(initSonglist[i], 10));
-		}
+		addWeek(['B-Sides-Satin-Panties', 'B-Sides-High', 'B-Sides-Milf'], 4);
 
 		/* 
 			if (FlxG.sound.music != null)
@@ -72,7 +62,8 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
+		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		bg.color = 0xFFA500;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -199,12 +190,6 @@ class FreeplayState extends MusicBeatState
 
 				var diffic = "";
 
-				switch (curDifficulty)
-				{
-					case 3:
-						diffic = '-hell';
-				}
-
 				PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 				PlayState.isCreditsMode = false;
@@ -226,8 +211,8 @@ class FreeplayState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = 3;
-		if (curDifficulty > 3)
+			curDifficulty = 2;
+		if (curDifficulty > 2)
 			curDifficulty = 0;
 
 		#if !switch
@@ -242,8 +227,6 @@ class FreeplayState extends MusicBeatState
 				diffText.text = 'NORMAL';
 			case 2:
 				diffText.text = "HARD";
-			case 3:
-				diffText.text = "HELLBEATS PLS NO";
 		}
 	}
 
@@ -312,15 +295,4 @@ class FreeplayState extends MusicBeatState
 		changeDiff();
 	}
 	*/
-}
-class SongMetadata
-{
-	public var songName:String = "";
-	public var week:Int = 0;
-
-	public function new(song:String, week:Int)
-	{
-		this.songName = song;
-		this.week = week;
-	}
 }

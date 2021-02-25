@@ -21,7 +21,9 @@ class Alphabet extends FlxSpriteGroup
 	public var targetY:Float = 0;
 	public var isMenuItem:Bool = false;
 	public var isOptionItem:Bool = false;
+	public var isControlItem:Bool = false;
 	public var isXItem:Bool = false;
+	public var smolCharacter:Bool = false;
 	public static var invis:Bool = false;
 	public var invisModifier:Bool = false;
 
@@ -240,6 +242,13 @@ class Alphabet extends FlxSpriteGroup
 			y = FlxMath.lerp(y, (scaledY * 120) + (FlxG.height * 0.48), 0.16);
 		}
 
+		if (isControlItem)
+		{
+			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
+		
+			y = FlxMath.lerp(y, (scaledY * 120) + (FlxG.height * 0.28), 0.16);
+		}
+
 		if (isXItem)
 		{
 			x = FlxMath.lerp(x, (targetY * 20) + (FlxG.width * 0.48), 0.16);
@@ -247,6 +256,11 @@ class Alphabet extends FlxSpriteGroup
 
 		if (invisModifier)
 			invis == true;
+
+		if (smolCharacter)
+		{
+			scale.set(0.5, 0.5);
+		}
 
 		super.update(elapsed);
 	}

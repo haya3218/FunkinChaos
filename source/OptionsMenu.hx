@@ -14,7 +14,7 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'CONTROLS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var alreadySelectedShit:Bool = false;
@@ -26,6 +26,7 @@ class OptionsMenu extends MusicBeatState
 		"THE PAIN ROOM",
 		"CREDITS, DUH.",
 		"FPS LIMIT LOL",
+		"CONTROL SHIZ",
 		"bye bye"
 	];
 
@@ -50,8 +51,7 @@ class OptionsMenu extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
 			songText.isOptionItem = true;
-			songText.screenCenter(X);
-			songText.x += 250;
+			songText.x += 50;
 			songText.targetY = i;
 			grpMenuShit.add(songText);
 		}
@@ -73,14 +73,6 @@ class OptionsMenu extends MusicBeatState
 		txtOptionTitle.alpha = 0.7;
 		add(txtOptionTitle);
 
-		var shittyArrow:FlxText = new FlxText(0, 0, 0, ">", 42);
-		shittyArrow.setFormat("Funkin", 100, FlxColor.WHITE);
-		shittyArrow.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 5, 2.5);
-		shittyArrow.screenCenter(XY);
-		shittyArrow.x -= 100;
-		shittyArrow.y += 15;
-		add(shittyArrow);
-
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
@@ -94,7 +86,7 @@ class OptionsMenu extends MusicBeatState
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
 
 		txtDescription.screenCenter(X);
-		txtDescription.x -= 425;
+		txtDescription.x += 425;
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -163,6 +155,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
 					FlxG.switchState(new RealMainMenuState());
+				case "CONTROLS":
+					alreadySelectedShit = true;
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					FlxG.switchState(new ControlMenu());
 				default:
 					// so it doesnt crash lol
 					trace('what the fuck');
@@ -212,12 +209,12 @@ class OptionsMenu extends MusicBeatState
 		{
 			case "DEBUG MENU":
 				txtDescription.text = 'Access the\nchart editor.\n \nCurrently, it\nis broken, so\n I dont\nrecommend\nit for now.';
-			case "OTHER OPTIONS":
-				txtDescription.text = 'Change other\nsettings.\n \nMost options\nthat change\nsimple things\ngo here.';
+			case "CONTROLS":
+				txtDescription.text = 'Change controls.';
 			case "OFFSET MENU":
 				txtDescription.text = 'Access the\noffset editor.\n \nMade specifically\nfor editing\n offsets\nand isnt meant\nfor the public.';
-			case "FREEPLAY PLUS":
-				txtDescription.text = 'Better freeplay\nmenu.';
+			case "LIMIT FPS":
+				txtDescription.text = 'Toggle between\n60 and 160 fps.';
 			case "CREDITS":
 				txtDescription.text = 'No use.';
 			case "Exit to menu":

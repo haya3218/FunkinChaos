@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menubop.png">
+	<!-- Created with Adobe Animate version 18.0.2.126 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="menu bside0000" x="0" y="0" width="787" height="853" frameX="-18" frameY="-2" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0001" x="0" y="0" width="787" height="853" frameX="-18" frameY="-2" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0002" x="787" y="0" width="794" height="842" frameX="-11" frameY="-14" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0003" x="787" y="0" width="794" height="842" frameX="-11" frameY="-14" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0004" x="1581" y="0" width="802" height="850" frameX="-1" frameY="-7" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0005" x="2383" y="0" width="802" height="850" frameX="-1" frameY="-7" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0006" x="3185" y="0" width="803" height="852" frameX="-1" frameY="-5" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0007" x="0" y="853" width="803" height="852" frameX="-1" frameY="-5" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0008" x="803" y="853" width="804" height="856" frameX="0" frameY="-1" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0009" x="803" y="853" width="804" height="856" frameX="0" frameY="-1" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0010" x="1607" y="853" width="804" height="857" frameX="0" frameY="0" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0011" x="1607" y="853" width="804" height="857" frameX="0" frameY="0" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0012" x="2411" y="853" width="804" height="857" frameX="0" frameY="0" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu bside0013" x="2411" y="853" width="804" height="857" frameX="0" frameY="0" frameWidth="805" frameHeight="857"/>
+	<SubTexture name="menu normal0000" x="3215" y="853" width="780" height="853" frameX="-19" frameY="-2" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0001" x="3215" y="853" width="780" height="853" frameX="-19" frameY="-2" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0002" x="0" y="1710" width="788" height="842" frameX="-12" frameY="-14" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0003" x="0" y="1710" width="788" height="842" frameX="-12" frameY="-14" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0004" x="788" y="1710" width="796" height="850" frameX="-2" frameY="-7" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0005" x="1584" y="1710" width="796" height="850" frameX="-2" frameY="-7" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0006" x="2380" y="1710" width="798" height="852" frameX="-1" frameY="-5" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0007" x="3178" y="1710" width="798" height="852" frameX="-1" frameY="-5" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0008" x="0" y="2562" width="799" height="856" frameX="0" frameY="-1" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0009" x="0" y="2562" width="799" height="856" frameX="0" frameY="-1" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0010" x="799" y="2562" width="799" height="857" frameX="0" frameY="0" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0011" x="799" y="2562" width="799" height="857" frameX="0" frameY="0" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0012" x="1598" y="2562" width="799" height="857" frameX="0" frameY="0" frameWidth="800" frameHeight="857"/>
+	<SubTexture name="menu normal0013" x="1598" y="2562" width="799" height="857" frameX="0" frameY="0" frameWidth="800" frameHeight="857"/>
+</TextureAtlas>

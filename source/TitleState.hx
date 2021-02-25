@@ -107,7 +107,7 @@ class TitleState extends MusicBeatState
 		// #end
 
 		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
-		FlxG.save.bind("funkin"+optionsJson.preferredSave, 'ninjamuffin99');
+		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		Highscore.load();
 
