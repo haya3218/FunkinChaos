@@ -26,7 +26,7 @@ class ControlMenu extends MusicBeatState
   
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/charSelect/menuBG4.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/charSelect/BG4.png');
 		controlsStrings = CoolUtil.coolTextFile('assets/data/controls.txt');
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -80,7 +80,7 @@ class ControlMenu extends MusicBeatState
 		{
 			if (controls.BACK)
 			{
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(new OptionsMenu());
 				Controls.saveControls();
 				controls.setKeyboardScheme(Solo,true);
 			}
