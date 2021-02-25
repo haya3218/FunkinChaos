@@ -2057,7 +2057,7 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					new FlxTimer().start(0.0675, function(tmr:FlxTimer)
+					new FlxTimer().start(0.05, function(tmr:FlxTimer)
 					{
 						switch (Math.abs(daNote.noteData))
 						{
@@ -3020,6 +3020,7 @@ class PlayState extends MusicBeatState
 						else
 							boyfriend.playAnim('idle');	
 			}
+				
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
