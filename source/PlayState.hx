@@ -2015,6 +2015,16 @@ class PlayState extends MusicBeatState
 	
 						daNote.clipRect = swagRect;
 					}
+					else if (autoMode && daNote.isSustainNote && daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth/2
+						&& (daNote.mustPress || (daNote.wasGoodHit || 
+							(daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+					{
+						var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth/2 - daNote.y, daNote.width * 2, daNote.height * 2);
+						swagRect.y /= daNote.scale.y;
+						swagRect.height -= swagRect.y;
+	
+						daNote.clipRect = swagRect;
+					}
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
@@ -2030,8 +2040,12 @@ class PlayState extends MusicBeatState
 							altAnim = '-alt';
 					}
 
-					if (daNote.isSustainNote)
-						noteAnim = '-long';
+					if (SONG.notes[Math.floor(curStep / 16)] != null)
+					{
+						if (SONG.notes[Math.floor(curStep / 16)].longNoteAnim)
+							if (daNote.isSustainNote)
+								noteAnim = '-long';
+					}
 
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2076,6 +2090,9 @@ class PlayState extends MusicBeatState
 						if (SONG.needsVoices)
 							vocals.volume = 1;
 	
+						daNote.kill();
+						notes.remove(daNote, true);
+						daNote.destroy();
 						// idleShit();
 					});
 				}
@@ -2821,13 +2838,25 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('singRIGHT', true);
 			}
 
-			if (!autoMode)
+			var boolean:Bool = true;
+			if (boolean)
 			{
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
 					if (Math.abs(note.noteData) == spr.ID)
 					{
 						spr.animation.play('confirm', true);
+						if (autoMode)
+						{
+							if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+							{
+								spr.centerOffsets();
+								spr.offset.x -= 13;
+								spr.offset.y -= 13;
+							}
+							else
+								spr.centerOffsets();
+						}
 					}
 				});
 			}
@@ -3015,6 +3044,19 @@ class PlayState extends MusicBeatState
 							boyfriend.dance();
 						else
 							boyfriend.playAnim('idle');	
+				playerStrums.forEach(function(spr:FlxSprite)
+				{
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						spr.animation.play('pressed', true);
+						spr.centerOffsets();
+						new FlxTimer().start(0.1, function(tmr:FlxTimer)
+						{
+							spr.animation.play('static', true);
+							spr.centerOffsets();
+						});
+					});
+				});
 			}
 				
 		}
