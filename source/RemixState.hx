@@ -76,6 +76,7 @@ class RemixState extends MusicBeatState
 		remixCharacter.frames = FlxAtlasFrames.fromSparrow('assets/images/remixSelect/menubop.png', 'assets/images/remixSelect/menubop.xml');
 		remixCharacter.animation.addByPrefix('dancenormal', 'menu normal', 24);
 		remixCharacter.animation.addByPrefix('dancebside', 'menu bside', 24);
+		remixCharacter.animation.addByPrefix('danceshitpost', 'menu shitpost', 24);
 		remixCharacter.animation.play('dancenormal');
 		remixCharacter.scale.set(0.7, 0.7);
 		remixCharacter.updateHitbox();
@@ -215,6 +216,8 @@ class RemixState extends MusicBeatState
 				menuBG.color = 0xFFFFFF;
 			case "BSIDES":
 				remixCharacter.animation.play('dancebside');
+				case "CUSTOM":
+				remixCharacter.animation.play('danceshitpost');
 				
 			default:
 				remixCharacter.animation.play('dancenormal');
