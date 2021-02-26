@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="gf_whitty.png">
+<!-- Created with whitty-executor.exe -->
+<SubTexture name="GF Standing Dancing Beat0000" x="0" y="0" width="335" height="426" frameX="-0" frameY="-11" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0001" x="0" y="0" width="335" height="426" frameX="-0" frameY="-11" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0002" x="335" y="0" width="335" height="428" frameX="-0" frameY="-9" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0003" x="335" y="0" width="335" height="428" frameX="-0" frameY="-9" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0004" x="670" y="0" width="335" height="437" frameX="-0" frameY="-0" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0005" x="670" y="0" width="335" height="437" frameX="-0" frameY="-0" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0006" x="1005" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0007" x="1005" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0008" x="1340" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0009" x="1340" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0010" x="1675" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0011" x="1675" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0012" x="2010" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0013" x="2010" y="0" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0014" x="2345" y="0" width="335" height="438" frameX="-0" frameY="-0" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0015" x="2680" y="0" width="335" height="438" frameX="-0" frameY="-0" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0016" x="3015" y="0" width="335" height="427" frameX="-0" frameY="-11" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0017" x="3350" y="0" width="335" height="427" frameX="-0" frameY="-11" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0018" x="3685" y="0" width="335" height="429" frameX="-0" frameY="-9" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0019" x="0" y="438" width="335" height="429" frameX="-0" frameY="-9" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0020" x="335" y="438" width="335" height="436" frameX="-0" frameY="-2" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0021" x="670" y="438" width="335" height="436" frameX="-0" frameY="-2" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0022" x="1005" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0023" x="1340" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0024" x="1340" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0025" x="1675" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0026" x="1675" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0027" x="2010" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0028" x="2345" y="438" width="335" height="432" frameX="-0" frameY="-6" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing Dancing Beat0029" x="2680" y="438" width="335" height="435" frameX="-0" frameY="-3" frameWidth="335" frameHeight="438"/>
+<SubTexture name="GF Standing FEAR0000" x="3015" y="438" width="334" height="433" frameX="-0" frameY="-3" frameWidth="337" frameHeight="437"/>
+<SubTexture name="GF Standing FEAR0001" x="3349" y="438" width="333" height="437" frameX="-4" frameY="-0" frameWidth="337" frameHeight="437"/>
+<SubTexture name="GF Standing FEAR0002" x="3682" y="438" width="331" height="435" frameX="-3" frameY="-1" frameWidth="337" frameHeight="437"/>
+<SubTexture name="GF Standing FEAR0003" x="0" y="875" width="332" height="436" frameX="-0" frameY="-1" frameWidth="337" frameHeight="437"/>
+<SubTexture name="gf Standing sad0000" x="332" y="875" width="334" height="436" frameX="-0" frameY="-0" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0001" x="666" y="875" width="334" height="436" frameX="-0" frameY="-0" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0002" x="1000" y="875" width="334" height="434" frameX="-0" frameY="-2" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0003" x="1334" y="875" width="334" height="434" frameX="-0" frameY="-2" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0004" x="1668" y="875" width="333" height="435" frameX="-0" frameY="-1" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0005" x="2001" y="875" width="333" height="435" frameX="-0" frameY="-1" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0006" x="2334" y="875" width="300" height="427" frameX="-33" frameY="-9" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0007" x="2334" y="875" width="300" height="427" frameX="-33" frameY="-9" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0008" x="2634" y="875" width="300" height="435" frameX="-33" frameY="-1" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0009" x="2634" y="875" width="300" height="435" frameX="-33" frameY="-1" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0010" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0011" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0012" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0013" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0014" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0015" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0016" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0017" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0018" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0019" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0020" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0021" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0022" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0023" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0024" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0025" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0026" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0027" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0028" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0029" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0030" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0031" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0032" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0033" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0034" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0035" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0036" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0037" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0038" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0039" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0040" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0041" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0042" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0043" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0044" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0045" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0046" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0047" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0048" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0049" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0050" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0051" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0052" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0053" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0054" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0055" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0056" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0057" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0058" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0059" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0060" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0061" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0062" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0063" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0064" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0065" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0066" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0067" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0068" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0069" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0070" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0071" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0072" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0073" x="0" y="1311" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0074" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0075" x="2934" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0076" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0077" x="3234" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0078" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+<SubTexture name="gf Standing sad0079" x="3534" y="875" width="300" height="432" frameX="-33" frameY="-4" frameWidth="334" frameHeight="436"/>
+</TextureAtlas>
