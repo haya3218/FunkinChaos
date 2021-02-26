@@ -2057,7 +2057,7 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					new FlxTimer().start(0.05, function(tmr:FlxTimer)
+					new FlxTimer().start(0.0675, function(tmr:FlxTimer)
 					{
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2075,10 +2075,6 @@ class PlayState extends MusicBeatState
 		
 						if (SONG.needsVoices)
 							vocals.volume = 1;
-		
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
 	
 						// idleShit();
 					});
@@ -2848,7 +2844,7 @@ class PlayState extends MusicBeatState
 			
 			updateAccuracy();
 
-			if (autoMode && !note.isSustainNote)
+			if (autoMode && !note.isSustainNote && !paused)
 			{
 				// shitty idle shit
 				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
