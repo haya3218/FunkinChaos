@@ -109,6 +109,10 @@ class FreeplayState extends MusicBeatState
 
 		changeSelection();
 		changeDiff();
+		add(scoreBG);
+		add(diffText);
+		add(scoreText);
+		add(rankText);
 
 		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
@@ -168,10 +172,6 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
-			add(scoreBG);
-			add(diffText);
-			add(scoreText);
-			add(rankText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -196,18 +196,6 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
 			FlxG.switchState(new MainMenuState());
-		}
-
-		if (FlxG.keys.pressed.SHIFT)
-		{
-			rankText.text = 'AUTOPLAY';
-			autoModeSelected = true;
-		}
-	
-		if (FlxG.keys.justReleased.SHIFT)
-		{
-			rankText.text = '';
-			autoModeSelected = false;
 		}
 
 		if (accepted)

@@ -189,18 +189,6 @@ class BSidesState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		if (FlxG.keys.pressed.SHIFT)
-		{
-			rankText.text = 'AUTOPLAY';
-			autoModeSelected = true;
-		}
-		
-		if (FlxG.keys.justReleased.SHIFT)
-		{
-			rankText.text = '';
-			autoModeSelected = false;
-		}
-
 		if (accepted)
 		{
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
