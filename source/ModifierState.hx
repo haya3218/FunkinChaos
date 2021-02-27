@@ -75,7 +75,7 @@ class ModifierState extends MusicBeatState
 					{name: "z", value: false, conflicts: [], multi: 1, times:true}
 				];
 			}
-			else
+			else if (!PlayState.isStoryMode)
 			{
 				modifiers = [
 					{name: "Perfect", value: false, conflicts: [1,2,3,4,5,6,7,8,9], multi: 3, times: true},
