@@ -62,7 +62,7 @@ class CustomSongState extends MusicBeatState
 		// LOAD CHARACTERS
 
 		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		bg.color = 0x800080;
+		bg.color = 0xFFA500;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();

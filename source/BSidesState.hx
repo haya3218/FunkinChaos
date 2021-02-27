@@ -63,7 +63,7 @@ class BSidesState extends MusicBeatState
 		// LOAD CHARACTERS
 
 		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		bg.color = 0xFFA500;
+		bg.color = 0x800080;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
