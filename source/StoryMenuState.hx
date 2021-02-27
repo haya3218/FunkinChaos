@@ -29,11 +29,12 @@ class StoryMenuState extends MusicBeatState
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
 		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss'],
-		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
+		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC'],
+		['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle', 'Pico', 'Philly', "Blammed", 'Satin-Panties', "High", "Milf", 'Spookeez', 'South', "Monster", 'Cocoa', 'Eggnog', 'Winter-Horrorland', 'Senpai', 'Roses', 'Thorns']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -45,7 +46,8 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
-		['dad', 'bf', 'gf']
+		['dad', 'bf', 'gf'],
+		['bf', 'bf', 'bf']
 	];
 
 	var weekNames:Array<String> = [
@@ -58,7 +60,8 @@ class StoryMenuState extends MusicBeatState
 		"hating simulator ft. moawling",
 		"WHERE'S YOUR LIFE LICENSE?",
 		"GAME ABOUT GANGSTERS DOING BAD THINGS",
-		"LUCI STOOPID"
+		"LUCI STOOPID",
+		"ALL IN ONE (EXCEPT CUSTOM WEEKS)"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -76,6 +79,8 @@ class StoryMenuState extends MusicBeatState
 	var sprDifficulty:FlxSprite;
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
+	var rankText:FlxText;
+	var autoModeSelected:Bool = false;
 
 	override function create()
 	{
@@ -97,11 +102,10 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 
-		var rankText:FlxText = new FlxText(0, 10);
-		rankText.text = 'RANK: GREAT';
+		rankText = new FlxText(0, FlxG.height - 32);
 		rankText.setFormat("assets/fonts/vcr.ttf", 32);
 		rankText.size = scoreText.size;
-		rankText.screenCenter(X);
+		rankText.alpha = 0.7;
 
 		var ui_tex = FlxAtlasFrames.fromSparrow('assets/images/campaign_menu_UI_assets.png', 'assets/images/campaign_menu_UI_assets.xml');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
@@ -121,12 +125,11 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in 0...weekData.length)
 		{
-			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
+			var weekThing:MenuItem = new MenuItem(0 + 5, yellowBG.y + yellowBG.height + 10, i);
 			weekThing.y += ((weekThing.height + 20) * i);
 			weekThing.targetY = i;
 			grpWeekText.add(weekThing);
 
-			weekThing.screenCenter(X);
 			weekThing.antialiasing = true;
 			// weekThing.updateHitbox();
 
@@ -208,12 +211,12 @@ class StoryMenuState extends MusicBeatState
 		add(yellowBG);
 		add(grpWeekCharacters);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.07, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
-		// add(rankText);
+		add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 
@@ -271,6 +274,17 @@ class StoryMenuState extends MusicBeatState
 					changeDifficulty(1);
 				if (controls.LEFT_P)
 					changeDifficulty(-1);
+				if (FlxG.keys.pressed.SHIFT)
+				{
+					rankText.text = 'AUTOPLAY';
+					autoModeSelected = true;
+				}
+		
+				if (FlxG.keys.justReleased.SHIFT)
+				{
+					rankText.text = '';
+					autoModeSelected = false;
+				}
 			}
 
 			if (controls.ACCEPT)
@@ -327,6 +341,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
+			PlayState.autoMode = autoModeSelected;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				FlxG.switchState(new ModifierState());
@@ -350,15 +365,19 @@ class StoryMenuState extends MusicBeatState
 			case 0:
 				sprDifficulty.animation.play('easy');
 				sprDifficulty.offset.x = 20;
+				sprDifficulty.offset.y = 0;
 			case 1:
 				sprDifficulty.animation.play('normal');
 				sprDifficulty.offset.x = 70;
+				sprDifficulty.offset.y = 0;
 			case 2:
 				sprDifficulty.animation.play('hard');
 				sprDifficulty.offset.x = 20;
+				sprDifficulty.offset.y = 0;
 			case 3:
 				sprDifficulty.animation.play('hell');
 				sprDifficulty.offset.x = 20;
+				sprDifficulty.offset.y = -2;
 		}
 
 		sprDifficulty.alpha = 0;
@@ -408,7 +427,8 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek][2]);
-		txtTracklist.text = "Tracks\n";
+		if (weekData[curWeek] != 10)
+			txtTracklist.text = "Tracks\n";
 
 		switch (grpWeekCharacters.members[0].animation.curAnim.name)
 		{
@@ -436,15 +456,17 @@ class StoryMenuState extends MusicBeatState
 
 		var stringThing:Array<String> = weekData[curWeek];
 
-		for (i in stringThing)
+		if (weekData[curWeek] != 10)
 		{
-			txtTracklist.text += "\n" + i;
+			for (i in stringThing)
+			{
+				txtTracklist.text += "\n" + i;
+			}
+		
+			txtTracklist.text = txtTracklist.text.toUpperCase();
+		
+			txtTracklist.screenCenter(X);
 		}
-
-		txtTracklist.text = txtTracklist.text.toUpperCase();
-
-		txtTracklist.screenCenter(X);
-		txtTracklist.x -= FlxG.width * 0.35;
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
