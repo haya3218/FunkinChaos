@@ -33,6 +33,8 @@ class CustomSongState extends MusicBeatState
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
+	var rankText:FlxText;
+	var autoModeSelected:Bool = false;
 
 	override function create()
 	{
@@ -62,7 +64,7 @@ class CustomSongState extends MusicBeatState
 		// LOAD CHARACTERS
 
 		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		bg.color = 0x800080;
+		bg.color = 0xFFA500;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -155,6 +157,7 @@ class CustomSongState extends MusicBeatState
 			add(scoreBG);
 			add(diffText);
 			add(scoreText);
+			add(rankText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -195,6 +198,7 @@ class CustomSongState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 				
 				PlayState.storyWeek = songs[curSelected].week;
+				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
 				FlxG.switchState(new ModifierState());
 		}

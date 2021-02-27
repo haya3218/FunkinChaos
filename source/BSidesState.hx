@@ -33,6 +33,8 @@ class BSidesState extends MusicBeatState
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
+	var rankText:FlxText;
+	var autoModeSelected:Bool = false;
 
 	override function create()
 	{
@@ -63,7 +65,7 @@ class BSidesState extends MusicBeatState
 		// LOAD CHARACTERS
 
 		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		bg.color = 0xFFA500;
+		bg.color = 0x800080;
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -91,6 +93,10 @@ class BSidesState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		
+		rankText = new FlxText(0, FlxG.height - 32);
+		rankText.setFormat("assets/fonts/vcr.ttf", 32);
+		rankText.size = scoreText.size;
+		rankText.alpha = 0.7;
 
 		changeSelection();
 		changeDiff();
@@ -156,6 +162,7 @@ class BSidesState extends MusicBeatState
 			add(scoreBG);
 			add(diffText);
 			add(scoreText);
+			add(rankText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -196,6 +203,7 @@ class BSidesState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 				
 				PlayState.storyWeek = songs[curSelected].week;
+				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
 				FlxG.switchState(new ModifierState());
 		}

@@ -204,7 +204,6 @@ class PlayState extends MusicBeatState
 		supLove = ModifierState.modifiers[7].value;
 		poisonExr = ModifierState.modifiers[8].value;
 		poisonPlus = ModifierState.modifiers[9].value;
-		autoMode = ModifierState.modifiers[16].value;
 		cameraUpside = ModifierState.modifiers[14].value;
 		earthDeath = ModifierState.modifiers[15].value;
 

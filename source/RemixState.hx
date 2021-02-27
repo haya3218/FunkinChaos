@@ -212,17 +212,16 @@ class RemixState extends MusicBeatState
 		{
 			case "DEFAULT":
 				remixCharacter.animation.play('dancenormal');
-				
-				menuBG.color = 0xFFFFFF;
+				menuBG.loadGraphic('assets/images/remixSelect/BG1.png');
 			case "BSIDES":
 				remixCharacter.animation.play('dancebside');
-				case "CUSTOM":
+				menuBG.loadGraphic('assets/images/remixSelect/BG2.png');
+			case "CUSTOM":
 				remixCharacter.animation.play('danceshitpost');
-				
+				menuBG.loadGraphic('assets/images/remixSelect/BG3.png');
 			default:
 				remixCharacter.animation.play('dancenormal');
-					
-				menuBG.color = 0xFFFFFF;
+				menuBG.loadGraphic('assets/images/remixSelect/BG1.png');
 		}
 	}
 }

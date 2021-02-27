@@ -32,6 +32,8 @@ class FreeplayState extends MusicBeatState
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
+	var rankText:FlxText;
+	var autoModeSelected:Bool = false;
 
 	override function create()
 	{
@@ -100,9 +102,17 @@ class FreeplayState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		
+		rankText = new FlxText(0, FlxG.height - 32);
+		rankText.setFormat("assets/fonts/vcr.ttf", 32);
+		rankText.size = scoreText.size;
+		rankText.alpha = 0.7;
 
 		changeSelection();
 		changeDiff();
+		add(scoreBG);
+		add(diffText);
+		add(scoreText);
+		add(rankText);
 
 		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
@@ -162,9 +172,6 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 			scoreText.text = "PERSONAL BEST:" + lerpScore;
-			add(scoreBG);
-			add(diffText);
-			add(scoreText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -211,6 +218,7 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 				
 				PlayState.storyWeek = songs[curSelected].week;
+				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
 				FlxG.switchState(new ModifierState());
 		}

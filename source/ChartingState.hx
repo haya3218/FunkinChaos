@@ -156,7 +156,7 @@ class ChartingState extends MusicBeatState
 		debugText.scrollFactor.set();
 		add(debugText);
 
-		var reminderText:FlxText = new FlxText(750, 700, 0, "Check characterList.txt for the character reference!", 12);
+		var reminderText:FlxText = new FlxText(750, 675, 0, "Check characterList.txt for the character reference!", 16);
 		reminderText.scrollFactor.set();
 		add(reminderText);
 
