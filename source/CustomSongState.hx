@@ -157,6 +157,7 @@ class CustomSongState extends MusicBeatState
 			add(scoreBG);
 			add(diffText);
 			add(scoreText);
+			add(rankText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
