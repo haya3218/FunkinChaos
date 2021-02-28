@@ -29,8 +29,7 @@ class StoryMenuState extends MusicBeatState
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
 		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss'],
-		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC'],
-		['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle', 'Pico', 'Philly', "Blammed", 'Satin-Panties', "High", "Milf", 'Spookeez', 'South', "Monster", 'Cocoa', 'Eggnog', 'Winter-Horrorland', 'Senpai', 'Roses', 'Thorns']
+		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
 	];
 	var curDifficulty:Int = 1;
 
@@ -181,7 +180,7 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 124");
 
-		leftArrow = new FlxSprite(grpWeekText.members[0].x + grpWeekText.members[0].width + 10, grpWeekText.members[0].y + 10);
+		leftArrow = new FlxSprite(grpWeekText.members[0].x + grpWeekText.members[0].width + 20, grpWeekText.members[0].y + 10);
 		leftArrow.frames = ui_tex;
 		leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
@@ -466,6 +465,7 @@ class StoryMenuState extends MusicBeatState
 			txtTracklist.text = txtTracklist.text.toUpperCase();
 		
 			txtTracklist.screenCenter(X);
+			txtTracklist.x += 415;
 		}
 
 		#if !switch
