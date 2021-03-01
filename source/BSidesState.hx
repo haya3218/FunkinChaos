@@ -182,12 +182,12 @@ class BSidesState extends MusicBeatState
 			if (controls.RIGHT_P)
 				changeDiff(1);
 
-		if (controls.BACK)
-		{
-			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
-			FlxG.switchState(new MainMenuState());
-		}
+			if (controls.BACK)
+				{
+					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.switchState(new RemixState());
+				}
 
 		if (accepted)
 		{

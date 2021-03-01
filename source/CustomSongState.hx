@@ -10,6 +10,15 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 import FreeplayState.SongMetadata;
+import lime.system.System;
+#if sys
+import sys.io.File;
+import haxe.io.Path;
+import openfl.utils.ByteArray;
+import lime.media.AudioBuffer;
+import sys.FileSystem;
+import flash.media.Sound;
+#end
 
 using StringTools;
 
@@ -181,7 +190,7 @@ class CustomSongState extends MusicBeatState
 		{
 			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new RemixState());
 		}
 
 		if (accepted)
@@ -190,17 +199,27 @@ class CustomSongState extends MusicBeatState
 
 			trace(poop);
 
-				var diffic = "";
+			var diffic = "";
 
-				PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].songName.toLowerCase());
-				PlayState.isStoryMode = false;
-				PlayState.isCreditsMode = false;
-				PlayState.storyDifficulty = curDifficulty;
+			// man i sure do hate vs code for saying its a fucking error when it compiles anyway lolololol
+			if (!FileSystem.exists('assets/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json')) {
+				// assume we pecked up the difficulty, return to default difficulty
+				trace("UH OH SONG IN SPECIFIED DIFFICULTY DOESN'T EXIST\nUSING DEFAULT DIFFICULTY");
+				poop = songs[curSelected].songName;
+				curDifficulty = 1;
+
+			}
+			trace(poop);
+
+			PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].songName.toLowerCase());
+			PlayState.isStoryMode = false;
+			PlayState.isCreditsMode = false;
+			PlayState.storyDifficulty = curDifficulty;
 				
-				PlayState.storyWeek = songs[curSelected].week;
-				PlayState.autoMode = autoModeSelected;
-				trace('CUR WEEK' + PlayState.storyWeek);
-				FlxG.switchState(new ModifierState());
+			PlayState.storyWeek = songs[curSelected].week;
+			PlayState.autoMode = autoModeSelected;
+			trace('CUR WEEK' + PlayState.storyWeek);
+			FlxG.switchState(new ModifierState());
 		}
 
 		/*
@@ -256,7 +275,11 @@ class CustomSongState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 
-			FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+		#if sys
+		FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected]+"_Inst"+TitleState.soundExt), 0);
+		#else
+		FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
+		#end
 
 		var bullShit:Int = 0;
 

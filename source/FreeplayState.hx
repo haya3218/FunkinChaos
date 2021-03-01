@@ -9,6 +9,15 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import lime.system.System;
+#if sys
+import sys.io.File;
+import haxe.io.Path;
+import openfl.utils.ByteArray;
+import lime.media.AudioBuffer;
+import sys.FileSystem;
+import flash.media.Sound;
+#end
 
 using StringTools;
 
@@ -50,13 +59,6 @@ class FreeplayState extends MusicBeatState
 		addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5);
 
 		addWeek(['Senpai', 'Roses', 'Thorns'], 6);
-
-		var initSonglist = CoolUtil.coolTextFile('assets/data/freeplaySonglist.txt');
-
-		for (i in 0...initSonglist.length)
-		{
-			songs.push(new SongMetadata(initSonglist[i], 10));
-		}
 
 		/* 
 			if (FlxG.sound.music != null)
@@ -191,18 +193,20 @@ class FreeplayState extends MusicBeatState
 			if (controls.RIGHT_P)
 				changeDiff(1);
 
-		if (controls.BACK)
-		{
-			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
-			FlxG.switchState(new MainMenuState());
-		}
+			if (controls.BACK)
+				{
+					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.switchState(new RemixState());
+				}
 
 		if (accepted)
 		{
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
 
 			trace(poop);
+
+			
 
 				var diffic = "";
 
@@ -220,6 +224,7 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyWeek = songs[curSelected].week;
 				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
+				trace('CURRENT SONG:' + poop.toUpperCase());
 				FlxG.switchState(new ModifierState());
 		}
 
@@ -277,8 +282,11 @@ class FreeplayState extends MusicBeatState
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		// lerpScore = 0;
 		#end
-
-			FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+		#if sys
+		FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected]+"_Inst"+TitleState.soundExt), 0);
+		#else
+		FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
+		#end
 
 		var bullShit:Int = 0;
 
