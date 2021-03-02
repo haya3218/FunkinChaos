@@ -201,7 +201,7 @@ class BSidesState extends MusicBeatState
 				PlayState.isStoryMode = false;
 				PlayState.isCreditsMode = false;
 				PlayState.isBSidesMode = true;
-				Playstate.isShitpostMode = false;
+				PlayState.isShitpostMode = false;
 				PlayState.storyDifficulty = curDifficulty;
 				
 				PlayState.storyWeek = songs[curSelected].week;
