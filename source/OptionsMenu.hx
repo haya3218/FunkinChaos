@@ -37,7 +37,7 @@ class OptionsMenu extends MusicBeatState
 		FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
 
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		menuBG.color = 0x013164;
+		menuBG.color = 0xCE27E2;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();

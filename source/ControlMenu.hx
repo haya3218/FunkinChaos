@@ -54,6 +54,10 @@ class ControlMenu extends MusicBeatState
 			grpControls.add(controlLabel);
 			i++;
 		}
+
+		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CUSTOMIZE CONTROLS', true, false);
+		charSelHeaderText.screenCenter(X);
+		add(charSelHeaderText);
 		
 		//for (i in 0...controlsStrings.length)
 		//{
@@ -80,6 +84,7 @@ class ControlMenu extends MusicBeatState
 		{
 			if (controls.BACK)
 			{
+				FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 				FlxG.switchState(new OptionsMenu());
 				Controls.saveControls();
 				controls.setKeyboardScheme(Solo,true);
@@ -97,7 +102,7 @@ class ControlMenu extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 
 		curSelected += change;
 
@@ -112,8 +117,6 @@ class ControlMenu extends MusicBeatState
 
 		for (item in grpControls.members)
 		{
-			FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
-	
 			curSelected += change;
 	
 			if (curSelected < 0)
@@ -137,8 +140,8 @@ class ControlMenu extends MusicBeatState
 
 	function changeInput()
 	{
+		FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 		changingInput = true;
-		FlxFlicker.flicker(grpControls.members[curSelected],0);
 		FlxFlicker.flicker(selector,0);
 	}
 
@@ -151,8 +154,8 @@ class ControlMenu extends MusicBeatState
 			for(key in keyMaps.keys())
 			{
 				if(FlxG.keys.checkStatus(key,2) && key != "ANY")
-				{					
-					FlxFlicker.stopFlickering(grpControls.members[curSelected]);
+				{			
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);		
 					FlxFlicker.stopFlickering(selector);
 					
 					var elements:Array<String> = grpControls.members[curSelected].text.split(':');
