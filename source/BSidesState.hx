@@ -200,6 +200,7 @@ class BSidesState extends MusicBeatState
 				PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 				PlayState.isCreditsMode = false;
+				PlayState.isBSidesMode = true;
 				PlayState.storyDifficulty = curDifficulty;
 				
 				PlayState.storyWeek = songs[curSelected].week;

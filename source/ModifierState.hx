@@ -29,6 +29,8 @@ typedef TModifier = {
 class ModifierState extends MusicBeatState
 {
 	public static var modifiers:Array<TModifier>;
+	public static var isBSidesMode:Bool = false;
+	public static var isShitpostMode:Bool = false;
 	var menuItem:FlxSprite;
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	var menuItemSprite:Array<FlxSprite> = [];
@@ -132,9 +134,16 @@ class ModifierState extends MusicBeatState
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 		if (controls.BACK) {
-			if (PlayState.isStoryMode)
+		if (PlayState.isStoryMode)
 				FlxG.switchState(new StoryMenuState());
-			else
+
+		//Tell the menu to actually go back to the one you were before. Y'all lazy lol
+		else if (PlayState.isBSidesMode)
+				FlxG.switchState(new BSidesState());
+		else if (PlayState.isShitpostMode)
+				FlxG.switchState(new CustomSongState());
+
+		else
 			{
 				if (PlayState.isCreditsMode)
 					FlxG.switchState(new OptionsMenu());

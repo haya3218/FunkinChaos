@@ -49,6 +49,8 @@ class PlayState extends MusicBeatState
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
+	public static var isBSidesMode:Bool = false;
+	public static var isShitpostMode:Bool = false;
 	public static var skippedSong:Bool = false;
 	public static var isCreditsMode:Bool = false;
 	public static var storyWeek:Int = 0;
@@ -2241,10 +2243,20 @@ class PlayState extends MusicBeatState
 				trace('WENT BACK TO OPTION MENU??');
 				FlxG.switchState(new OptionsMenu());
 			}
-			else
+			else if (isBSidesMode)
+			{
+					trace('Cringe B Mode ');
+					FlxG.switchState(new BSidesState());
+			}
+			else if (isShitpostMode)
+			{
+					trace('Cringe Shitpost Mode ');
+					FlxG.switchState(new CustomSongState());
+			}
+			else 
 			{
 				trace('WENT BACK TO FREEPLAY??');
-				FlxG.switchState(new RemixState());
+				FlxG.switchState(new FreeplayState());
 			}
 		}
 	}

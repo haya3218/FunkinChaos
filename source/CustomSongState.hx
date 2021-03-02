@@ -213,7 +213,9 @@ class CustomSongState extends MusicBeatState
 
 			PlayState.SONG = Song.loadFromJson(poop + diffic, songs[curSelected].songName.toLowerCase());
 			PlayState.isStoryMode = false;
+			PlayState.isShitpostMode = true;
 			PlayState.isCreditsMode = false;
+			PlayState.isBSidesMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 				
 			PlayState.storyWeek = songs[curSelected].week;
