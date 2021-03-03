@@ -1648,13 +1648,7 @@ class PlayState extends MusicBeatState
 			camHUD.x = Math.sin(songTime)*97 * 1*2;
 		}
 
-		if (FlxG.keys.justPressed.NINE)
-		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
-				iconP1.animation.play(SONG.player1);
-			else
-				iconP1.animation.play('bf-old');
-		}
+		var changeIcon:Bool = false;
 
 		switch (curStage)
 		{

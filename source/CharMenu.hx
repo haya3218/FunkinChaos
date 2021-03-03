@@ -27,6 +27,7 @@ class CharMenu extends MusicBeatState
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
+	var shitCharacterBetter:FlxSprite;
 	var menuBG:FlxSprite;
 	public static var SONG:SwagSong;
 	public var targetY:Float = 0;
