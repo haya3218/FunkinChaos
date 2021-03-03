@@ -13,3 +13,4 @@ Lemon-Hell
 Blamsugar
 FreshSugar
 Soflan
+Pallet
