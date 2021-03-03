@@ -14,7 +14,7 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'CONTROLS', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'CONTROLS', 'BETTER CHARSELECT', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var alreadySelectedShit:Bool = false;
@@ -27,6 +27,7 @@ class OptionsMenu extends MusicBeatState
 		"CREDITS, DUH.",
 		"FPS LIMIT LOL",
 		"CONTROL SHIZ",
+		"TOGGELEABLE(TM)",
 		"bye bye"
 	];
 
@@ -160,6 +161,12 @@ class OptionsMenu extends MusicBeatState
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					FlxG.switchState(new ControlMenu());
+				case "BETTER CHARSELECT":
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					if (TitleState.fuckshit == false)
+						TitleState.fuckshit = true;
+					else
+						TitleState.fuckshit = false;
 				default:
 					// so it doesnt crash lol
 					trace('what the fuck');
