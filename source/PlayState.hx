@@ -1332,7 +1332,7 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
-			if (SONG.song.toLowerCase() == 'pico' || SONG.song.toLowerCase() == 'blammed' || SONG.song.toLowerCase() == 'philly' && SONG.player1 == 'pico')
+			if (SONG.song.toLowerCase() == 'philly' && SONG.player1 == 'pico')
 				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices_Pico" + TitleState.soundExt);
 			else
 				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);

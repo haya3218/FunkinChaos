@@ -46,7 +46,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -79,7 +79,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 					addOffset('cheer');
-					addOffset('sad', -2, -12);
+					addOffset('sad', -2, -21);
 					addOffset('danceLeft', 0, -9);
 					addOffset('danceRight', 0, -9);
 	
@@ -111,7 +111,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -143,7 +143,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -175,7 +175,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -207,7 +207,7 @@ class Character extends FlxSprite
 			    animation.addByPrefix('scared', 'GF FEAR', 24);
 			
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 				
@@ -238,7 +238,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -299,7 +299,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -334,7 +334,7 @@ class Character extends FlxSprite
 				updateHitbox();
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
