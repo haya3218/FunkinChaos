@@ -1222,7 +1222,7 @@ class Character extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		// i am so fucking sorry for this long if statement
-		if (!curCharacter.startsWith('bf') && !curCharacter.startsWith('pico') && !PlayState.autoMode)
+		if (!isPlayer)
 		{
 			if (animation.curAnim.name.startsWith('sing'))
 			{
