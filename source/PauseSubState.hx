@@ -31,7 +31,8 @@ class PauseSubState extends MusicBeatSubstate
 		else
 			menuItems = ['Resume', 'Restart Song', 'Exit to menu'];
 
-		pauseMusic = new FlxSound().loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
+		pauseMusic = new FlxSound();
+		pauseMusic.loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
@@ -108,8 +109,31 @@ class PauseSubState extends MusicBeatSubstate
 				case "Exit to menu":
 					if (PlayState.isStoryMode)
 						FlxG.switchState(new StoryMenuState());
-					else
+					else if (PlayState.isCreditsMode)
+					{
+						trace('WENT BACK TO OPTION MENU??');
+						FlxG.switchState(new OptionsMenu());
+					}
+					else if (PlayState.isBSidesMode)
+					{
+							trace('Cringe B Mode ');
+							FlxG.switchState(new BSidesState());
+					}
+					else if (PlayState.isShitpostMode)
+					{
+							trace('Cringe Shitpost Mode');
+							FlxG.switchState(new CustomSongState());
+					}
+					else if (PlayState.isCreditsMode)
+					{
+							trace('Cringe Shitpost Mode');
+							FlxG.switchState(new OptionsMenu());
+					}
+					else if (!PlayState.isStoryMode)
+					{
+						trace('WENT BACK TO FREEPLAY??');
 						FlxG.switchState(new FreeplayState());
+					}
 			}
 		}
 
