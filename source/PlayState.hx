@@ -26,6 +26,7 @@ import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.system.FlxSound;
+import flixel.system.frontEnds.LogFrontEnd;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -1331,7 +1332,10 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
-			vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);
+			if (SONG.song.toLowerCase() == 'pico' || SONG.song.toLowerCase() == 'blammed' || SONG.song.toLowerCase() == 'philly' && SONG.player1 == 'pico')
+				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices_Pico" + TitleState.soundExt);
+			else
+				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);
 		else
 			vocals = new FlxSound();
 
@@ -1731,10 +1735,10 @@ class PlayState extends MusicBeatState
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 
-		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(SONG.player2));
-		#end
+		if (FlxG.keys.justPressed.EIGHT && FlxG.keys.pressed.SHIFT)
+			FlxG.switchState(new AnimationDebug(SONG.player1));
 
 		if (startingSong)
 		{
@@ -2887,10 +2891,17 @@ class PlayState extends MusicBeatState
 				new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
 				function(tmr:FlxTimer)
 				{
-					if (SONG.player1 == 'bf-car')
-						boyfriend.dance();
-					else
-						boyfriend.playAnim('idle');	
+					if (!paused)
+					{
+						if (SONG.player1 == 'bf-car')
+							boyfriend.dance();
+						else
+							boyfriend.playAnim('idle');
+					}
+					else if (paused)
+					{
+						trace('SORE LOSER!');
+					}
 				});
 			}
 		}

@@ -10,6 +10,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 import lime.system.System;
+import HealthIcon.HealthIcon;
 #if sys
 import sys.io.File;
 import haxe.io.Path;
@@ -43,22 +44,23 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 	var rankText:FlxText;
 	var autoModeSelected:Bool = false;
+	private var iconArray:Array<HealthIcon> = [];
 
 	override function create()
 	{
 		// LOAD MUSIC
 		
-		addWeek(['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle'], 1);
+		addWeek(['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle'], 1, ['gf', 'dad', 'dad', 'dad']);
 
-		addWeek(['Spookeez', 'South', 'Monster'], 2);
+		addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky', 'spooky', 'monster']);
 
-		addWeek(['Pico', 'Philly', 'Blammed'], 3);
+		addWeek(['Pico', 'Philly', 'Blammed'], 3, ['pico']);
 
-		addWeek(['Satin-Panties', 'High', 'Milf'], 4);
+		addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
 
-		addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5);
+		addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
 
-		addWeek(['Senpai', 'Roses', 'Thorns'], 6);
+		addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
 
 		/* 
 			if (FlxG.sound.music != null)
@@ -91,6 +93,12 @@ class FreeplayState extends MusicBeatState
 			// songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 			// songText.screenCenter(X);
+			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
+			icon.sprTracker = songText;
+
+			// using a FlxGroup is too much fuss!
+			iconArray.push(icon);
+			add(icon);
 		}
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
@@ -146,16 +154,23 @@ class FreeplayState extends MusicBeatState
 		super.create();
 	}
 
-	public function addSong(songName:String, weekNum:Int)
+	public function addSong(songName:String, weekNum:Int, songCharacter:String)
 	{
-		songs.push(new SongMetadata(songName, weekNum));
+		songs.push(new SongMetadata(songName, weekNum, songCharacter));
 	}
 	
-	public function addWeek(songs:Array<String>, weekNum:Int)
+	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
 	{
+		if (songCharacters == null)
+			songCharacters = ['bf'];
+
+		var num:Int = 0;
 		for (song in songs)
 		{
-			addSong(song, weekNum);
+			addSong(song, weekNum, songCharacters[num]);
+
+			if (songCharacters.length != 1)
+				num++;
 		}
 	}
 	
@@ -285,11 +300,17 @@ class FreeplayState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 		#if sys
-		FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected]+"_Inst"+TitleState.soundExt), 0);
+		FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
 		#else
-		FlxG.sound.playMusic('assets/music/' + songs[curSelected] + "_Inst" + TitleState.soundExt, 0);
+		FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 		#end
-
+		for (i in 0...iconArray.length)
+			{
+				iconArray[i].alpha = 0.6;
+			}
+	
+			iconArray[curSelected].alpha = 1;
+	
 		var bullShit:Int = 0;
 
 		for (item in grpSongs.members)
@@ -335,10 +356,12 @@ class SongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
+	public var songCharacter:String = "";
 
-	public function new(song:String, week:Int)
+	public function new(song:String, week:Int, songCharacter:String)
 	{
 		this.songName = song;
 		this.week = week;
+		this.songCharacter = songCharacter;
 	}
 }

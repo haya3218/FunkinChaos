@@ -86,9 +86,9 @@ class CharMenu extends MusicBeatState
 		shitCharacter = new FlxSprite(0, -20);
 		if (!TitleState.fuckshit)
 			shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
-		shitCharacter.scale.set(0.5, 0.5);
-		shitCharacter.screenCenter(XY);
+		shitCharacter.scale.set(0.4, 0.4);
 		shitCharacter.updateHitbox();
+		shitCharacter.screenCenter(XY);
 		shitCharacter.antialiasing = true;
 		shitCharacter.y += 30;
 		add(shitCharacter);
@@ -252,78 +252,82 @@ class CharMenu extends MusicBeatState
 		if (TitleState.fuckshit)
 		{
 			remove(shitCharacterBetter);
-			remove(icon);
 		}
+		remove(icon);
 
 		switch (daSelected)
 		{
 			case "PICO":
 				if (!TitleState.fuckshit)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/picodegallo.png');
-				else
-					charSelected = 'pico';
+
+				charSelected = 'pico';
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIEND":
 				if (!TitleState.fuckshit)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
-				else
-					charSelected = 'bf-old';
+				
+				charSelected = 'bf-old';
 				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIENDSECOND":
 				if (!TitleState.fuckshit)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/boyfriend.png');
-				else
-					charSelected = 'bf';
+
+				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
 				menuBG.color = 0x0351A3;
 			case 'DEFAULT':
 				if (!TitleState.fuckshit)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
-				else
-					charSelected = 'bf';
+
+				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 				menuBG.color = 0xFFFFFF;
 			default:
 				// so it doesnt crash lol
 				if (!TitleState.fuckshit)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
-				else
-					charSelected = 'bf';
+
+				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 				menuBG.color = 0xFFFFFF;
 		}
 
+		shitCharacter.updateHitbox();
+		shitCharacter.screenCenter(XY);
+
 		if (TitleState.fuckshit)
 		{
-			
 			shitCharacterBetter = new Boyfriend(0, 0, charSelected);
 			shitCharacterBetter.screenCenter(XY);
 			shitCharacterBetter.antialiasing = true;
 			shitCharacterBetter.setGraphicSize(-5);
 			add(shitCharacterBetter);
 			
-			var healthBarBG:FlxSprite = new FlxSprite(0, FlxG.height * 0.9).loadGraphic('assets/images/healthBar.png');
-			healthBarBG.screenCenter(X);
-			healthBarBG.scrollFactor.set();
-			healthBarBG.visible = false;
-			add(healthBarBG);
-	
-			var healthBar:FlxBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-				'health', 0, 2);
-			healthBar.scrollFactor.set();
-			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
-			healthBar.visible = false;
-			// healthBar
-			add(healthBar);
-			icon = new HealthIcon(charSelected, true);
-			icon.y = healthBar.y - (icon.height / 2);
-			icon.screenCenter(X);
-			icon.setGraphicSize(-4);
-			add(icon);
 			add(shitCharacterBetter);
 		}
+
+		var healthBarBG:FlxSprite = new FlxSprite(0, FlxG.height * 0.9).loadGraphic('assets/images/healthBar.png');
+		healthBarBG.screenCenter(X);
+		healthBarBG.scrollFactor.set();
+		healthBarBG.visible = false;
+		add(healthBarBG);
+	
+		var healthBar:FlxBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			'health', 0, 2);
+		healthBar.scrollFactor.set();
+		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		healthBar.visible = false;
+			// healthBar
+		add(healthBar);
+		icon = new HealthIcon(charSelected, true);
+		icon.y = healthBar.y - (icon.height / 2);
+		icon.screenCenter(X);
+		icon.setGraphicSize(-4);
+		icon.y -= 20;
+		add(icon);
 		
 	}
 }
