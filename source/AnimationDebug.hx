@@ -42,6 +42,9 @@ class AnimationDebug extends FlxState
 		if (daAnim == 'bf')
 			isDad = false;
 
+		if (daAnim == 'pico' && PlayState.SONG.player1 == 'pico')
+			isDad = false;
+
 		if (isDad)
 		{
 			dad = new Character(0, 0, daAnim);
@@ -54,7 +57,7 @@ class AnimationDebug extends FlxState
 		}
 		else
 		{
-			bf = new Boyfriend(0, 0);
+			bf = new Boyfriend(0, 0, daAnim);
 			bf.screenCenter();
 			bf.debugMode = true;
 			add(bf);
@@ -117,6 +120,11 @@ class AnimationDebug extends FlxState
 			FlxG.camera.zoom += 0.25;
 		if (FlxG.keys.justPressed.Q)
 			FlxG.camera.zoom -= 0.25;
+		if (FlxG.keys.justPressed.ENTER)
+		{
+			FlxG.switchState(new PlayState());
+		}
+
 
 		if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L)
 		{

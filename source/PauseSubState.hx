@@ -9,6 +9,9 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.system.FlxSound;
 import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -28,16 +31,31 @@ class PauseSubState extends MusicBeatSubstate
 		else
 			menuItems = ['Resume', 'Restart Song', 'Exit to menu'];
 
-		pauseMusic = new FlxSound().loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
+		pauseMusic = new FlxSound();
+		pauseMusic.loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
 		FlxG.sound.list.add(pauseMusic);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0.6;
+		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
+
+		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
+		levelInfo.text += PlayState.SONG.song;
+		levelInfo.text += '\n' + CoolUtil.difficultyString();
+		levelInfo.scrollFactor.set();
+		levelInfo.setFormat('assets/fonts/vcr.ttf', 32);
+		levelInfo.updateHitbox();
+		add(levelInfo);
+		levelInfo.alpha = 0;
+
+		levelInfo.x = FlxG.width - (levelInfo.width + 20);
+
+		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
+		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
@@ -91,8 +109,31 @@ class PauseSubState extends MusicBeatSubstate
 				case "Exit to menu":
 					if (PlayState.isStoryMode)
 						FlxG.switchState(new StoryMenuState());
-					else
+					else if (PlayState.isCreditsMode)
+					{
+						trace('WENT BACK TO OPTION MENU??');
+						FlxG.switchState(new OptionsMenu());
+					}
+					else if (PlayState.isBSidesMode)
+					{
+							trace('Cringe B Mode ');
+							FlxG.switchState(new BSidesState());
+					}
+					else if (PlayState.isShitpostMode)
+					{
+							trace('Cringe Shitpost Mode');
+							FlxG.switchState(new CustomSongState());
+					}
+					else if (PlayState.isCreditsMode)
+					{
+							trace('Cringe Shitpost Mode');
+							FlxG.switchState(new OptionsMenu());
+					}
+					else if (!PlayState.isStoryMode)
+					{
+						trace('WENT BACK TO FREEPLAY??');
 						FlxG.switchState(new FreeplayState());
+					}
 			}
 		}
 

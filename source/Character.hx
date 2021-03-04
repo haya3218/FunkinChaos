@@ -46,7 +46,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -79,7 +79,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 					addOffset('cheer');
-					addOffset('sad', -2, -12);
+					addOffset('sad', -2, -21);
 					addOffset('danceLeft', 0, -9);
 					addOffset('danceRight', 0, -9);
 	
@@ -111,7 +111,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -143,7 +143,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -175,7 +175,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -207,7 +207,7 @@ class Character extends FlxSprite
 			    animation.addByPrefix('scared', 'GF FEAR', 24);
 			
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 				
@@ -238,7 +238,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 
@@ -299,7 +299,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 	
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -334,7 +334,7 @@ class Character extends FlxSprite
 				updateHitbox();
 
 				addOffset('cheer');
-				addOffset('sad', -2, -12);
+				addOffset('sad', -2, -21);
 				addOffset('danceLeft', 0, -9);
 				addOffset('danceRight', 0, -9);
 	
@@ -500,15 +500,30 @@ class Character extends FlxSprite
 					animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
 					animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24);
 
-				addOffset('idle');
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -68, -7);
-				addOffset("singLEFT", 65, 9);
-				addOffset("singDOWN", 200, -70);
-				addOffset("singUPmiss", -19, 67);
-				addOffset("singRIGHTmiss", -60, 41);
-				addOffset("singLEFTmiss", 62, 64);
-				addOffset("singDOWNmiss", 210, -28);
+				if (isPlayer)
+				{
+					addOffset('idle');
+					addOffset("singUP", 18, 31);
+					addOffset("singRIGHT", 80, -13);
+					addOffset("singLEFT", -44, 3);
+					addOffset("singDOWN", 119, -70);
+					addOffset("singUPmiss", 18, 69);
+					addOffset("singRIGHTmiss", 94, 36);
+					addOffset("singLEFTmiss", -23, 55);
+					addOffset("singDOWNmiss", 86, -40);
+				}
+				else
+				{
+					addOffset('idle');
+					addOffset("singUP", -29, 27);
+					addOffset("singRIGHT", -68, -7);
+					addOffset("singLEFT", 65, 9);
+					addOffset("singDOWN", 200, -70);
+					addOffset("singUPmiss", -19, 67);
+					addOffset("singRIGHTmiss", -60, 41);
+					addOffset("singLEFTmiss", 62, 64);
+					addOffset("singDOWNmiss", 210, -28);
+				}
 
 				playAnim('idle');
 
@@ -537,13 +552,23 @@ class Character extends FlxSprite
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/BOYFRIEND.png', 'assets/images/BOYFRIEND.xml');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				if (isPlayer)
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
+				}
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 				animation.addByPrefix('singpreattack', 'bf pre attack', 24, false);
@@ -1197,7 +1222,7 @@ class Character extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		// i am so fucking sorry for this long if statement
-		if (!curCharacter.startsWith('bf') && !curCharacter.startsWith('pico') && !PlayState.autoMode)
+		if (!isPlayer)
 		{
 			if (animation.curAnim.name.startsWith('sing'))
 			{

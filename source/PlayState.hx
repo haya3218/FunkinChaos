@@ -26,6 +26,7 @@ import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.system.FlxSound;
+import flixel.system.frontEnds.LogFrontEnd;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -786,7 +787,16 @@ class PlayState extends MusicBeatState
 				dad.y += 400;
 			case 'bf':
 				camPos.x += 600;
-				dad.y += 300;
+				dad.y = 450;
+			case 'bf-car':
+				camPos.x += 600;
+				dad.y = 450;
+			case 'bf-christmas':
+				camPos.x += 600;
+				dad.y = 450;
+			case 'bf-pixel':
+				camPos.x += 600;
+				dad.y = 450;
 			case 'smile':
 				camPos.x += 600;
 				dad.y += 300;
@@ -814,19 +824,55 @@ class PlayState extends MusicBeatState
 					tweenCamIn();
 				}
 
-			case "spooky":
-				boyfriend.y += 800;
-			case "monster":
-				boyfriend.y += 900;
-			case 'monster-christmas':
-				boyfriend.y += 970;
 			case 'dad':
-				camPos.x -= 600;
-				boyfriend.y -= 350;
+				boyfriend.y = 100;
+			case 'mom-car':
+				boyfriend.y = 100;
+			case 'miku':
+				boyfriend.y = 100;
+			case "spooky":
+				boyfriend.y = 100;
+				boyfriend.y += 200;
+			case "monster":
+				boyfriend.y = 100;
+				boyfriend.y += 100;
+			case 'monster-christmas':
+				boyfriend.y = 100;
+				boyfriend.y += 130;
 			case 'pico':
+				boyfriend.y = 100;
 				camPos.x += 600;
+				boyfriend.y += 300;
 			case 'parents-christmas':
-				boyfriend.x += 500;
+				boyfriend.y = 100;
+				boyfriend.x -= 500;
+			case 'senpai':
+				boyfriend.y = 100;
+				boyfriend.x += 150;
+				boyfriend.y += 360;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'senpai-angry':
+				boyfriend.y = 100;
+				boyfriend.x += 150;
+				boyfriend.y += 360;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'spirit':
+				boyfriend.y = 100;
+				boyfriend.x -= 150;
+				boyfriend.y += 100;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'smile':
+				boyfriend.y = 100;
+				camPos.x += 600;
+				boyfriend.y += 300;
+			case 'gaming':
+				boyfriend.setPosition(gf.x, gf.y);
+				gf.visible = false;
+				if (isStoryMode)
+				{
+					camPos.x += 600;
+					tweenCamIn();
+				}
 		}
 
 		// REPOSITIONING PER STAGE
@@ -1331,7 +1377,10 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
-			vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);
+			if (SONG.song.toLowerCase() == 'blammed' && SONG.player1 == 'pico')
+				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices_Pico" + TitleState.soundExt);
+			else
+				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);
 		else
 			vocals = new FlxSound();
 
@@ -1731,10 +1780,10 @@ class PlayState extends MusicBeatState
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 
-		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(SONG.player2));
-		#end
+		if (FlxG.keys.justPressed.EIGHT && FlxG.keys.pressed.SHIFT)
+			FlxG.switchState(new AnimationDebug(SONG.player1));
 
 		if (startingSong)
 		{
@@ -2887,10 +2936,17 @@ class PlayState extends MusicBeatState
 				new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
 				function(tmr:FlxTimer)
 				{
-					if (SONG.player1 == 'bf-car')
-						boyfriend.dance();
-					else
-						boyfriend.playAnim('idle');	
+					if (!paused)
+					{
+						if (SONG.player1 == 'bf-car')
+							boyfriend.dance();
+						else
+							boyfriend.playAnim('idle');
+					}
+					else if (paused)
+					{
+						trace('SORE LOSER!');
+					}
 				});
 			}
 		}
