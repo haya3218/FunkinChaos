@@ -46,6 +46,7 @@ class PauseSubState extends MusicBeatSubstate
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.text += '\n' + CoolUtil.difficultyString();
+		levelInfo.text += '\n' + 'Deaths:' + TitleState.deathCounter;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat('assets/fonts/vcr.ttf', 32);
 		levelInfo.updateHitbox();
@@ -107,6 +108,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.skippedSong = true;
 					close();
 				case "Exit to menu":
+					TitleState.deathCounter = 0;
 					if (PlayState.isStoryMode)
 						FlxG.switchState(new StoryMenuState());
 					else if (PlayState.isCreditsMode)

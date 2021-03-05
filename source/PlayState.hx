@@ -1984,6 +1984,7 @@ class PlayState extends MusicBeatState
 
 		if (health <= 0 && !practiceMode)
 		{
+			TitleState.deathCounter += 1;
 			boyfriend.stunned = true;
 
 			persistentUpdate = false;
@@ -2212,6 +2213,7 @@ class PlayState extends MusicBeatState
 
 			if (storyPlaylist.length <= 0)
 			{
+				TitleState.deathCounter = 0;
 				FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
 
 				transIn = FlxTransitionableState.defaultTransIn;

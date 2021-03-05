@@ -55,6 +55,7 @@ class TitleState extends MusicBeatState
 	public static var shittyFPS:Bool = false;
 	public static var fuckshit:Bool = false;
 	public static var crazyBusUnlocked:Bool = false;
+	public static var deathCounter:Int = 0;
 
 	var sinMod:Float = 0;
 	var shittyBG:FlxSprite;

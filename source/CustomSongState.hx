@@ -41,6 +41,8 @@ class CustomSongState extends MusicBeatState
 	var currentAlbum:Bool;
 	var isDebug:Bool;
 
+	var textObjects:Array<String> = [];
+
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 	var rankText:FlxText;
@@ -50,7 +52,8 @@ class CustomSongState extends MusicBeatState
 
 	override function create()
 	{
-		FlxG.log.warn("CURRENTLY UNDER HEAVY DEVELOPMENT");
+		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
+
 		// LOAD MUSIC
 		
 		var initSonglist = CoolUtil.coolTextFile('assets/data/customSonglist.txt');
@@ -111,6 +114,16 @@ class CustomSongState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		
+		var fpText:FlxText = new FlxText(scoreText.x + 120, 5, 0, "CS", 64);
+		// scoreText.autoSize = false;
+		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		// scoreText.alignment = RIGHT;
+
+		add(scoreBG);
+		add(diffText);
+		add(scoreText);
+		add(fpText);
+		add(rankText);
 
 		changeSelection();
 		changeDiff();
@@ -179,11 +192,8 @@ class CustomSongState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-			scoreText.text = "PERSONAL BEST:" + lerpScore;
-			add(scoreBG);
-			add(diffText);
-			add(scoreText);
-			add(rankText);
+			scoreText.text = textObjects[0] + lerpScore;
+			
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -263,11 +273,11 @@ class CustomSongState extends MusicBeatState
 		switch (curDifficulty)
 		{
 			case 0:
-				diffText.text = "EASY";
+				diffText.text = textObjects[1];
 			case 1:
-				diffText.text = 'NORMAL';
+				diffText.text = textObjects[2];
 			case 2:
-				diffText.text = "HARD";
+				diffText.text = textObjects[3];
 		}
 	}
 

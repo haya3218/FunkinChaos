@@ -34,11 +34,14 @@ class BSidesState extends MusicBeatState
 	var curDifficulty:Int = 1;
 
 	var scoreText:FlxText;
+	var fpText:FlxText;
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 	var currentAlbum:Bool;
 	var isDebug:Bool;
+	
+	var textObjects:Array<String> = [];
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -49,6 +52,8 @@ class BSidesState extends MusicBeatState
 
 	override function create()
 	{
+		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
+
 		// LOAD MUSIC
 		
 		addWeek(['B-Sides-Tutorial', 'B-Sides-Bopeebo', 'B-Sides-Fresh', 'B-Sides-Dadbattle'], 1, ['gf', 'dad', 'dad', 'dad']);
@@ -102,6 +107,11 @@ class BSidesState extends MusicBeatState
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
 		// scoreText.autoSize = false;
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		// scoreText.alignment = RIGHT;
+
+		fpText = new FlxText(scoreText.x + 120, 5, 0, "BS", 64);
+		// scoreText.autoSize = false;
+		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
@@ -182,11 +192,12 @@ class BSidesState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			scoreText.text = textObjects[0] + lerpScore;
 			add(scoreBG);
 			add(diffText);
 			add(scoreText);
 			add(rankText);
+			add(fpText);
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -256,11 +267,11 @@ class BSidesState extends MusicBeatState
 		switch (curDifficulty)
 		{
 			case 0:
-				diffText.text = "EASY";
+				diffText.text = textObjects[1];
 			case 1:
-				diffText.text = 'NORMAL';
+				diffText.text = textObjects[2];
 			case 2:
-				diffText.text = "HARD";
+				diffText.text = textObjects[3];
 		}
 	}
 
@@ -286,11 +297,7 @@ class BSidesState extends MusicBeatState
 			intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 			// lerpScore = 0;
 			#end
-			#if sys
-			FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
-			#else
 			FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
-			#end
 			for (i in 0...iconArray.length)
 				{
 					iconArray[i].alpha = 0.6;

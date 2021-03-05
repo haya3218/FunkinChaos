@@ -23,7 +23,8 @@ class BSidesMenuState extends MusicBeatState
 		['B-Sides-Tutorial'],
 		['B-Sides-Bopeebo', 'B-Sides-Fresh', 'B-Sides-Dadbattle'],
 		['B-Sides-Spookeez', 'B-Sides-South'],
-		['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Pico']
+		['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Pico'],
+		['B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Milf', 'B-Sides-Satin-Panties', 'B-Sides-High']
 	];
 	var curDifficulty:Int = 1;
 	var curNoMiss:Int = 1;
@@ -34,7 +35,8 @@ class BSidesMenuState extends MusicBeatState
 		['dad', 'gf', 'bf'],
 		['dad', 'gf', 'bf'],
 		['spooky', 'gf', 'bf'],
-		['pico', 'gf', 'bf']
+		['pico', 'gf', 'bf'],
+		['mom', 'gf', 'mom']
 	];
 	var curWeek:Int = 0;
 
@@ -250,7 +252,7 @@ class BSidesMenuState extends MusicBeatState
 			{
 				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 
-				grpWeekText.members[curWeek].week.animation.resume();
+				grpWeekText.members[curWeek].startFlashing();
 				grpWeekCharacters.members[2].animation.play('bfConfirm');
 				stopspamming = true;
 			}

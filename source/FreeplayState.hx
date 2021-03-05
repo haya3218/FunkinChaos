@@ -34,11 +34,14 @@ class FreeplayState extends MusicBeatState
 	var curDifficulty:Int = 1;
 
 	var scoreText:FlxText;
+	var fpText:FlxText;
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 	var currentAlbum:Bool;
 	var isDebug:Bool;
+
+	var textObjects:Array<String> = [];
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -48,6 +51,8 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
+
 		// LOAD MUSIC
 		
 		addWeek(['Tutorial', 'Bopeebo', 'Fresh', 'Dadbattle'], 1, ['gf', 'dad', 'dad', 'dad']);
@@ -106,6 +111,11 @@ class FreeplayState extends MusicBeatState
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
+		fpText = new FlxText(scoreText.x + 120, 5, 0, "FP", 64);
+		// scoreText.autoSize = false;
+		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		// scoreText.alignment = RIGHT;
+
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
 
@@ -122,6 +132,7 @@ class FreeplayState extends MusicBeatState
 		add(scoreBG);
 		add(diffText);
 		add(scoreText);
+		add(fpText);
 		add(rankText);
 
 		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
@@ -188,7 +199,8 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-			scoreText.text = "PERSONAL BEST:" + lerpScore;
+		scoreText.text = textObjects[0];
+		scoreText.text += lerpScore;
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -267,13 +279,13 @@ class FreeplayState extends MusicBeatState
 		switch (curDifficulty)
 		{
 			case 0:
-				diffText.text = "EASY";
+				diffText.text = textObjects[1];
 			case 1:
-				diffText.text = 'NORMAL';
+				diffText.text = textObjects[2];
 			case 2:
-				diffText.text = "HARD";
+				diffText.text = textObjects[3];
 			case 3:
-				diffText.text = "HELLBEATS PLS NO";
+				diffText.text = textObjects[4];
 		}
 	}
 
@@ -299,11 +311,7 @@ class FreeplayState extends MusicBeatState
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		// lerpScore = 0;
 		#end
-		#if sys
-		FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
-		#else
 		FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
-		#end
 		for (i in 0...iconArray.length)
 			{
 				iconArray[i].alpha = 0.6;

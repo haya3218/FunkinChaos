@@ -34,4 +34,19 @@ class CoolUtil
 		}
 		return dumbArray;
 	}
+
+	public static function coolTextArray(path:String):Array<Array<String>>
+	{
+		var fullText:String = Assets.getText(path).trim();
+	
+		var firstArray:Array<String> = fullText.split('--');
+		var swagGoodArray:Array<Array<String>> = [];
+	
+		for (i in firstArray)
+		{
+			swagGoodArray.push(i.split('\n'));
+		}
+	
+		return swagGoodArray;
+	}
 }
