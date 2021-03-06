@@ -1102,7 +1102,7 @@ class ChartingState extends MusicBeatState
 	{
 		FlxG.save.data.autosave = Json.stringify({
 			"song": _song
-		});
+		}, null, '	');
 		FlxG.save.flush();
 	}
 
@@ -1112,7 +1112,7 @@ class ChartingState extends MusicBeatState
 			"song": _song
 		};
 
-		var data:String = Json.stringify(json);
+		var data:String = Json.stringify(json, null, '	');
 
 		if ((data != null) && (data.length > 0))
 		{
