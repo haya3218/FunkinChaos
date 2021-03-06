@@ -534,7 +534,7 @@ class PlayState extends MusicBeatState
 			var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
 
 			var posX = 400;
-			var posY = 350;
+			var posY = 325;
 
 			/*
 			var bg:FlxSprite = new FlxSprite(posX, posY);
@@ -1777,13 +1777,16 @@ class PlayState extends MusicBeatState
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
+		if (FlxG.keys.justPressed.NINE)
+			FlxG.switchState(new LatencyState());
 
-		if (FlxG.keys.justPressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.player2));
-		if (FlxG.keys.justPressed.EIGHT && FlxG.keys.pressed.SHIFT)
+		if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(SONG.player1));
+		else if (FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.EIGHT)
+			FlxG.switchState(new AnimationDebug(SONG.gf));
+		else if (FlxG.keys.justPressed.EIGHT)
+			FlxG.switchState(new AnimationDebug(SONG.player2));
+			
 
 		if (startingSong)
 		{
@@ -2929,7 +2932,7 @@ class PlayState extends MusicBeatState
 			
 			updateAccuracy();
 
-			if (autoMode && !note.isSustainNote && !paused)
+			if (autoMode && !note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo')
 			{
 				// shitty idle shit
 				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)

@@ -1100,9 +1100,11 @@ class ChartingState extends MusicBeatState
 
 	function autosaveSong():Void
 	{
+		// JSONs look like shit but it's possible to make them not look like shit
 		FlxG.save.data.autosave = Json.stringify({
 			"song": _song
 		}, null, '	');
+		// man ninja could've just done this and we would have a much more readable json format
 		FlxG.save.flush();
 	}
 
@@ -1112,6 +1114,7 @@ class ChartingState extends MusicBeatState
 			"song": _song
 		};
 
+		// ditto.
 		var data:String = Json.stringify(json, null, '	');
 
 		if ((data != null) && (data.length > 0))
