@@ -394,6 +394,8 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
+			// this sucks so much i hate it
+			// thanks lag
 			case 2:
 				createCoolText(['haya', 'friedfrick', 'smokey', 'keaton', 'kadedev']);
 			// credTextShit.visible = true;
@@ -422,15 +424,23 @@ class TitleState extends MusicBeatState
 			case 9:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
-			case 10:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
 			case 11:
-				deleteCoolText();
+				// 9 more rows of custom intro text!
+				addMoreText(curWacky[1]);
+				addMoreText(curWacky[2]);
+				addMoreText(curWacky[3]);
+				addMoreText(curWacky[4]);
+				addMoreText(curWacky[5]);
+				addMoreText(curWacky[6]);
+				addMoreText(curWacky[7]);
+				addMoreText(curWacky[8]);
+				addMoreText(curWacky[9]);
+			// credTextShit.text += '\nlmao';		
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 12:
+				deleteCoolText();
 				addMoreText('Friday');
 			// credTextShit.visible = true;
 			case 13:
