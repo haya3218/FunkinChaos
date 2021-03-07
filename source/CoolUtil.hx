@@ -53,6 +53,6 @@ class CoolUtil
 
 	public static function coolStringifyJson(json:Dynamic):String {
 		// use json to prettify it
-		return Json.stringify(json, null, '	');
+		return Json.stringify(json, null, '    ');
 	}
 }
