@@ -120,8 +120,8 @@ class ChartingState extends MusicBeatState
 		else
 		{
 			_song = {
-				song: 'Test',
 				notes: [],
+				song: 'Test',
 				bpm: 150,
 				needsVoices: true,
 				player1: 'bf',
@@ -1101,9 +1101,9 @@ class ChartingState extends MusicBeatState
 	function autosaveSong():Void
 	{
 		// JSONs look like shit but it's possible to make them not look like shit
-		FlxG.save.data.autosave = Json.stringify({
+		FlxG.save.data.autosave = CoolUtil.coolStringifyJson({
 			"song": _song
-		}, null, '	');
+		});
 		// man ninja could've just done this and we would have a much more readable json format
 		FlxG.save.flush();
 	}
@@ -1115,7 +1115,7 @@ class ChartingState extends MusicBeatState
 		};
 
 		// ditto.
-		var data:String = Json.stringify(json, null, '	');
+		var data:String = CoolUtil.coolStringifyJson(json);
 
 		if ((data != null) && (data.length > 0))
 		{

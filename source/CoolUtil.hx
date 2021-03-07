@@ -1,5 +1,6 @@
 package;
 
+import haxe.Json;
 import lime.utils.Assets;
 
 using StringTools;
@@ -48,5 +49,10 @@ class CoolUtil
 		}
 	
 		return swagGoodArray;
+	}
+
+	public static function coolStringifyJson(json:Dynamic):String {
+		// use json to prettify it
+		return Json.stringify(json, null, '	');
 	}
 }
