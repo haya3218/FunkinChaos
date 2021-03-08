@@ -44,6 +44,7 @@ class SaveDataState extends MusicBeatState
 						{name: "Limit FPS", value: false}, 
 						{name: "Better Charselect", value: false}, 
 						{name: "Notestrum Test", value: false},
+						{name: "Downscroll", value: false},
 					];
 		// we use a var because if we don't it will read the file each time
 		// although it isn't as laggy thanks to assets
@@ -52,6 +53,7 @@ class SaveDataState extends MusicBeatState
 		optionList[0].value = curOptions.fpsLimit;
 		optionList[1].value = curOptions.charSelBetter;
 		optionList[2].value = curOptions.p2noteStrums;
+		optionList[3].value = curOptions.downScroll;
 		saves = new FlxTypedSpriteGroup<SaveFile>();
 		menuBG.color = 0xFF7194fc;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -233,6 +235,7 @@ class SaveDataState extends MusicBeatState
 	}
 	function saveOptions() {
 		OptionsHandler.options = {
+			"downScroll": optionList[3].value,
 			"p2noteStrums": optionList[2].value,
 			"charSelBetter": optionList[1].value,
 			"fpsLimit": optionList[0].value,

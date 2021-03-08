@@ -1674,6 +1674,18 @@ class PlayState extends MusicBeatState
 			camHUD.angle = 180;
 		}
 
+		if (OptionsHandler.options.downScroll)
+		{
+			camHUD.angle = 180;
+			healthBar.flipY = true;
+			healthBarBG.flipY = true;
+			iconP1.flipY = true;
+			iconP2.flipY = true;
+			scoreTxt.flipY = true;
+			healthBarBG.flipX = true;
+			scoreTxt.flipX = true;
+		}
+
 		if (earthDeath)
 		{
 			FlxG.camera.x = Math.sin(songTime)*40 * 1*2;
@@ -2151,6 +2163,9 @@ class PlayState extends MusicBeatState
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
+				// say no to missing
+				if (!autoMode)
+				{
 					if (daNote.y < -daNote.height)
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit)
@@ -2185,6 +2200,7 @@ class PlayState extends MusicBeatState
 							notes.remove(daNote, true);
 							daNote.destroy();
 					}
+				}
 			});
 		}
 
@@ -2573,6 +2589,18 @@ class PlayState extends MusicBeatState
 		var leftR = controls.LEFT_R;
 
 		if (cameraUpside)
+		{
+			up = controls.DOWN;
+			down = controls.UP;
+			right = controls.LEFT;
+			left = controls.RIGHT;
+			upP = controls.DOWN_P;
+			downP = controls.UP_P;
+			rightP = controls.LEFT_P;
+			leftP = controls.RIGHT_P;
+		}
+		// sometimes || doesnt work lol!
+		if (OptionsHandler.options.downScroll)
 		{
 			up = controls.DOWN;
 			down = controls.UP;
@@ -3150,6 +3178,9 @@ class PlayState extends MusicBeatState
 			if (!cameraUpside)
 			{
 				FlxG.camera.angle = 0;
+			}
+			if (!OptionsHandler.options.downScroll)
+			{
 				camHUD.angle = 0;
 			}
 			FlxG.camera.zoom += 0.015;

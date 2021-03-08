@@ -8,6 +8,7 @@ typedef TOptions = {
     var fpsLimit:Bool;
     var charSelBetter:Bool;
     var p2noteStrums:Bool;
+    var downScroll:Bool;
     var preferredSave:Int;
 }
 class OptionsHandler {
