@@ -45,7 +45,7 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
+		['dad', 'luci', 'gf'],
 		['bf', 'bf', 'bf']
 	];
 
@@ -134,6 +134,10 @@ class StoryMenuState extends MusicBeatState
 					weekCharacterThing.updateHitbox();
 	
 				case 'bf':
+					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
+					weekCharacterThing.updateHitbox();
+					weekCharacterThing.x -= 80;
+				case 'luci':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
 					weekCharacterThing.x -= 80;
@@ -316,6 +320,12 @@ class StoryMenuState extends MusicBeatState
 
 				grpWeekText.members[curWeek].startFlashing();
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
+				stopspamming = true;
+
+				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+
+				grpWeekText.members[curWeek].startFlashing();
+				grpWeekCharacters.members[1].animation.play('luciConfirm');
 				stopspamming = true;
 			}
 
