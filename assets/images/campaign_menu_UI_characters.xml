@@ -182,6 +182,7 @@
 	<SubTexture name="SENPAI idle Black Lines0011" x="3565" y="3070" width="336" height="288"/>
 	<SubTexture name="SENPAI idle Black Lines0012" x="3565" y="3070" width="336" height="288"/>
 	<SubTexture name="SENPAI idle Black Lines0013" x="3565" y="3070" width="336" height="288"/>
+	<SubTexture name="empty0000" x="3901" y="3070" width="0" height="0" frameX="-107374182" frameY="-107374182" frameWidth="0" frameHeight="0"/>
 	<SubTexture name="spooky dance idle BLACK LINES0000" x="3901" y="3070" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0001" x="3901" y="3070" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0002" x="4282" y="3070" width="379" height="541" frameX="-55" frameY="-8" frameWidth="492" frameHeight="549"/>
