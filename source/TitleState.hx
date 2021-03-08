@@ -52,10 +52,11 @@ class TitleState extends MusicBeatState
 	static public var musicSave:Float = 0;
 	static public var versionGhi:String = " DEBUG VERSION";
 	static public var shittyPieceofShitScreenDetectorCosImDumbLmao:Bool = false;
-	public static var shittyFPS:Bool = false;
-	public static var fuckshit:Bool = false;
+	public static var shittyFPS:Bool;
+	public static var fuckshit:Bool;
 	public static var crazyBusUnlocked:Bool = false;
 	public static var deathCounter:Int = 0;
+	public static var noteStrumShit:Bool;
 
 	var sinMod:Float = 0;
 	var shittyBG:FlxSprite;
@@ -74,6 +75,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		OptionsMenu.onshit = 'off';
+		OptionsMenu.onshit2 = 'off';
+		OptionsMenu.onshit3 = 'off';
 		shittyPieceofShitScreenDetectorCosImDumbLmao = false;
 		Polymod.init({modRoot: "mods", dirs: ['introMod']});
 
@@ -92,6 +96,21 @@ class TitleState extends MusicBeatState
 		// DEBUG BULLSHIT
 
 		super.create();
+		if (OptionsHandler.options.fpsLimit)
+		{
+			MusicBeatState.funkyFramerate = 60;
+			FlxG.drawFramerate = 60;
+		}
+		else if (!OptionsHandler.options.fpsLimit)
+		{
+			MusicBeatState.funkyFramerate = 160;
+			FlxG.drawFramerate = 160;
+		}
+
+		shittyFPS = OptionsHandler.options.fpsLimit;
+		fuckshit = OptionsHandler.options.charSelBetter;
+		noteStrumShit = OptionsHandler.options.p2noteStrums;
+
 		shittyBG = new FlxSprite().loadGraphic('assets/images/menuLoading.png');
 		add(shittyBG);
 		ranbowTexto = new FlxRainbowEffect(1, 1, 0.5, 1);
@@ -108,8 +127,16 @@ class TitleState extends MusicBeatState
 		// trace('NEWGROUNDS LOL');
 		// #end
 
-		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind("preferredSave", "ninjamuffin99");
+		var preferredSave:Int = 0;
+		if (Reflect.hasField(FlxG.save.data, "preferredSave")) {
+			preferredSave = FlxG.save.data.preferredSave;
+		} else {
+			FlxG.save.data.preferredSave = 0;
+		}
+
+		FlxG.save.close();
+		FlxG.save.bind("save"+preferredSave, 'ninjamuffin99');
 
 		Highscore.load();
 

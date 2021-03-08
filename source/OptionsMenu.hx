@@ -14,20 +14,21 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'OFFSET MENU', 'CREDITS', 'LIMIT FPS', 'CONTROLS', 'BETTER CHARSELECT', 'Exit to menu'];
+	var menuItems:Array<String> = ['DEBUG MENU', 'CREDITS', 'CONTROLS', 'MISC OPTIONS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var alreadySelectedShit:Bool = false;
+	public static var onshit:String;
+	public static var onshit2:String;
+	public static var onshit3:String;
 
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var shittyNames:Array<String> = [
 		"BROKEN MENU FT. SHIT CODE",
-		"THE PAIN ROOM",
 		"CREDITS, DUH.",
-		"FPS LIMIT LOL",
 		"CONTROL SHIZ",
-		"TOGGELEABLE(TM)",
+		"MISC OPTIONS",
 		"bye bye"
 	];
 
@@ -35,8 +36,6 @@ class OptionsMenu extends MusicBeatState
 
 	override function create()
 	{
-		FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
-
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		menuBG.color = 0xCE27E2;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -118,28 +117,14 @@ class OptionsMenu extends MusicBeatState
 					{
 						FlxG.switchState(new ChartingState());
 					});
-				case "OFFSET MENU":
+				case "MISC OPTIONS":
 					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						FlxG.switchState(new AnimationDebug());
+						FlxG.switchState(new SaveDataState());
 					});
-				case "LIMIT FPS":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					if (TitleState.shittyFPS == false)
-					{
-						MusicBeatState.funkyFramerate = 60;
-						FlxG.drawFramerate = 60;
-						TitleState.shittyFPS = true;
-					}
-					else
-					{
-						MusicBeatState.funkyFramerate = 160;
-						FlxG.drawFramerate = 160;
-						TitleState.shittyFPS = false;
-					}
 				case "CREDITS":
 					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
@@ -154,19 +139,12 @@ class OptionsMenu extends MusicBeatState
 				case "Exit to menu":
 					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
 					FlxG.switchState(new RealMainMenuState());
 				case "CONTROLS":
 					alreadySelectedShit = true;
 					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					FlxG.switchState(new ControlMenu());
-				case "BETTER CHARSELECT":
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-					if (TitleState.fuckshit == false)
-						TitleState.fuckshit = true;
-					else
-						TitleState.fuckshit = false;
 				default:
 					// so it doesnt crash lol
 					trace('what the fuck');
@@ -221,11 +199,15 @@ class OptionsMenu extends MusicBeatState
 			case "OFFSET MENU":
 				txtDescription.text = 'Access the\noffset editor.\n \nMade specifically\nfor editing\n offsets\nand isnt meant\nfor the public.';
 			case "LIMIT FPS":
-				txtDescription.text = 'Toggle between\n60 and 160 fps.';
+				txtDescription.text = 'Toggle between\n60 and 160 fps.\n \nCurrently ' + onshit + '.';
 			case "CREDITS":
 				txtDescription.text = 'No use.';
 			case "Exit to menu":
 				txtDescription.text = 'Says it\nall.';
+			case 'BETTER CHARSELECT':
+				txtDescription.text = 'In progress.\n \nCurrently ' + onshit2 + '.';
+			case 'NOTESTRUM TEST':
+				txtDescription.text = 'Glitchy notestrums.\n \nCurrently ' + onshit3 + '.';
 			default:
 				txtDescription.text = 'No description\nprovided.';
 		}

@@ -84,7 +84,7 @@ class CharMenu extends MusicBeatState
 		add(txtDescription);
 
 		shitCharacter = new FlxSprite(0, -20);
-		if (!TitleState.fuckshit)
+		if (!OptionsHandler.options.charSelBetter)
 			shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
 		shitCharacter.scale.set(0.45, 0.45);
 		shitCharacter.updateHitbox();
@@ -249,7 +249,7 @@ class CharMenu extends MusicBeatState
 	{
 		var daSelected:String = menuItems[curSelected];
 		var charSelected:String = 'bf';
-		if (TitleState.fuckshit)
+		if (OptionsHandler.options.charSelBetter)
 		{
 			remove(shitCharacterBetter);
 		}
@@ -258,28 +258,28 @@ class CharMenu extends MusicBeatState
 		switch (daSelected)
 		{
 			case "PICO":
-				if (!TitleState.fuckshit)
+				if (!OptionsHandler.options.charSelBetter)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/picodegallo.png');
 
 				charSelected = 'pico';
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIEND":
-				if (!TitleState.fuckshit)
+				if (!OptionsHandler.options.charSelBetter)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
 				
 				charSelected = 'bf-old';
 				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIENDSECOND":
-				if (!TitleState.fuckshit)
+				if (!OptionsHandler.options.charSelBetter)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/boyfriend.png');
 
 				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
 				menuBG.color = 0x0351A3;
 			case 'DEFAULT':
-				if (!TitleState.fuckshit)
+				if (!OptionsHandler.options.charSelBetter)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
 
 				charSelected = 'bf';
@@ -287,7 +287,7 @@ class CharMenu extends MusicBeatState
 				menuBG.color = 0xFFFFFF;
 			default:
 				// so it doesnt crash lol
-				if (!TitleState.fuckshit)
+				if (!OptionsHandler.options.charSelBetter)
 					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
 
 				charSelected = 'bf';
@@ -298,7 +298,7 @@ class CharMenu extends MusicBeatState
 		shitCharacter.updateHitbox();
 		shitCharacter.screenCenter(XY);
 
-		if (TitleState.fuckshit)
+		if (OptionsHandler.options.charSelBetter)
 		{
 			shitCharacterBetter = new Boyfriend(0, 0, charSelected);
 			shitCharacterBetter.screenCenter(XY);

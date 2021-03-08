@@ -2091,22 +2091,25 @@ class PlayState extends MusicBeatState
 					}
 
 					// lel
-					strumLineNotes.forEach(function(spr:FlxSprite)
+					if (OptionsHandler.options.p2noteStrums)
 					{
-						if (Math.abs(daNote.noteData) == spr.ID)
+						strumLineNotes.forEach(function(spr:FlxSprite)
 						{
-							spr.animation.play('confirm', true);
-							if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+							if (Math.abs(daNote.noteData) == spr.ID)
 							{
-								spr.centerOffsets();
-								spr.offset.x -= 13;
-								spr.offset.y -= 13;
+								spr.animation.play('confirm', true);
+								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+								{
+									spr.centerOffsets();
+									spr.offset.x -= 13;
+									spr.offset.y -= 13;
+								}
+								else
+									spr.centerOffsets();
 							}
-							else
-								spr.centerOffsets();
-						}
-					});
-
+						});
+					}
+					
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
@@ -3105,19 +3108,24 @@ class PlayState extends MusicBeatState
 						});
 					});
 				});
+				
+				
+			}
+			if (OptionsHandler.options.p2noteStrums)
+			{
 				strumLineNotes.forEach(function(spr:FlxSprite)
-				{
-					new FlxTimer().start(0.1, function(tmr:FlxTimer)
 					{
-						spr.animation.play('pressed', true);
-						spr.centerOffsets();
 						new FlxTimer().start(0.1, function(tmr:FlxTimer)
 						{
-							spr.animation.play('static', true);
+							spr.animation.play('pressed', true);
 							spr.centerOffsets();
+							new FlxTimer().start(0.1, function(tmr:FlxTimer)
+							{
+								spr.animation.play('static', true);
+								spr.centerOffsets();
+							});
 						});
 					});
-				});
 			}
 				
 		}

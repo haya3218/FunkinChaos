@@ -1,6 +1,6 @@
 {
-	"musicShiz": 0,
-	"vocalShiz": 0,
-	"modifierShiz": 0,
-	"prefferedSave": 0
+    "fpsLimit": false,
+    "charSelBetter": false,
+    "p2noteStrums": false,
+    "preferredSave": 0
 }
