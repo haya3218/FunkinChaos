@@ -842,7 +842,7 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 130;
 			case 'pico':
 				boyfriend.y = 100;
-				camPos.x += 600;
+				camPos.x -= 100;
 				boyfriend.y += 300;
 			case 'parents-christmas':
 				boyfriend.y = 100;
@@ -864,7 +864,6 @@ class PlayState extends MusicBeatState
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'smile':
 				boyfriend.y = 100;
-				camPos.x += 600;
 				boyfriend.y += 300;
 			case 'gaming':
 				boyfriend.setPosition(gf.x, gf.y);
@@ -1229,7 +1228,7 @@ class PlayState extends MusicBeatState
 		{
 			dad.dance();
 			gf.dance();
-			if(boyfriend.curCharacter == 'bf-car')
+			if(boyfriend.curCharacter == 'bf-car' || boyfriend.curCharacter == 'mom-car')
 				boyfriend.dance();
 			else
 				boyfriend.playAnim('idle');
@@ -1596,6 +1595,24 @@ class PlayState extends MusicBeatState
 	 */
 	override function openSubState(SubState:FlxSubState)
 	{
+		if (cameraUpside)
+		{
+			FlxG.camera.angle = 0;
+			camHUD.angle = 0;
+		}
+		
+		if (OptionsHandler.options.downScroll)
+		{
+			camHUD.angle = 0;
+			healthBar.flipY = false;
+			healthBarBG.flipY = false;
+			iconP1.flipY = false;
+			iconP2.flipY = false;
+			scoreTxt.flipY = false;
+			healthBarBG.flipX = false;
+			scoreTxt.flipX = false;
+		}
+
 		if (paused)
 		{
 			if (FlxG.sound.music != null)
@@ -1616,6 +1633,24 @@ class PlayState extends MusicBeatState
 	 */
 	override function closeSubState()
 	{
+		if (cameraUpside)
+		{
+			FlxG.camera.angle = 0;
+			camHUD.angle = 0;
+		}
+			
+		if (OptionsHandler.options.downScroll)
+		{
+			camHUD.angle = 0;
+			healthBar.flipY = true;
+			healthBarBG.flipY = true;
+			iconP1.flipY = true;
+			iconP2.flipY = true;
+			scoreTxt.flipY = true;
+			healthBarBG.flipX = true;
+			scoreTxt.flipX = true;
+		}
+
 		if (paused)
 		{
 			if (FlxG.sound.music != null && !startingSong)
@@ -1667,23 +1702,26 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
-		// actual fuck shit
-		if (cameraUpside)
+		if (!paused)
 		{
-			FlxG.camera.angle = 180;
-			camHUD.angle = 180;
-		}
-
-		if (OptionsHandler.options.downScroll)
-		{
-			camHUD.angle = 180;
-			healthBar.flipY = true;
-			healthBarBG.flipY = true;
-			iconP1.flipY = true;
-			iconP2.flipY = true;
-			scoreTxt.flipY = true;
-			healthBarBG.flipX = true;
-			scoreTxt.flipX = true;
+			// actual fuck shit
+			if (cameraUpside)
+			{
+				FlxG.camera.angle = 180;
+				camHUD.angle = 180;
+			}
+	
+			if (OptionsHandler.options.downScroll)
+			{
+				camHUD.angle = 180;
+				healthBar.flipY = true;
+				healthBarBG.flipY = true;
+				iconP1.flipY = true;
+				iconP2.flipY = true;
+				scoreTxt.flipY = true;
+				healthBarBG.flipX = true;
+				scoreTxt.flipX = true;
+			}
 		}
 
 		if (earthDeath)
@@ -1720,6 +1758,7 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
+			// actual fuck shit
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
 			if (FlxG.random.bool(0.1))
@@ -1776,11 +1815,11 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new LatencyState());
 
 		if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.player1));
+			FlxG.switchState(new AnimationDebug(SONG.player1, false));
 		else if (FlxG.keys.pressed.CONTROL && FlxG.keys.pressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.gf));
+			FlxG.switchState(new AnimationDebug(SONG.gf, true));
 		else if (FlxG.keys.justPressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.player2));
+			FlxG.switchState(new AnimationDebug(SONG.player2, true));
 			
 
 		if (startingSong)
@@ -1938,6 +1977,7 @@ class PlayState extends MusicBeatState
 		// RESET = Quick Game Over Screen
 		if (controls.RESET)
 		{
+			TitleState.deathCounter += 1;
 			boyfriend.stunned = true;
 
 			persistentUpdate = false;
@@ -2943,7 +2983,7 @@ class PlayState extends MusicBeatState
 			
 			updateAccuracy();
 
-			if (autoMode && !note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo')
+			if (autoMode && !note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo' || SONG.song.toLowerCase() != 'b-sides-bopeebo')
 			{
 				// shitty idle shit
 				// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
@@ -2954,7 +2994,7 @@ class PlayState extends MusicBeatState
 				{
 					if (!paused)
 					{
-						if (SONG.player1 == 'bf-car')
+						if (boyfriend.curCharacter == 'bf-car'|| boyfriend.curCharacter == 'mom-car')
 							boyfriend.dance();
 						else
 							boyfriend.playAnim('idle');
@@ -3110,18 +3150,9 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
-			// Boyfriend on auto no longer holds the last animation FOREVER. (part 2)
-			// Somewhat of a stupid fix but does the job anyways lmao
+
 			if (autoMode)
 			{
-				// if it aint a must hit section game resets the animation after a certain amount of time.
-				if (FlxG.random.bool(10))
-					if (!SONG.notes[Math.floor(curStep / 16)].mustHitSection)
-						if (SONG.player1 == 'bf-car')
-							boyfriend.dance();
-						else
-							boyfriend.playAnim('idle');	
-
 				// basic indication of autoplay
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
@@ -3220,7 +3251,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 		}
 
-		if (curBeat % 9 == 8 && curSong == 'B-Sides-Bopeebo')
+		if (curBeat % 8 == 7 && curSong == 'B-Sides-Bopeebo')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);

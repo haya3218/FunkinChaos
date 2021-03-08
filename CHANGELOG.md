@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased [CHAOS v1.0-beta-1] - 2021
 ### Added
+- CUSTIMIZABLE CONTROLS
+### Changed
+- Fixed weeks
+### Fixed
+- some other stuff that doesnt work
+
+## Unreleased [CHAOS v1.0-beta-1] - 2021
+### Added
 - HELL MODE
 - New characters lmaooooo
 - fixed combo shit

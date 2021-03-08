@@ -86,7 +86,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		#if (!debug)
-		TitleState.versionGhi = " BETA-1";
+		TitleState.versionGhi = "";
 		#end
 
 		PlayerSettings.init();

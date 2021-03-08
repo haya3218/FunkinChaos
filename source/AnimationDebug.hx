@@ -25,10 +25,11 @@ class AnimationDebug extends FlxState
 	var daAnim:String = 'spooky';
 	var camFollow:FlxObject;
 
-	public function new(daAnim:String = 'spooky')
+	public function new(daAnim:String = 'spooky', isDad:Bool = true)
 	{
 		super();
 		this.daAnim = daAnim;
+		this.isDad = isDad;
 	}
 
 	override function create()
@@ -38,12 +39,6 @@ class AnimationDebug extends FlxState
 		var gridBG:FlxSprite = FlxGridOverlay.create(10, 10);
 		gridBG.scrollFactor.set(0.5, 0.5);
 		add(gridBG);
-
-		if (daAnim == 'bf')
-			isDad = false;
-
-		if (daAnim == 'pico' && PlayState.SONG.player1 == 'pico')
-			isDad = false;
 
 		if (isDad)
 		{

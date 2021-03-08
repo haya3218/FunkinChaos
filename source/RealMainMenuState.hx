@@ -37,6 +37,7 @@ class RealMainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var alreadySelectedShit:Bool = false;
+	var swagModifier:Alphabet;
 	public static var scoreMultiplier:Float = 1;
 	override function create()
 	{
@@ -78,7 +79,7 @@ class RealMainMenuState extends MusicBeatState
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/FNF_rel_menu_assets.png', 'assets/images/FNF_rel_menu_assets.xml');
 
 		for (i in 0...menuSht.length) {
-			var swagModifier = new Alphabet(0, 0, menuSht[i], true, false);
+			swagModifier = new Alphabet(0, 0, menuSht[i], true, false);
 			swagModifier.isOptionItem = true;
 			swagModifier.screenCenter(X);
 			swagModifier.targetY = i;
@@ -211,7 +212,7 @@ class RealMainMenuState extends MusicBeatState
 				txtDescription.text = 'Challenge an enemy to a beep bop rap battle!';
 			case '2':
 				txtTitle.text = 'OPTIONS MENU';
-				txtDescription.text = 'Edit your preferences here! (Currently doesnt save between sessions)';
+				txtDescription.text = 'Edit your preferences here!';
 			default:
 				txtTitle.text = 'EXIT GAME';
 				txtDescription.text = 'See ya next time!';
