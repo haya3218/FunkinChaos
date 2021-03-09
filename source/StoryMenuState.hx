@@ -45,7 +45,7 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
-		['dad', 'luci', 'bishop'],
+		['jay', 'luci', 'bishop'],
 		['bf', 'bf', 'bf']
 	];
 
@@ -131,7 +131,9 @@ class StoryMenuState extends MusicBeatState
 				case 'dad':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
 					weekCharacterThing.updateHitbox();
-	
+				case 'jay':
+					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
+					weekCharacterThing.updateHitbox();
 				case 'bf':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
