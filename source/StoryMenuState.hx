@@ -28,7 +28,7 @@ class StoryMenuState extends MusicBeatState
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
-		['Friday-Night', 'Judgement', 'Machine-Gun-Kiss'],
+		['Judgement', 'Machine-Gun-Kiss', 'Friday-Night'],
 		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
 	];
 	var curDifficulty:Int = 1;
@@ -45,7 +45,7 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
-		['dad', 'luci', 'gf'],
+		['dad', 'luci', 'bishop'],
 		['bf', 'bf', 'bf']
 	];
 
@@ -142,6 +142,9 @@ class StoryMenuState extends MusicBeatState
 					weekCharacterThing.updateHitbox();
 					weekCharacterThing.x -= 80;
 				case 'gf':
+					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
+					weekCharacterThing.updateHitbox();
+				case 'bishop':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
 					weekCharacterThing.updateHitbox();
 				case 'pico':
@@ -322,7 +325,7 @@ class StoryMenuState extends MusicBeatState
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 
-				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+				FlxG.sound.play('assets/sounds/confirmMenuluci' + TitleState.soundExt);
 
 				grpWeekText.members[curWeek].startFlashing();
 				grpWeekCharacters.members[1].animation.play('luciConfirm');

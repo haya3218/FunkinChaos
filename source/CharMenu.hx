@@ -191,6 +191,8 @@ class CharMenu extends MusicBeatState
 								PlayState.SONG.player1 = 'bf-christmas';
 							if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
 								PlayState.SONG.player1 = 'bf-pixel';
+							if (PlayState.SONG.song.toLowerCase() == 'luci-moment' || PlayState.SONG.song.toLowerCase() == 'mc-mental-at-his-best' ||PlayState.SONG.song.toLowerCase() == 'disappear')
+								PlayState.SONG.player1 = 'luci-moment';
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								FlxG.switchState(new PlayState());

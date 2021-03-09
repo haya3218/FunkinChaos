@@ -28,6 +28,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'bf-pixel-dead';
 			case 'yakuza':
 				daBf = 'bf-yakuza';
+			case 'miku':
+				daBf = 'luci-moment';
 			default:
 				daBf = 'bf';
 		}
