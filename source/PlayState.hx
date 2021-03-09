@@ -2199,10 +2199,29 @@ class PlayState extends MusicBeatState
 					if (daNote.y < -daNote.height)
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit)
-						{
-							health -= 0.0475 + healthLossModifier;
-							vocals.volume = 0;
-						}
+							{
+								health -= 0.0475 + healthLossModifier;
+								misses += 1;
+								combo = 0;
+								songScore -= 10;
+								vocals.volume = 0;
+	
+								if (poisonPlus && poisonTimes < 5) {
+									poisonTimes += 1;
+									var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+										health -= 0.05;
+									}, 0);
+									// stop timer after 3 seconds
+									new FlxTimer().start(3, function (tmr:FlxTimer) {
+										poisonPlusTimer.cancel();
+										poisonTimes -= 1;
+									});
+								}
+							}
+							if (fullComboMode || perfectMode) {
+								// you signed up for this your fault
+								health = 0;
+							}
 
 						daNote.active = false;
 						daNote.visible = false;
@@ -2598,9 +2617,34 @@ class PlayState extends MusicBeatState
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
 
+		if (cameraUpside)
+		{
+			up = controls.DOWN;
+			down = controls.UP;
+			right = controls.LEFT;
+			left = controls.RIGHT;
+			upP = controls.DOWN_P;
+			downP = controls.UP_P;
+			rightP = controls.LEFT_P;
+			leftP = controls.RIGHT_P;
+		}
+		// sometimes || doesnt work lol!
+		if (OptionsHandler.options.downScroll)
+		{
+			up = controls.DOWN;
+			down = controls.UP;
+			right = controls.LEFT;
+			left = controls.RIGHT;
+			upP = controls.DOWN_P;
+			downP = controls.UP_P;
+			rightP = controls.LEFT_P;
+			leftP = controls.RIGHT_P;
+		}
+
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
+		// this allows people to spam but i have no other way of fixing it lol!
 		if ((upP || rightP || downP || leftP) && generatedMusic)
 		{
 			boyfriend.holdTimer = 0;

@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased [CHAOS v1.0-beta-1] - 2021
 ### Added
 - CUSTIMIZABLE CONTROLS
+- Whitty-like spam system; missing too many notes activates this!
 ### Changed
-- Fixed weeks
+- Hell mode shit
 ### Fixed
 - some other stuff that doesnt work
 
