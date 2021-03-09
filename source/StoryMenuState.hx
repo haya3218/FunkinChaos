@@ -221,8 +221,8 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 150");
 
-		add(yellowBG);
 		add(grpWeekText);
+		add(yellowBG);
 		add(grpWeekCharacters);
 
 		txtTracklist = new FlxText(FlxG.width * 0.07, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
