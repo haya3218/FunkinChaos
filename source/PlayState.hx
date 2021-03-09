@@ -2076,14 +2076,6 @@ class PlayState extends MusicBeatState
 					daNote.visible = true;
 					daNote.active = true;
 				}
-				if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
-					{
-						// the sorting probably doesn't need to be in here? who cares lol
-						possibleNotes.push(daNote);
-						possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-	
-						ignoreList.push(daNote.noteData);
-					}
 
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
@@ -2204,43 +2196,21 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				// say no to missing
-				if (!autoMode)
-				{
 					if (daNote.y < -daNote.height)
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit)
 						{
 							health -= 0.0475 + healthLossModifier;
-							gf.playAnim('sad');
-							misses += 1;
-							combo = 0;
-							songScore -= 10;
-
-							if (poisonPlus && poisonTimes < 5) {
-								poisonTimes += 1;
-								var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-									health -= 0.05;
-								}, 0);
-								// stop timer after 3 seconds
-								new FlxTimer().start(3, function (tmr:FlxTimer) {
-									poisonPlusTimer.cancel();
-									poisonTimes -= 1;
-								});
-							}
-						}
-						if (fullComboMode || perfectMode) {
-							// you signed up for this your fault
-							health = 0;
+							vocals.volume = 0;
 						}
 
-							daNote.active = false;
-							daNote.visible = false;
+						daNote.active = false;
+						daNote.visible = false;
 
-							daNote.kill();
-							notes.remove(daNote, true);
-							daNote.destroy();
+						daNote.kill();
+						notes.remove(daNote, true);
+						daNote.destroy();
 					}
-				}
 			});
 		}
 
@@ -2610,7 +2580,7 @@ class PlayState extends MusicBeatState
 	/**
 	 * key checking
 	 */
-	private function keyShit():Void
+    private function keyShit():Void
 	{
 		// HOLDING
 		var up = controls.UP;
@@ -2628,34 +2598,10 @@ class PlayState extends MusicBeatState
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
 
-		if (cameraUpside)
-		{
-			up = controls.DOWN;
-			down = controls.UP;
-			right = controls.LEFT;
-			left = controls.RIGHT;
-			upP = controls.DOWN_P;
-			downP = controls.UP_P;
-			rightP = controls.LEFT_P;
-			leftP = controls.RIGHT_P;
-		}
-		// sometimes || doesnt work lol!
-		if (OptionsHandler.options.downScroll)
-		{
-			up = controls.DOWN;
-			down = controls.UP;
-			right = controls.LEFT;
-			left = controls.RIGHT;
-			upP = controls.DOWN_P;
-			downP = controls.UP_P;
-			rightP = controls.LEFT_P;
-			leftP = controls.RIGHT_P;
-		}
-
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
+		if ((upP || rightP || downP || leftP) && generatedMusic)
 		{
 			boyfriend.holdTimer = 0;
 
@@ -2720,36 +2666,6 @@ class PlayState extends MusicBeatState
 				{
 					noteCheck(controlArray[daNote.noteData], daNote);
 				}
-				/* 
-					if (controlArray[daNote.noteData])
-						goodNoteHit(daNote);
-				 */
-				// trace(daNote.noteData);
-				/* 
-					switch (daNote.noteData)
-					{
-						case 2: // NOTES YOU JUST PRESSED
-							if (upP || rightP || downP || leftP)
-								noteCheck(upP, daNote);
-						case 3:
-							if (upP || rightP || downP || leftP)
-								noteCheck(rightP, daNote);
-						case 1:
-							if (upP || rightP || downP || leftP)
-								noteCheck(downP, daNote);
-						case 0:
-							if (upP || rightP || downP || leftP)
-								noteCheck(leftP, daNote);
-					}
-				 
-				//this is already done in noteCheck / goodNoteHit
-				if (daNote.wasGoodHit)
-				{
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-				}
-				*/
 			}
 			else
 			{
@@ -2757,7 +2673,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if ((up || right || down || left) && !boyfriend.stunned && generatedMusic)
+		if ((up || right || down || left) && generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
@@ -2839,7 +2755,10 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.stunned)
 		{
 			health -= 0.04 + healthLossModifier;
-			gf.playAnim('sad');
+			if (combo > 5 && gf.animOffsets.exists('sad'))
+			{
+				gf.playAnim('sad');
+			}
 			misses += 1;
 			combo = 0;
 			songScore -= 10;
@@ -2949,8 +2868,6 @@ class PlayState extends MusicBeatState
 			}
 
 			var boolean:Bool = true;
-			if (boolean)
-			{
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
 					if (Math.abs(note.noteData) == spr.ID)
@@ -2969,7 +2886,6 @@ class PlayState extends MusicBeatState
 						}
 					}
 				});
-			}
 
 			note.wasGoodHit = true;
 			vocals.volume = 1;
@@ -3224,7 +3140,7 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-		if (curBeat % gfSpeed == 0 || boyfriend.stunned)
+		if (curBeat % gfSpeed == 0)
 		{
 			gf.dance();
 		}
