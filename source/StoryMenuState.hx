@@ -18,6 +18,7 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
+	var isLuci:Bool;
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
@@ -138,21 +139,26 @@ class StoryMenuState extends MusicBeatState
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
 					weekCharacterThing.x -= 80;
+					isLuci = false;
 				case 'luci':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
 					weekCharacterThing.x -= 80;
+					isLuci = true;
 				case 'gf':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
 					weekCharacterThing.updateHitbox();
+					isLuci = false;
 				case 'bishop':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
 					weekCharacterThing.updateHitbox();
-				case 'pico':
-					weekCharacterThing.flipX = true;
+					isLuci = false;
 				case 'parents-christmas':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
+					isLuci = false;
+				default:
+					isLuci = false;
 			}
 	
 			grpWeekCharacters.add(weekCharacterThing);
@@ -216,8 +222,8 @@ class StoryMenuState extends MusicBeatState
 		trace("Line 150");
 
 		add(yellowBG);
-		add(grpWeekCharacters);
 		add(grpWeekText);
+		add(grpWeekCharacters);
 
 		txtTracklist = new FlxText(FlxG.width * 0.07, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
@@ -321,16 +327,11 @@ class StoryMenuState extends MusicBeatState
 		{
 			if (stopspamming == false)
 			{
-				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+				// character shit
+				FlxG.sound.play('assets/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
 
 				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('bfConfirm');
-				stopspamming = true;
-
-				FlxG.sound.play('assets/sounds/confirmMenuluci' + TitleState.soundExt);
-
-				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('luciConfirm');
+				grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1] + 'Confirm');
 				stopspamming = true;
 			}
 
@@ -351,7 +352,6 @@ class StoryMenuState extends MusicBeatState
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
-			PlayState.hasPlayedOnce = true;
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;

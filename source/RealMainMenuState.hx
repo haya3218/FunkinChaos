@@ -26,13 +26,15 @@ class RealMainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['play', 'options'];
+	var optionShit:Array<String> = ['play', 'options', 'exit'];
 	#else
 	var optionShit:Array<String> = ['play', 'options'];
 	#end
 
-	var magenta:FlxBackdrop;
-	var bg:FlxBackdrop;
+	var magenta:FlxSprite;
+	var bg:FlxSprite;
+	var overlay1:FlxBackdrop;
+	var overlay2:FlxBackdrop;
 	var camFollow:FlxObject;
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -49,7 +51,7 @@ class RealMainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxBackdrop('assets/images/menuBGMagenta.png', 0.5, 0, true, false);
+		bg = new FlxSprite().loadGraphic('assets/images/menuBGMagenta.png');
 		bg.x -= 80;
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
@@ -62,7 +64,7 @@ class RealMainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxBackdrop('assets/images/menuDesatMagenta.png', 0.5, 0, true, false);
+		magenta = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		magenta.x -= 80;
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.18;
@@ -73,6 +75,17 @@ class RealMainMenuState extends MusicBeatState
 		magenta.antialiasing = true;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
+
+		overlay1 = new FlxBackdrop('assets/images/menuMagentaOverlay.png', 0.5, 0, true, false);
+		overlay1.x -= 80;
+		overlay1.scrollFactor.x = 0;
+		overlay1.scrollFactor.y = 0.18;
+		overlay1.setGraphicSize(Std.int(overlay1.width * 1.1));
+		overlay1.updateHitbox();
+		overlay1.screenCenter(Y);
+		overlay1.antialiasing = true;
+		add(overlay1);
+
 		// magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
@@ -82,7 +95,7 @@ class RealMainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(50, 140 + (i * 200));
+			var menuItem:FlxSprite = new FlxSprite(50, 90 + (i * 200));
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -120,8 +133,7 @@ class RealMainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		bg.x -= 0.5;
-		magenta.x -= 0.5;
+		overlay1.x -= 0.5;
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;

@@ -19,7 +19,7 @@ class MenuCharacter extends FlxSprite
 		animation.addByPrefix('bf', "BF idle dance white", 24);
 		animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
 		animation.addByPrefix('luci', "Luci idle dance white", 24);
-		animation.addByPrefix('bfConfirm', 'LUCI HEY!!', 24, false);
+		animation.addByPrefix('luciConfirm', 'LUCI HEY!!', 24, false);
 		animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);
 		animation.addByPrefix('bishop', "Bishop Dancing Beat WHITE", 24);
 		animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24);

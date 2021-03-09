@@ -227,7 +227,10 @@ class ModifierState extends MusicBeatState
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				if (PlayState.isStoryMode == true)
+				{
+					PlayState.hasPlayedOnce = true;
 					FlxG.switchState(new PlayState());
+				}
 				else
 					FlxG.switchState(new CharMenu());
 			});
