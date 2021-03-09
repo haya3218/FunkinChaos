@@ -73,8 +73,9 @@ class SaveDataState extends MusicBeatState
 		for (j in 0...optionList.length) {
 			trace("l53");
 			var swagOption = new Alphabet(0,0,optionList[j].name,true,false);
-			swagOption.isMenuItem = true;
+			swagOption.isOptionItem = true;
 			swagOption.targetY = j;
+			swagOption.x += 50;
 			trace("l57");
 			var coolCheckmark = new FlxSprite().loadGraphic('assets/images/checkmark.png');
 

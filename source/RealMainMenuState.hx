@@ -1,221 +1,227 @@
 package;
 
-import Controls.Control;
-import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.system.FlxSound;
 import flixel.FlxSprite;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.display.FlxBackdrop;
 import flixel.effects.FlxFlicker;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import lime.utils.Assets;
-import flixel.util.FlxTimer;
-import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxColor;
+import io.newgrounds.NG;
+import lime.app.Application;
 import flash.system.System;
-#if sys
-import sys.io.File;
-#end
-import haxe.Json;
+
 using StringTools;
+
 class RealMainMenuState extends MusicBeatState
 {
-	var menuItem:FlxSprite;
-	var menuItems:FlxTypedGroup<FlxSprite>;
-	var menuItemSprite:Array<FlxSprite> = [];
-	var menuSht:Array<String> = ['1', '2', '3'];
-	var grpAlphabet:FlxTypedGroup<Alphabet>;
 	var curSelected:Int = 0;
-	var checkmarks:Array<FlxSprite> = [];
-	var multiTxt:FlxText;
-	var txtTitle:FlxText;
-	var txtDescription:FlxText;
-	var magenta:FlxSprite;
+
+	var menuItems:FlxTypedGroup<FlxSprite>;
+
+	#if !switch
+	var optionShit:Array<String> = ['play', 'options'];
+	#else
+	var optionShit:Array<String> = ['play', 'options'];
+	#end
+
+	var magenta:FlxBackdrop;
+	var bg:FlxBackdrop;
 	var camFollow:FlxObject;
-	var alreadySelectedShit:Bool = false;
-	var swagModifier:Alphabet;
-	public static var scoreMultiplier:Float = 1;
+	var scoreText:FlxText;
+	var diffText:FlxText;
+
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		menuBG.color = 0x379708;
-		grpAlphabet = new FlxTypedGroup<Alphabet>();
-		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
-		menuBG.updateHitbox();
-		menuBG.screenCenter();
-		menuBG.antialiasing = true;
-		multiTxt = new FlxText(800, 60, 0, "", 200);
-		multiTxt.setFormat("assets/fonts/vcr.ttf", 40, FlxColor.WHITE, RIGHT);
-		multiTxt.text = "Multiplier: 1";
-		multiTxt.scrollFactor.set();
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
 
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic('assets/images/menuBG.png');
+		if (!FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+		}
+
+		persistentUpdate = persistentDraw = true;
+
+		bg = new FlxBackdrop('assets/images/menuBGMagenta.png', 0.5, 0, true, false);
+		bg.x -= 80;
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
-		bg.screenCenter();
+		bg.screenCenter(Y);
 		bg.antialiasing = true;
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic('assets/images/menuDesat.png');
+		magenta = new FlxBackdrop('assets/images/menuDesatMagenta.png', 0.5, 0, true, false);
+		magenta.x -= 80;
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.18;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
 		magenta.updateHitbox();
-		magenta.screenCenter();
+		magenta.screenCenter(Y);
 		magenta.visible = false;
 		magenta.antialiasing = true;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
+		// magenta.scrollFactor.set();
 
-		var tex = FlxAtlasFrames.fromSparrow('assets/images/FNF_rel_menu_assets.png', 'assets/images/FNF_rel_menu_assets.xml');
+		menuItems = new FlxTypedGroup<FlxSprite>();
+		add(menuItems);
 
-		for (i in 0...menuSht.length) {
-			swagModifier = new Alphabet(0, 0, menuSht[i], true, false);
-			swagModifier.isOptionItem = true;
-			swagModifier.screenCenter(X);
-			swagModifier.targetY = i;
-			menuItem = new FlxSprite(0, 0);
+		var tex = FlxAtlasFrames.fromSparrow('assets/images/select_menu_assets.png', 'assets/images/select_menu_assets.xml');
+
+		for (i in 0...optionShit.length)
+		{
+			var menuItem:FlxSprite = new FlxSprite(50, 140 + (i * 200));
 			menuItem.frames = tex;
-            menuItem.animation.addByPrefix('Idle', menuSht[i] + " basic", 24, true);
-            menuItem.animation.addByPrefix('Select', menuSht[i] + " white", 24, true);
-			menuItem.animation.play('Idle');
+			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+			menuItem.animation.play('idle');
 			menuItem.ID = i;
+			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
-			menuItem.screenCenter(XY);
-			menuItem.x -= 750;
-			menuItem.y -= 300;
-			menuItemSprite.push(menuItem);
-			swagModifier.add(menuItem);
-			grpAlphabet.add(swagModifier);
+			menuItem.antialiasing = true;
 		}
-		add(grpAlphabet);
 
-		var bgHeader:FlxSprite = new FlxSprite(-80).loadGraphic('assets/images/menuBGMenu.png');
-		bgHeader.screenCenter();
-		bgHeader.antialiasing = true;
-		add(bgHeader);
+		if (PlayState.hasPlayedOnce)
+			FlxG.camera.follow(camFollow, null, 0.06 * (60.0 / MusicBeatState.funkyFramerate));
+		else
+			FlxG.camera.follow(camFollow, null, 0.06);
 
-		txtTitle = new FlxText(5, FlxG.height - 64, 0, "", 32);
-		txtTitle.scrollFactor.set();
-		txtTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txtTitle.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
-		add(txtTitle);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') + " || Chaos v1.0" + TitleState.versionGhi, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
 
-		txtDescription = new FlxText(5, FlxG.height - 30, 0, "", 24);
-		txtDescription.scrollFactor.set();
-		txtDescription.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
-		add(txtDescription);
+		// NG.core.calls.event.logEvent('swag').send();
 
-		txtTitle.text = 'SINGLEPLAYER MODE';
-		txtDescription.text = 'Challenge an enemy to a beep bop rap battle!';
+		changeItem();
+
+		if (FlxG.random.bool(25))
+		{
+			// shitty way to unlock crazy bus chart and the funkin experience lololol
+			TitleState.crazyBusUnlocked = true;
+		}
 
 		super.create();
 	}
 
 	var selectedSomethin:Bool = false;
 
-	override function update(elapsed:Float) {
-		super.update(elapsed);
+	override function update(elapsed:Float)
+	{
+		bg.x -= 0.5;
+		magenta.x -= 0.5;
+		if (FlxG.sound.music.volume < 0.8)
+		{
+			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+		}
+
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			System.exit(0);
+		}
+
 		if (!selectedSomethin)
 		{
 			if (controls.UP_P)
-				{
-					changeSelection(-1);
-				}
-				if (controls.DOWN_P)
-				{
-					changeSelection(1);
-				}
-				if (controls.ACCEPT)
-					{
-						if (menuSht[curSelected] == 'donate')
-							{
-								#if linux
-								Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
-								#else
-								FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
-								#end
-							}
-							else
-							{
-								selectedSomethin = true;
-								FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-			
-								FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-								FlxFlicker.flicker(grpAlphabet.members[curSelected], 1, 0.06, false, false, function(flick:FlxFlicker)
-								{
-									var daChoice:String = menuSht[curSelected];
-			
-									switch (daChoice)
-									{
-										case '1':
-											FlxG.switchState(new MainMenuState());
-										case '3':
-											System.exit(0);
-				
-										case '2':
-											FlxG.switchState(new OptionsMenu());
-									}
-								});
-							}
-					}
-		}
-	}
-	function changeSelection(change:Int = 0)
-	{
-
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
-
-		curSelected += change;
-
-		if (curSelected < 0)
-			curSelected = menuSht.length - 1;
-		if (curSelected >= menuSht.length)
-			curSelected = 0;
-	
-		var bullShit:Int = 0;
-
-		for (item in grpAlphabet.members)
-		{
-			item.targetY = bullShit - curSelected;
-			bullShit++;
-
-			// item.setGraphicSize(Std.int(item.width * 0.8));
-
-			if (item.targetY == 0)
 			{
-				// item.setGraphicSize(Std.int(item.width));
+				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+				changeItem(-1);
+			}
+
+			if (controls.DOWN_P)
+			{
+				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+				changeItem(1);
+			}
+
+			if (controls.ACCEPT)
+			{
+				if (optionShit[curSelected] == 'donate')
+				{
+					#if linux
+					Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
+					#else
+					FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
+					#end
+				}
+				else
+				{
+					selectedSomethin = true;
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+
+					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+
+					menuItems.forEach(function(spr:FlxSprite)
+					{
+						if (curSelected != spr.ID)
+						{
+							FlxTween.tween(spr, {x: -FlxG.width }, 0.4, {
+								type: FlxTweenType.ONESHOT, ease: FlxEase.backInOut, 
+								onComplete: function(twn:FlxTween)
+								{
+									spr.kill();
+								}
+							});
+						}
+						else
+						{
+							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							{
+								var daChoice:String = optionShit[curSelected];
+
+								switch (daChoice)
+								{
+									case 'play':
+										FlxG.switchState(new MainMenuState());
+										trace("Main Menu Selected");
+									case 'exit':
+										System.exit(0);
+
+									case 'options':
+										FlxG.switchState(new OptionsMenu());
+								}
+							});
+						}
+					});
+				}
 			}
 		}
 
-		optionDescription();
+		super.update(elapsed);
 	}
 
-	function optionDescription()
+	function changeItem(huh:Int = 0)
 	{
-		var daDescription:String = menuSht[curSelected];
-	
-		switch (daDescription)
+		curSelected += huh;
+
+		if (curSelected >= menuItems.length)
+			curSelected = 0;
+		if (curSelected < 0)
+			curSelected = menuItems.length - 1;
+
+		menuItems.forEach(function(spr:FlxSprite)
 		{
-			case '1':
-				txtTitle.text = 'SINGLEPLAYER MODE';
-				txtDescription.text = 'Challenge an enemy to a beep bop rap battle!';
-			case '2':
-				txtTitle.text = 'OPTIONS MENU';
-				txtDescription.text = 'Edit your preferences here!';
-			default:
-				txtTitle.text = 'EXIT GAME';
-				txtDescription.text = 'See ya next time!';
-		}
+			spr.animation.play('idle');
+
+			if (spr.ID == curSelected)
+			{
+				spr.animation.play('selected');
+				camFollow.setPosition(0, spr.getGraphicMidpoint().y);
+			}
+
+			spr.updateHitbox();
+		});
 	}
 }
