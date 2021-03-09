@@ -1192,6 +1192,46 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				flipX = true;
+
+			case 'luci-moment':
+				// LUCI STOOPID
+				var tex = FlxAtlasFrames.fromSparrow('assets/images/luci.png', 'assets/images/luci.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+	
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+	
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+		
+				addOffset('idle');
+				addOffset("singUP", -26, 18);
+				addOffset("singRIGHT", -47, -8);
+				addOffset("singLEFT", 8, -7);
+				addOffset("singDOWN", -6, -53);
+				addOffset("singUPmiss", -31, 26);
+				addOffset("singRIGHTmiss", -53, 23);
+				addOffset("singLEFTmiss", 21, 27);
+				addOffset("singDOWNmiss", -3, -15);
+				addOffset("hey", 0, 2);
+				addOffset('firstDeath', -30, -52);
+				addOffset('deathLoop', -35, -150);
+				addOffset('deathConfirm', -30, 167);
+				addOffset('scared', 4);
+		
+				playAnim('idle');
+		
+				flipX = true;
 		}
 
 		dance();

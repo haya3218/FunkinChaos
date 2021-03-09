@@ -83,6 +83,10 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [40], 0, false, isPlayer);
 			case 'bf-cursed-wh':
 				animation.add('icon', [41], 0, false, isPlayer);
+			case 'kiryu':
+				animation.add('icon', [42, 43], 0, false, isPlayer);
+			case 'luci-moment':
+				animation.add('icon', [44, 45], 0, false, isPlayer);
 			default:
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 		}
