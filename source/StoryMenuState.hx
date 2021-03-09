@@ -112,6 +112,30 @@ class StoryMenuState extends MusicBeatState
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 
+		for (i in 0...weekData.length)
+		{
+			var weekThing:MenuItem = new MenuItem(0 + 5, yellowBG.y + yellowBG.height + 10, i);
+			weekThing.y += ((weekThing.height + 20) * i);
+			weekThing.targetY = i;
+			grpWeekText.add(weekThing);
+	
+			weekThing.antialiasing = true;
+			// weekThing.updateHitbox();
+	
+			// Needs an offset thingie
+			if (!weekUnlocked[i])
+			{
+				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
+				lock.frames = ui_tex;
+				lock.animation.addByPrefix('lock', 'lock');
+				lock.animation.play('lock');
+				lock.ID = i;
+				lock.antialiasing = true;
+				grpLocks.add(lock);
+			}
+		}
+		add(grpWeekText);
+
 		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
 		add(blackBarThingie);
 
@@ -164,29 +188,6 @@ class StoryMenuState extends MusicBeatState
 			grpWeekCharacters.add(weekCharacterThing);
 		}
 
-		for (i in 0...weekData.length)
-		{
-			var weekThing:MenuItem = new MenuItem(0 + 5, yellowBG.y + yellowBG.height + 10, i);
-			weekThing.y += ((weekThing.height + 20) * i);
-			weekThing.targetY = i;
-			grpWeekText.add(weekThing);
-
-			weekThing.antialiasing = true;
-			// weekThing.updateHitbox();
-
-			// Needs an offset thingie
-			if (!weekUnlocked[i])
-			{
-				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
-				lock.frames = ui_tex;
-				lock.animation.addByPrefix('lock', 'lock');
-				lock.animation.play('lock');
-				lock.ID = i;
-				lock.antialiasing = true;
-				grpLocks.add(lock);
-			}
-		}
-
 		trace("Line 96");
 
 		difficultySelectors = new FlxGroup();
@@ -221,7 +222,7 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 150");
 
-		add(grpWeekText);
+		
 		add(yellowBG);
 		add(grpWeekCharacters);
 

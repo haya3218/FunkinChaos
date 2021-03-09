@@ -48,6 +48,7 @@ using StringTools;
 class PlayState extends MusicBeatState
 {
 	public static var curStage:String = '';
+	public static var curCharacter:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
 	public static var isBSidesMode:Bool = false;
@@ -813,6 +814,7 @@ class PlayState extends MusicBeatState
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
+		curCharacter = SONG.player1;
 
 		switch (SONG.player1)
 		{
@@ -1778,8 +1780,8 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50 * (60.0 / MusicBeatState.funkyFramerate))));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50 * (60.0 / MusicBeatState.funkyFramerate))));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -2190,28 +2192,6 @@ class PlayState extends MusicBeatState
 						daNote.destroy();
 						// idleShit();
 					});
-					if (!daNote.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo' || SONG.song.toLowerCase() != 'b-sides-bopeebo')
-					{
-						// shitty idle shit
-						// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
-						// Somewhat of a stupid fix but does the job anyways lmao
-						FlxTimer.globalManager.clear();
-						new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
-						function(tmr:FlxTimer)
-						{
-							if (!paused)
-							{
-								if (boyfriend.curCharacter == 'bf-car'|| boyfriend.curCharacter == 'mom-car')
-									boyfriend.dance();
-								else
-									boyfriend.playAnim('idle');
-							}
-							else if (paused)
-							{
-								trace('SORE LOSER!');
-							}
-						});
-					}
 				}
 
 				// WIP interpolation shit? Need to fix the pause issue
@@ -2832,7 +2812,11 @@ class PlayState extends MusicBeatState
 
 			missed = true;
 
-			FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + TitleState.soundExt, FlxG.random.float(0.1, 0.2));
+			var dammit:String = "";
+			if (boyfriend.curCharacter == 'luci-moment')
+				dammit = '-luci';
+
+			FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + dammit + TitleState.soundExt, FlxG.random.float(0.1, 0.2));
 			// FlxG.sound.play('assets/sounds/missnote1' + TitleState.soundExt, 1, false);
 			// FlxG.log.add('played imss note');
 
@@ -2965,6 +2949,28 @@ class PlayState extends MusicBeatState
 			}
 			
 			updateAccuracy();
+			if (!note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo' || SONG.song.toLowerCase() != 'b-sides-bopeebo')
+				{
+					// shitty idle shit
+					// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
+					// Somewhat of a stupid fix but does the job anyways lmao
+					FlxTimer.globalManager.clear();
+					new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
+					function(tmr:FlxTimer)
+					{
+						if (!paused)
+						{
+							if (boyfriend.curCharacter == 'bf-car'|| boyfriend.curCharacter == 'mom-car')
+								boyfriend.dance();
+							else
+								boyfriend.playAnim('idle');
+						}
+						else if (paused)
+						{
+							trace('SORE LOSER!');
+						}
+					});
+				}
 		}
 	}
 

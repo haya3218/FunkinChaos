@@ -16,20 +16,18 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
-		var daStage = PlayState.curStage;
+		var daChar = PlayState.curCharacter;
 		var daBf:String = '';
-		switch (daStage)
+		switch (daChar)
 		{
-			case 'school':
+			case 'bf-pixel':
 				stageSuffix = '-pixel';
 				daBf = 'bf-pixel-dead';
-			case 'schoolEvil':
-				stageSuffix = '-pixel';
-				daBf = 'bf-pixel-dead';
-			case 'yakuza':
+			case 'bf-yakuza':
 				daBf = 'bf-yakuza';
-			case 'miku':
+			case 'luci-moment':
 				daBf = 'luci-moment';
+				stageSuffix = '-luci';
 			default:
 				daBf = 'bf';
 		}
