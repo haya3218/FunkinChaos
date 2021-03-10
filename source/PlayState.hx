@@ -66,6 +66,7 @@ class PlayState extends MusicBeatState
 	var CameraSpin:Float = 0;
 
 	private var vocals:FlxSound;
+	private var cheering:FlxSound;
 
 	private var dad:Character;
 	private var gf:Character;
@@ -234,6 +235,13 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile('assets/data/roses/rosesDialogue.txt');
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile('assets/data/thorns/thornsDialogue.txt');
+			case 'luci-moment':
+				if (FlxG.random.bool(10))
+				{
+					dialogue = CoolUtil.coolTextFile('assets/data/luci-moment/luci-momentDialogue-Alt.txt');
+				}
+				else
+					dialogue = CoolUtil.coolTextFile('assets/data/luci-moment/luci-momentDialogue.txt');
 		}
 
 		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south' || SONG.stage == 'spooky')
@@ -605,6 +613,11 @@ class PlayState extends MusicBeatState
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'miku';
+
+			var skyBG:FlxSprite = new FlxSprite(-120, -500).loadGraphic('assets/images/miku/mikuSunset.png');
+			skyBG.scrollFactor.set(0.1, 0.1);
+			add(skyBG);
+
 			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/miku/mikuback.png');
 			bg.antialiasing = true;
 			bg.scrollFactor.set(0.9, 0.9);
@@ -1073,6 +1086,37 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});
+				case "luci-moment":
+					var blackScreen2:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					add(blackScreen2);
+					blackScreen2.scrollFactor.set();
+					camHUD.visible = false;
+	
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						cheering = new FlxSound().loadEmbedded('assets/sounds/cheer' + TitleState.soundExt, true);
+						cheering.play();
+						remove(blackScreen2);
+						camFollow.y = -1050;
+						FlxG.camera.focusOn(camFollow.getPosition());
+						FlxG.camera.zoom = 1.5;
+						FlxG.sound.playMusic('assets/music/Luci-Moment_Inst' + TitleState.soundExt, 0);
+						FlxG.sound.music.fadeIn(1, 0, 0.8);
+	
+						new FlxTimer().start(0.8, function(tmr:FlxTimer)
+						{
+							camHUD.visible = true;
+							remove(blackScreen2);
+							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
+								ease: FlxEase.quadInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									camFollow.y = dad.getMidpoint().y;
+									schoolIntro(doof);
+								}
+							});
+						});
+					});
 				case 'senpai':
 					schoolIntro(doof);
 				case 'roses':
@@ -1149,7 +1193,7 @@ class PlayState extends MusicBeatState
 		senpaiEvil.updateHitbox();
 		senpaiEvil.screenCenter();
 
-		if (SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'thorns')
+		if (SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'thorns' || SONG.song.toLowerCase() == 'luci-moment')
 		{
 			remove(black);
 
@@ -1209,7 +1253,9 @@ class PlayState extends MusicBeatState
 					}
 				}
 				else
+				{
 					startCountdown();
+				}
 
 				remove(black);
 			}
@@ -1223,6 +1269,7 @@ class PlayState extends MusicBeatState
 	 */
 	function startCountdown():Void
 	{
+		cheering.stop();
 		inCutscene = false;
 
 		generateStaticArrows(0);

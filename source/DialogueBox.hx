@@ -25,6 +25,7 @@ class DialogueBox extends FlxSpriteGroup
 	var swagDialogue:FlxTypeText;
 
 	var dropText:FlxText;
+	var soundPerChar:String = '';
 
 	public var finishThing:Void->Void;
 
@@ -50,6 +51,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'luci-moment':
+				trace('MUSIC IS ALREADY PLAYING!');
 			default:
 				FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -79,8 +82,16 @@ class DialogueBox extends FlxSpriteGroup
 		else if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		{
 			portraitLeft = new FlxSprite(0, 0);
-			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortrait.png', 'assets/images/gfPortrait.xml');
-			portraitLeft.animation.addByPrefix('enter', 'Gf portrait enter', 24, false);
+			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortraitEnemy.png', 'assets/images/gfPortrait.xml');
+			portraitLeft.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+		}
+		else if (PlayState.SONG.song.toLowerCase() == 'luci-moment')
+		{
+			portraitLeft = new FlxSprite(0, 0);
+			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/portrait.png', 'assets/images/miku/portrait.xml');
+			portraitLeft.animation.addByPrefix('enter', 'Sample portrait enter', 24, false);
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 		}
@@ -103,8 +114,6 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
-			add(portraitRight);
-			portraitRight.visible = false;
 		}
 		else
 		{
@@ -113,14 +122,13 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait Enter', 24, false);
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
-			add(portraitRight);
-			portraitRight.visible = false;
 		}
+		add(portraitRight);
+		portraitRight.visible = false;
 
-		portraitRightGF = new FlxSprite(0, 40);
-		portraitRightGF.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPortrait.png', 'assets/images/weeb/bfPortrait.xml');
-		portraitRightGF.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-		portraitRightGF.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+		portraitRightGF = new FlxSprite();
+		portraitRightGF.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortrait.png', 'assets/images/gfPortrait.xml');
+		portraitRightGF.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
 		portraitRightGF.updateHitbox();
 		portraitRightGF.scrollFactor.set();
 		add(portraitRightGF);
@@ -171,6 +179,7 @@ class DialogueBox extends FlxSpriteGroup
 		else
 		{
 			box.y += 300;
+			box.x += 100;
 		}
 		box.updateHitbox();
 		add(box);
@@ -186,15 +195,26 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
+		var font:String = '';
+		
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
-		dropText.color = 0xFFD89494;
-		add(dropText);
+		switch (PlayState.curStage)
+		{
+			case 'school':
+				font = 'Pixel Arial 11 Bold';
+			case 'schoolEvil':
+				font = 'Pixel Arial 11 Bold';
+			default:
+				font = 'assets/fonts/vcr.ttf';
 
+		}
+		dropText.font = font;
+		dropText.color = 0xFFD89494;
+		
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load('assets/sounds/pixelText' + TitleState.soundExt, 0.6)];
+		swagDialogue.font = dropText.font;
+		add(dropText);
 		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);
@@ -217,6 +237,11 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.color = FlxColor.BLACK;
 			swagDialogue.color = FlxColor.WHITE;
 			dropText.color = FlxColor.BLACK;
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'senpai')
+		{
+			swagDialogue.color = 0xFF3F2021;
+			dropText.color = 0xFFD89494;
 		}
 		else
 		{
@@ -267,20 +292,11 @@ class DialogueBox extends FlxSpriteGroup
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					new FlxTimer().start(1.2, function(tmr:FlxTimer)
 					{
-						new FlxTimer().start(1.2, function(tmr:FlxTimer)
-						{
-							finishThing();
-							kill();
-						});
-					}
-					else
-						new FlxTimer().start(0.2, function(tmr:FlxTimer)
-						{
-							finishThing();
-							kill();
-						});
+						finishThing();
+						kill();
+					});
 				}
 			}
 			else
@@ -304,6 +320,22 @@ class DialogueBox extends FlxSpriteGroup
 		// add(theDialog);
 
 		// swagDialogue.text = ;
+		if (PlayState.SONG.song.toLowerCase() != 'senpai' || PlayState.SONG.song.toLowerCase() != 'thorns' || PlayState.SONG.song.toLowerCase() != 'roses')
+		{
+			switch (curCharacter)
+			{
+				case 'dad':
+					if (PlayState.SONG.song.toLowerCase() != 'luci-moment')
+						soundPerChar = 'dearestText';
+					else
+						soundPerChar = 'mikuText';
+				case 'bf':
+					soundPerChar = 'boyfriendText';
+				case 'gf':
+					soundPerChar = 'gfText';
+			}
+		}
+		swagDialogue.sounds = [FlxG.sound.load('assets/sounds/' + soundPerChar + TitleState.soundExt, 0.6)];
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
@@ -327,17 +359,17 @@ class DialogueBox extends FlxSpriteGroup
 					box.flipX = false;
 					portraitRight.animation.play('enter');
 				}
-			/*
 			case 'gf':
 				portraitLeft.visible = false;
 				portraitRight.visible = false;
 				if (!portraitRightGF.visible)
 				{
 					portraitRightGF.visible = true;
-					portraitRightGF.animation.play('entergf');
+					box.flipX = false;
+					portraitRightGF.animation.play('enter');
 				}
-			*/
 		}
+		
 	}
 
 	function cleanDialog():Void

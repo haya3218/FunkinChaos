@@ -76,7 +76,7 @@ class HealthIcon extends FlxSprite
 			case 'bf-cursed':
 				animation.add('icon', [32, 33], 0, false, isPlayer);	
 			case 'miku':
-				animation.add('icon', [34], 0, false, isPlayer);
+				animation.add('icon', [34, 46], 0, false, isPlayer);
 			case 'bf-pain':
 				animation.add('icon', [37, 38], 0, false, isPlayer);
 			case 'bishop-gaming':
