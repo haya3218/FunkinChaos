@@ -616,15 +616,16 @@ class PlayState extends MusicBeatState
 
 			var skyBG:FlxSprite = new FlxSprite(-120, -500).loadGraphic('assets/images/miku/mikuSunset.png');
 			skyBG.scrollFactor.set(0.1, 0.1);
+			skyBG.scale.set(1.5, 1.5);
 			add(skyBG);
 
-			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/miku/mikuback.png');
+			var bg:FlxSprite = new FlxSprite(-600, -500).loadGraphic('assets/images/miku/mikuback.png');
 			bg.antialiasing = true;
 			bg.scrollFactor.set(0.9, 0.9);
 			bg.active = false;
 			add(bg);
 	
-			var mikuFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/miku/mikufront.png');
+			var mikuFront:FlxSprite = new FlxSprite(-650, 450).loadGraphic('assets/images/miku/mikufront.png');
 			mikuFront.setGraphicSize(Std.int(mikuFront.width * 1.1));
 			mikuFront.updateHitbox();
 			mikuFront.antialiasing = true;
@@ -1254,7 +1255,15 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					startCountdown();
+					if (PlayState.curStage != 'miku')
+					{
+						startCountdown();
+					}
+					else
+					{
+						cheering.stop();
+						startCountdown();
+					}
 				}
 
 				remove(black);
@@ -1269,7 +1278,6 @@ class PlayState extends MusicBeatState
 	 */
 	function startCountdown():Void
 	{
-		cheering.stop();
 		inCutscene = false;
 
 		generateStaticArrows(0);
