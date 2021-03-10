@@ -958,6 +958,11 @@ class PlayState extends MusicBeatState
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
+		/*
+		if (OptionsHandler.options.downScroll)
+			strumLine.y = FlxG.height - 165;
+		*/
+
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
 
@@ -991,6 +996,10 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic('assets/images/healthBar.png');
+		/*
+		if (OptionsHandler.options.downScroll)
+			healthBarBG.y = 50;
+		*/
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
@@ -1602,18 +1611,6 @@ class PlayState extends MusicBeatState
 			FlxG.camera.angle = 0;
 			camHUD.angle = 0;
 		}
-		
-		if (OptionsHandler.options.downScroll)
-		{
-			camHUD.angle = 0;
-			healthBar.flipY = false;
-			healthBarBG.flipY = false;
-			iconP1.flipY = false;
-			iconP2.flipY = false;
-			scoreTxt.flipY = false;
-			healthBarBG.flipX = false;
-			scoreTxt.flipX = false;
-		}
 
 		if (paused)
 		{
@@ -1639,18 +1636,6 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.angle = 0;
 			camHUD.angle = 0;
-		}
-			
-		if (OptionsHandler.options.downScroll)
-		{
-			camHUD.angle = 0;
-			healthBar.flipY = true;
-			healthBarBG.flipY = true;
-			iconP1.flipY = true;
-			iconP2.flipY = true;
-			scoreTxt.flipY = true;
-			healthBarBG.flipX = true;
-			scoreTxt.flipX = true;
 		}
 
 		if (paused)
@@ -1711,18 +1696,6 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.camera.angle = 180;
 				camHUD.angle = 180;
-			}
-	
-			if (OptionsHandler.options.downScroll)
-			{
-				camHUD.angle = 180;
-				healthBar.flipY = true;
-				healthBarBG.flipY = true;
-				iconP1.flipY = true;
-				iconP2.flipY = true;
-				scoreTxt.flipY = true;
-				healthBarBG.flipX = true;
-				scoreTxt.flipX = true;
 			}
 		}
 
@@ -2079,6 +2052,11 @@ class PlayState extends MusicBeatState
 					daNote.active = true;
 				}
 
+				/*
+				if (OptionsHandler.options.downScroll)
+					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+				else
+					*/
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
 					// i am so fucking sorry for this if condition
@@ -2199,6 +2177,7 @@ class PlayState extends MusicBeatState
 
 				// say no to missing
 					if (daNote.y < -daNote.height)
+					// if (daNote.y < -daNote.height && !OptionsHandler.options.downScroll || daNote.y >= strumLine.y + 106 && OptionsHandler.options.downScroll)
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit)
 							{
@@ -2630,31 +2609,19 @@ class PlayState extends MusicBeatState
 			rightP = controls.LEFT_P;
 			leftP = controls.RIGHT_P;
 		}
-		// sometimes || doesnt work lol!
-		if (OptionsHandler.options.downScroll)
-		{
-			up = controls.DOWN;
-			down = controls.UP;
-			right = controls.LEFT;
-			left = controls.RIGHT;
-			upP = controls.DOWN_P;
-			downP = controls.UP_P;
-			rightP = controls.LEFT_P;
-			leftP = controls.RIGHT_P;
-		}
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
 		// this allows people to spam but i have no other way of fixing it lol!
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
+		if ((upP || rightP || downP || leftP) && generatedMusic)
 		{
 			boyfriend.holdTimer = 0;
 
 			var possibleNotes:Array<Note> = [];
 
 			var ignoreList:Array<Int> = [];
-
+	
 			notes.forEachAlive(function(daNote:Note)
 			{
 				if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
@@ -2667,6 +2634,7 @@ class PlayState extends MusicBeatState
 				}
 			});
 
+			
 			if (possibleNotes.length > 0)
 			{
 				var daNote = possibleNotes[0];
@@ -2709,7 +2677,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 				else // regular notes?
-				{
+				{	
 					noteCheck(controlArray[daNote.noteData], daNote);
 				}
 			}
@@ -2719,7 +2687,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if ((up || right || down || left) && !boyfriend.stunned && generatedMusic)
+		if ((up || right || down || left) && generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
@@ -2799,44 +2767,34 @@ class PlayState extends MusicBeatState
 	 */
 	function noteMiss(direction:Int = 1):Void
 	{
-		if (!missed)
+		health -= 0.02 + healthLossModifier;
+		if (combo > 5 && gf.animOffsets.exists('sad'))
 		{
-			health -= 0.04 + healthLossModifier;
-			if (combo > 5 && gf.animOffsets.exists('sad'))
-			{
-				gf.playAnim('sad');
-			}
-			misses += 1;
-			combo = 0;
-			songScore -= 10;
+			gf.playAnim('sad');
+		}
+		misses += 1;
+		combo = 0;
+		songScore -= 10;
 
-			missed = true;
+		var dammit:String = "";
+		if (boyfriend.curCharacter == 'luci-moment')
+			dammit = '-luci';
 
-			var dammit:String = "";
-			if (boyfriend.curCharacter == 'luci-moment')
-				dammit = '-luci';
+		FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + dammit + TitleState.soundExt, FlxG.random.float(0.1, 0.2));
+		// FlxG.sound.play('assets/sounds/missnote1' + TitleState.soundExt, 1, false);
+		// FlxG.log.add('played imss note');
+		// gang
 
-			FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + dammit + TitleState.soundExt, FlxG.random.float(0.1, 0.2));
-			// FlxG.sound.play('assets/sounds/missnote1' + TitleState.soundExt, 1, false);
-			// FlxG.log.add('played imss note');
-
-			// get stunned for 5 seconds
-			new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
-			{
-				missed = false;
-			});
-
-			switch (direction)
-			{
-				case 0:
-					boyfriend.playAnim('singLEFTmiss', true);
-				case 1:
-					boyfriend.playAnim('singDOWNmiss', true);
-				case 2:
-					boyfriend.playAnim('singUPmiss', true);
-				case 3:
-					boyfriend.playAnim('singRIGHTmiss', true);
-			}
+		switch (direction)
+		{
+			case 0:
+				boyfriend.playAnim('singLEFTmiss', true);
+			case 1:
+				boyfriend.playAnim('singDOWNmiss', true);
+			case 2:
+				boyfriend.playAnim('singUPmiss', true);
+			case 3:
+				boyfriend.playAnim('singRIGHTmiss', true);
 		}
 	}
 
@@ -3175,9 +3133,6 @@ class PlayState extends MusicBeatState
 			if (!cameraUpside)
 			{
 				FlxG.camera.angle = 0;
-			}
-			if (!OptionsHandler.options.downScroll)
-			{
 				camHUD.angle = 0;
 			}
 			FlxG.camera.zoom += 0.015;

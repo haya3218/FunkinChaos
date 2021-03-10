@@ -11,9 +11,9 @@
 	<SubTexture name="exit basic0006" x="762" y="0" width="381" height="164"/>
 	<SubTexture name="exit basic0007" x="762" y="0" width="381" height="164"/>
 	<SubTexture name="exit basic0008" x="762" y="0" width="381" height="164"/>
-	<SubTexture name="exit white0000" x="1143" y="0" width="381" height="164"/>
-	<SubTexture name="exit white0001" x="1524" y="0" width="381" height="164"/>
-	<SubTexture name="exit white0002" x="0" y="164" width="381" height="164"/>
+	<SubTexture name="exit white0000" x="1143" y="0" width="381" height="163"/>
+	<SubTexture name="exit white0001" x="1524" y="0" width="381" height="162" frameX="0" frameY="-1" frameWidth="381" frameHeight="163"/>
+	<SubTexture name="exit white0002" x="0" y="164" width="381" height="163"/>
 	<SubTexture name="options basic0000" x="381" y="164" width="761" height="172"/>
 	<SubTexture name="options basic0001" x="381" y="164" width="761" height="172"/>
 	<SubTexture name="options basic0002" x="381" y="164" width="761" height="172"/>
