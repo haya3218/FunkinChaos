@@ -278,8 +278,6 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
-			case 0:
-				diffText.text = textObjects[1];
 			case 1:
 				diffText.text = textObjects[2];
 			case 2:

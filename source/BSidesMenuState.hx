@@ -158,10 +158,8 @@ class BSidesMenuState extends MusicBeatState
 
 		sprDifficulty = new FlxSprite(leftArrow.x + 400, leftArrow.y);
 		sprDifficulty.frames = ui_tex;
-		sprDifficulty.animation.addByPrefix('easy', 'EASY');
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
-		sprDifficulty.animation.play('easy');
 		sprDifficulty.screenCenter(X);
 		changeDifficulty();
 
@@ -265,8 +263,6 @@ class BSidesMenuState extends MusicBeatState
 
 			switch (curDifficulty)
 			{
-				case 0:
-					diffic = '-easy';
 				case 2:
 					diffic = '-hard';
 			}
@@ -300,9 +296,6 @@ class BSidesMenuState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
-			case 0:
-				sprDifficulty.animation.play('easy');
-				sprDifficulty.offset.x = 20;
 			case 1:
 				sprDifficulty.animation.play('normal');
 				sprDifficulty.offset.x = 70;
