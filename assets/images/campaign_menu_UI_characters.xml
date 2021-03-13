@@ -124,8 +124,8 @@
 	<SubTexture name="Jay idle dance BLACK LINE0005" x="2827" y="2668" width="368" height="691" frameX="0" frameY="136" frameWidth="371" frameHeight="705"/>
 	<SubTexture name="Jay idle dance BLACK LINE0006" x="3195" y="2668" width="366" height="692" frameX="-2" frameY="137" frameWidth="371" frameHeight="705"/>
 	<SubTexture name="Jay idle dance BLACK LINE0007" x="3195" y="2668" width="366" height="692" frameX="-2" frameY="137" frameWidth="371" frameHeight="705"/>
-	<SubTexture name="Jay idle dance BLACK LINE0008" x="3561" y="2668" width="360" height="703" frameX="-7" frameY="-2" frameWidth="371" frameHeight="705"/>
-	<SubTexture name="Jay idle dance BLACK LINE0009" x="3561" y="2668" width="360" height="703" frameX="-7" frameY="-2" frameWidth="371" frameHeight="705"/>
+	<SubTexture name="Jay idle dance BLACK LINE0008" x="3561" y="2668" width="360" height="703" frameX="-7" frameY="148" frameWidth="371" frameHeight="705"/>
+	<SubTexture name="Jay idle dance BLACK LINE0009" x="3561" y="2668" width="360" height="703" frameX="-7" frameY="148" frameWidth="371" frameHeight="705"/>
 	<SubTexture name="Jay idle dance BLACK LINE0010" x="3921" y="2668" width="359" height="705" frameX="-10" frameY="150" frameWidth="371" frameHeight="705"/>
 	<SubTexture name="Jay idle dance BLACK LINE0011" x="3921" y="2668" width="359" height="705" frameX="-10" frameY="150" frameWidth="371" frameHeight="705"/>
 	<SubTexture name="Jay idle dance BLACK LINE0012" x="3921" y="2668" width="359" height="705" frameX="-10" frameY="150" frameWidth="371" frameHeight="705"/>
