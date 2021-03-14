@@ -30,18 +30,18 @@
 	<SubTexture name="menu normal0011" x="4763" y="857" width="797" height="857" frameX="0" frameY="0" frameWidth="798" frameHeight="857"/>
 	<SubTexture name="menu normal0012" x="5560" y="857" width="797" height="857" frameX="0" frameY="0" frameWidth="798" frameHeight="857"/>
 	<SubTexture name="menu normal0013" x="5560" y="857" width="797" height="857" frameX="0" frameY="0" frameWidth="798" frameHeight="857"/>
-	<SubTexture name="menu shitpost0000" x="6357" y="857" width="798" height="844" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0001" x="6357" y="857" width="798" height="844" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0002" x="7155" y="857" width="798" height="845" frameX="-7" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0003" x="7155" y="857" width="798" height="845" frameX="-7" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0004" x="0" y="1714" width="785" height="845" frameX="-12" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0005" x="0" y="1714" width="785" height="845" frameX="-12" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0006" x="785" y="1714" width="788" height="845" frameX="-6" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0007" x="785" y="1714" width="788" height="845" frameX="-6" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0008" x="1573" y="1714" width="793" height="845" frameX="-2" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0009" x="1573" y="1714" width="793" height="845" frameX="-2" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0010" x="2366" y="1714" width="798" height="845" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0011" x="2366" y="1714" width="798" height="845" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0012" x="3164" y="1714" width="798" height="844" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
-	<SubTexture name="menu shitpost0013" x="3164" y="1714" width="798" height="844" frameX="0" frameY="0" frameWidth="805" frameHeight="845"/>
+	<SubTexture name="menu shitpost0000" x="6357" y="857" width="868" height="769" frameX="-39" frameY="0" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0001" x="6357" y="857" width="868" height="769" frameX="-39" frameY="0" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0002" x="7225" y="857" width="913" height="761" frameX="0" frameY="-8" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0003" x="7225" y="857" width="913" height="761" frameX="0" frameY="-8" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0004" x="0" y="1714" width="894" height="760" frameX="-12" frameY="-9" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0005" x="894" y="1714" width="887" height="760" frameX="-19" frameY="-9" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0006" x="1781" y="1714" width="861" height="761" frameX="-42" frameY="-8" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0007" x="1781" y="1714" width="861" height="761" frameX="-42" frameY="-8" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0008" x="2642" y="1714" width="861" height="768" frameX="-42" frameY="-1" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0009" x="2642" y="1714" width="861" height="768" frameX="-42" frameY="-1" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0010" x="3503" y="1714" width="865" height="769" frameX="-42" frameY="0" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0011" x="3503" y="1714" width="865" height="769" frameX="-42" frameY="0" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0012" x="4368" y="1714" width="865" height="769" frameX="-42" frameY="0" frameWidth="913" frameHeight="769"/>
+	<SubTexture name="menu shitpost0013" x="4368" y="1714" width="865" height="769" frameX="-42" frameY="0" frameWidth="913" frameHeight="769"/>
 </TextureAtlas>
