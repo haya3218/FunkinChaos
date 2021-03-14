@@ -111,11 +111,7 @@ class FreeplayState extends MusicBeatState
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
-<<<<<<< Updated upstream
-		fpText = new FlxText(scoreText.x + 120, 5, 0, "FP", 64);
-=======
 		fpText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
->>>>>>> Stashed changes
 		// scoreText.autoSize = false;
 		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
@@ -271,10 +267,10 @@ class FreeplayState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
+		if (curDifficulty < 1)
 			curDifficulty = 3;
 		if (curDifficulty > 3)
-			curDifficulty = 0;
+			curDifficulty = 1;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
@@ -282,11 +278,6 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
-<<<<<<< Updated upstream
-=======
-			case 0:
-				diffText.text = textObjects[1];
->>>>>>> Stashed changes
 			case 1:
 				diffText.text = textObjects[2];
 			case 2:

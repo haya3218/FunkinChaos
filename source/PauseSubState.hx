@@ -48,11 +48,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.text += '\n' + CoolUtil.difficultyString();
 		levelInfo.text += '\n' + 'Deaths:' + TitleState.deathCounter;
 		levelInfo.scrollFactor.set();
-<<<<<<< Updated upstream
-		levelInfo.setFormat('assets/fonts/vcr.ttf', 32);
-=======
 		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
->>>>>>> Stashed changes
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		levelInfo.alpha = 0;

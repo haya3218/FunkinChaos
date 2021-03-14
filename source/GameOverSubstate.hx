@@ -22,11 +22,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
-<<<<<<< Updated upstream
-				daBf = 'bf-pixel-dead';
-=======
 				daBf = 'bf';
->>>>>>> Stashed changes
 			case 'bf-yakuza':
 				daBf = 'bf-yakuza';
 			case 'luci-moment':
@@ -68,13 +64,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.BACK)
 		{
-<<<<<<< Updated upstream
-			FlxG.sound.music.stop();
-
-			FlxG.switchState(new MainMenuState());
-=======
 			endBullshitButDie();
->>>>>>> Stashed changes
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
@@ -119,8 +109,6 @@ class GameOverSubstate extends MusicBeatSubstate
 			});
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
 	function endBullshitButDie():Void
 	{
@@ -154,5 +142,4 @@ class GameOverSubstate extends MusicBeatSubstate
 			}
 		});
 	}
->>>>>>> Stashed changes
 }

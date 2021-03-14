@@ -1,10 +1,4 @@
 {
-<<<<<<< Updated upstream
-    "fpsLimit": false,
-    "charSelBetter": false,
-    "p2noteStrums": false,
-    "preferredSave": 0
-=======
     "p2noteStrums": false,
     "preferredSave": 0,
     "boldText": true,
@@ -12,5 +6,4 @@
     "fpsLimit": true,
     "momentCutscene": true,
     "charSelBetter": false
->>>>>>> Stashed changes
 }

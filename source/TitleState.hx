@@ -50,10 +50,7 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 	var shittySave:FlxSave;
-<<<<<<< Updated upstream
-=======
 	private var health:Float = 0;
->>>>>>> Stashed changes
 	static public var vocalSave:Float = 0;
 	static public var musicSave:Float = 0;
 	static public var versionGhi:String = " DEBUG VERSION";
@@ -63,25 +60,9 @@ class TitleState extends MusicBeatState
 	public static var crazyBusUnlocked:Bool = false;
 	public static var deathCounter:Int = 0;
 	public static var noteStrumShit:Bool;
-<<<<<<< Updated upstream
-
-	var sinMod:Float = 0;
-	var shittyBG:FlxSprite;
-	var bg:FlxSprite;
-	var ranbowTexto:FlxRainbowEffect;
-	var shittyReminder:Alphabet;
-	var txt:FlxText = new FlxText(0, 360, FlxG.width,
-	"FNF: Chaos may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.\n\n"
-	+ "FNF: Chaos is a non-profit modification, aimed for entertainment purposes, and wasn't meant to be an attack on Ninjamuffin99"
-	+ " and/or any other modmakers out there. I was not aiming for replacing what Friday Night Funkin' was, won't be aiming for that and never"
-	+ " will be aiming for that. It was made for fun and from the love for the game itself. All of the comparisons between this and other mods are purely coincidental, unless stated otherwise.\n\n"
-	+ "Now with that out of the way, I hope you'll enjoy this FNF mod.\nFunk all the way.\n\nNow loading...",
-	32);
-=======
 	public static var boldText:Bool;
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
->>>>>>> Stashed changes
 
 	var doneTalking:Bool = false;
 
@@ -123,17 +104,6 @@ class TitleState extends MusicBeatState
 		fuckshit = OptionsHandler.options.charSelBetter;
 		noteStrumShit = OptionsHandler.options.p2noteStrums;
 
-<<<<<<< Updated upstream
-		shittyBG = new FlxSprite().loadGraphic('assets/images/menuLoading.png');
-		add(shittyBG);
-		ranbowTexto = new FlxRainbowEffect(1, 1, 0.5, 1);
-		txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
-		add(txt);
-		shittyReminder = new Alphabet(0, 50, "WARNING", true, false);
-		shittyReminder.screenCenter(X);
-		add(shittyReminder);
-
-=======
 
 		// shittyBG = new FlxSprite().loadGraphic('assets/images/menuLoading.png');
 		// // add(shittyBG);
@@ -162,7 +132,6 @@ class TitleState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
->>>>>>> Stashed changes
 		// NGio.noLogin(APIStuff.API);
 
 		// #if ng
@@ -205,13 +174,6 @@ class TitleState extends MusicBeatState
 
 		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
-<<<<<<< Updated upstream
-			txt.text = "FNF: Chaos may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.\n\n"
-			+ "FNF: Chaos is a non-profit modification, aimed for entertainment purposes, and wasn't meant to be an attack on Ninjamuffin99"
-			+ " and/or any other modmakers out there. I was not aiming for replacing what Friday Night Funkin' was, won't be aiming for that and never"
-			+ " will be aiming for that. It was made for fun and from the love for the game itself. All of the comparisons between this and other mods are purely coincidental, unless stated otherwise.\n\n"
-			+ "Now with that out of the way, I hope you'll enjoy this FNF mod.\nFunk all the way.\n\nPRESS ENTER TO CONTINUE";
-=======
 			remove(healthBarBG);
 			remove(healthBar);
 			remove(shittyReminder);
@@ -224,7 +186,6 @@ class TitleState extends MusicBeatState
 				remove(shittyReminder);
 				startIntro();
 			});
->>>>>>> Stashed changes
 		});
 	}
 
@@ -327,11 +288,6 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-<<<<<<< Updated upstream
-		FlxG.mouse.visible = false;
-
-=======
->>>>>>> Stashed changes
 		if (initialized)
 			skipIntro();
 		else
@@ -360,13 +316,7 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-<<<<<<< Updated upstream
-		sinMod += 0.007;
-		txt.y = Math.sin(sinMod)*60+100;
-		shittyReminder.y = Math.sin(sinMod)*60+30;
-=======
 		health += 0.08;
->>>>>>> Stashed changes
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			System.exit(0);
@@ -420,12 +370,7 @@ class TitleState extends MusicBeatState
 			});
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
-<<<<<<< Updated upstream
-
-		if (pressedEnter && doneTalking == false)
-=======
 		else if (pressedEnter && !skippedIntro)
->>>>>>> Stashed changes
 		{
 				remove(txt);
 				remove(shittyReminder);
@@ -504,11 +449,7 @@ class TitleState extends MusicBeatState
 			// this sucks so much i hate it
 			// thanks lag
 			case 2:
-<<<<<<< Updated upstream
-				createCoolText(['haya', 'friedfrick', 'smokey', 'keaton', 'kadedev']);
-=======
 				createCoolText(['haya', 'friedfrick', 'smokey555', 'keaton', 'kadedev']);
->>>>>>> Stashed changes
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');

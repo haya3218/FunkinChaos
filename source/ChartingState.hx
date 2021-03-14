@@ -34,8 +34,6 @@ import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.ByteArray;
 import lime.app.Application;
-<<<<<<< Updated upstream
-=======
 #if sys
 import sys.io.File;
 import haxe.io.Path;
@@ -44,7 +42,6 @@ import lime.media.AudioBuffer;
 import sys.FileSystem;
 import flash.media.Sound;
 #end
->>>>>>> Stashed changes
 
 using StringTools;
 
@@ -132,10 +129,6 @@ class ChartingState extends MusicBeatState
 		else
 		{
 			_song = {
-<<<<<<< Updated upstream
-				notes: [],
-=======
->>>>>>> Stashed changes
 				song: 'Test',
 				bpm: 150,
 				needsVoices: true,

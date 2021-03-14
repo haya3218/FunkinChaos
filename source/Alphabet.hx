@@ -32,10 +32,7 @@ class Alphabet extends FlxSpriteGroup
 	public var smolCharacter:Bool = false;
 	public static var invis:Bool = false;
 	public var invisModifier:Bool = false;
-<<<<<<< Updated upstream
-=======
 	public var isPixel:Bool = false;
->>>>>>> Stashed changes
 
 	public var text:String = "";
 
@@ -310,24 +307,15 @@ class AlphaCharacter extends FlxSprite
 
 	public var invis:Bool = Alphabet.invis;
 
-<<<<<<< Updated upstream
-	public function new(x:Float, y:Float)
-=======
 	public function new(x:Float, y:Float, pixelated:Bool = false)
->>>>>>> Stashed changes
 	{
 		super(x, y);
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
 
-<<<<<<< Updated upstream
-		if (invis)
-			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabetinvis.png', 'assets/images/alphabetinvis.xml');
-=======
 		if (pixelated)
 			tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/alphabet-pixel.png', 'assets/images/weeb/pixelUI/alphabet-pixel.xml');
 		else 
 			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
->>>>>>> Stashed changes
 
 		frames = tex;
 

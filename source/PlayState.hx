@@ -247,8 +247,6 @@ class PlayState extends MusicBeatState
 				}
 				else
 					dialogue = CoolUtil.coolTextFile('assets/data/luci-moment/luci-momentDialogue.txt');
-<<<<<<< Updated upstream
-=======
 			case 'disappear':
 				if (FlxG.random.bool(10))
 				{
@@ -263,7 +261,6 @@ class PlayState extends MusicBeatState
 				}
 				else
 					dialogue = CoolUtil.coolTextFile('assets/data/hell/hellDialogue.txt');
->>>>>>> Stashed changes
 		}
 
 		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south' || SONG.stage == 'spooky')
@@ -631,11 +628,7 @@ class PlayState extends MusicBeatState
 			yakuzaFront.active = false;
 			add(yakuzaFront);
 		}
-<<<<<<< Updated upstream
-		else if (SONG.song.toLowerCase() == 'luci-moment' || SONG.song.toLowerCase() == 'disappear' || SONG.stage == 'miku')
-=======
 		else if (SONG.stage == 'miku')
->>>>>>> Stashed changes
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'miku';
@@ -645,29 +638,19 @@ class PlayState extends MusicBeatState
 			skyBG.scale.set(1.5, 1.5);
 			add(skyBG);
 
-<<<<<<< Updated upstream
-			var bg:FlxSprite = new FlxSprite(-600, -500).loadGraphic('assets/images/miku/mikuback.png');
-=======
 			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/miku/mikuback.png');
->>>>>>> Stashed changes
 			bg.antialiasing = true;
 			bg.scrollFactor.set(0.9, 0.9);
 			bg.active = false;
 			add(bg);
 	
-<<<<<<< Updated upstream
-			var mikuFront:FlxSprite = new FlxSprite(-650, 450).loadGraphic('assets/images/miku/mikufront.png');
-=======
 			var mikuFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/miku/mikufront.png');
->>>>>>> Stashed changes
 			mikuFront.setGraphicSize(Std.int(mikuFront.width * 1.1));
 			mikuFront.updateHitbox();
 			mikuFront.antialiasing = true;
 			mikuFront.scrollFactor.set(0.9, 0.9);
 			mikuFront.active = false;
 			add(mikuFront);
-<<<<<<< Updated upstream
-=======
 
 			var mikuCurtains:FlxSprite = new FlxSprite(-500, -700).loadGraphic('assets/images/miku/mikuroof.png');
 			mikuCurtains.setGraphicSize(Std.int(mikuCurtains.width * 0.9));
@@ -707,7 +690,6 @@ class PlayState extends MusicBeatState
 			simpBoppers.setGraphicSize(Std.int(simpBoppers.width * 1));
 			simpBoppers.updateHitbox();
 			add(simpBoppers);
->>>>>>> Stashed changes
 		}
 		else if (SONG.song.toLowerCase() == 'mc-mental-at-his-best' || SONG.stage == 'trick')
 		{
@@ -1002,8 +984,6 @@ class PlayState extends MusicBeatState
 			case 'mtc':
 				boyfriend.y -= 220;
 				boyfriend.x += 260;
-<<<<<<< Updated upstream
-=======
 		}
 
 		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
@@ -1041,7 +1021,6 @@ class PlayState extends MusicBeatState
 			waveSprite.y = dad.y;
 			waveSprite.x = dad.x;
 			add(waveSprite);
->>>>>>> Stashed changes
 		}
 		if (curStage == 'trick')
 			add(evilTrail2);
@@ -1212,10 +1191,7 @@ class PlayState extends MusicBeatState
 					add(blackScreen2);
 					blackScreen2.scrollFactor.set();
 					camHUD.visible = false;
-<<<<<<< Updated upstream
-=======
 					dad.visible = false;
->>>>>>> Stashed changes
 	
 					new FlxTimer().start(0.1, function(tmr:FlxTimer)
 					{
@@ -1236,10 +1212,6 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-<<<<<<< Updated upstream
-									camFollow.y = dad.getMidpoint().y;
-									schoolIntro(doof);
-=======
 									
 									var mikuCutscene:FlxSprite = new FlxSprite(dad.x, dad.y);
 									mikuCutscene.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/neu/mikuintro.png', 'assets/images/miku/neu/mikuintro.xml');
@@ -1274,7 +1246,6 @@ class PlayState extends MusicBeatState
 									}
 									else
 										startCountdown();
->>>>>>> Stashed changes
 								}
 							});
 						});
@@ -1294,11 +1265,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'tutorial':
 					schoolIntro(doof);
-<<<<<<< Updated upstream
-=======
 				case 'disappear':
 					schoolIntro(doof);
->>>>>>> Stashed changes
 				default:
 					startCountdown();
 			}
@@ -1307,38 +1275,6 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-<<<<<<< Updated upstream
-				default:
-					startCountdown();
-			}
-		}
-
-		super.create();
-	}
-
-	 /**
-	 * hi kade
-	 */
-	function updateAccuracy()
-		{
-
-			totalPlayed += 1;
-			accuracy = totalNotesHit / totalPlayed * 100;
-			trace(totalNotesHit + '/' + totalPlayed + '* 100 = ' + accuracy);
-			if (accuracy >= 100.00)
-			{
-				if (ss && misses == 0)
-					accuracy = 100.00;
-				else
-				{
-					accuracy = 99.98;
-					ss = false;
-				}
-			}
-		
-		}
-
-=======
 				case "luci-moment":
 					var blackScreen2:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 					add(blackScreen2);
@@ -1404,7 +1340,6 @@ class PlayState extends MusicBeatState
 		
 		}
 
->>>>>>> Stashed changes
 	 /**
 	 * DIALOGUE INTRO SHIT
 	 *
@@ -1416,92 +1351,6 @@ class PlayState extends MusicBeatState
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		black.scrollFactor.set();
 		add(black);
-<<<<<<< Updated upstream
-
-		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
-		red.scrollFactor.set();
-
-		var senpaiEvil:FlxSprite = new FlxSprite();
-		senpaiEvil.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpaiCrazy.png', 'assets/images/weeb/senpaiCrazy.xml');
-		senpaiEvil.animation.addByPrefix('idle', 'Senpai Pre Explosion', 24, false);
-		senpaiEvil.setGraphicSize(Std.int(senpaiEvil.width * 6));
-		senpaiEvil.scrollFactor.set();
-		senpaiEvil.updateHitbox();
-		senpaiEvil.screenCenter();
-
-		if (SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'thorns' || SONG.song.toLowerCase() == 'luci-moment')
-		{
-			remove(black);
-
-			if (SONG.song.toLowerCase() == 'thorns')
-			{
-				add(red);
-			}
-		}
-
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
-		{
-			black.alpha -= 0.15;
-
-			if (black.alpha > 0)
-			{
-				tmr.reset(0.3);
-			}
-			else
-			{
-				if (dialogueBox != null)
-				{
-					inCutscene = true;
-
-					if (SONG.song.toLowerCase() == 'thorns')
-					{
-						add(senpaiEvil);
-						senpaiEvil.alpha = 0;
-						new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
-						{
-							senpaiEvil.alpha += 0.15;
-							if (senpaiEvil.alpha < 1)
-							{
-								swagTimer.reset();
-							}
-							else
-							{
-								senpaiEvil.animation.play('idle');
-								FlxG.sound.play('assets/sounds/Senpai_Dies' + TitleState.soundExt, 1, false, null, true, function()
-								{
-									remove(senpaiEvil);
-									remove(red);
-									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
-									{
-										add(dialogueBox);
-									}, true);
-								});
-								new FlxTimer().start(3.2, function(deadTime:FlxTimer)
-								{
-									FlxG.camera.fade(FlxColor.WHITE, 1.6, false);
-								});
-							}
-						});
-					}
-					else
-					{
-						add(dialogueBox);
-					}
-				}
-				else
-				{
-					if (PlayState.curStage != 'miku')
-					{
-						startCountdown();
-					}
-					else
-					{
-						cheering.stop();
-						startCountdown();
-					}
-				}
-
-=======
 
 		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
 		red.scrollFactor.set();
@@ -1576,7 +1425,6 @@ class PlayState extends MusicBeatState
 				else
 					startCountdown();
 
->>>>>>> Stashed changes
 				remove(black);
 			}
 		});
@@ -1589,13 +1437,10 @@ class PlayState extends MusicBeatState
 	 */
 	function startCountdown():Void
 	{
-<<<<<<< Updated upstream
-=======
 		if (SONG.song.toLowerCase() == 'luci-moment')
 		{
 			cheering.stop();
 		}
->>>>>>> Stashed changes
 		inCutscene = false;
 
 		generateStaticArrows(0);
@@ -1959,11 +1804,8 @@ class PlayState extends MusicBeatState
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
-<<<<<<< Updated upstream
-=======
 			} else {
 				player2Strums.add(babyArrow);
->>>>>>> Stashed changes
 			}
 
 			babyArrow.animation.play('static');
@@ -2170,13 +2012,9 @@ class PlayState extends MusicBeatState
 			iconP1.animation.curAnim.curFrame = 0;
 
 		if (healthBar.percent > 80)
-<<<<<<< Updated upstream
-			iconP2.animation.curAnim.curFrame = 2;
-=======
 		{
 			iconP2.animation.curAnim.curFrame = 2;
 		}
->>>>>>> Stashed changes
 		else
 		{
 			iconP2.animation.curAnim.curFrame = 0;
@@ -2513,23 +2351,6 @@ class PlayState extends MusicBeatState
 					// lel
 					if (OptionsHandler.options.p2noteStrums)
 					{
-<<<<<<< Updated upstream
-						strumLineNotes.forEach(function(spr:FlxSprite)
-						{
-							if (Math.abs(daNote.noteData) == spr.ID)
-							{
-								spr.animation.play('confirm', true);
-								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
-								{
-									spr.centerOffsets();
-									spr.offset.x -= 13;
-									spr.offset.y -= 13;
-								}
-								else
-									spr.centerOffsets();
-							}
-						});
-=======
 						player2Strums.forEach(function(spr:FlxSprite)
 						{
 							if (Math.abs(daNote.noteData) == spr.ID)
@@ -2539,7 +2360,6 @@ class PlayState extends MusicBeatState
 							}
 						});
 		
->>>>>>> Stashed changes
 					}
 					
 					dad.holdTimer = 0;
@@ -2644,27 +2464,16 @@ class PlayState extends MusicBeatState
 
 		if (!inCutscene && !autoMode)
 			keyShit();
-<<<<<<< Updated upstream
 
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
 		#end
 
-=======
-
-		#if debug
-		if (FlxG.keys.justPressed.ONE)
-			endSong();
-		#end
-
->>>>>>> Stashed changes
 		if (skippedSong)
 			endSong();
 	}
 
-<<<<<<< Updated upstream
-=======
 	function sustain2(strum:Int, spr:FlxSprite, note:Note):Void
 	{
 		var length:Float = note.sustainLength;
@@ -2692,7 +2501,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 		
->>>>>>> Stashed changes
 	/**
 	 * says it all lmao
 	 */
@@ -3078,11 +2886,7 @@ class PlayState extends MusicBeatState
 
 		// FlxG.watch.addQuick('asdfa', upP);
 		// this allows people to spam but i have no other way of fixing it lol!
-<<<<<<< Updated upstream
-		if ((upP || rightP || downP || leftP) && generatedMusic)
-=======
 		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
->>>>>>> Stashed changes
 		{
 			boyfriend.holdTimer = 0;
 
@@ -3230,10 +3034,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var missed:Bool = false;
-<<<<<<< Updated upstream
-=======
 	var noteMisses:Float = 0;
->>>>>>> Stashed changes
 	/**
 	 * Note miss check
 	 *
@@ -3242,36 +3043,8 @@ class PlayState extends MusicBeatState
 	 */
 	function noteMiss(direction:Int = 1):Void
 	{
-		health -= 0.02 + healthLossModifier;
-		if (combo > 5 && gf.animOffsets.exists('sad'))
+		if (!boyfriend.stunned)
 		{
-<<<<<<< Updated upstream
-			gf.playAnim('sad');
-		}
-		misses += 1;
-		combo = 0;
-		songScore -= 10;
-
-		var dammit:String = "";
-		if (boyfriend.curCharacter == 'luci-moment')
-			dammit = '-luci';
-
-		FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + dammit + TitleState.soundExt, FlxG.random.float(0.1, 0.2));
-		// FlxG.sound.play('assets/sounds/missnote1' + TitleState.soundExt, 1, false);
-		// FlxG.log.add('played imss note');
-		// gang
-
-		switch (direction)
-		{
-			case 0:
-				boyfriend.playAnim('singLEFTmiss', true);
-			case 1:
-				boyfriend.playAnim('singDOWNmiss', true);
-			case 2:
-				boyfriend.playAnim('singUPmiss', true);
-			case 3:
-				boyfriend.playAnim('singRIGHTmiss', true);
-=======
 			health -= 0.01 + healthLossModifier;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
 			{
@@ -3308,7 +3081,6 @@ class PlayState extends MusicBeatState
 				case 3:
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
->>>>>>> Stashed changes
 		}
 	}
 
@@ -3348,12 +3120,8 @@ class PlayState extends MusicBeatState
 		if (keyP)
 			{
 			goodNoteHit(note);
-<<<<<<< Updated upstream
-			}
-=======
 			boyfriend.stunned = false;
 		}
->>>>>>> Stashed changes
 		else
 		{
 			badNoteCheck();
@@ -3427,30 +3195,6 @@ class PlayState extends MusicBeatState
 			}
 			
 			updateAccuracy();
-<<<<<<< Updated upstream
-			if (!note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo' || SONG.song.toLowerCase() != 'b-sides-bopeebo')
-				{
-					// shitty idle shit
-					// Boyfriend on auto no longer holds the last animation FOREVER. (part 1)
-					// Somewhat of a stupid fix but does the job anyways lmao
-					FlxTimer.globalManager.clear();
-					new FlxTimer(FlxTimer.globalManager).start(FlxG.random.float(0.5, 0.7), 
-					function(tmr:FlxTimer)
-					{
-						if (!paused)
-						{
-							if (boyfriend.curCharacter == 'bf-car'|| boyfriend.curCharacter == 'mom-car')
-								boyfriend.dance();
-							else
-								boyfriend.playAnim('idle');
-						}
-						else if (paused)
-						{
-							trace('SORE LOSER!');
-						}
-					});
-				}
-=======
 
 			// if (!note.isSustainNote && !paused || SONG.song.toLowerCase() != 'bopeebo' || SONG.song.toLowerCase() != 'b-sides-bopeebo')
 			// 	{
@@ -3474,7 +3218,6 @@ class PlayState extends MusicBeatState
 			// 			}
 			// 		});
 			// 	}
->>>>>>> Stashed changes
 		}
 	}
 
@@ -3640,23 +3383,6 @@ class PlayState extends MusicBeatState
 				
 				
 			}
-<<<<<<< Updated upstream
-			if (OptionsHandler.options.p2noteStrums)
-			{
-				strumLineNotes.forEach(function(spr:FlxSprite)
-					{
-						new FlxTimer().start(0.1, function(tmr:FlxTimer)
-						{
-							spr.animation.play('pressed', true);
-							spr.centerOffsets();
-							new FlxTimer().start(0.1, function(tmr:FlxTimer)
-							{
-								spr.animation.play('static', true);
-								spr.centerOffsets();
-							});
-						});
-					});
-=======
 			if (OptionsHandler.options.p2noteStrums && autoMode)
 			{
 				player2Strums.forEach(function(spr:FlxSprite)
@@ -3672,7 +3398,6 @@ class PlayState extends MusicBeatState
 						});
 					});
 				});
->>>>>>> Stashed changes
 			}
 				
 		}
@@ -3802,12 +3527,9 @@ class PlayState extends MusicBeatState
 				}
 			case "mtc":
 				beepbop.animation.play('bop', true);
-<<<<<<< Updated upstream
-=======
 			
 			case "mikuNew":
 				simpBoppers.animation.play('bop', true);
->>>>>>> Stashed changes
 		}
 
 		if (isHalloween && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
