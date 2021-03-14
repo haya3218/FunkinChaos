@@ -8,11 +8,16 @@ class HealthIcon extends FlxSprite
 	 * Used for FreeplayState, BSidesState, and CustomSongState! If you use it elsewhere, prob gonna annoying
 	 */
 	 public var sprTracker:FlxSprite;
+<<<<<<< Updated upstream
+=======
+	public var char:String;
+>>>>>>> Stashed changes
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
 		loadGraphic('assets/images/iconGrid.png', true, 150, 150);
+		this.char = char;
 
 		// reworked the entire icon system because default shit so it doesnt crash lmfao
 		antialiasing = true;

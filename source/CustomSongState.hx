@@ -42,6 +42,11 @@ class CustomSongState extends MusicBeatState
 	var isDebug:Bool;
 
 	var textObjects:Array<String> = [];
+<<<<<<< Updated upstream
+=======
+	var iconRandomizer:Array<String> = ['bf-old', "gf", "bf", "bf-pain", "dad", "monster", "miku"];
+	var randomizedIcon:String = '';
+>>>>>>> Stashed changes
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -54,15 +59,28 @@ class CustomSongState extends MusicBeatState
 	{
 		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
 
+<<<<<<< Updated upstream
+=======
+		randomizedIcon = FlxG.random.getObject(iconRandomizer);
+>>>>>>> Stashed changes
 		// LOAD MUSIC
 		
 		var initSonglist = CoolUtil.coolTextFile('assets/data/customSonglist.txt');
 
 		for (i in 0...initSonglist.length)
 		{
+<<<<<<< Updated upstream
 			songs.push(new SongMetadata(initSonglist[i], 10, 'bf-old'));
 		}
 
+=======
+			randomizedIcon = FlxG.random.getObject(iconRandomizer);
+			songs.push(new SongMetadata(initSonglist[i], 10, randomizedIcon));
+		}
+
+		
+
+>>>>>>> Stashed changes
 		/* 
 			if (FlxG.sound.music != null)
 			{
@@ -103,7 +121,11 @@ class CustomSongState extends MusicBeatState
 			add(icon);
 		}
 
+<<<<<<< Updated upstream
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
+=======
+		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
+>>>>>>> Stashed changes
 		// scoreText.autoSize = false;
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
@@ -114,7 +136,11 @@ class CustomSongState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		
+<<<<<<< Updated upstream
 		var fpText:FlxText = new FlxText(scoreText.x + 120, 5, 0, "CS", 64);
+=======
+		var fpText:FlxText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
+>>>>>>> Stashed changes
 		// scoreText.autoSize = false;
 		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;

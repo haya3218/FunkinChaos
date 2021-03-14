@@ -32,6 +32,10 @@ class DialogueBox extends FlxSpriteGroup
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
 	var portraitRightGF:FlxSprite;
+<<<<<<< Updated upstream
+=======
+	var portraitLeft2:FlxSprite;
+>>>>>>> Stashed changes
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -46,13 +50,23 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.playMusic('assets/music/Lunchbox' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'roses':
+<<<<<<< Updated upstream
 				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+=======
+				trace('MUSIC IS ALREADY PLAYING!');
+>>>>>>> Stashed changes
 			case 'thorns':
 				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'luci-moment':
 				trace('MUSIC IS ALREADY PLAYING!');
+<<<<<<< Updated upstream
+=======
+			case 'disappear':
+				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+>>>>>>> Stashed changes
 			default:
 				FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -81,12 +95,17 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		{
+<<<<<<< Updated upstream
 			portraitLeft = new FlxSprite(0, 0);
+=======
+			portraitLeft = new FlxSprite(0, 20);
+>>>>>>> Stashed changes
 			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortraitEnemy.png', 'assets/images/gfPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 		}
+<<<<<<< Updated upstream
 		else if (PlayState.SONG.song.toLowerCase() == 'luci-moment')
 		{
 			portraitLeft = new FlxSprite(0, 0);
@@ -98,6 +117,11 @@ class DialogueBox extends FlxSpriteGroup
 		else 
 		{
 			portraitLeft = new FlxSprite(0, 0);
+=======
+		else 
+		{
+			portraitLeft = new FlxSprite(0, 20);
+>>>>>>> Stashed changes
 			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/dadPortrait.png', 'assets/images/dadPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'Dad Portrait Enter', 24, false);
 			portraitLeft.updateHitbox();
@@ -117,7 +141,11 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
+<<<<<<< Updated upstream
 			portraitRight = new FlxSprite(0, 0);
+=======
+			portraitRight = new FlxSprite(0, 20);
+>>>>>>> Stashed changes
 			portraitRight.frames = FlxAtlasFrames.fromSparrow('assets/images/bfPortrait.png', 'assets/images/bfPortrait.xml');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait Enter', 24, false);
 			portraitRight.updateHitbox();
@@ -126,7 +154,11 @@ class DialogueBox extends FlxSpriteGroup
 		add(portraitRight);
 		portraitRight.visible = false;
 
+<<<<<<< Updated upstream
 		portraitRightGF = new FlxSprite();
+=======
+		portraitRightGF = new FlxSprite(0, 20);
+>>>>>>> Stashed changes
 		portraitRightGF.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortrait.png', 'assets/images/gfPortrait.xml');
 		portraitRightGF.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
 		portraitRightGF.updateHitbox();
@@ -134,6 +166,17 @@ class DialogueBox extends FlxSpriteGroup
 		add(portraitRightGF);
 		portraitRightGF.visible = false;
 
+<<<<<<< Updated upstream
+=======
+		portraitLeft2 = new FlxSprite(0, 20);
+		portraitLeft2.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/portrait.png', 'assets/images/miku/portrait.xml');
+		portraitLeft2.animation.addByPrefix('enter', 'Sample portrait enter', 24, false);
+		portraitLeft2.updateHitbox();
+		portraitLeft2.scrollFactor.set();
+		add(portraitLeft2);
+		portraitLeft2.visible = false;
+
+>>>>>>> Stashed changes
 		box = new FlxSprite(345, 45);
 
 		switch (PlayState.SONG.song.toLowerCase())
@@ -178,8 +221,13 @@ class DialogueBox extends FlxSpriteGroup
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		else
 		{
+<<<<<<< Updated upstream
 			box.y += 300;
 			box.x += 100;
+=======
+			box.y += 320;
+			box.x += 500;
+>>>>>>> Stashed changes
 		}
 		box.updateHitbox();
 		add(box);
@@ -188,6 +236,11 @@ class DialogueBox extends FlxSpriteGroup
 		add(handSelect);
 
 		box.screenCenter(X);
+<<<<<<< Updated upstream
+=======
+		if (PlayState.SONG.song.toLowerCase() != 'senpai' || PlayState.SONG.song.toLowerCase() != 'thorns' || PlayState.SONG.song.toLowerCase() != 'roses')
+			box.x += 50;
+>>>>>>> Stashed changes
 		portraitLeft.screenCenter(X);
 
 		if (!talkingRight)
@@ -227,9 +280,12 @@ class DialogueBox extends FlxSpriteGroup
 	var dialogueOpened:Bool = false;
 	var dialogueStarted:Bool = false;
 
+	var allowBoxFlipping:Bool = false;
+
 	override function update(elapsed:Float)
 	{
 		// HARD CODING CUZ IM STUPDI
+<<<<<<< Updated upstream
 		if (PlayState.SONG.song.toLowerCase() == 'roses')
 			portraitLeft.visible = false;
 		if (PlayState.SONG.song.toLowerCase() == 'thorns')
@@ -247,6 +303,28 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			swagDialogue.color = FlxColor.BLACK;
 			dropText.color = FlxColor.GRAY;
+=======
+		switch (PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai':
+				swagDialogue.color = 0xFF3F2021;
+				dropText.color = 0xFFD89494;
+				allowBoxFlipping = false;
+			case 'roses':
+				swagDialogue.color = 0xFF3F2021;
+				dropText.color = 0xFFD89494;
+				portraitLeft.visible = false;
+				allowBoxFlipping = false;
+			case 'thorns':
+				portraitLeft.color = FlxColor.BLACK;
+				swagDialogue.color = FlxColor.WHITE;
+				dropText.color = FlxColor.BLACK;
+				allowBoxFlipping = false;
+			default:
+				swagDialogue.color = FlxColor.BLACK;
+				dropText.color = FlxColor.GRAY;
+				allowBoxFlipping = true;
+>>>>>>> Stashed changes
 		}
 
 		dropText.text = swagDialogue.text;
@@ -288,6 +366,10 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
 						portraitRightGF.visible = false;
+<<<<<<< Updated upstream
+=======
+						portraitLeft2.visible = false;
+>>>>>>> Stashed changes
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
 					}, 5);
@@ -320,6 +402,7 @@ class DialogueBox extends FlxSpriteGroup
 		// add(theDialog);
 
 		// swagDialogue.text = ;
+<<<<<<< Updated upstream
 		if (PlayState.SONG.song.toLowerCase() != 'senpai' || PlayState.SONG.song.toLowerCase() != 'thorns' || PlayState.SONG.song.toLowerCase() != 'roses')
 		{
 			switch (curCharacter)
@@ -334,6 +417,22 @@ class DialogueBox extends FlxSpriteGroup
 				case 'gf':
 					soundPerChar = 'gfText';
 			}
+=======
+		switch (curCharacter)
+		{
+			case 'dad':
+				soundPerChar = 'dearestText';
+			case 'bf':
+				soundPerChar = 'boyfriendText';
+			case 'gf':
+				soundPerChar = 'gfText';
+			case 'miku':
+				soundPerChar = 'mikuText';
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses')
+		{
+			soundPerChar = 'pixelText';
+>>>>>>> Stashed changes
 		}
 		swagDialogue.sounds = [FlxG.sound.load('assets/sounds/' + soundPerChar + TitleState.soundExt, 0.6)];
 		swagDialogue.resetText(dialogueList[0]);
@@ -344,30 +443,70 @@ class DialogueBox extends FlxSpriteGroup
 			case 'dad':
 				portraitRight.visible = false;
 				portraitRightGF.visible = false;
+<<<<<<< Updated upstream
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
 					box.flipX = true;
+=======
+				portraitLeft2.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					if (allowBoxFlipping)
+						box.flipX = true;
+>>>>>>> Stashed changes
 					portraitLeft.animation.play('enter');
 				}
 			case 'bf':
 				portraitLeft.visible = false;
 				portraitRightGF.visible = false;
+<<<<<<< Updated upstream
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
 					box.flipX = false;
+=======
+				portraitLeft2.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.visible = true;
+					if (allowBoxFlipping)
+						box.flipX = false;
+>>>>>>> Stashed changes
 					portraitRight.animation.play('enter');
 				}
 			case 'gf':
 				portraitLeft.visible = false;
 				portraitRight.visible = false;
+<<<<<<< Updated upstream
 				if (!portraitRightGF.visible)
 				{
 					portraitRightGF.visible = true;
 					box.flipX = false;
 					portraitRightGF.animation.play('enter');
 				}
+=======
+				portraitLeft2.visible = false;
+				if (!portraitRightGF.visible)
+				{
+					portraitRightGF.visible = true;
+					if (allowBoxFlipping)
+						box.flipX = false;
+					portraitRightGF.animation.play('enter');
+				}
+			case 'miku':
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				portraitRightGF.visible = false;
+				if (!portraitLeft2.visible)
+				{
+					portraitLeft2.visible = true;
+					if (allowBoxFlipping)
+						box.flipX = true;
+					portraitLeft2.animation.play('enter');
+				}
+>>>>>>> Stashed changes
 		}
 		
 	}

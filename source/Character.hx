@@ -476,6 +476,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", -40, -94);
 				playAnim('idle');
 			case 'pico':
+				// PCIO
 				tex = FlxAtlasFrames.fromSparrow('assets/images/Pico_FNF_assetss.png', 'assets/images/Pico_FNF_assetss.xml');
 				frames = tex;
 				animation.addByPrefix('idle', "Pico Idle Dance", 24);
@@ -483,18 +484,32 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
 				if (isPlayer)
 					{
+<<<<<<< Updated upstream
 						animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
 						animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 						animation.addByPrefix('singRIGHTmiss', 'Pico Note Right Miss', 24, false);
 						animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
+=======
+						animation.addByPrefix('singLEFT', 'Pico NOTE Right0', 24, false);
+						animation.addByPrefix('singRIGHT', 'Pico Note LEFT0', 24, false);
+						animation.addByPrefix('singRIGHTmiss', 'Pico Note LEFT Miss', 24, false);
+						animation.addByPrefix('singLEFTmiss', 'Pico NOTE Right miss', 24, false);
+>>>>>>> Stashed changes
 					}
 					else
 					{
 						// Need to be flipped! REDO THIS LATER!
+<<<<<<< Updated upstream
 						animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
 						animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
 						animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
 						animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
+=======
+						animation.addByPrefix('singLEFT', 'Pico Note LEFT0', 24, false);
+						animation.addByPrefix('singRIGHT', 'Pico NOTE Right0', 24, false);
+						animation.addByPrefix('singRIGHTmiss', 'Pico NOTE Right miss', 24, false);
+						animation.addByPrefix('singLEFTmiss', 'Pico Note Left Miss', 24, false);
+>>>>>>> Stashed changes
 					}
 	
 					animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
@@ -504,12 +519,21 @@ class Character extends FlxSprite
 				{
 					addOffset('idle');
 					addOffset("singUP", 18, 31);
+<<<<<<< Updated upstream
 					addOffset("singRIGHT", 80, -13);
 					addOffset("singLEFT", -44, 3);
 					addOffset("singDOWN", 119, -70);
 					addOffset("singUPmiss", 18, 69);
 					addOffset("singRIGHTmiss", 94, 36);
 					addOffset("singLEFTmiss", -23, 55);
+=======
+					addOffset("singLEFT", 80, -13);
+					addOffset("singRIGHT", -44, 3);
+					addOffset("singDOWN", 119, -70);
+					addOffset("singUPmiss", 18, 69);
+					addOffset("singLEFTmiss", 94, 36);
+					addOffset("singRIGHTmiss", -23, 55);
+>>>>>>> Stashed changes
 					addOffset("singDOWNmiss", 86, -40);
 				}
 				else
@@ -982,6 +1006,8 @@ class Character extends FlxSprite
 				addOffset("singRIGHT");
 				addOffset("singLEFT", 40);
 				addOffset("singDOWN", 14);
+<<<<<<< Updated upstream
+=======
 
 				playAnim('idle');
 
@@ -1038,6 +1064,103 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Parent Down Note Dad', 24, false);
 				animation.addByPrefix('singLEFT', 'Parent Left Note Dad', 24, false);
 				animation.addByPrefix('singRIGHT', 'Parent Right Note Dad', 24, false);
+>>>>>>> Stashed changes
+
+				animation.addByPrefix('singUP-alt', 'Parent Up Note Mom', 24, false);
+
+				animation.addByPrefix('singDOWN-alt', 'Parent Down Note Mom', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Parent Left Note Mom', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Parent Right Note Mom', 24, false);
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				antialiasing = false;
+			case 'senpai-angry':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpai.png', 'assets/images/weeb/senpai.xml');
+				animation.addByPrefix('idle', 'Angry Senpai Idle', 24, false);
+				animation.addByPrefix('singUP', 'Angry Senpai UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT', 'Angry Senpai LEFT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT', 'Angry Senpai RIGHT NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
+
+				addOffset('idle');
+<<<<<<< Updated upstream
+				addOffset("singUP", 5, 37);
+				addOffset("singRIGHT");
+				addOffset("singLEFT", 40);
+				addOffset("singDOWN", 14);
+				playAnim('idle');
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				antialiasing = false;
+
+			case 'spirit':
+				frames = FlxAtlasFrames.fromSpriteSheetPacker('assets/images/weeb/spirit.png', 'assets/images/weeb/spirit.txt');
+				animation.addByPrefix('idle', "idle spirit_", 24, false);
+				animation.addByPrefix('singUP', "up_", 24, false);
+				animation.addByPrefix('singRIGHT', "right_", 24, false);
+				animation.addByPrefix('singLEFT', "left_", 24, false);
+				animation.addByPrefix('singDOWN', "spirit down_", 24, false);
+
+				addOffset('idle', -220, -280);
+				addOffset('singUP', -220, -240);
+				addOffset("singRIGHT", -220, -280);
+				addOffset("singLEFT", -200, -280);
+				addOffset("singDOWN", 170, 110);
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+=======
+				addOffset("singUP", -47, 24);
+				addOffset("singRIGHT", -1, -23);
+				addOffset("singLEFT", -30, 16);
+				addOffset("singDOWN", -31, -29);
+				addOffset("singUP-alt", -47, 24);
+				addOffset("singRIGHT-alt", -1, -24);
+				addOffset("singLEFT-alt", -30, 15);
+				addOffset("singDOWN-alt", -30, -27);
+>>>>>>> Stashed changes
+
+				playAnim('idle');
+	
+			case 'lucky':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/lucky.png', 'assets/images/lucky.xml');
+				animation.addByPrefix('idle', 'lucky guitar idle', 24, false);
+				animation.addByPrefix('singUP', 'lucky UP NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'lucky DOWN note', 24, false);
+				animation.addByPrefix('singLEFT', 'lucky sing left', 24, false);
+				animation.addByPrefix('singRIGHT', 'lucky sing right', 24, false);
+				animation.addByPrefix('singUPmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'lucky guitar miss', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'lucky guitar miss', 24, false);
+	
+				addOffset('idle', 92, -143);
+				addOffset("singUP", 287, -133);
+				addOffset("singRIGHT", 287, -133);
+				addOffset("singLEFT", 287, -133);
+				addOffset("singDOWN", 237, -143);
+				addOffset("singUPmiss", -29, 27);
+				addOffset("singRIGHTmiss", -30, 21);
+				addOffset("singLEFTmiss", 12, 24);
+				addOffset("singDOWNmiss", -11, -19);
+	
+				playAnim('idle');
+
+<<<<<<< Updated upstream
+				antialiasing = false;
+
+			case 'parents-christmas':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/christmas/mom_dad_christmas_assets.png',
+					'assets/images/christmas/mom_dad_christmas_assets.xml');
+				animation.addByPrefix('idle', 'Parent Christmas Idle', 24, false);
+				animation.addByPrefix('singUP', 'Parent Up Note Dad', 24, false);
+				animation.addByPrefix('singDOWN', 'Parent Down Note Dad', 24, false);
+				animation.addByPrefix('singLEFT', 'Parent Left Note Dad', 24, false);
+				animation.addByPrefix('singRIGHT', 'Parent Right Note Dad', 24, false);
 
 				animation.addByPrefix('singUP-alt', 'Parent Up Note Mom', 24, false);
 
@@ -1081,6 +1204,8 @@ class Character extends FlxSprite
 	
 				playAnim('idle');
 
+=======
+>>>>>>> Stashed changes
 			case 'miku':
 				// MIKU SHIT
 				tex = FlxAtlasFrames.fromSparrow('assets/images/Miku_Assets.png', 'assets/images/Miku_Assets.xml');
@@ -1230,6 +1355,7 @@ class Character extends FlxSprite
 				addOffset('scared', 4);
 		
 				playAnim('idle');
+<<<<<<< Updated upstream
 				
 				flipX = true;
 
@@ -1249,6 +1375,10 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 52, -191);
 
 				playAnim('idle');
+=======
+		
+				flipX = true;
+>>>>>>> Stashed changes
 		}
 
 		dance();
@@ -1257,8 +1387,13 @@ class Character extends FlxSprite
 		{
 			flipX = !flipX;
 
+<<<<<<< Updated upstream
 			// Doesn't flip for BF, since his are already in the right place???
 			if (!curCharacter.startsWith('bf'))
+=======
+			// Doesn't flip for BF characters, since they are already in the right place???
+			if (!curCharacter.startsWith('bf') && !curCharacter.startsWith('diva') && !curCharacter.startsWith('luci'))
+>>>>>>> Stashed changes
 			{
 				// var animArray
 				var oldRight = animation.getByName('singRIGHT').frames;
@@ -1290,9 +1425,44 @@ class Character extends FlxSprite
 
 			if (curCharacter == 'dad')
 				dadVar = 6.1;
+
+			if (curCharacter == 'miku')
+				dadVar = 6.1;
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
 				dance();
+				holdTimer = 0;
+			}
+		}
+
+		if (isPlayer && PlayState.autoMode)
+		{
+			if (animation.curAnim.name.startsWith('sing'))
+			{
+				holdTimer += elapsed;
+			}
+	
+			var bfVar:Float = 4;
+	
+			if (curCharacter == 'dad')
+				bfVar = 6.1;
+
+			if (curCharacter.startsWith('bf'))
+				bfVar = 6.1;
+			if (curCharacter.startsWith('diva'))
+				bfVar = 6.1;
+			if (curCharacter.startsWith('luci'))
+				bfVar = 6.1;
+	
+			if (curCharacter == 'miku')
+				bfVar = 6.1;
+			if (holdTimer >= Conductor.stepCrochet * bfVar * 0.001)
+			{
+				if (curCharacter != 'bf-car' || curCharacter != 'mom-car')
+					playAnim('idle');
+				else
+					dance();
+
 				holdTimer = 0;
 			}
 		}

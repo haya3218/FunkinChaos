@@ -30,11 +30,20 @@ class StoryMenuState extends MusicBeatState
 		['Senpai', 'Roses', 'Thorns'],
 		['Smash', 'Ridge'],
 		['Judgement', 'Machine-Gun-Kiss', 'Friday-Night'],
+<<<<<<< Updated upstream
 		['Luci-Moment', 'MC-MENTAL-AT-HIS-BEST', 'Disappear', 'MTC']
 	];
 	var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true];
+=======
+		['Luci-Moment', 'Disappear'],
+		['MC-MENTAL-AT-HIS-BEST', 'MTC']
+	];
+	var curDifficulty:Int = 1;
+
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true, true];
+>>>>>>> Stashed changes
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -47,7 +56,11 @@ class StoryMenuState extends MusicBeatState
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['jay', 'luci', 'bishop'],
+<<<<<<< Updated upstream
 		['bf', 'bf', 'bf']
+=======
+		['jay', 'luci', 'bishop']
+>>>>>>> Stashed changes
 	];
 
 	var weekNames:Array<String> = [
@@ -61,7 +74,11 @@ class StoryMenuState extends MusicBeatState
 		"WHERE'S YOUR LIFE LICENSE?",
 		"GAME ABOUT GANGSTERS DOING BAD THINGS",
 		"LUCI STOOPID",
+<<<<<<< Updated upstream
 		"ALL IN ONE (EXCEPT CUSTOM WEEKS)"
+=======
+		"LUCI STOOPID PART 2"
+>>>>>>> Stashed changes
 	];
 
 	var txtWeekTitle:FlxText;
@@ -207,6 +224,10 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
 		sprDifficulty.animation.addByPrefix('hell', 'HELL');
+<<<<<<< Updated upstream
+=======
+		sprDifficulty.animation.play('easy');
+>>>>>>> Stashed changes
 		changeDifficulty();
 
 		difficultySelectors.add(sprDifficulty);
@@ -373,6 +394,13 @@ class StoryMenuState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
+<<<<<<< Updated upstream
+=======
+			case 0:
+				sprDifficulty.animation.play('easy');
+				sprDifficulty.offset.x = 20;
+				sprDifficulty.offset.y = 0;
+>>>>>>> Stashed changes
 			case 1:
 				sprDifficulty.animation.play('normal');
 				sprDifficulty.offset.x = 70;
@@ -454,6 +482,13 @@ class StoryMenuState extends MusicBeatState
 			case 'dad':
 				grpWeekCharacters.members[0].offset.set(120, 200);
 				grpWeekCharacters.members[0].setGraphicSize(Std.int(grpWeekCharacters.members[0].width * 1));
+<<<<<<< Updated upstream
+=======
+
+			case 'jay':
+				grpWeekCharacters.members[0].offset.set(120, 200);
+				grpWeekCharacters.members[0].setGraphicSize(Std.int(grpWeekCharacters.members[0].width * 1));
+>>>>>>> Stashed changes
 
 			default:
 				grpWeekCharacters.members[0].offset.set(100, 100);

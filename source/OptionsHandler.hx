@@ -8,7 +8,13 @@ typedef TOptions = {
     var fpsLimit:Bool;
     var charSelBetter:Bool;
     var p2noteStrums:Bool;
+<<<<<<< Updated upstream
     var downScroll:Bool;
+=======
+    var momentCutscene:Bool;
+    var momentEffect:Bool;
+    var boldText:Bool;
+>>>>>>> Stashed changes
     var preferredSave:Int;
 }
 class OptionsHandler {

@@ -22,7 +22,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
+<<<<<<< Updated upstream
 				daBf = 'bf-pixel-dead';
+=======
+				daBf = 'bf';
+>>>>>>> Stashed changes
 			case 'bf-yakuza':
 				daBf = 'bf-yakuza';
 			case 'luci-moment':
@@ -64,9 +68,13 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.BACK)
 		{
+<<<<<<< Updated upstream
 			FlxG.sound.music.stop();
 
 			FlxG.switchState(new MainMenuState());
+=======
+			endBullshitButDie();
+>>>>>>> Stashed changes
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
@@ -111,4 +119,40 @@ class GameOverSubstate extends MusicBeatSubstate
 			});
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	function endBullshitButDie():Void
+	{
+		FlxG.sound.music.stop();
+		FlxG.camera.fade(FlxColor.BLACK, 0, false, function()
+		{
+			if (PlayState.isStoryMode)
+			{
+				trace('WENT BACK TO STORY MENU??');
+				FlxG.switchState(new StoryMenuState());
+			}
+			if (PlayState.isCreditsMode)
+			{
+				trace('WENT BACK TO OPTION MENU??');
+				FlxG.switchState(new OptionsMenu());
+			}
+			else if (PlayState.isBSidesMode)
+			{
+				trace('Cringe B Mode ');
+				FlxG.switchState(new BSidesState());
+			}
+			else if (PlayState.isShitpostMode)
+			{
+				trace('Cringe Shitpost Mode ');
+				FlxG.switchState(new CustomSongState());
+			}
+			else if (!PlayState.isStoryMode)
+			{
+				trace('WENT BACK TO FREEPLAY??');
+				FlxG.switchState(new FreeplayState());
+			}
+		});
+	}
+>>>>>>> Stashed changes
 }

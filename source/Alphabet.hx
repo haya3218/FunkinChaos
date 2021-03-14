@@ -17,6 +17,12 @@ class Alphabet extends FlxSpriteGroup
 	public var delay:Float = 0.05;
 	public var paused:Bool = false;
 
+	public var alphabet:String = "abcdefghijklmnopqrstuvwxyz";
+
+	public var numbers:String = "1234567890";
+
+	public var symbols:String = "|~#$%()*+-:;<=>@[]^_.,'!?";
+
 	// for menu shit
 	public var targetY:Float = 0;
 	public var isMenuItem:Bool = false;
@@ -26,6 +32,10 @@ class Alphabet extends FlxSpriteGroup
 	public var smolCharacter:Bool = false;
 	public static var invis:Bool = false;
 	public var invisModifier:Bool = false;
+<<<<<<< Updated upstream
+=======
+	public var isPixel:Bool = false;
+>>>>>>> Stashed changes
 
 	public var text:String = "";
 
@@ -45,14 +55,19 @@ class Alphabet extends FlxSpriteGroup
 	var splitWords:Array<String> = [];
 
 	var isBold:Bool = false;
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 	var hasBoldSymbols:Bool = false;
 
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false)
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, pixelated:Bool = false)
 	{
 		super(x, y);
 
 		_finalText = text;
 		this.text = text;
+		this.isPixel = pixelated;
 		isBold = bold;
 
 		if (text != "")
@@ -99,11 +114,13 @@ class Alphabet extends FlxSpriteGroup
 				}
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
-				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
+				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, isPixel);
+				var isNumber:Bool = character.contains(numbers);
+				var isSymbol:Bool = character.contains(symbols);
 
 				if (isBold)
 					letter.createBold(character);
-				else
+				else if (!isBold)
 				{
 					letter.createLetter(character);
 				}
@@ -184,7 +201,7 @@ class Alphabet extends FlxSpriteGroup
 				// trace(_finalText.fastCodeAt(loopNum) + " " + _finalText.charAt(loopNum));
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
-				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti);
+				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti, isPixel);
 				letter.row = curRow;
 				if (isBold)
 				{
@@ -293,13 +310,24 @@ class AlphaCharacter extends FlxSprite
 
 	public var invis:Bool = Alphabet.invis;
 
+<<<<<<< Updated upstream
 	public function new(x:Float, y:Float)
+=======
+	public function new(x:Float, y:Float, pixelated:Bool = false)
+>>>>>>> Stashed changes
 	{
 		super(x, y);
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
 
+<<<<<<< Updated upstream
 		if (invis)
 			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabetinvis.png', 'assets/images/alphabetinvis.xml');
+=======
+		if (pixelated)
+			tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/alphabet-pixel.png', 'assets/images/weeb/pixelUI/alphabet-pixel.xml');
+		else 
+			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
+>>>>>>> Stashed changes
 
 		frames = tex;
 
@@ -315,20 +343,9 @@ class AlphaCharacter extends FlxSprite
 
 	public function createLetter(letter:String):Void
 	{
-		var letterCase:String = "lowercase";
-		if (letter.toLowerCase() != letter)
-		{
-			letterCase = 'capital';
-		}
-
-		animation.addByPrefix(letter, letter + " " + letterCase, 24);
+		animation.addByPrefix(letter, letter.toUpperCase() + " capital", 24);
 		animation.play(letter);
 		updateHitbox();
-
-		FlxG.log.add('the row' + row);
-
-		y = (110 - height);
-		y += row * 60;
 	}
 
 	public function createNumber(letter:String):Void
@@ -356,6 +373,15 @@ class AlphaCharacter extends FlxSprite
 				animation.play(letter);
 			case "!":
 				animation.addByPrefix(letter, 'exclamation point', 24);
+				animation.play(letter);
+			case "^":
+				animation.addByPrefix(letter, 'heart', 24);
+				animation.play(letter);
+			case "$":
+				animation.addByPrefix(letter, 'angry faic', 24);
+				animation.play(letter);
+			default:
+				animation.addByPrefix(letter, letter, 24);
 				animation.play(letter);
 		}
 

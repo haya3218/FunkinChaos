@@ -48,7 +48,11 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.text += '\n' + CoolUtil.difficultyString();
 		levelInfo.text += '\n' + 'Deaths:' + TitleState.deathCounter;
 		levelInfo.scrollFactor.set();
+<<<<<<< Updated upstream
 		levelInfo.setFormat('assets/fonts/vcr.ttf', 32);
+=======
+		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
+>>>>>>> Stashed changes
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		levelInfo.alpha = 0;
@@ -61,9 +65,15 @@ class PauseSubState extends MusicBeatSubstate
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
 
+		var pixelText:Bool = false;
+
+		if (PlayState.curStage == 'school')
+			pixelText = true;
+		if (PlayState.curStage == 'schoolEvil')
+			pixelText = true;
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false, pixelText);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpMenuShit.add(songText);

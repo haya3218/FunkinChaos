@@ -34,6 +34,17 @@ import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.ByteArray;
 import lime.app.Application;
+<<<<<<< Updated upstream
+=======
+#if sys
+import sys.io.File;
+import haxe.io.Path;
+import openfl.utils.ByteArray;
+import lime.media.AudioBuffer;
+import sys.FileSystem;
+import flash.media.Sound;
+#end
+>>>>>>> Stashed changes
 
 using StringTools;
 
@@ -90,6 +101,7 @@ class ChartingState extends MusicBeatState
 
 	override function create()
 	{
+		FlxG.log.redirectTraces = true;
 		curSection = lastSection;
 
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * 16);
@@ -120,7 +132,10 @@ class ChartingState extends MusicBeatState
 		else
 		{
 			_song = {
+<<<<<<< Updated upstream
 				notes: [],
+=======
+>>>>>>> Stashed changes
 				song: 'Test',
 				bpm: 150,
 				needsVoices: true,
@@ -129,7 +144,8 @@ class ChartingState extends MusicBeatState
 				gf: 'gf',
 				stage: 'stage',
 				speed: 1,
-				validScore: false
+				validScore: false,
+				notes: []
 			};
 		}
 
@@ -607,6 +623,7 @@ class ChartingState extends MusicBeatState
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			vocals.stop();
+			FlxG.log.redirectTraces = false;
 			FlxG.switchState(new PlayState());
 		}
 
@@ -859,15 +876,40 @@ class ChartingState extends MusicBeatState
 
 	function updateHeads():Void
 	{
+		// IM COPY PASTING SHIT COS FUCK YOU
 		if (check_mustHitSection.checked)
 		{
-			leftIcon.animation.play('bf');
-			rightIcon.animation.play('dad');
+			remove(leftIcon);
+			remove(rightIcon);
+			leftIcon = new HealthIcon(PlayState.SONG.player1, false);
+			rightIcon = new HealthIcon(PlayState.SONG.player2, false);
+			leftIcon.scrollFactor.set(1, 1);
+			rightIcon.scrollFactor.set(1, 1);
+
+			leftIcon.setGraphicSize(0, 45);
+			rightIcon.setGraphicSize(0, 45);
+
+			leftIcon.setPosition(0, -100);
+			rightIcon.setPosition(gridBG.width / 2, -100);
+			add(leftIcon);
+			add(rightIcon);
 		}
 		else
 		{
-			leftIcon.animation.play('dad');
-			rightIcon.animation.play('bf');
+			remove(leftIcon);
+			remove(rightIcon);
+			leftIcon = new HealthIcon(PlayState.SONG.player2, false);
+			rightIcon = new HealthIcon(PlayState.SONG.player1, false);
+			leftIcon.scrollFactor.set(1, 1);
+			rightIcon.scrollFactor.set(1, 1);
+
+			leftIcon.setGraphicSize(0, 45);
+			rightIcon.setGraphicSize(0, 45);
+
+			leftIcon.setPosition(0, -100);
+			rightIcon.setPosition(gridBG.width / 2, -100);
+			add(leftIcon);
+			add(rightIcon);
 		}
 	}
 
@@ -941,7 +983,7 @@ class ChartingState extends MusicBeatState
 					note.y + GRID_SIZE).makeGraphic(8, Math.floor(FlxMath.remapToRange(daSus, 0, Conductor.stepCrochet * 16, 0, gridBG.height)));
 				curRenderedSustains.add(sustainVis);
 			}
-		}
+		}  
 	}
 
 	private function addSection(lengthInSteps:Int = 16):Void

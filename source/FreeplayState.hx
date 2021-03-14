@@ -106,12 +106,16 @@ class FreeplayState extends MusicBeatState
 			add(icon);
 		}
 
-		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
+		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
 		// scoreText.autoSize = false;
 		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
+<<<<<<< Updated upstream
 		fpText = new FlxText(scoreText.x + 120, 5, 0, "FP", 64);
+=======
+		fpText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
+>>>>>>> Stashed changes
 		// scoreText.autoSize = false;
 		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
@@ -278,6 +282,11 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
+<<<<<<< Updated upstream
+=======
+			case 0:
+				diffText.text = textObjects[1];
+>>>>>>> Stashed changes
 			case 1:
 				diffText.text = textObjects[2];
 			case 2:

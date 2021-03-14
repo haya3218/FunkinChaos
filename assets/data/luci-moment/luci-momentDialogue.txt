@@ -1,12 +1,19 @@
+<<<<<<< Updated upstream
 :dad:what
 :dad:why am i here
 :dad:wheres luka
+=======
+:miku:what
+:miku:why am i here
+:miku:wheres luka
+>>>>>>> Stashed changes
 :gf:hello
 :gf:welcome
 :gf:to the hellhole
 :gf:that is friday night funkin
 :bf:shush dont break the fourth wall
 :gf:lol woops
+<<<<<<< Updated upstream
 :dad:i still dont know why am i here
 :dad:what is my purpose here, exactly?
 :bf:i have no fucking idea lmfao
@@ -26,12 +33,39 @@
 :bf:you literally guessed the 4th wall
 :dad:what
 :dad:in my dreams
+=======
+:miku:i still dont know why am i here
+:miku:what is my purpose here, exactly?
+:bf:i have no fucking idea lmfao
+:bf:just sing or something
+:miku:what
+:miku:i only sing to humans
+:miku:those look like fucking robots
+:gf:you didnt see other shit yet
+:gf:my mom is literally 9 foot tall
+:bf:bruv
+:miku:oh well
+:miku:eh who cares
+:miku:its not like were being watched
+:miku:by some fat guy in front of a screen
+:bf:..
+:gf:..
+:bf:you literally guessed the 4th wall
+:miku:what
+:miku:in my dreams
+>>>>>>> Stashed changes
 :bf:uh no
 :bf:the guy whos recording this isnt fat
 :bf:hes 14
 :gf:BF STOP BREAKING THE FOURTH WALL
 :bf:ah fuck
 :bf:you're right
+<<<<<<< Updated upstream
 :dad:do i?
 :bf:yes
 :dad:...
+=======
+:miku:do i?
+:bf:yes
+:miku:...
+>>>>>>> Stashed changes
