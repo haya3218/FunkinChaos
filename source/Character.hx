@@ -11,18 +11,20 @@ class Character extends FlxSprite
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
 
+	public var isCutscene:Bool = false;
 	public var isPlayer:Bool = false;
 	public var curCharacter:String = 'bf';
 
 	public var holdTimer:Float = 0;
 
-	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
+	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false, isCutscene:Bool = false)
 	{
 		animOffsets = new Map<String, Array<Dynamic>>();
 		super(x, y);
 
 		curCharacter = character;
 		this.isPlayer = isPlayer;
+		this.isCutscene = isCutscene;
 
 		var tex:FlxAtlasFrames;
 		antialiasing = true;
@@ -1084,14 +1086,28 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Miku Sing Note RIGHT', 24);
 				animation.addByPrefix('singDOWN', 'Miku Sing Note DOWN', 24);
 				animation.addByPrefix('singLEFT', 'Miku Sing Note LEFT', 24);
-	
+				animation.addByPrefix('wave', 'miku intro instance', 24);
+				animation.addByPrefix('point', 'miku bro instance', 24, false);
+		
 				addOffset('idle');
 				addOffset("singUP", -6, 50);
 				addOffset("singRIGHT", 0, 27);
 				addOffset("singLEFT", -10, 10);
 				addOffset("singDOWN", 0, -30);
-	
+		
 				playAnim('idle');
+
+			case 'mikuCutscene1':
+				// MIKU SHIT
+				tex = FlxAtlasFrames.fromSparrow('assets/images/neu/mikuintro.png', 'assets/images/neu/mikuintro.xml');
+				frames = tex;
+				animation.addByPrefix('wave', 'miku intro instance', 24);
+				animation.addByPrefix('point', 'miku bro instance', 24, false);
+		
+				addOffset('wave');
+				addOffset('point');
+		
+				playAnim('wave');
 
 			case 'bf-pain':
 				var tex = FlxAtlasFrames.fromSparrow('assets/images/pain.png', 'assets/images/pain.xml');
@@ -1488,6 +1504,8 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
+				case 'mikuCutscene1':
+					playAnim('wave');
 				default:
 					playAnim('idle');
 			}

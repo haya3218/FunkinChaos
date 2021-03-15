@@ -366,10 +366,10 @@ class StoryMenuState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
+		if (curDifficulty < 1)
 			curDifficulty = 3;
 		if (curDifficulty > 3)
-			curDifficulty = 0;
+			curDifficulty = 1;
 
 		sprDifficulty.offset.x = 0;
 
@@ -436,8 +436,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek][2]);
-		if (weekData[curWeek] != 10)
-			txtTracklist.text = "Tracks\n";
+		txtTracklist.text = "Tracks\n";
 
 		switch (grpWeekCharacters.members[0].animation.curAnim.name)
 		{
@@ -469,7 +468,7 @@ class StoryMenuState extends MusicBeatState
 
 		var stringThing:Array<String> = weekData[curWeek];
 
-		if (weekData[curWeek] != 10)
+		if (weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC')
 		{
 			for (i in stringThing)
 			{
@@ -478,6 +477,15 @@ class StoryMenuState extends MusicBeatState
 		
 			txtTracklist.text = txtTracklist.text.toUpperCase();
 		
+			txtTracklist.screenCenter(X);
+			txtTracklist.x += 415;
+		}
+		else
+		{
+			txtTracklist.text += "\n" + '??????' + "\n" + '??????';
+			
+			txtTracklist.text = txtTracklist.text.toUpperCase();
+			
 			txtTracklist.screenCenter(X);
 			txtTracklist.x += 415;
 		}

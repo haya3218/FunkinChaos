@@ -2,15 +2,18 @@ package;
 
 import haxe.Json;
 import lime.utils.Assets;
+import flixel.FlxG;
 
 using StringTools;
 
 class CoolUtil
 {
-	public static var difficultyArray:Array<String> = ["NORMAL", "HARD", "HELL"];
+	public static var difficultyArray:Array<String> = ["HOW IN THE FUCK ARE YOU HERE", "NORMAL", "HARD", "HELL"];
 
 	public static function difficultyString():String
 	{
+		if (PlayState.storyDifficulty == 0)
+			FlxG.log.warn('bro how in the fuck did you get to easy');
 		return difficultyArray[PlayState.storyDifficulty];
 	}
 

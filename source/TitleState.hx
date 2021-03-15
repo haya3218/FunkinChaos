@@ -37,6 +37,7 @@ using StringTools;
 class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;
+	public static var nof:Bool = false;
 	static public var soundExt:String = ".mp3";
 
 	var blackScreen:FlxSprite;
@@ -198,6 +199,7 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
+			nof = true;
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
@@ -224,7 +226,7 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
-		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		// bg.antialiasing = true;
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
@@ -346,7 +348,7 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
-		if (pressedEnter && !transitioning && skippedIntro && doneTalking)
+		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if !switch
 			NGio.unlockMedal(60960);
@@ -370,21 +372,9 @@ class TitleState extends MusicBeatState
 			});
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
-		else if (pressedEnter && !skippedIntro)
+		else if (pressedEnter && !skippedIntro && nof)
 		{
-				remove(txt);
-				remove(shittyReminder);
-				remove(shittyBG);
-				add(bg);
-				doneTalking = true;
-				startIntro();
-		}
-		else if (pressedEnter && !skippedIntro)
-		{
-			if (doneTalking == true)
-				skipIntro();
-			else
-				trace('YOURE IMPATIENT, USER!');
+			skipIntro();
 		}
 
 		// if (pressedEnter && doneTalking == false)

@@ -71,6 +71,7 @@ class PlayState extends MusicBeatState
 	private var dad:Character;
 	private var gf:Character;
 	private var boyfriend:Boyfriend;
+	private var cutsceneDad:Character;
 
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -129,6 +130,7 @@ class PlayState extends MusicBeatState
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
 	var simpBoppers:FlxSprite;
+	var cutsceneSprite:FlxSprite;
 	var santa:FlxSprite;
 
 	var bgGirls:BackgroundGirls;
@@ -682,7 +684,7 @@ class PlayState extends MusicBeatState
 			mikuFront.active = false;
 			add(mikuFront);
 
-			simpBoppers = new FlxSprite(-230, 500);
+			simpBoppers = new FlxSprite(-230, 570);
 			simpBoppers.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/neu/bunch_of_simps.png', 'assets/images/miku/neu/bunch_of_simps.xml');
 			simpBoppers.animation.addByPrefix('bop', 'Downer Crowd Bob', 24, false);
 			simpBoppers.antialiasing = true;
@@ -817,6 +819,14 @@ class PlayState extends MusicBeatState
 		}
 
 		dad = new Character(100, 100, SONG.player2);
+
+		cutsceneSprite = new FlxSprite(100, 100);
+		cutsceneSprite.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/neu/mikuintro.png', 'assets/images/miku/neu/mikuintro.xml');
+		cutsceneSprite.animation.addByPrefix('wave', 'miku intro instance', 24);
+		cutsceneSprite.animation.addByPrefix('point', 'miku bro instance', 24, false);
+		cutsceneSprite.antialiasing = true;
+		cutsceneSprite.setGraphicSize(Std.int(cutsceneSprite.width * 1));
+		cutsceneSprite.updateHitbox();
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
@@ -1010,11 +1020,14 @@ class PlayState extends MusicBeatState
 			add(evilTrail);
 		if (curStage == 'miku' && !OptionsHandler.options.momentEffect)
 		{
-			add(lessFastTrail);
+			add(evilTrail);
 			dad.velocity.set(1, 1);
 		}
 			
+		// add(cutsceneDad);
 		add(dad);
+		add(cutsceneSprite);
+		cutsceneSprite.visible = false;
 		if (curStage == 'mtc')
 		{
 			var waveSprite = new FlxEffectSprite(dad, [evilGlitchLMAO]);
@@ -1023,39 +1036,6 @@ class PlayState extends MusicBeatState
 			add(waveSprite);
 		}
 		if (curStage == 'trick')
-			add(evilTrail2);
-		add(boyfriend);
-
-		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
-		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
-
-		var evilGlitchLMAO = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-		var ranbowGlitchLMAO = new FlxRainbowEffect(1, 1, 0.5);
-		if (curStage == 'trick' || curStage == 'miku')
-			add(evilTrail3);
-		add(gf);
-
-		// Shitty layering but whatev it works LOL
-		if (curStage == 'limo')
-			add(limo);
-		if (curStage == 'lemonhell')
-			add(limo);
-		if (curStage == 'mtc')
-			add(mtc);
-		if (curStage == 'schoolEvil')
-			add(evilTrail);
-		if (curStage == 'trick' || curStage == 'miku')
-			add(evilTrail);
-		add(dad);
-		if (curStage == 'mtc')
-		{
-			var waveSprite = new FlxEffectSprite(dad, [evilGlitchLMAO]);
-			waveSprite.y = dad.y;
-			waveSprite.x = dad.x;
-			add(waveSprite);
-		}
-		if (curStage == 'trick' || curStage == 'miku')
 			add(evilTrail2);
 		add(boyfriend);
 
@@ -1206,40 +1186,38 @@ class PlayState extends MusicBeatState
 	
 						new FlxTimer().start(0.8, function(tmr:FlxTimer)
 						{
-							camHUD.visible = true;
 							remove(blackScreen2);
-							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
+							FlxTween.tween(FlxG.camera, {zoom: 1.1}, 2.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									
-									var mikuCutscene:FlxSprite = new FlxSprite(dad.x, dad.y);
-									mikuCutscene.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/neu/mikuintro.png', 'assets/images/miku/neu/mikuintro.xml');
-									mikuCutscene.animation.addByPrefix('sayhiyoufuckers', 'miku intro instance', 24, true);
-									mikuCutscene.animation.addByPrefix('sayhibro', 'miku bro instance', 24, true);
-									mikuCutscene.antialiasing = true;
-									mikuCutscene.setGraphicSize(Std.int(mikuCutscene.width * 1));
-									mikuCutscene.scrollFactor.set();
-									mikuCutscene.updateHitbox();
-									add(mikuCutscene);
-									mikuCutscene.visible = false;
-									camFollow.y = dad.getMidpoint().y;
+									camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y);
 									if (!OptionsHandler.options.momentCutscene)
 									{
-										mikuCutscene.visible = true;
-										mikuCutscene.animation.play('sayhiyoufuckers');
-										new FlxTimer().start(0.5, function(tmr:FlxTimer)
+										// help
+										cutsceneSprite.visible = true;
+										cutsceneSprite.animation.play('wave', true);
+										new FlxTimer().start(2, function(tmr:FlxTimer)
 										{
-											mikuCutscene.animation.play('sayhibro');
-											new FlxTimer().start(0.1, function(tmr:FlxTimer)
+											cutsceneSprite.animation.play('point', true);
+											new FlxTimer().start(1, function(tmr:FlxTimer)
 											{
-												camFollow.y = boyfriend.getMidpoint().y;
+												camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
 												boyfriend.playAnim('hey', true);
-												new FlxTimer().start(0.5, function(tmr:FlxTimer)
+												new FlxTimer().start(2, function(tmr:FlxTimer)
 												{
 													boyfriend.playAnim('idle', true);
-													camFollow.y = dad.getMidpoint().y;
-													schoolIntro(doof);
+													camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+													camHUD.visible = true;
+													remove(cutsceneSprite);
+													dad.visible = true;
+													FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.5, {
+														ease: FlxEase.quadInOut,
+														onComplete: function(twn:FlxTween)
+														{
+															schoolIntro(doof);
+														}
+													});
 												});
 											});
 										});
