@@ -66,6 +66,8 @@ class Song
 				parsedJson.stage = 'spooky';
 			} else if (parsedJson.song.toLowerCase() == 'pico' || parsedJson.song.toLowerCase() == 'philly' || parsedJson.song.toLowerCase() == 'blammed') {
 				parsedJson.stage = 'philly';
+			} else if (parsedJson.song.toLowerCase() == 'good-enough' || parsedJson.song.toLowerCase() == 'lover' || parsedJson.song.toLowerCase() == 'tug-of-war') {
+				parsedJson.stage = 'annie';
 			} else if (parsedJson.song.toLowerCase() == 'milf' || parsedJson.song.toLowerCase() == 'high' || parsedJson.song.toLowerCase() == 'satin-panties') {
 				parsedJson.stage = 'limo';
 			} else if (parsedJson.song.toLowerCase() == 'lemon-hell') {
@@ -76,6 +78,8 @@ class Song
 				parsedJson.stage = 'mall';
 			} else if (parsedJson.song.toLowerCase() == 'winter-horrorland') {
 				parsedJson.stage = 'mallEvil';
+			} else if (parsedJson.song.toLowerCase() == 'animal') {
+				parsedJson.stage = 'annieEvil';
 			} else if (parsedJson.song.toLowerCase() == 'senpai' || parsedJson.song.toLowerCase() == 'roses') {
 				parsedJson.stage = 'school';
 			} else if (parsedJson.song.toLowerCase() == 'thorns') {

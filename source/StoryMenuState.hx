@@ -31,11 +31,13 @@ class StoryMenuState extends MusicBeatState
 		['Smash', 'Ridge'],
 		['Judgement', 'Machine-Gun-Kiss', 'Friday-Night'],
 		['Luci-Moment', 'Disappear'],
-		['MC-MENTAL-AT-HIS-BEST', 'MTC']
+		['MC-MENTAL-AT-HIS-BEST', 'MTC'],
+		['Smash'],
+		['Good-Enough', 'Lover', 'Tug-Of-War', 'Animal']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -48,7 +50,9 @@ class StoryMenuState extends MusicBeatState
 		['dad', 'bf', 'gf'],
 		['dad', 'bf', 'gf'],
 		['jay', 'luci', 'bishop'],
-		['jay', 'luci', 'bishop']
+		['jay', 'luci', 'bishop'],
+		['dad', 'bf', 'gf'],
+		['dad', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
@@ -62,7 +66,9 @@ class StoryMenuState extends MusicBeatState
 		"WHERE'S YOUR LIFE LICENSE?",
 		"GAME ABOUT GANGSTERS DOING BAD THINGS",
 		"LUCI STOOPID",
-		"LUCI STOOPID PART 2"
+		"LUCI STOOPID PART 2",
+		"",
+		""
 	];
 
 	var txtWeekTitle:FlxText;

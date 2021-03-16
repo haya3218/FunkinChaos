@@ -324,6 +324,48 @@ class PlayState extends MusicBeatState
 			var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic('assets/images/philly/street.png');
 			add(street);
 		}
+			else if (SONG.song.toLowerCase() == 'good-enough' || SONG.song.toLowerCase() == 'lover' || SONG.song.toLowerCase() == 'tug-of-war' || SONG.stage == 'annie')
+		{
+			curStage = 'annie';
+
+			var bg:FlxSprite = new FlxSprite(-100).loadGraphic('assets/images/annie/philly/sky.png');
+			bg.scrollFactor.set(0.1, 0.1);
+			add(bg);
+
+			var city:FlxSprite = new FlxSprite(-10).loadGraphic('assets/images/annie/philly/city.png');
+			city.scrollFactor.set(0.3, 0.3);
+			city.setGraphicSize(Std.int(city.width * 0.85));
+			city.updateHitbox();
+			add(city);
+
+			phillyCityLights = new FlxTypedGroup<FlxSprite>();
+			add(phillyCityLights);
+
+			for (i in 0...5)
+			{
+				var light:FlxSprite = new FlxSprite(city.x).loadGraphic('assets/images/annie/philly/win' + i + '.png');
+				light.scrollFactor.set(0.3, 0.3);
+				light.visible = false;
+				light.setGraphicSize(Std.int(light.width * 0.85));
+				light.updateHitbox();
+				light.antialiasing = true;
+				phillyCityLights.add(light);
+			}
+
+			var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic('assets/images/annie/philly/behindTrain.png');
+			add(streetBehind);
+
+			phillyTrain = new FlxSprite(2000, 360).loadGraphic('assets/images/annie/philly/train.png');
+			add(phillyTrain);
+
+			trainSound = new FlxSound().loadEmbedded('assets/sounds/car_passes' + TitleState.soundExt);
+			FlxG.sound.list.add(trainSound);
+
+			// var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);
+
+			var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic('assets/images/annie/philly/street.png');
+			add(street);
+		}
 		else if (SONG.song.toLowerCase() == 'milf' || SONG.song.toLowerCase() == 'satin-panties' || SONG.song.toLowerCase() == 'high' || SONG.stage == 'limo')
 		{
 			curStage = 'limo';
@@ -487,6 +529,26 @@ class PlayState extends MusicBeatState
 			add(evilTree);
 
 			var evilSnow:FlxSprite = new FlxSprite(-200, 700).loadGraphic("assets/images/christmas/evilSnow.png");
+			evilSnow.antialiasing = true;
+			add(evilSnow);
+		}
+		else if (SONG.song.toLowerCase() == 'animal' || SONG.stage == 'annieEvil')
+		{
+			curStage = 'annieEvil';
+			var bg:FlxSprite = new FlxSprite(-400, -500).loadGraphic('assets/images/annie/christmas/evilBG.png');
+			bg.antialiasing = true;
+			bg.scrollFactor.set(0.2, 0.2);
+			bg.active = false;
+			bg.setGraphicSize(Std.int(bg.width * 0.8));
+			bg.updateHitbox();
+			add(bg);
+
+			var evilTree:FlxSprite = new FlxSprite(300, -300).loadGraphic('assets/images/annie/christmas/evilTree.png');
+			evilTree.antialiasing = true;
+			evilTree.scrollFactor.set(0.2, 0.2);
+			add(evilTree);
+
+			var evilSnow:FlxSprite = new FlxSprite(-200, 700).loadGraphic("assets/images/annie/christmas/evilSnow.png");
 			evilSnow.antialiasing = true;
 			add(evilSnow);
 		}
@@ -1907,7 +1969,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'philly':
+			case 'philly', 'annie':
 				if (trainMoving)
 				{
 					trainFrameTiming += elapsed;
@@ -3481,7 +3543,7 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
-			case "philly":
+			case "philly", 'annie':
 				if (!trainMoving)
 					trainCooldown += 1;
 

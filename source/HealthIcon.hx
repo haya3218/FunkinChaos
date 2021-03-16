@@ -92,6 +92,10 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [42, 43], 0, false, isPlayer);
 			case 'luci-moment':
 				animation.add('icon', [44, 45], 0, false, isPlayer);
+			case 'annie':
+				animation.add('icon', [47, 48], 0, false, isPlayer);
+			case 'annie-tall':
+				animation.add('icon', [49, 50], 0, false, isPlayer);
 			
 			default:
 				animation.add('icon', [0, 1], 0, false, isPlayer);

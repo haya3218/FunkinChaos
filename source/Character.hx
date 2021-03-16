@@ -1300,6 +1300,42 @@ class Character extends FlxSprite
 				playAnim('idle');
 		
 				flipX = true;
+
+			case 'annie':
+				tex = FlxAtlasFrames.fromSparrow('assets/images/Annie.png', 'assets/images/Annie.xml');
+				frames = tex;
+				animation.addByPrefix('idle', "Pico Idle Dance", 24);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", 21, 26);
+				addOffset("singRIGHT", -83, 10);
+				addOffset("singLEFT", 62, -2);
+				addOffset("singDOWN", -205, -70);
+
+				playAnim('idle');
+
+				flipX = true;
+			
+			case 'annietall':
+				tex = FlxAtlasFrames.fromSparrow('assets/images/AnnieTall.png', 'assets/images/AnnieTall.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'monster idle', 24, false);
+				animation.addByPrefix('singUP', 'monster up note', 24, false);
+				animation.addByPrefix('singDOWN', 'monster down', 24, false);
+				animation.addByPrefix('singLEFT', 'Monster left note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Monster Right note', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", -20, 50);
+				addOffset("singRIGHT", -51);
+				addOffset("singLEFT", -30);
+				addOffset("singDOWN", -40, -94);
+
+				playAnim('idle');
 		}
 
 		dance();

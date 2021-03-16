@@ -10,3 +10,5 @@ schoolEvil
 yakuza
 miku
 trick
+annie
+annieEvil
