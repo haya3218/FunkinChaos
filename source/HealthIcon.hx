@@ -17,9 +17,12 @@ class HealthIcon extends FlxSprite
 		this.char = char;
 
 		// reworked the entire icon system because default shit so it doesnt crash lmfao
+		//ignore the fefe for now i'll make sprites for it lmao
 		antialiasing = true;
 		switch (char) {
 			case 'bf':
+				animation.add('icon', [0, 1], 0, false, isPlayer);
+			case 'fefe':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 			case 'bf-car':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
@@ -89,6 +92,7 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [42, 43], 0, false, isPlayer);
 			case 'luci-moment':
 				animation.add('icon', [44, 45], 0, false, isPlayer);
+			
 			default:
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 		}

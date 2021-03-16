@@ -722,7 +722,7 @@ class PlayState extends MusicBeatState
 		}
 
 //Carol R34 don't leak
-		else if (SONG.song.toLowerCase() == 'Lemon-Hell' ||  SONG.stage == 'lemonhell')
+		else if (SONG.song.toLowerCase() == 'Lemon-Hell' ||	SONG.song.toLowerCase() == 'Fefe' ||  SONG.stage == 'lemonhell')
 			{
 				curStage = 'lemonhell';
 				defaultCamZoom = 0.9;
