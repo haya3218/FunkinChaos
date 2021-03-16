@@ -990,6 +990,10 @@ class PlayState extends MusicBeatState
 				boyfriend.y = 100;
 				camPos.x -= 100;
 				boyfriend.y += 300;
+			case 'annie':
+					boyfriend.y = 100;
+					camPos.x -= 100;
+					boyfriend.y += 300;
 			case 'parents-christmas':
 				boyfriend.y = 100;
 				boyfriend.x -= 500;

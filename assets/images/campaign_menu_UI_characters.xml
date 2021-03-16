@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="campaign_menu_UI_characters.png">
-	<!-- Created with Adobe Animate version 21.0.3.38773 -->
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="BF HEY!!0000" x="0" y="0" width="395" height="416" frameX="0" frameY="0" frameWidth="415" frameHeight="418"/>
 	<SubTexture name="BF HEY!!0001" x="0" y="0" width="395" height="416" frameX="0" frameY="0" frameWidth="415" frameHeight="418"/>
@@ -225,20 +225,34 @@
 	<SubTexture name="SENPAI idle Black Lines0011" x="3565" y="4323" width="336" height="288"/>
 	<SubTexture name="SENPAI idle Black Lines0012" x="3565" y="4323" width="336" height="288"/>
 	<SubTexture name="SENPAI idle Black Lines0013" x="3565" y="4323" width="336" height="288"/>
-	<SubTexture name="spooky dance idle BLACK LINES0000" x="3901" y="4323" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0001" x="3901" y="4323" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0002" x="4282" y="4323" width="379" height="541" frameX="-55" frameY="-8" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0003" x="4282" y="4323" width="379" height="541" frameX="-55" frameY="-8" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0004" x="4661" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0005" x="4661" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0006" x="5018" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0007" x="5018" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0008" x="5372" y="4323" width="492" height="532" frameX="0" frameY="-16" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0009" x="5372" y="4323" width="492" height="532" frameX="0" frameY="-16" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0010" x="5864" y="4323" width="481" height="524" frameX="-7" frameY="-20" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0011" x="5864" y="4323" width="481" height="524" frameX="-7" frameY="-20" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0012" x="4661" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0013" x="4661" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0014" x="5018" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
-	<SubTexture name="spooky dance idle BLACK LINES0015" x="5018" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="annie dance white0000" x="3901" y="4323" width="340" height="433" frameX="-1" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0001" x="3901" y="4323" width="340" height="433" frameX="-1" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0002" x="4241" y="4323" width="343" height="433" frameX="0" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0003" x="4241" y="4323" width="343" height="433" frameX="0" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0004" x="4584" y="4323" width="342" height="434" frameX="0" frameY="0" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0005" x="4584" y="4323" width="342" height="434" frameX="0" frameY="0" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0006" x="4926" y="4323" width="344" height="433" frameX="-1" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0007" x="4926" y="4323" width="344" height="433" frameX="-1" frameY="-1" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0008" x="5270" y="4323" width="341" height="431" frameX="-3" frameY="-4" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0009" x="5270" y="4323" width="341" height="431" frameX="-3" frameY="-4" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0010" x="5611" y="4323" width="335" height="410" frameX="-6" frameY="-19" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0011" x="5611" y="4323" width="335" height="410" frameX="-6" frameY="-19" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0012" x="5946" y="4323" width="338" height="413" frameX="-4" frameY="-18" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="annie dance white0013" x="5946" y="4323" width="338" height="413" frameX="-4" frameY="-18" frameWidth="345" frameHeight="435"/>
+	<SubTexture name="spooky dance idle BLACK LINES0000" x="6284" y="4323" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0001" x="6284" y="4323" width="381" height="549" frameX="-50" frameY="0" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0002" x="6665" y="4323" width="379" height="541" frameX="-55" frameY="-8" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0003" x="6665" y="4323" width="379" height="541" frameX="-55" frameY="-8" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0004" x="7044" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0005" x="7044" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0006" x="7401" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0007" x="7401" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0008" x="0" y="4872" width="492" height="532" frameX="0" frameY="-16" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0009" x="0" y="4872" width="492" height="532" frameX="0" frameY="-16" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0010" x="492" y="4872" width="481" height="524" frameX="-7" frameY="-20" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0011" x="492" y="4872" width="481" height="524" frameX="-7" frameY="-20" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0012" x="7044" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0013" x="7044" y="4323" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0014" x="7401" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0015" x="7401" y="4323" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
 </TextureAtlas>
