@@ -94,7 +94,7 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [44, 45], 0, false, isPlayer);
 			case 'annie':
 				animation.add('icon', [47, 48], 0, false, isPlayer);
-			case 'annie-tall':
+			case 'annietall':
 				animation.add('icon', [49, 50], 0, false, isPlayer);
 			
 			default:
