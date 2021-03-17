@@ -1323,34 +1323,15 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', "Pico Idle Dance", 24);
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE Right0', 24, false);
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
-				animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 
-				if (isPlayer)
-					{
-						addOffset('idle');
-						addOffset("singUP", 18, 31);
-						addOffset("singLEFT", 80, -13);
-						addOffset("singRIGHT", -44, 3);
-						addOffset("singDOWN", 119, -70);
-						addOffset("singUPmiss", 18, 69);
-						addOffset("singLEFTmiss", 94, 36);
-						addOffset("singRIGHTmiss", -23, 55);
-						addOffset("singDOWNmiss", 86, -40);
-					}
-					else
-					{
-						addOffset('idle');
-						addOffset("singUP", -29, 27);
-						addOffset("singRIGHT", -68, -7);
-						addOffset("singLEFT", 65, 9);
-						addOffset("singDOWN", 200, -70);
-						addOffset("singUPmiss", -19, 67);
-						addOffset("singRIGHTmiss", -60, 41);
-						addOffset("singLEFTmiss", 62, 64);
-						addOffset("singDOWNmiss", 210, -28);
-					}
+				addOffset('idle');
+				addOffset("singUP", -29, 27);
+				addOffset("singRIGHT", -68, -7);
+				addOffset("singLEFT", 65, 9);
+				addOffset("singDOWN", 200, -70);
 
 				playAnim('idle');
 

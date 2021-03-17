@@ -1001,6 +1001,11 @@ class PlayState extends MusicBeatState
 			case 'smile':
 				camPos.x += 600;
 				dad.y += 300;
+			case 'annie':
+				camPos.x += 600;
+				dad.y += 300;
+			case 'annietall':
+				dad.y += 130;
 			case 'gaming':
 				dad.setPosition(gf.x, gf.y);
 				gf.visible = false;

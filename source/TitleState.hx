@@ -451,7 +451,7 @@ class TitleState extends MusicBeatState
 			// this sucks so much i hate it
 			// thanks lag
 			case 2:
-				createCoolText(['haya', 'friedfrick', 'smokey555', 'keaton', 'kadedev']);
+				createCoolText(['haya', 'friedfrick', 'smokey555', 'keaton', 'and many others']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -465,7 +465,7 @@ class TitleState extends MusicBeatState
 			case 5:
 				createCoolText(['In association', 'with']);
 			case 7:
-				addMoreText('newgrounds');
+				addMoreText('fullscreen productions');
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
