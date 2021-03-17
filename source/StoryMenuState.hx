@@ -31,7 +31,7 @@ class StoryMenuState extends MusicBeatState
 		['Smash', 'Ridge'],
 		['Judgement', 'Machine-Gun-Kiss', 'Friday-Night'],
 		['Luci-Moment', 'Disappear'],
-		['MC-MENTAL-AT-HIS-BEST', 'MTC'],
+		['MC-MENTAL-AT-HIS-BEST', 'MTC', 'Hell'],
 		['Smash'],
 		['Good-Enough', 'Lover', 'Tug-Of-War', 'Animal']
 	];
@@ -67,7 +67,7 @@ class StoryMenuState extends MusicBeatState
 		"GAME ABOUT GANGSTERS DOING BAD THINGS",
 		"LUCI STOOPID",
 		"LUCI STOOPID PART 2",
-		"",
+		"FUNNE",
 		""
 	];
 
@@ -372,10 +372,24 @@ class StoryMenuState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 1)
-			curDifficulty = 3;
-		if (curDifficulty > 3)
-			curDifficulty = 1;
+		if (weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC' && weekData[curWeek][2] != 'Hell')
+		{
+			if (curDifficulty < 1)
+				curDifficulty = 3;
+			if (curDifficulty > 3)
+				curDifficulty = 1;
+		}
+		else
+		{
+			curDifficulty = 2;
+			sprDifficulty.animation.play('hard');
+			sprDifficulty.offset.x = 20;
+			sprDifficulty.offset.y = 0;
+			if (curDifficulty < 2)
+				curDifficulty = 2;
+			if (curDifficulty > 2)
+				curDifficulty = 2;
+		}
 
 		sprDifficulty.offset.x = 0;
 
@@ -474,7 +488,7 @@ class StoryMenuState extends MusicBeatState
 
 		var stringThing:Array<String> = weekData[curWeek];
 
-		if (weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC')
+		if (weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC' && weekData[curWeek][2] != 'Hell')
 		{
 			for (i in stringThing)
 			{
@@ -488,13 +502,16 @@ class StoryMenuState extends MusicBeatState
 		}
 		else
 		{
-			txtTracklist.text += "\n" + '??????' + "\n" + '??????';
+			txtTracklist.text += "\n" + '??????' + "\n" + '??????' + "\n" + '??????';
 			
 			txtTracklist.text = txtTracklist.text.toUpperCase();
 			
 			txtTracklist.screenCenter(X);
 			txtTracklist.x += 415;
 		}
+
+		if (weekData[curWeek][0] == 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] == 'MTC' && weekData[curWeek][2] == 'Hell')
+			changeDifficulty();
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);

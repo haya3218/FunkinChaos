@@ -368,6 +368,23 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
+			case 'pinwi':
+				// DAD ANIMATION LOADING CODE
+				tex = FlxAtlasFrames.fromSparrow('assets/images/Penguin_Assets.png', 'assets/images/Penguin_Assets.xml');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note right', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'dad sing note LEFT', 24);
+
+				addOffset('idle', 0, -60);
+				addOffset("singUP", -71, -68);
+				addOffset("singRIGHT", 0, -66);
+				addOffset("singLEFT", -10, -50);
+				addOffset("singDOWN", 64, -120);
+
+				playAnim('idle');
 			case 'spooky':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/spooky_kids_assets.png', 'assets/images/spooky_kids_assets.xml');
 				frames = tex;
@@ -934,16 +951,16 @@ class Character extends FlxSprite
 				flipX = true;
 			case 'bf-pixel-dead':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixelsDEAD.png', 'assets/images/weeb/bfPixelsDEAD.xml');
-				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
+				animation.addByPrefix('idle', "BF Dies pixel", 24, false);
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
-				animation.play('firstDeath');
 
+				addOffset('idle');
 				addOffset('firstDeath');
 				addOffset('deathLoop', -37);
 				addOffset('deathConfirm', -37);
-				playAnim('firstDeath');
+				playAnim('idle');
 				// pixel bullshit
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();

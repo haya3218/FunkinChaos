@@ -9,6 +9,8 @@ school
 schoolEvil
 yakuza
 miku
+mikuNew
+swiggly
 trick
 annie
 annieEvil

@@ -22,7 +22,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
-				daBf = 'bf';
+				daBf = 'bf-pixel-dead';
 			case 'bf-yakuza':
 				daBf = 'bf-yakuza';
 			case 'luci-moment':

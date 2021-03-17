@@ -116,6 +116,16 @@ class TitleState extends MusicBeatState
 		shittyReminder.screenCenter(XY);
 		add(shittyReminder);
 
+		var levelInfo:FlxText = new FlxText(0, 550, 0, "", 16);
+		levelInfo.text = "A reminder that chaos is still in very early beta!"
+		 + "\nPlease report all bugs to the github repo.";
+		levelInfo.scrollFactor.set();
+		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, CENTER);
+		levelInfo.updateHitbox();
+		levelInfo.screenCenter(X);
+		add(levelInfo);
+		levelInfo.alpha = 0;
+
 		healthBarBG = new FlxSprite(0, 40).loadGraphic('assets/images/loadingBar.png');
 		/*
 		if (OptionsHandler.options.downScroll)
@@ -182,8 +192,10 @@ class TitleState extends MusicBeatState
 			shittyReminder.color = FlxColor.WHITE;
 			shittyReminder.screenCenter(XY);
 			add(shittyReminder);
+			FlxTween.tween(levelInfo, {alpha: 1, y: 600}, 0.2, {ease: FlxEase.quartInOut});
 			new FlxTimer().start(0.5, function(tmr:FlxTimer)
 			{
+				remove(levelInfo);
 				remove(shittyReminder);
 				startIntro();
 			});
