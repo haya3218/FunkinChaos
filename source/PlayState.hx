@@ -42,6 +42,14 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
+#if sys
+import sys.io.File;
+import haxe.io.Path;
+import openfl.utils.ByteArray;
+import lime.media.AudioBuffer;
+import sys.FileSystem;
+import flash.media.Sound;
+#end
 
 using StringTools;
 
@@ -613,11 +621,37 @@ class PlayState extends MusicBeatState
 			if (SONG.song.toLowerCase() == 'roses')
 			{
 				bgGirls.getScared();
+				var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 1);
+				
+				wiggleShit.effectType = WiggleEffectType.DREAMY;
+				wiggleShit.waveAmplitude = 0.0001;
+				wiggleShit.waveFrequency = 60;
+				wiggleShit.waveSpeed = 0.1;
+
+				bgSky.shader = wiggleShit.shader;
+				bgSchool.shader = wiggleShit.shader;
+				fgTrees.shader = wiggleShit.shader;
+				bgTrees.shader = wiggleShit.shader;
+				bgStreet.shader = wiggleShit.shader;
+				treeLeaves.shader = wiggleShit.shader;
+
+				bgGirls.visible = false;
 			}
 
 			bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
 			bgGirls.updateHitbox();
 			add(bgGirls);
+			if (SONG.song.toLowerCase() == 'roses')
+			{
+				var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 1, 0.1, 3, 1);
+				var waveSpriteGirls = new FlxEffectSprite(bgGirls, [waveEffectFG]);
+				waveSpriteGirls.scale.set(6, 6);
+				waveSpriteGirls.x = bgGirls.x + 60;
+				waveSpriteGirls.y = bgGirls.y + 225;
+				waveSpriteGirls.updateHitbox();
+				waveSpriteGirls.scrollFactor.set(0.9, 0.9);
+				add(waveSpriteGirls);
+			}
 		}
 		else if (SONG.song.toLowerCase() == 'thorns' || SONG.stage == 'schoolEvil')
 		{
@@ -1123,12 +1157,10 @@ class PlayState extends MusicBeatState
 		}
 
 		var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-		var lessFastTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		var evilTrail2 = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
 		var evilTrail3 = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
 
 		var evilGlitchLMAO = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-		var ranbowGlitchLMAO = new FlxRainbowEffect(1, 1, 0.5);
 		if (curStage == 'trick')
 			add(evilTrail3);
 		add(gf);
@@ -1149,10 +1181,11 @@ class PlayState extends MusicBeatState
 			add(evilTrail);
 			dad.velocity.set(1, 1);
 		}
-			
+
+		
 		// add(cutsceneDad);
 		add(dad);
-		add(cutsceneSprite);
+		add(cutsceneSprite);	
 		cutsceneSprite.visible = false;
 		if (curStage == 'mtc')
 		{
@@ -1355,6 +1388,7 @@ class PlayState extends MusicBeatState
 									}
 									else
 									{
+										dad.visible = true;
 										camHUD.visible = true;
 										startCountdown();
 									}	
@@ -1731,12 +1765,28 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
+		{
 			if (SONG.song.toLowerCase() == 'blammed' && SONG.player1 == 'pico')
+			{
+				#if sys
+				vocals = new FlxSound().loadEmbedded(Sound.fromFile("assets/music/" + curSong + "_Voices_Pico" + TitleState.soundExt));
+				#else
 				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices_Pico" + TitleState.soundExt);
+				#end
+			}	
 			else
+			{
+				#if sys
+				vocals = new FlxSound().loadEmbedded(Sound.fromFile("assets/music/" + curSong + "_Voices" + TitleState.soundExt));
+				#else
 				vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices" + TitleState.soundExt);
+				#end
+			}
+		}
 		else
+		{
 			vocals = new FlxSound();
+		}	
 
 		FlxG.sound.list.add(vocals);
 
@@ -2064,6 +2114,8 @@ class PlayState extends MusicBeatState
 				}
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
+
+		wiggleShit.update(Conductor.crochet);
 
 		super.update(elapsed);
 
@@ -3573,7 +3625,6 @@ class PlayState extends MusicBeatState
 				
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		wiggleShit.update(Conductor.crochet);
 
 		// HARDCODING FOR MILF ZOOMS!
 		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)

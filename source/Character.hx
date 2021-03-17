@@ -1126,7 +1126,12 @@ class Character extends FlxSprite
 				addOffset("singLEFT-alt", -30, 15);
 				addOffset("singDOWN-alt", -30, -27);
 
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
 				playAnim('idle');
+
+				antialiasing = false;
 	
 			case 'lucky':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/lucky.png', 'assets/images/lucky.xml');

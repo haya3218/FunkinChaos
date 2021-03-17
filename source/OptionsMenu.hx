@@ -14,7 +14,7 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['DEBUG MENU', 'CREDITS', 'CONTROLS', 'MISC OPTIONS', 'Exit to menu'];
+	var menuItems:Array<String> = ['CREDITS', 'CONTROLS', 'MISC OPTIONS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var alreadySelectedShit:Bool = false;
@@ -25,7 +25,6 @@ class OptionsMenu extends MusicBeatState
 	private var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var shittyNames:Array<String> = [
-		"BROKEN MENU FT. SHIT CODE",
 		"CREDITS, DUH.",
 		"CONTROL SHIZ",
 		"MISC OPTIONS",
