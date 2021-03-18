@@ -46,11 +46,11 @@ class SaveDataState extends MusicBeatState
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		optionList = [
 						{name: "Limit FPS", value: false}, 
-						{name: "Better Charselect", value: false}, 
 						{name: "Notestrum Test", value: false},
 						{name: "No LS Cutscenes", value: false},
 						{name: "Less LS Effect", value: false},
-						{name: "Bold Intro Alphabet", value: true}
+						{name: "Bold Intro Alphabet", value: true},
+						{name: "Cinematic Mode", value: true}
 						// {name: "Sample Option", value: false, int: 0}
 					];
 		// we use a var because if we don't it will read the file each time
@@ -58,11 +58,11 @@ class SaveDataState extends MusicBeatState
 		var curOptions = OptionsHandler.options;
 		preferredSave = curOptions.preferredSave;
 		optionList[0].value = curOptions.fpsLimit;
-		optionList[1].value = curOptions.charSelBetter;
-		optionList[2].value = curOptions.p2noteStrums;
-		optionList[3].value = curOptions.momentCutscene;
-		optionList[4].value = curOptions.momentEffect;
-		optionList[5].value = curOptions.boldText;
+		optionList[1].value = curOptions.p2noteStrums;
+		optionList[2].value = curOptions.momentCutscene;
+		optionList[3].value = curOptions.momentEffect;
+		optionList[4].value = curOptions.boldText;
+		optionList[5].value = curOptions.cinematicMode;
 		// optionList[6].int = curOptions.sampleOption;
 		menuBG.color = 0xFF7194fc;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -170,11 +170,11 @@ class SaveDataState extends MusicBeatState
 	function saveOptions() {
 		OptionsHandler.options = 
 		{
-			"boldText": optionList[5].value,
-			"momentEffect": optionList[4].value,
-			"momentCutscene": optionList[3].value,
-			"p2noteStrums": optionList[2].value,
-			"charSelBetter": optionList[1].value,
+			"cinematicMode": optionList[5].value,
+			"boldText": optionList[4].value,
+			"momentEffect": optionList[3].value,
+			"momentCutscene": optionList[2].value,
+			"p2noteStrums": optionList[1].value,
 			"fpsLimit": optionList[0].value,
 			// just use whatever it is 
 			"preferredSave": preferredSave

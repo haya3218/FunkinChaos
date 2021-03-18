@@ -27,7 +27,7 @@ typedef CharacterMenu = {
 
 class CharMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIENDSECOND', 'PICO', 'DEFAULT'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIENDSECOND', 'DEFAULT'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
@@ -45,8 +45,7 @@ class CharMenu extends MusicBeatState
 
 	var shittyNames:Array<String> = [
 		"BOYFRIEND",
-		"BOYFRIEND AS WELL",
-		"PICO",
+		"SOMEONE HELP ME I AM IN DANGER",
 		"DEFAULT"
 	];
 
@@ -84,8 +83,6 @@ class CharMenu extends MusicBeatState
 		add(txtDescription);
 
 		shitCharacter = new FlxSprite(0, -20);
-		if (!OptionsHandler.options.charSelBetter)
-			shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
 		shitCharacter.scale.set(0.45, 0.45);
 		shitCharacter.updateHitbox();
 		shitCharacter.screenCenter(XY);
@@ -148,31 +145,14 @@ class CharMenu extends MusicBeatState
 					FlxFlicker.flicker(shitCharacter, 0);
 					FlxFlicker.flicker(shitCharacterBetter, 0);
 					PlayState.hasPlayedOnce = true;
+					shitCharacterBetter.playAnim('hey');
 		
 					switch (daSelected)
 					{
-						case "PICO":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'pico';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
 						case "BOYFRIENDSECOND":
 							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'bf';
-							if (PlayState.SONG.song.toLowerCase() == 'mtc')
-								PlayState.SONG.player1 = 'bf-cursed';
-							if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
-								PlayState.SONG.player1 = 'bf-yakuza';
-							if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
-								PlayState.SONG.player1 = 'bf-car';
-							if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
-								PlayState.SONG.player1 = 'bf-christmas';
-							if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
-								PlayState.SONG.player1 = 'bf-pixel';
+							PlayState.SONG.player1 = 'diva';
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								FlxG.switchState(new PlayState());
@@ -250,48 +230,32 @@ class CharMenu extends MusicBeatState
 	function charCheckLmao()
 	{
 		var daSelected:String = menuItems[curSelected];
+		var storedColor:FlxColor = 0xFFFFFF;
 		var charSelected:String = 'bf';
-		if (OptionsHandler.options.charSelBetter)
-		{
-			remove(shitCharacterBetter);
-		}
+		remove(shitCharacterBetter);
 		remove(icon);
 
 		switch (daSelected)
 		{
 			case "PICO":
-				if (!OptionsHandler.options.charSelBetter)
-					shitCharacter.loadGraphic('assets/images/charSelect/new/picodegallo.png');
-
 				charSelected = 'pico';
 				menuBG.loadGraphic('assets/images/charSelect/BG3.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIEND":
-				if (!OptionsHandler.options.charSelBetter)
-					shitCharacter.loadGraphic('assets/images/charSelect/new/pissboyfriend.png');
-				
-				charSelected = 'bf-old';
+				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG1.png');
 				menuBG.color = 0xFFFFFF;
 			case "BOYFRIENDSECOND":
-				if (!OptionsHandler.options.charSelBetter)
-					shitCharacter.loadGraphic('assets/images/charSelect/new/boyfriend.png');
-
-				charSelected = 'bf';
-				menuBG.loadGraphic('assets/images/charSelect/BG2.png');
-				menuBG.color = 0x0351A3;
+				charSelected = 'diva';
+				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
+				menuBG.color = 0xEE82EE;
 			case 'DEFAULT':
-				if (!OptionsHandler.options.charSelBetter)
-					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
-
 				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 				menuBG.color = 0xFFFFFF;
+				storedColor = 0x000000;
 			default:
 				// so it doesnt crash lol
-				if (!OptionsHandler.options.charSelBetter)
-					shitCharacter.loadGraphic('assets/images/charSelect/new/defaultChar.png');
-
 				charSelected = 'bf';
 				menuBG.loadGraphic('assets/images/charSelect/BG4.png');
 				menuBG.color = 0xFFFFFF;
@@ -300,16 +264,13 @@ class CharMenu extends MusicBeatState
 		shitCharacter.updateHitbox();
 		shitCharacter.screenCenter(XY);
 
-		if (OptionsHandler.options.charSelBetter)
-		{
-			shitCharacterBetter = new Boyfriend(0, 0, charSelected);
-			shitCharacterBetter.screenCenter(XY);
-			shitCharacterBetter.antialiasing = true;
-			shitCharacterBetter.setGraphicSize(-5);
-			add(shitCharacterBetter);
-			
-			add(shitCharacterBetter);
-		}
+		shitCharacterBetter = new Boyfriend(0, 0, charSelected);
+		shitCharacterBetter.scale.set(0.7, 0.7);
+		shitCharacterBetter.screenCenter(XY);
+		shitCharacterBetter.antialiasing = true;
+		shitCharacterBetter.playAnim('idleCharacter', true);
+		shitCharacterBetter.color = storedColor;
+		add(shitCharacterBetter);
 
 		var healthBarBG:FlxSprite = new FlxSprite(0, FlxG.height * 0.9).loadGraphic('assets/images/healthBar.png');
 		healthBarBG.screenCenter(X);

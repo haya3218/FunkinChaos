@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import lime.utils.Assets;
 import FreeplayState.SongMetadata;
 import HealthIcon.HealthIcon;
@@ -238,6 +239,13 @@ class BSidesState extends MusicBeatState
 				PlayState.isBSidesMode = true;
 				PlayState.isShitpostMode = false;
 				PlayState.storyDifficulty = curDifficulty;
+
+				if (FlxG.sound.music == null)
+				{
+					FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				}
+
+				FlxG.sound.music.volume == 1;
 				
 				PlayState.storyWeek = songs[curSelected].week;
 				PlayState.autoMode = autoModeSelected;
@@ -295,7 +303,12 @@ class BSidesState extends MusicBeatState
 			intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 			// lerpScore = 0;
 			#end
-			FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+			if (FlxG.sound.music != null)
+				FlxG.sound.music.stop();
+			FlxTimer.globalManager.clear();
+			new FlxTimer(FlxTimer.globalManager).start(1, function(tmr:FlxTimer){
+				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+			});
 			for (i in 0...iconArray.length)
 				{
 					iconArray[i].alpha = 0.6;

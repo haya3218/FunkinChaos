@@ -6,11 +6,11 @@ import sys.io.File;
 #end
 typedef TOptions = {
     var fpsLimit:Bool;
-    var charSelBetter:Bool;
     var p2noteStrums:Bool;
     var momentCutscene:Bool;
     var momentEffect:Bool;
     var boldText:Bool;
+    var cinematicMode:Bool;
     var preferredSave:Int;
 }
 class OptionsHandler {

@@ -102,7 +102,6 @@ class TitleState extends MusicBeatState
 		}
 
 		shittyFPS = OptionsHandler.options.fpsLimit;
-		fuckshit = OptionsHandler.options.charSelBetter;
 		noteStrumShit = OptionsHandler.options.p2noteStrums;
 
 

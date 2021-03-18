@@ -26,8 +26,8 @@ class Note extends FlxSprite
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
-	public static var GREEN_NOTE:Int = 2;
 	public static var BLUE_NOTE:Int = 1;
+	public static var GREEN_NOTE:Int = 2;
 	public static var RED_NOTE:Int = 3;
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
@@ -127,14 +127,14 @@ class Note extends FlxSprite
 
 			switch (noteData)
 			{
+				case 0:
+					animation.play('purpleholdend');
+				case 1:
+					animation.play('blueholdend');
 				case 2:
 					animation.play('greenholdend');
 				case 3:
 					animation.play('redholdend');
-				case 1:
-					animation.play('blueholdend');
-				case 0:
-					animation.play('purpleholdend');
 			}
 
 			updateHitbox();
@@ -143,6 +143,8 @@ class Note extends FlxSprite
 
 			if (PlayState.curStage.startsWith('school'))
 				x += 30;
+
+			offset.y -= 1.25 * PlayState.SONG.speed;
 
 			if (prevNote.isSustainNote)
 			{
@@ -160,7 +162,7 @@ class Note extends FlxSprite
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
-				prevNote.y -= 50;
+				prevNote.offset.y -= 1.25 * PlayState.SONG.speed;
 				// prevNote.setGraphicSize();
 			}
 		}
@@ -173,8 +175,8 @@ class Note extends FlxSprite
 		if (mustPress)
 		{
 			// The * 0.5 us so that its easier to hit them too late, instead of too early
-			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
+			if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
+				&& strumTime <= Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 			{
 				canBeHit = true;
 			}

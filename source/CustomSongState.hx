@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import lime.utils.Assets;
 import FreeplayState.SongMetadata;
 import HealthIcon.HealthIcon;
@@ -250,7 +251,18 @@ class CustomSongState extends MusicBeatState
 			PlayState.isCreditsMode = false;
 			PlayState.isBSidesMode = false;
 			PlayState.storyDifficulty = curDifficulty;
-				
+
+			if (FlxG.sound.music == null)
+			{
+				#if sys
+				FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
+				#else
+				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				#end
+			}
+
+			FlxG.sound.music.volume == 1;
+			
 			PlayState.storyWeek = songs[curSelected].week;
 			PlayState.autoMode = autoModeSelected;
 			trace('CUR WEEK' + PlayState.storyWeek);
@@ -309,11 +321,17 @@ class CustomSongState extends MusicBeatState
 			intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 			// lerpScore = 0;
 			#end
-			#if sys
-			FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
-			#else
-			FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
-			#end
+			if (FlxG.sound.music != null)
+				FlxG.sound.music.stop();
+			FlxTimer.globalManager.clear();
+			new FlxTimer(FlxTimer.globalManager).start(1, function(tmr:FlxTimer){
+				#if sys
+				FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
+				#else
+				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				#end
+			});
+			
 			for (i in 0...iconArray.length)
 				{
 					iconArray[i].alpha = 0.6;
