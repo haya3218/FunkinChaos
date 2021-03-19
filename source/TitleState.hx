@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.util.FlxSave;
 import flixel.FlxG;
@@ -157,6 +160,11 @@ class TitleState extends MusicBeatState
 			FlxG.save.data.preferredSave = 0;
 		}
 
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Starting Game", null);
+		#end
+
 		FlxG.save.close();
 		FlxG.save.bind("save"+preferredSave, 'ninjamuffin99');
 
@@ -197,6 +205,9 @@ class TitleState extends MusicBeatState
 				remove(levelInfo);
 				remove(shittyReminder);
 				startIntro();
+				#if desktop
+				DiscordClient.initialize();
+				#end
 			});
 		});
 	}
@@ -235,6 +246,12 @@ class TitleState extends MusicBeatState
 		}
 
 		Conductor.changeBPM(102);
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Title Screen", null);
+		#end
+		
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -422,6 +439,27 @@ class TitleState extends MusicBeatState
 		textGroup.add(coolText);
 	}
 
+	function createProductionText(textArray:Array<String>)
+	{
+		for (i in 0...textArray.length)
+		{
+			var money:Alphabet = new Alphabet(0, 0, textArray[i], OptionsHandler.options.boldText, false);
+			money.screenCenter(X);
+			money.y += (i * 60) + 50;
+			credGroup.add(money);
+			textGroup.add(money);
+		}
+	}
+
+	function addMoreProductionText(text:String)
+	{
+		var coolText:Alphabet = new Alphabet(0, 0, text, OptionsHandler.options.boldText, false);
+		coolText.screenCenter(X);
+		coolText.y += (textGroup.length * 60) + 50;
+		credGroup.add(coolText);
+		textGroup.add(coolText);
+	}
+
 	function deleteCoolText()
 	{
 		while (textGroup.members.length > 0)
@@ -450,10 +488,10 @@ class TitleState extends MusicBeatState
 			// this sucks so much i hate it
 			// thanks lag
 			case 2:
-				createCoolText(['haya', 'friedfrick', 'smokey555', 'keaton', 'and many others']);
+				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton', 'and many others']);
 			// credTextShit.visible = true;
 			case 3:
-				addMoreText('present');
+				addMoreProductionText('present');
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
 			case 4:
@@ -462,9 +500,9 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['In association', 'with']);
+				createProductionText(['In association', 'with']);
 			case 7:
-				addMoreText('fullscreen productions');
+				addMoreProductionText('fullscreen productions');
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:

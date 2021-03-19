@@ -49,7 +49,7 @@ class CharMenu extends MusicBeatState
 		"SOMEONE HELP ME I AM IN DANGER",
 		"FUNNE MAN KIL FUNNE MAN",
 		"BOX",
-		"THE LUCI",
+		"THE LOUD GUY",
 		"DEFAULT"
 	];
 

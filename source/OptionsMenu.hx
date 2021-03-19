@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -45,6 +48,11 @@ class OptionsMenu extends MusicBeatState
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Options", null);
+		#end
 
 		for (i in 0...menuItems.length)
 		{

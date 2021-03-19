@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.system.FlxSound;
@@ -69,6 +72,11 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		// magenta.scrollFactor.set();
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Main Menu", null);
+		#end
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);

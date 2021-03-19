@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import haxe.rtti.CType.Abstractdef;
 import flash.text.TextField;
 import Section.SwagSection;
@@ -56,6 +59,11 @@ class RemixState extends MusicBeatState
 
 		grpMenuShiz = new FlxTypedGroup<FlxSprite>();
 		add(grpMenuShiz);
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Freeplay", null);
+		#end
 
 		for (i in 0...menuItems.length)
 		{

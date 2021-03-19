@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
@@ -43,6 +46,11 @@ class ControlMenu extends MusicBeatState
 		selector.setFormat("assets/fonts/funke.otf", 75, FlxColor.WHITE, CENTER);
 		selector.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 5.5, 5.5);
 		add(selector);
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Control Menu", null);
+		#end
 
 		for(key => value in Controls.keyboardMap)
 		{

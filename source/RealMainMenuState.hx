@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+#end
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.system.FlxSound;
@@ -90,6 +93,11 @@ class RealMainMenuState extends MusicBeatState
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
+
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Main Menu", null);
+		#end
 
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/select_menu_assets.png', 'assets/images/select_menu_assets.xml');
 
