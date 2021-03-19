@@ -58,6 +58,7 @@ class PlayState extends MusicBeatState
 {
 	public static var curStage:String = '';
 	public static var curCharacter:String = '';
+	public static var nextChar:String = 'bf';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
 	public static var isBSidesMode:Bool = false;
@@ -1474,22 +1475,14 @@ class PlayState extends MusicBeatState
 	 * hi kade
 	 */
 	function updateAccuracy()
-		{
-			totalPlayed += 1;
-			accuracy = totalNotesHit / totalPlayed * 100;
-			trace(totalNotesHit + '/' + totalPlayed + '* 100 = ' + accuracy);
-			if (accuracy >= 100.00)
-			{
-				if (ss && misses == 0)
-					accuracy = 100.00;
-				else
-				{
-					accuracy = 99.98;
-					ss = false;
-				}
-			}
-		
-		}
+	{
+		if (misses > 0 || accuracy < 96)
+			ss = false;
+		else
+			ss = true;
+		totalPlayed += 1;
+		accuracy = totalNotesHit / totalPlayed * 100;
+	}
 
 	 /**
 	 * DIALOGUE INTRO SHIT
@@ -2127,9 +2120,9 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (!autoMode)
-			scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%";
+			scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% " + (ss ? "| FC" : misses == 0 ? "| A" : accuracy <= 75 ? "| BAD" : "");
 		else if (autoMode)
-			scoreTxt.text = "AUTO IS ENABLED | Accuracy:" + truncateFloat(accuracy, 2) + "%";
+			scoreTxt.text = "AUTO IS ENABLED | Accuracy:" + truncateFloat(accuracy, 2) + "% " + (ss ? "| FC" : misses == 0 ? "| AUTOFAIL" : "");
 		else if (OptionsHandler.options.cinematicMode)
 			scoreTxt.text = "";
 		scoreTxt.screenCenter(X);
@@ -2909,7 +2902,7 @@ class PlayState extends MusicBeatState
 				daTiming = 'early';
 				totalNotesHit += 0.65;
 				score = 200;
-				ss = false;
+				ss = true;
 			}
 			else if (noteDiff < Conductor.safeZoneOffset * -0.2)
 			{
@@ -2917,7 +2910,7 @@ class PlayState extends MusicBeatState
 				daTiming = 'late';
 				totalNotesHit += 0.65;
 				score = 200;
-				ss = false;
+				ss = true;
 			}
 			else if (noteDiff > Conductor.safeZoneOffset * 0.1)
 			{
@@ -2927,7 +2920,11 @@ class PlayState extends MusicBeatState
 				ss = true;
 			}
 		if (daRating == 'sick')
+		{
 			totalNotesHit += 1;
+			ss = true;
+		}
+	
 	
 		trace('hit ' + daRating);
 
@@ -3280,6 +3277,8 @@ class PlayState extends MusicBeatState
 				}
 				combo = 0;
 				misses += 1;
+
+				updateAccuracy();
 	
 				songScore -= 10;
 
@@ -3322,6 +3321,7 @@ class PlayState extends MusicBeatState
 			var hitNote:Bool = false;
 			var dupNote:Bool = false;
 			var missDir:Int = 0;
+			updateAccuracy();
 			for (i in 0...5)
 			{
 				if (note != null)
@@ -3378,8 +3378,6 @@ class PlayState extends MusicBeatState
 					missQueue.missed = true;
 				}
 			}
-
-			updateAccuracy();
 		}
 	
 		function noteCheck(keyP:Bool, controlList:Array<Bool>, note:Note):Void
@@ -3403,6 +3401,8 @@ class PlayState extends MusicBeatState
 				}
 				else
 					totalNotesHit += 1;
+
+				updateAccuracy();
 	
 				if (note.noteData >= 0)
 					health += 0.023;
@@ -3442,8 +3442,6 @@ class PlayState extends MusicBeatState
 					notes.remove(note, true);
 					note.destroy();
 				}
-
-				updateAccuracy();
 			}
 		}
 
@@ -3496,6 +3494,8 @@ class PlayState extends MusicBeatState
 					notes.remove(note, true);
 					note.destroy();
 				}
+
+				updateAccuracy();
 			}
 		}
 
