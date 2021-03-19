@@ -503,16 +503,16 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
 				if (isPlayer)
 					{
-						animation.addByPrefix('singLEFT', 'Pico NOTE Right0', 24, false);
-						animation.addByPrefix('singRIGHT', 'Pico Note LEFT0', 24, false);
+						animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+						animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
 						animation.addByPrefix('singRIGHTmiss', 'Pico Note LEFT Miss', 24, false);
 						animation.addByPrefix('singLEFTmiss', 'Pico NOTE Right miss', 24, false);
 					}
 					else
 					{
 						// Need to be flipped! REDO THIS LATER!
-						animation.addByPrefix('singLEFT', 'Pico Note LEFT0', 24, false);
-						animation.addByPrefix('singRIGHT', 'Pico NOTE Right0', 24, false);
+						animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
+						animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 						animation.addByPrefix('singRIGHTmiss', 'Pico NOTE Right miss', 24, false);
 						animation.addByPrefix('singLEFTmiss', 'Pico Note Left Miss', 24, false);
 					}
@@ -1334,15 +1334,15 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', "Pico Idle Dance", 24);
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
-				animation.addByPrefix('singLEFT', 'Pico Note LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'Pico NOTE Right0', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
 
 				addOffset('idle');
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -68, -7);
-				addOffset("singLEFT", 65, 9);
-				addOffset("singDOWN", 200, -70);
+				addOffset("singUP", 20, 27);
+				addOffset("singRIGHT", -82, 9);
+				addOffset("singLEFT", 61, -1);
+				addOffset("singDOWN", -204, -70);
 
 				playAnim('idle');
 
