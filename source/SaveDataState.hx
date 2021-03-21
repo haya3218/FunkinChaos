@@ -40,6 +40,7 @@ class SaveDataState extends MusicBeatState
 	var inOptionsMenu:Bool = false;
 	var optionsSelected:Int = 0;
 	var checkmarks:FlxTypedSpriteGroup<FlxSprite>;
+	var checkmarks2:FlxTypedSpriteGroup<FlxSprite>;
 	var preferredSave:Int = 0;
 	var scoreBG:FlxSprite;
 	override function create()
@@ -53,8 +54,8 @@ class SaveDataState extends MusicBeatState
 						{name: "No LS Cutscenes", value: false},
 						{name: "Less LS Effect", value: false},
 						{name: "Bold Intro Alphabet", value: true},
-						{name: "Cinematic Mode", value: true},
-						{name: "Modifier Menu", value: true}
+						{name: "Cinematic Mode", value: false},
+						{name: "Modifier Menu", value: false}
 						// {name: "Sample Option", value: false, int: 0}
 					];
 		// we use a var because if we don't it will read the file each time
@@ -77,6 +78,7 @@ class SaveDataState extends MusicBeatState
 		trace("before");
 		trace("x3");
 		checkmarks = new FlxTypedSpriteGroup<FlxSprite>();
+		checkmarks2 = new FlxTypedSpriteGroup<FlxSprite>();
 		options = new FlxTypedSpriteGroup<Alphabet>();
 		trace("hmmm");
 		for (j in 0...optionList.length) 
@@ -85,13 +87,22 @@ class SaveDataState extends MusicBeatState
 			var swagOption = new Alphabet(0,0,optionList[j].name,true,false);
 			swagOption.isOptionItem = true;
 			swagOption.targetY = j;
-			swagOption.x += 50;
+			swagOption.x += 150;
 			trace("l57");
-			var coolCheckmark = new FlxSprite().loadGraphic('assets/images/checkmark.png');
-
+			var coolCheckmark = new FlxSprite(0, -15).loadGraphic('assets/images/on.png');
+			var coolCheckmark2 = new FlxSprite(0, -15).loadGraphic('assets/images/off.png');
+			coolCheckmark.scale.set(1.1, 1.1);
+			coolCheckmark2.scale.set(1.1, 1.1);
+			coolCheckmark.updateHitbox();
+			coolCheckmark2.updateHitbox();
 			coolCheckmark.visible = optionList[j].value;
+			coolCheckmark2.visible = !optionList[j].value;
 			checkmarks.add(coolCheckmark);
+			checkmarks2.add(coolCheckmark2);
 			swagOption.add(coolCheckmark);
+			swagOption.add(coolCheckmark2);
+			coolCheckmark.x -= 130;
+			coolCheckmark2.x -= 130;
 			options.add(swagOption);
 		}
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 64);
@@ -117,6 +128,8 @@ class SaveDataState extends MusicBeatState
 		super.create();
 	}
 
+	var decider:Bool = false;
+
 	override function update(elapsed:Float) 
 	{
 		super.update(elapsed);
@@ -138,8 +151,10 @@ class SaveDataState extends MusicBeatState
 		if (controls.ACCEPT) 
 		{
 			checkmarks.members[optionsSelected].visible = !checkmarks.members[optionsSelected].visible;
+			checkmarks2.members[optionsSelected].visible = !checkmarks.members[optionsSelected].visible;
 			optionList[optionsSelected].value = checkmarks.members[optionsSelected].visible;
 			saveOptions();
+			changeSelection();
 			FlxG.sound.play('assets/sounds/confirmMenu.ogg');
 		}
 
@@ -169,6 +184,21 @@ class SaveDataState extends MusicBeatState
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
+			}
+
+			if (optionList[optionsSelected].value)
+			{
+				if (item.targetY == 0)
+				{
+					item.color = 0xFFFF00;
+				}
+			}
+			else
+			{
+				if (item.targetY == 0)
+				{
+					item.color = FlxColor.WHITE;
+				}
 			}
 		}
 	}

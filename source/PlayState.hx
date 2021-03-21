@@ -3648,9 +3648,12 @@ class PlayState extends MusicBeatState
 					if (Math.abs(note.noteData) == spr.ID)
 					{
 						spr.animation.play('confirm', true);
-						spr.centerOffsets();
-						spr.offset.x -= 13;
-						spr.offset.y -= 13;
+						if (!curStage.startsWith('school'))
+						{
+							spr.centerOffsets();
+							spr.offset.x -= 13;
+							spr.offset.y -= 13;
+						}
 					}
 				});
 	
@@ -3844,11 +3847,35 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (curSong.toLowerCase() == 'mc-mental-at-his-best' && curBeat >= 454 && curBeat < 518 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.015;
+			camHUD.zoom += 0.03;
+			camHUD.angle = 180;
+		}
+
+		if (curSong.toLowerCase() == 'mc-mental-at-his-best' && curBeat >= 519 && curBeat < 679 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.025;
+			camHUD.zoom += 0.06;
+			camHUD.angle = 180;
+		}
+
+		if (curSong.toLowerCase() == 'mc-mental-at-his-best' && curBeat >= 680 && curBeat < 712 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.015;
+			camHUD.zoom += 0.03;
+			camHUD.angle = 180;
+		}
+
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
 			if (!cameraUpside)
 			{
 				FlxG.camera.angle = 0;
+			}
+			if (curSong.toLowerCase() != 'mc-mental-at-his-best')
+			{
 				camHUD.angle = 0;
 			}
 			FlxG.camera.zoom += 0.015;
