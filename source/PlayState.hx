@@ -157,6 +157,7 @@ class PlayState extends MusicBeatState
 	var trueScore:Int = 0;
 	var scoreTxt:FlxText;
 	var fakeFramerate:Int = 0;
+	var doof:DialogueBox;
 
 	public static var campaignScore:Int = 0;
 
@@ -276,6 +277,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile('assets/data/b-sides-roses/rosesDialogue.txt');
 			case 'b-sides-thorns':
 				dialogue = CoolUtil.coolTextFile('assets/data/b-sides-thorns/thornsDialogue.txt');
+			case 'philly':
+				dialogue = CoolUtil.coolTextFile('assets/data/philly/phillyDialogue.txt');
 			case 'luci-moment':
 				if (FlxG.random.bool(10))
 				{
@@ -1270,7 +1273,7 @@ class PlayState extends MusicBeatState
 			add(evilTrail2);
 		add(boyfriend);
 
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
+		doof = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
@@ -1482,6 +1485,8 @@ class PlayState extends MusicBeatState
 				case 'dadbattle':
 					schoolIntro(doof);
 				case 'tutorial':
+					schoolIntro(doof);
+				case 'philly':
 					schoolIntro(doof);
 				case 'disappear':
 					schoolIntro(doof);
@@ -2212,7 +2217,10 @@ class PlayState extends MusicBeatState
 			camHUD.x = Math.sin(songTime)*97 * 1*2;
 		}
 
-		
+		if (doof.cutsceneShitTest && inCutscene)
+			dad.playAnim('singUP', true);
+		else
+			trace('gone');
 
 		var changeIcon:Bool = false;
 

@@ -35,6 +35,8 @@ class DialogueBox extends FlxSpriteGroup
 	var portraitLeft2:FlxSprite;
 	var portraitLeft3:FlxSprite;
 	var portraitLeft4:FlxSprite;
+	var portraitPcio:FlxSprite;
+	public var cutsceneShitTest:Bool = false;
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -76,12 +78,15 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.alpha = 0;
 		add(bgFade);
 
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
+		if (PlayState.SONG.song.toLowerCase() != 'philly')
 		{
-			bgFade.alpha += (1 / 5) * 0.7;
-			if (bgFade.alpha > 0.7)
-				bgFade.alpha = 0.7;
-		}, 5);
+			new FlxTimer().start(0.83, function(tmr:FlxTimer)
+			{
+				bgFade.alpha += (1 / 5) * 0.7;
+				if (bgFade.alpha > 0.7)
+					bgFade.alpha = 0.7;
+			}, 5);
+		}	
 
 		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
@@ -163,6 +168,14 @@ class DialogueBox extends FlxSpriteGroup
 		add(portraitLeft4);
 		portraitLeft4.visible = false;
 
+		portraitPcio = new FlxSprite(0, 20);
+		portraitPcio.frames = FlxAtlasFrames.fromSparrow('assets/images/pcio.png', 'assets/images/portrait.xml');
+		portraitPcio.animation.addByPrefix('enter', 'Portrait Enter', 24, false);
+		portraitPcio.updateHitbox();
+		portraitPcio.scrollFactor.set();
+		add(portraitPcio);
+		portraitPcio.visible = false;
+
 		box = new FlxSprite(345, 45);
 
 		switch (PlayState.SONG.song.toLowerCase())
@@ -221,18 +234,18 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = FlxAtlasFrames.fromSparrow('assets/images/speech_bubble_talking.png',
 				'assets/images/speech_bubble_talking.xml');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByPrefix('normal', 'speech bubble normal', 24, false);
+				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
+		}
+		if (PlayState.curStage != 'school' || PlayState.curStage != 'schoolEvil')
+		{
+			box.y += 320;
+			box.x += 500;
 		}
 
 		box.animation.play('normalOpen');
 		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 
-		if (PlayState.curStage != 'school' || PlayState.curStage != 'schoolEvil')
-		{
-			box.y += 320;
-			box.x += 500;
-		}
 		box.updateHitbox();
 		add(box);
 
@@ -360,7 +373,10 @@ class DialogueBox extends FlxSpriteGroup
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						box.alpha -= 1 / 5;
-						bgFade.alpha -= 1 / 5 * 0.7;
+						if (PlayState.SONG.song.toLowerCase() != 'philly')
+							bgFade.alpha -= 1 / 5 * 0.7;
+
+						cutsceneShitTest = false;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
 						portraitRightGF.visible = false;
@@ -368,6 +384,7 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft2.visible = false;
 						portraitLeft3.visible = false;
 						portraitLeft4.visible = false;
+						portraitPcio.visible = false;
 
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
@@ -406,32 +423,22 @@ class DialogueBox extends FlxSpriteGroup
 			switch (curCharacter)
 			{
 				case 'dad':
-					if (PlayState.SONG.song.toLowerCase() != 'luci-moment')
-						soundPerChar = 'dearestText';
-					else
-						soundPerChar = 'mikuText';
+					soundPerChar = 'dearestText';
+				case 'pcio':
+					soundPerChar = 'dearestText';
+				case 'brother':
+					soundPerChar = 'dearestText';
+				case 'carlos':
+					soundPerChar = 'dearestText';
 				case 'bf':
 					soundPerChar = 'boyfriendText';
 				case 'gf':
 					soundPerChar = 'gfText';
+				case 'miku':
+					soundPerChar = 'mikuText';
 			}
 		}
-		switch (curCharacter)
-		{
-			case 'dad':
-				soundPerChar = 'dearestText';
-			case 'brother':
-				soundPerChar = 'dearestText';
-			case 'carlos':
-				soundPerChar = 'dearestText';
-			case 'bf':
-				soundPerChar = 'boyfriendText';
-			case 'gf':
-				soundPerChar = 'gfText';
-			case 'miku':
-				soundPerChar = 'mikuText';
-		}
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses')
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
 			soundPerChar = 'pixelText';
 		}
@@ -447,6 +454,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeft2.visible = false;
 				portraitLeft3.visible = false;
 				portraitLeft4.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
@@ -460,6 +468,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeft2.visible = false;
 				portraitLeft3.visible = false;
 				portraitLeft4.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
@@ -473,6 +482,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeft2.visible = false;
 				portraitLeft3.visible = false;
 				portraitLeft4.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitRightGF.visible)
 				{
 					portraitRightGF.visible = true;
@@ -486,6 +496,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRightGF.visible = false;
 				portraitLeft3.visible = false;
 				portraitLeft4.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitLeft2.visible)
 				{
 					portraitLeft2.visible = true;
@@ -499,6 +510,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRightGF.visible = false;
 				portraitLeft2.visible = false;
 				portraitLeft4.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitLeft3.visible)
 				{
 					portraitLeft3.visible = true;
@@ -512,12 +524,27 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRightGF.visible = false;
 				portraitLeft2.visible = false;
 				portraitLeft3.visible = false;
+				portraitPcio.visible = false;
 				if (!portraitLeft4.visible)
 				{
 					portraitLeft4.visible = true;
 					if (allowBoxFlipping)
 						box.flipX = true;
 					portraitLeft4.animation.play('enter');
+				}
+			case 'pcio':
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				portraitRightGF.visible = false;
+				portraitLeft2.visible = false;
+				portraitLeft3.visible = false;
+				portraitLeft4.visible = false;
+				if (!portraitPcio.visible)
+				{
+					portraitPcio.visible = true;
+					if (allowBoxFlipping)
+						box.flipX = true;
+					portraitPcio.animation.play('enter');
 				}
 		}
 	}
@@ -527,5 +554,9 @@ class DialogueBox extends FlxSpriteGroup
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
 		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
+		if (dialogueList[0] == 'HAHAHAHAHA')
+			cutsceneShitTest = true;
+		else
+			cutsceneShitTest = false;
 	}
 }

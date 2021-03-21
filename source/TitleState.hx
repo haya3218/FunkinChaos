@@ -41,6 +41,7 @@ class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;
 	public static var nof:Bool = false;
+	public static var thefunny:Array<String> = [];
 	static public var soundExt:String = ".mp3";
 
 	var blackScreen:FlxSprite;
@@ -69,6 +70,7 @@ class TitleState extends MusicBeatState
 	private var healthBar:FlxBar;
 
 	var doneTalking:Bool = false;
+	public static var modListOn:Bool = false;
 
 	override public function create():Void
 	{
@@ -77,6 +79,19 @@ class TitleState extends MusicBeatState
 		OptionsMenu.onshit3 = 'off';
 		shittyPieceofShitScreenDetectorCosImDumbLmao = false;
 		Polymod.init({modRoot: "mods", dirs: ['introMod']});
+
+		if (modListOn)
+		{
+			thefunny = FlxG.random.getObject(CoolUtil.coolTextArray('mods/modList.txt'));
+		}
+		else
+		{
+			trace('WONT LOAD MODS COS MOD LOADING IS OFF');
+			thefunny = [
+				"off",
+				"assets/"
+			];
+		}
 
 		#if (!web)
 		TitleState.soundExt = '.ogg';
