@@ -100,7 +100,7 @@ class StoryMenuState extends MusicBeatState
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)
-				FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+				FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
 		}
 
 		persistentUpdate = persistentDraw = true;
@@ -345,7 +345,19 @@ class StoryMenuState extends MusicBeatState
 				// character shit
 				FlxG.sound.play('assets/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
 
-				grpWeekText.members[curWeek].startFlashing();
+				switch (curDifficulty)
+				{
+					case 1:
+						grpWeekText.members[curWeek].startFlashing();
+					case 2:
+						if (curDifficulty == 2 && weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC' && weekData[curWeek][2] != 'Hell')
+							grpWeekText.members[curWeek].startFlashingRed();
+						else if (curDifficulty == 2)
+							grpWeekText.members[curWeek].startFlashing();
+					case 3:
+						grpWeekText.members[curWeek].startFlashingRed();
+				}
+				
 				grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1] + 'Confirm');
 				stopspamming = true;
 			}
@@ -371,7 +383,10 @@ class StoryMenuState extends MusicBeatState
 			PlayState.autoMode = autoModeSelected;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				FlxG.switchState(new ModifierState());
+				if (OptionsHandler.options.modifierMenu)
+					FlxG.switchState(new ModifierState());
+				else
+					FlxG.switchState(new PlayState());
 			});
 		}
 	}

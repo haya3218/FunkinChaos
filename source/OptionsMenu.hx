@@ -38,6 +38,11 @@ class OptionsMenu extends MusicBeatState
 
 	override function create()
 	{
+		if (!FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+		}
+		
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		menuBG.color = 0xCE27E2;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));

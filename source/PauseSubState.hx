@@ -27,9 +27,9 @@ class PauseSubState extends MusicBeatSubstate
 		super();
 
 		if (PlayState.isStoryMode)
-			menuItems = ['Resume', 'Restart Song', 'Skip Song', 'Exit to menu'];
+			menuItems = ['Resume', 'Restart Song', 'Skip Song', 'Practice', 'Autoplay', 'Exit to menu'];
 		else
-			menuItems = ['Resume', 'Restart Song', 'Exit to menu'];
+			menuItems = ['Resume', 'Restart Song', 'Practice', 'Autoplay', 'Exit to menu'];
 
 		pauseMusic = new FlxSound();
 		pauseMusic.loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
@@ -113,6 +113,28 @@ class PauseSubState extends MusicBeatSubstate
 				case "Skip Song":
 					PlayState.skippedSong = true;
 					close();
+				case "Practice":
+					if (!PlayState.practiceMode)
+					{
+						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						PlayState.practiceMode = true;
+					}
+					else
+					{
+						FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+						PlayState.practiceMode = false;
+					}
+				case "Autoplay":
+					if (!PlayState.autoMode)
+					{
+						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						PlayState.autoMode = true;
+					}
+					else
+					{
+						FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+						PlayState.autoMode = false;
+					}
 				case "Exit to menu":
 					TitleState.deathCounter = 0;
 					if (PlayState.isStoryMode)

@@ -55,51 +55,25 @@ class ModifierState extends MusicBeatState
 		multiTxt.scrollFactor.set();
 		// save between files
 		if (modifiers == null) {
-			if (PlayState.isStoryMode)
-			{
-				modifiers = [
-					{name: "Perfect", value: false, conflicts: [1,2,3,4,5,6,7,8,9], multi: 3, times: true},
-					{name:"FC Mode", value: false, conflicts: [0,2,3,4,5,6,7,8,9], multi: 2, times: true},
-					{name: "Practice", value: false, conflicts: [0,1], multi: 0, times:true},
-					{name: "HP Gain P", value: false, conflicts: [0,1,4], multi: -0.5},
-					{name: "HP Gain M", value: false, conflicts: [0,1,3], multi: 0.5},
-					 {name: "HP Loss P", value: false, conflicts: [0,1,6], multi: 0.5},
-					 {name: "HP Loss M", value: false, conflicts: [0,1,5], multi: -0.5},
-					{name: "Sup Love", value: false, conflicts: [0,1,8], multi: -0.4},
-					{name: "Psn Fright", value: false, conflicts: [0,1,7], multi: 0.4},
-					{name: "Paparazzi", value: false, conflicts: [0,1], multi: 1},
-					{name: "Flip Notes", value: false, conflicts: [], multi: 0.5},
-					{name: "Slow Notes", value: false, conflicts: [12,13], multi: -0.3},
-					{name: "Fast Notes", value: false, conflicts: [11,13], multi: 0.8},
-					{name : "Accel Notes", value: false, conflicts: [11,12], multi: 0.4},
-					{name : "Upside Down", value: false, conflicts: [], multi: 0.4},
-					{name : "Earthquake", value: false, conflicts: [], multi: 0.4},
-					{name: "z", value: false, conflicts: [], multi: 1, times:true}
-				];
-			}
-			else if (!PlayState.isStoryMode)
-			{
-				modifiers = [
-					{name: "Perfect", value: false, conflicts: [1,2,3,4,5,6,7,8,9], multi: 3, times: true},
-					{name:"FC Mode", value: false, conflicts: [0,2,3,4,5,6,7,8,9], multi: 2, times: true},
-					{name: "Practice", value: false, conflicts: [0,1], multi: 0, times:true},
-					{name: "HP Gain P", value: false, conflicts: [0,1,4], multi: -0.5},
-					{name: "HP Gain M", value: false, conflicts: [0,1,3], multi: 0.5},
-					 {name: "HP Loss P", value: false, conflicts: [0,1,6], multi: 0.5},
-					 {name: "HP Loss M", value: false, conflicts: [0,1,5], multi: -0.5},
-					{name: "Sup Love", value: false, conflicts: [0,1,8], multi: -0.4},
-					{name: "Psn Fright", value: false, conflicts: [0,1,7], multi: 0.4},
-					{name: "Paparazzi", value: false, conflicts: [0,1], multi: 1},
-					{name: "Flip Notes", value: false, conflicts: [], multi: 0.5},
-					{name: "Slow Notes", value: false, conflicts: [12,13], multi: -0.3},
-					{name: "Fast Notes", value: false, conflicts: [11,13], multi: 0.8},
-					{name : "Accel Notes", value: false, conflicts: [11,12], multi: 0.4},
-					{name : "Upside Down", value: false, conflicts: [], multi: 0.4},
-					{name : "Earthquake", value: false, conflicts: [], multi: 0.4},
-					{name: "Autoplay", value: false, conflicts: [0,1], multi: 0, times:true},
-					{name: "z", value: false, conflicts: [], multi: 1, times:true}
-				];
-			}
+			modifiers = [
+				{name: "Sick Mode", value: false, conflicts: [1,2,3,4,5,6,7,8,9], multi: 3, times: true},
+				{name:"FC Mode", value: false, conflicts: [0,2,3,4,5,6,7,8,9], multi: 2, times: true},
+				{name: "Practice Mode", value: false, conflicts: [0,1,19], multi: 0, times:true},
+				{name: "Health Gain Up", value: false, conflicts: [0,1,4], multi: -0.5},
+				{name: "Health Gain Down", value: false, conflicts: [0,1,3], multi: 0.5},
+			 	{name: "Health Loss Up", value: false, conflicts: [0,1,6], multi: 0.5},
+			 	{name: "Health Loss Down", value: false, conflicts: [0,1,5], multi: -0.5},
+				{name: "Sup Love", value: false, conflicts: [0,1,8], multi: -0.4},
+				{name: "Poison Fright", value: false, conflicts: [0,1,7], multi: 0.4},
+				{name: "Fragile Funkin", value: false, conflicts: [0,1], multi: 1},
+				{name: "Flipped Notes", value: false, conflicts: [15], multi: 0.5},
+				{name: "Slow Notes", value: false, conflicts: [12,13], multi: -0.3},
+				{name: "Fast Notes", value: false, conflicts: [11,13], multi: 0.8},
+				{name : "Accel Notes", value: false, conflicts: [11,12], multi: 0.4},
+				{name : "Upside Down", value: false, conflicts: [], multi: 0.4},
+				{name : "Earthquake", value: false, conflicts: [], multi: 0.4},
+				{name: "z", value: false, conflicts: [], multi: 1, times:true}
+			];
 		}
 
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/Modifiers.png', 'assets/images/Modifiers.xml');

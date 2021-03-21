@@ -62,17 +62,21 @@ class BSidesState extends MusicBeatState
 		
 		addWeek(['B-Sides-Tutorial', 'B-Sides-Bopeebo', 'B-Sides-Fresh', 'B-Sides-Dadbattle'], 1, ['gf', 'dad', 'dad', 'dad']);
 
-		addWeek(['B-Sides-Spookeez', 'B-Sides-South', 'B-Sides-Monster'], 2, ['spooky', 'spooky', 'monster']);
+		addWeek(['B-Sides-Spookeez', 'B-Sides-South'], 2, ['spooky']);
 
 		addWeek(['B-Sides-Pico', 'B-Sides-Philly', 'B-Sides-Blammed'], 3, ['pico']);
 
 		addWeek(['B-Sides-Satin-Panties', 'B-Sides-High', 'B-Sides-Milf'], 4, ['mom']);
 
+		addWeek(['B-Sides-Cocoa', 'B-Sides-Eggnog', 'B-Sides-Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
+
+		addWeek(['B-Sides-Senpai', 'B-Sides-Roses', 'B-Sides-Thorns'], 6, ['senpai', 'senpai', 'spirit']);
+
 		/* 
 			if (FlxG.sound.music != null)
 			{
 				if (!FlxG.sound.music.playing)
-					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
 			}
 		 */
 
@@ -224,7 +228,7 @@ class BSidesState extends MusicBeatState
 			if (controls.BACK)
 				{
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
 					FlxG.switchState(new RemixState());
 				}
 
@@ -243,17 +247,20 @@ class BSidesState extends MusicBeatState
 				PlayState.isShitpostMode = false;
 				PlayState.storyDifficulty = curDifficulty;
 
-				if (FlxG.sound.music == null)
+				if (!FlxG.sound.music.playing)
 				{
 					FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 				}
 
-				FlxG.sound.music.volume == 1;
+				FlxG.sound.music.volume = 1;
 				
 				PlayState.storyWeek = songs[curSelected].week;
 				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
-				FlxG.switchState(new ModifierState());
+				if (OptionsHandler.options.modifierMenu)
+					FlxG.switchState(new ModifierState());
+				else
+					FlxG.switchState(new CharMenu());
 		}
 
 		/*

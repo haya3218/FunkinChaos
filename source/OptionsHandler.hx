@@ -11,6 +11,7 @@ typedef TOptions = {
     var momentEffect:Bool;
     var boldText:Bool;
     var cinematicMode:Bool;
+    var modifierMenu:Bool;
     var preferredSave:Int;
 }
 class OptionsHandler {

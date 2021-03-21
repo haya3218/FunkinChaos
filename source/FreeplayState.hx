@@ -75,7 +75,7 @@ class FreeplayState extends MusicBeatState
 			if (FlxG.sound.music != null)
 			{
 				if (!FlxG.sound.music.playing)
-					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
 			}
 		 */
 
@@ -227,7 +227,7 @@ class FreeplayState extends MusicBeatState
 			if (controls.BACK)
 				{
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-					FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
 					FlxG.switchState(new RemixState());
 				}
 
@@ -254,18 +254,21 @@ class FreeplayState extends MusicBeatState
 				PlayState.isShitpostMode = false;
 				PlayState.storyDifficulty = curDifficulty;
 
-				if (FlxG.sound.music == null)
+				if (!FlxG.sound.music.playing)
 				{
 					FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 				}
 
-				FlxG.sound.music.volume == 1;
+				FlxG.sound.music.volume = 1;
 				
 				PlayState.storyWeek = songs[curSelected].week;
 				PlayState.autoMode = autoModeSelected;
 				trace('CUR WEEK' + PlayState.storyWeek);
 				trace('CURRENT SONG:' + poop.toUpperCase());
-				FlxG.switchState(new ModifierState());
+				if (OptionsHandler.options.modifierMenu)
+					FlxG.switchState(new ModifierState());
+				else
+					FlxG.switchState(new CharMenu());
 		}
 
 		/*

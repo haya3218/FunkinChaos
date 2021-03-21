@@ -74,15 +74,15 @@ class Song
 				parsedJson.stage = 'lemonhell';
 			} else if (parsedJson.song.toLowerCase() == 'mtc') {
 				parsedJson.stage = 'mtc';
-			} else if (parsedJson.song.toLowerCase() == 'cocoa' || parsedJson.song.toLowerCase() == 'eggnog') {
+			} else if (parsedJson.song.toLowerCase() == 'cocoa' || parsedJson.song.toLowerCase() == 'eggnog' || parsedJson.song.toLowerCase() == 'b-sides-cocoa' || parsedJson.song.toLowerCase() == 'b-sides-eggnog') {
 				parsedJson.stage = 'mall';
 			} else if (parsedJson.song.toLowerCase() == 'winter-horrorland') {
 				parsedJson.stage = 'mallEvil';
 			} else if (parsedJson.song.toLowerCase() == 'animal') {
 				parsedJson.stage = 'annieEvil';
-			} else if (parsedJson.song.toLowerCase() == 'senpai' || parsedJson.song.toLowerCase() == 'roses') {
+			} else if (parsedJson.song.toLowerCase() == 'senpai' || parsedJson.song.toLowerCase() == 'roses' || parsedJson.song.toLowerCase() == 'b-sides-senpai' || parsedJson.song.toLowerCase() == 'b-sides-roses') {
 				parsedJson.stage = 'school';
-			} else if (parsedJson.song.toLowerCase() == 'thorns') {
+			} else if (parsedJson.song.toLowerCase() == 'thorns' || parsedJson.song.toLowerCase() == 'b-sides-thorns') {
 				parsedJson.stage = 'schoolEvil';
 			} else if (parsedJson.song.toLowerCase() == 'friday-night' || parsedJson.song.toLowerCase() == 'judgement' || parsedJson.song.toLowerCase() == 'machine-gun-kiss') {
 				parsedJson.stage = 'yakuza';

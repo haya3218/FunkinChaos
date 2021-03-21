@@ -53,7 +53,8 @@ class SaveDataState extends MusicBeatState
 						{name: "No LS Cutscenes", value: false},
 						{name: "Less LS Effect", value: false},
 						{name: "Bold Intro Alphabet", value: true},
-						{name: "Cinematic Mode", value: true}
+						{name: "Cinematic Mode", value: true},
+						{name: "Modifier Menu", value: true}
 						// {name: "Sample Option", value: false, int: 0}
 					];
 		// we use a var because if we don't it will read the file each time
@@ -66,6 +67,7 @@ class SaveDataState extends MusicBeatState
 		optionList[3].value = curOptions.momentEffect;
 		optionList[4].value = curOptions.boldText;
 		optionList[5].value = curOptions.cinematicMode;
+		optionList[6].value = curOptions.modifierMenu;
 		// optionList[6].int = curOptions.sampleOption;
 		menuBG.color = 0xFF7194fc;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -121,7 +123,7 @@ class SaveDataState extends MusicBeatState
 		if (controls.BACK) 
 		{
             FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-            FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt, 70);
+            FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'), 70);
 			saveOptions();
 			FlxG.switchState(new OptionsMenu());
 		}
@@ -173,6 +175,7 @@ class SaveDataState extends MusicBeatState
 	function saveOptions() {
 		OptionsHandler.options = 
 		{
+			"modifierMenu": optionList[6].value,
 			"cinematicMode": optionList[5].value,
 			"boldText": optionList[4].value,
 			"momentEffect": optionList[3].value,

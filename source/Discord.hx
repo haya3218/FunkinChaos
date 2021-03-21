@@ -2,20 +2,27 @@ package;
 
 import Sys.sleep;
 import discord_rpc.DiscordRpc;
+import flixel.FlxG;
 
 using StringTools;
 
 class DiscordClient
 {
-	public function new()
+	public function new(clientID:String)
 	{
 		trace("Discord Client starting...");
+		// uses standard rpc connection
+		// if you ARE gonna fork this project and change the name, refer to this reddit post: 
+		// https://www.reddit.com/r/discordapp/comments/a2c2un/how_to_setup_a_custom_discord_rich_presence_for/
+		// you dont need to get easyRP, just replace the client id
 		DiscordRpc.start({
-			clientID: "814588678700924999",
+			clientID: clientID, // <----- right there
 			onReady: onReady,
 			onError: onError,
 			onDisconnected: onDisconnected
 		});
+		// then instead of largeimagekey rename it to icon
+		// you dont need a smallimagekey
 		trace("Discord Client started.");
 
 		while (true)
@@ -34,7 +41,7 @@ class DiscordClient
 			details: "In the Menus",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Friday Night Funkin'"
+			largeImageText: "Friday Night Funkin' Chaos"
 		});
 	}
 
@@ -48,11 +55,20 @@ class DiscordClient
 		trace('Disconnected! $_code : $_message');
 	}
 
-	public static function initialize()
+	/*
+	* uses standard rpc connection
+	* if you ARE gonna fork this project and change the name, refer to this reddit post: 
+	* https://www.reddit.com/r/discordapp/comments/a2c2un/how_to_setup_a_custom_discord_rich_presence_for/
+	* you dont need to get easyRP, just replace the client id
+	* @param	client		Client id.
+	* then instead of largeimagekey rename it to icon
+	* you dont need a smallimagekey
+	*/
+	public static function initialize(client:String)
 	{
 		var DiscordDaemon = sys.thread.Thread.create(() ->
 		{
-			new DiscordClient();
+			new DiscordClient(client);
 		});
 		trace("Discord Client initialized");
 	}
@@ -76,7 +92,5 @@ class DiscordClient
 			startTimestamp : Std.int(startTimestamp / 1000),
             endTimestamp : Std.int(endTimestamp / 1000)
 		});
-
-		//trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
 	}
 }

@@ -7,12 +7,15 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+using StringTools;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
+	var songSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
@@ -31,6 +34,9 @@ class GameOverSubstate extends MusicBeatSubstate
 			default:
 				daBf = 'bf';
 		}
+
+		if (PlayState.SONG.song.startsWith('b-sides-'))
+			songSuffix = '-b';
 
 		super();
 
@@ -74,7 +80,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
-			FlxG.sound.playMusic('assets/music/gameOver' + stageSuffix + TitleState.soundExt);
+			FlxG.sound.playMusic('assets/music/gameOver' + stageSuffix + songSuffix + TitleState.soundExt);
 		}
 
 		if (FlxG.sound.music.playing)
@@ -99,7 +105,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			isEnding = true;
 			bf.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
-			FlxG.sound.play('assets/music/gameOverEnd' + stageSuffix + TitleState.soundExt);
+			FlxG.sound.play('assets/music/gameOverEnd' + stageSuffix + songSuffix + TitleState.soundExt);
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()

@@ -152,7 +152,10 @@ class CharMenu extends MusicBeatState
 					FlxFlicker.flicker(shitCharacter, 0);
 					FlxFlicker.flicker(shitCharacterBetter, 0);
 					PlayState.hasPlayedOnce = true;
-					shitCharacterBetter.playAnim('hey');
+					if (shitCharacterBetter.animOffsets.exists('hey'))
+						shitCharacterBetter.playAnim('hey');
+					else
+						shitCharacterBetter.playAnim('singUP');
 		
 					switch (daSelected)
 					{
@@ -220,7 +223,27 @@ class CharMenu extends MusicBeatState
 				}
 		
 				if (controls.BACK)
-					FlxG.switchState(new ModifierState());
+					if (OptionsHandler.options.modifierMenu)
+						FlxG.switchState(new ModifierState());
+					else {
+						if (PlayState.isStoryMode)
+							FlxG.switchState(new StoryMenuState());
+			
+					//Tell the menu to actually go back to the one you were before. Y'all lazy lol
+					else if (PlayState.isBSidesMode)
+							FlxG.switchState(new BSidesState());
+					else if (PlayState.isShitpostMode)
+							FlxG.switchState(new CustomSongState());
+			
+					else
+						{
+							if (PlayState.isCreditsMode)
+								FlxG.switchState(new OptionsMenu());
+							else
+								FlxG.switchState(new FreeplayState());
+						}
+					}
+						
 		}
 
 		super.update(elapsed);

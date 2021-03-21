@@ -159,8 +159,8 @@ class TitleState extends MusicBeatState
 		} else {
 			FlxG.save.data.preferredSave = 0;
 		}
-
 		#if desktop
+		DiscordClient.initialize("822637729225375807");
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Starting Game", null);
 		#end
@@ -204,10 +204,15 @@ class TitleState extends MusicBeatState
 			{
 				remove(levelInfo);
 				remove(shittyReminder);
-				startIntro();
-				#if desktop
-				DiscordClient.initialize();
-				#end
+				// preload menu music cos lag
+				FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.7);
+				FlxG.sound.music.pause();
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					FlxG.sound.music.play();
+					startIntro();
+				});
 			});
 		});
 	}
@@ -242,7 +247,6 @@ class TitleState extends MusicBeatState
 			// music.loadStream('assets/music/freakyMenu' + TitleState.soundExt);
 			// FlxG.sound.list.add(music);
 			// music.play();
-			FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt, 70);
 		}
 
 		Conductor.changeBPM(102);
@@ -308,12 +312,13 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assets/images/newgrounds_logo.png');
+		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assets/images/poweredby.png');
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
 		ngSpr.updateHitbox();
-		ngSpr.screenCenter(X);
+		ngSpr.screenCenter(XY);
+		ngSpr.y += 70;
 		ngSpr.antialiasing = true;
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
@@ -445,7 +450,7 @@ class TitleState extends MusicBeatState
 		{
 			var money:Alphabet = new Alphabet(0, 0, textArray[i], OptionsHandler.options.boldText, false);
 			money.screenCenter(X);
-			money.y += (i * 60) + 50;
+			money.y += (i * 60) + 80;
 			credGroup.add(money);
 			textGroup.add(money);
 		}
@@ -455,7 +460,7 @@ class TitleState extends MusicBeatState
 	{
 		var coolText:Alphabet = new Alphabet(0, 0, text, OptionsHandler.options.boldText, false);
 		coolText.screenCenter(X);
-		coolText.y += (textGroup.length * 60) + 50;
+		coolText.y += (textGroup.length * 60) + 80;
 		credGroup.add(coolText);
 		textGroup.add(coolText);
 	}
@@ -490,19 +495,17 @@ class TitleState extends MusicBeatState
 			case 2:
 				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton', 'and many others']);
 			// credTextShit.visible = true;
-			case 3:
-				addMoreProductionText('present');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
 			case 4:
-				deleteCoolText();
+				addMoreProductionText('present');
 			// credTextShit.visible = false;
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createProductionText(['In association', 'with']);
+				deleteCoolText();
+			case 6:
+				createProductionText(['Powered', 'by']);
 			case 7:
-				addMoreProductionText('fullscreen productions');
+				addMoreProductionText('TWTEI Engine');
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:

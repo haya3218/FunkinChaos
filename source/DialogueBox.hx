@@ -53,6 +53,14 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'b-sides-senpai':
+				FlxG.sound.playMusic('assets/music/Lunchbox' + TitleState.soundExt, 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'b-sides-roses':
+				trace('MUSIC IS ALREADY PLAYING!');
+			case 'b-sides-thorns':
+				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'luci-moment':
 				trace('MUSIC IS ALREADY PLAYING!');
 			case 'disappear':
@@ -75,7 +83,7 @@ class DialogueBox extends FlxSpriteGroup
 				bgFade.alpha = 0.7;
 		}, 5);
 
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses')
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpaiPortrait.png', 'assets/images/weeb/senpaiPortrait.xml');
@@ -103,7 +111,7 @@ class DialogueBox extends FlxSpriteGroup
 		add(portraitLeft);
 		portraitLeft.visible = false;
 
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses')
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
 			portraitRight = new FlxSprite(0, 40);
 			portraitRight.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPortrait.png', 'assets/images/weeb/bfPortrait.xml');
@@ -187,6 +195,28 @@ class DialogueBox extends FlxSpriteGroup
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
 
+			case 'b-sides-senpai':
+				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-pixel.png',
+					'assets/images/weeb/pixelUI/dialogueBox-pixel.xml');
+				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
+				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+			case 'b-sides-roses':
+				FlxG.sound.play('assets/sounds/ANGRY_TEXT_BOX' + TitleState.soundExt);
+
+				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-senpaiMad.png',
+					'assets/images/weeb/pixelUI/dialogueBox-senpaiMad.xml');
+				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
+				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
+
+			case 'b-sides-thorns':
+				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-evil.png', 'assets/images/weeb/pixelUI/dialogueBox-evil.xml');
+				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
+				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
+
+				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic('assets/images/weeb/spiritFaceForward.png');
+				face.setGraphicSize(Std.int(face.width * 6));
+				add(face);
+
 			default:
 				box.frames = FlxAtlasFrames.fromSparrow('assets/images/speech_bubble_talking.png',
 				'assets/images/speech_bubble_talking.xml');
@@ -195,9 +225,10 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		box.animation.play('normalOpen');
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses')
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		else
+
+		if (PlayState.curStage != 'school' || PlayState.curStage != 'schoolEvil')
 		{
 			box.y += 320;
 			box.x += 500;
@@ -209,8 +240,11 @@ class DialogueBox extends FlxSpriteGroup
 		add(handSelect);
 
 		box.screenCenter(X);
-		if (PlayState.SONG.song.toLowerCase() != 'senpai' || PlayState.SONG.song.toLowerCase() != 'thorns' || PlayState.SONG.song.toLowerCase() != 'roses')
+		if (PlayState.curStage == 'school' || PlayState.curStage == 'schoolEvil')
+			trace('IS IN SENPAI STAGE');
+		else
 			box.x += 50;
+
 		portraitLeft.screenCenter(X);
 
 		if (!talkingRight)
@@ -271,6 +305,20 @@ class DialogueBox extends FlxSpriteGroup
 				swagDialogue.color = FlxColor.WHITE;
 				dropText.color = FlxColor.BLACK;
 				allowBoxFlipping = false;
+			case 'b-sides-senpai':
+				swagDialogue.color = 0xFF3F2021;
+				dropText.color = 0xFFD89494;
+				allowBoxFlipping = false;
+			case 'b-sides-roses':
+				swagDialogue.color = 0xFF3F2021;
+				dropText.color = 0xFFD89494;
+				portraitLeft.visible = false;
+				allowBoxFlipping = false;
+			case 'b-sides-thorns':
+				portraitLeft.color = FlxColor.BLACK;
+				swagDialogue.color = FlxColor.WHITE;
+				dropText.color = FlxColor.BLACK;
+				allowBoxFlipping = false;
 			default:
 				swagDialogue.color = FlxColor.BLACK;
 				dropText.color = FlxColor.GRAY;
@@ -306,7 +354,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns')
 						FlxG.sound.music.fadeOut(2.2, 0);
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
