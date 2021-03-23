@@ -1,10 +1,12 @@
 package;
 
+import flixel.system.FlxSound;
 #if desktop
 import Discord.DiscordClient;
 #end
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -14,6 +16,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
 import lime.net.curl.CURLCode;
 
 using StringTools;
@@ -21,6 +24,7 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
+	var levelInfo:FlxText;
 	var isLuci:Bool;
 
 	var weekData:Array<Dynamic> = [
@@ -240,12 +244,21 @@ class StoryMenuState extends MusicBeatState
 		add(yellowBG);
 		add(grpWeekCharacters);
 
+		levelInfo = new FlxText(20, scoreText.y, 0, "SOUND TEST", 32);
+		levelInfo.scrollFactor.set();
+		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
+		levelInfo.updateHitbox();
+		levelInfo.alpha = 0;
+
+		levelInfo.x = FlxG.width - (levelInfo.width + 20);
+
 		txtTracklist = new FlxText(FlxG.width * 0.07, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
 		add(rankText);
+		add(levelInfo);
 		add(scoreText);
 		add(txtWeekTitle);
 
@@ -255,6 +268,8 @@ class StoryMenuState extends MusicBeatState
 
 		super.create();
 	}
+
+	var playingShit:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -303,6 +318,21 @@ class StoryMenuState extends MusicBeatState
 					changeDifficulty(1);
 				if (controls.LEFT_P)
 					changeDifficulty(-1);
+
+				if (FlxG.keys.justPressed.CONTROL)
+				{
+					if (playingShit == false)
+					{
+						FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut});
+						playingShit = true;
+					}
+					else if (playingShit == true)
+					{
+						FlxTween.tween(levelInfo, {alpha: 0, y: -20}, 0.4, {ease: FlxEase.quartInOut});
+						playingShit = false;
+					}
+				}
+
 				if (FlxG.keys.pressed.SHIFT)
 				{
 					rankText.text = 'AUTOPLAY';
@@ -340,54 +370,61 @@ class StoryMenuState extends MusicBeatState
 	{
 		if (weekUnlocked[curWeek])
 		{
-			if (stopspamming == false)
+			if (playingShit == false)
 			{
-				// character shit
-				FlxG.sound.play('assets/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
+				if (stopspamming == false)
+				{
+					// character shit
+					FlxG.sound.play('assets/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
+
+					switch (curDifficulty)
+					{
+						case 1:
+							grpWeekText.members[curWeek].startFlashing();
+						case 2:
+							if (curDifficulty == 2 && weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC' && weekData[curWeek][2] != 'Hell')
+								grpWeekText.members[curWeek].startFlashingRed();
+							else if (curDifficulty == 2)
+								grpWeekText.members[curWeek].startFlashing();
+						case 3:
+							grpWeekText.members[curWeek].startFlashingRed();
+					}
+					
+					grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1] + 'Confirm');
+					stopspamming = true;
+				}
+
+				PlayState.storyPlaylist = weekData[curWeek];
+				PlayState.isStoryMode = true;
+				selectedWeek = true;
+
+				var diffic = "";
 
 				switch (curDifficulty)
 				{
-					case 1:
-						grpWeekText.members[curWeek].startFlashing();
 					case 2:
-						if (curDifficulty == 2 && weekData[curWeek][0] != 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] != 'MTC' && weekData[curWeek][2] != 'Hell')
-							grpWeekText.members[curWeek].startFlashingRed();
-						else if (curDifficulty == 2)
-							grpWeekText.members[curWeek].startFlashing();
+						diffic = '-hard';
 					case 3:
-						grpWeekText.members[curWeek].startFlashingRed();
+						diffic = '-hell';
 				}
-				
-				grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1] + 'Confirm');
-				stopspamming = true;
+
+				PlayState.storyDifficulty = curDifficulty;
+				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+				PlayState.storyWeek = curWeek;
+				PlayState.campaignScore = 0;
+				PlayState.autoMode = autoModeSelected;
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					if (OptionsHandler.options.modifierMenu)
+						FlxG.switchState(new ModifierState());
+					else
+						FlxG.switchState(new PlayState());
+				});
 			}
-
-			PlayState.storyPlaylist = weekData[curWeek];
-			PlayState.isStoryMode = true;
-			selectedWeek = true;
-
-			var diffic = "";
-
-			switch (curDifficulty)
+			else if (playingShit == true)
 			{
-				case 2:
-					diffic = '-hard';
-				case 3:
-					diffic = '-hell';
+				audioJungle(0);
 			}
-
-			PlayState.storyDifficulty = curDifficulty;
-			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
-			PlayState.storyWeek = curWeek;
-			PlayState.campaignScore = 0;
-			PlayState.autoMode = autoModeSelected;
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				if (OptionsHandler.options.modifierMenu)
-					FlxG.switchState(new ModifierState());
-				else
-					FlxG.switchState(new PlayState());
-			});
 		}
 	}
 
@@ -552,5 +589,17 @@ class StoryMenuState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 		#end
+	}
+
+	var voices:FlxSound;
+
+	function audioJungle(curSong:Int, allowVoices:Bool = false)
+	{
+		if (!FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic('assets/music/' + weekData[curWeek][curSong] + '_Inst' + '.ogg');
+			if (allowVoices)
+				voices = new FlxSound().loadEmbedded('assets/music/' + weekData[curWeek][curSong] + '_Voices' + '.ogg');
+		}
 	}
 }

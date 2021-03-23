@@ -175,11 +175,6 @@ class TitleState extends MusicBeatState
 		} else {
 			FlxG.save.data.preferredSave = 0;
 		}
-		#if desktop
-		DiscordClient.initialize();
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Starting Game", null);
-		#end
 
 		FlxG.save.close();
 		FlxG.save.bind("save"+preferredSave, 'ninjamuffin99');
@@ -226,6 +221,9 @@ class TitleState extends MusicBeatState
 				FlxG.sound.music.pause();
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
+					#if desktop
+					DiscordClient.initialize();
+					#end
 					FlxG.sound.music.play();
 					startIntro();
 				});

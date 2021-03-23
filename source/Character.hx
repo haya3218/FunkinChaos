@@ -1099,10 +1099,17 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT-alt', 'Parent Left Note Mom', 24, false);
 				animation.addByPrefix('singRIGHT-alt', 'Parent Right Note Mom', 24, false);
 
-				setGraphicSize(Std.int(width * 6));
-				updateHitbox();
+				addOffset('idle');
+				addOffset("singUP", -47, 24);
+				addOffset("singRIGHT", -1, -23);
+				addOffset("singLEFT", -30, 16);
+				addOffset("singDOWN", -31, -29);
+				addOffset("singUP-alt", -47, 24);
+				addOffset("singRIGHT-alt", -1, -24);
+				addOffset("singLEFT-alt", -30, 15);
+				addOffset("singDOWN-alt", -30, -27);
 
-				antialiasing = false;
+				playAnim('idle');
 			case 'senpai-angry':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpai.png', 'assets/images/weeb/senpai.xml');
 				animation.addByPrefix('idle', 'Angry Senpai Idle', 24, false);
