@@ -414,6 +414,14 @@ class StoryMenuState extends MusicBeatState
 				curDifficulty = 2;
 		}
 
+		if (weekData[curWeek][0] == 'Friday-Night' || weekData[curWeek][0] == 'Smash' || weekData[curWeek][0] == 'Luci-Moment' || weekData[curWeek][0] == 'Good-Enough')
+		{
+			if (curDifficulty < 1)
+				curDifficulty = 2;
+			if (curDifficulty > 2)
+				curDifficulty = 1;
+		}
+
 		sprDifficulty.offset.x = 0;
 
 		switch (curDifficulty)
@@ -534,7 +542,12 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		if (weekData[curWeek][0] == 'MC-MENTAL-AT-HIS-BEST' && weekData[curWeek][1] == 'MTC' && weekData[curWeek][2] == 'Hell')
-			changeDifficulty();
+			if (curDifficulty != 2)
+				changeDifficulty();
+
+		if (weekData[curWeek][0] == 'Friday-Night' || weekData[curWeek][0] == 'Smash' || weekData[curWeek][0] == 'Luci-Moment' || weekData[curWeek][0] == 'Good-Enough')
+			if (curDifficulty == 3)
+				changeDifficulty(-1);
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);

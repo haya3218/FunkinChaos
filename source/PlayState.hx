@@ -332,11 +332,35 @@ class PlayState extends MusicBeatState
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		if (isStoryMode)
 		{
-			detailsText = "Story Mode: Week " + storyWeek;
+			switch (storyWeek)
+			{
+				case 0:
+					detailsText = "Story Mode: Tutorial";
+				case 7:
+					detailsText = "Story Mode: Mod Week";
+				case 8:
+					detailsText = "Story Mode: Yakuza Week";
+				case 9:
+					detailsText = "Story Mode: Luci Moment";
+				case 10:
+					detailsText = "Story Mode: HELL";
+				case 11:
+					detailsText = "Story Mode: Week 7";
+				case 12:
+					detailsText = "Story Mode: Annie Week";
+				default:
+					detailsText = "Story Mode: Week " + storyWeek;
+			}
 		}
 		else
 		{
-			detailsText = "Freeplay";
+			switch (SONG.song.toLowerCase())
+			{
+				case 'mc-mental-at-his-best':
+					detailsText = "Currently Dying to";
+				default:
+					detailsText = "Freeplay";
+			}
 		}
 
 		// String for when the game is paused

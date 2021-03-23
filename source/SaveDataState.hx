@@ -87,7 +87,7 @@ class SaveDataState extends MusicBeatState
 			var swagOption = new Alphabet(0,0,optionList[j].name,true,false);
 			swagOption.isOptionItem = true;
 			swagOption.targetY = j;
-			swagOption.x += 150;
+			swagOption.x += 50;
 			trace("l57");
 			var coolCheckmark = new FlxSprite(0, -15).loadGraphic('assets/images/on.png');
 			var coolCheckmark2 = new FlxSprite(0, -15).loadGraphic('assets/images/off.png');
@@ -95,14 +95,16 @@ class SaveDataState extends MusicBeatState
 			coolCheckmark2.scale.set(1.1, 1.1);
 			coolCheckmark.updateHitbox();
 			coolCheckmark2.updateHitbox();
+			coolCheckmark.setPosition(swagOption.x + swagOption.width - 13, swagOption.y - 20);
+			coolCheckmark2.setPosition(swagOption.x + swagOption.width - 13, swagOption.y - 20);
 			coolCheckmark.visible = optionList[j].value;
 			coolCheckmark2.visible = !optionList[j].value;
+			coolCheckmark.antialiasing = true;
+			coolCheckmark2.antialiasing = true;
 			checkmarks.add(coolCheckmark);
 			checkmarks2.add(coolCheckmark2);
 			swagOption.add(coolCheckmark);
 			swagOption.add(coolCheckmark2);
-			coolCheckmark.x -= 130;
-			coolCheckmark2.x -= 130;
 			options.add(swagOption);
 		}
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 64);

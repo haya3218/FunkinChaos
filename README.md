@@ -54,12 +54,13 @@ newgrounds
 
 So for each of those type `haxelib install [library]` so shit like `haxelib install newgrounds`
 
-You'll also need to install polymod. 
+You'll also need to install some libraries not included in haxelib. 
 First, get git, which is as simple as [clicking this link, dumbo](https://gitforwindows.org/).
-Then use the command prompt and type this in.
+Then use the command prompt and type these in.
 
 ```
 haxelib git polymod https://github.com/larsiusprime/polymod.git
+haxelib git discord-rpc https://github.com/larsiusprime/polymod.git
 ```
 
 ### Ignored files

@@ -50,6 +50,7 @@ class TitleState extends MusicBeatState
 	var shittyReminder:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var credSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -175,7 +176,7 @@ class TitleState extends MusicBeatState
 			FlxG.save.data.preferredSave = 0;
 		}
 		#if desktop
-		DiscordClient.initialize("822637729225375807");
+		DiscordClient.initialize();
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Starting Game", null);
 		#end
@@ -232,9 +233,12 @@ class TitleState extends MusicBeatState
 		});
 	}
 
+	var logoBl2:FlxSprite;
 	var logoBl:FlxSprite;
+	var bg:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
+	var colorChanger:Bool = false;
 	var titleText:FlxSprite;
 
 	function startIntro()
@@ -273,10 +277,19 @@ class TitleState extends MusicBeatState
 		
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		// bg.antialiasing = true;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
+		bg = new FlxSprite().loadGraphic('assets/images/funneBG.png');
+		bg.antialiasing = true;
+		bg.setGraphicSize(Std.int(bg.width * 1));
+		bg.updateHitbox();
+		add(bg);
+
+		logoBl2 = new FlxSprite(-90, -60);
+		logoBl2.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');
+		logoBl2.antialiasing = true;
+		logoBl2.animation.addByPrefix('bump', 'logo bumpin', 24);
+		logoBl2.animation.play('bump');
+		logoBl2.updateHitbox();
+		logoBl2.color = FlxColor.BLACK;
 
 		logoBl = new FlxSprite(-90, -60);
 		logoBl.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');
@@ -293,6 +306,7 @@ class TitleState extends MusicBeatState
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
 		add(gfDance);
+		add(logoBl2);
 		add(logoBl);
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
@@ -310,10 +324,10 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = true;
 		// add(logo);
 
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+		FlxTween.tween(logoBl2, {y: logoBl.y + 10}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(logoBl, {y: logoBl.y + 10}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
-		credGroup = new FlxGroup();
+		credGroup = new FlxGroup(); 
 		add(credGroup);
 		textGroup = new FlxGroup();
 
@@ -335,6 +349,13 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(XY);
 		ngSpr.y += 70;
 		ngSpr.antialiasing = true;
+
+		credSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assets/images/creds.png');
+		add(credSpr);
+		credSpr.visible = false;
+		credSpr.screenCenter(XY);
+		credSpr.y += 170;
+		credSpr.antialiasing = true;
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
@@ -409,7 +430,7 @@ class TitleState extends MusicBeatState
 			titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
-			FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt, 0.7);
+			FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 
 			transitioning = true;
 			// FlxG.sound.music.stop();
@@ -418,7 +439,7 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.switchState(new RealMainMenuState());
 			});
-			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
+			
 		}
 		else if (pressedEnter && !skippedIntro && nof)
 		{
@@ -494,6 +515,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		logoBl.animation.play('bump');
+		logoBl2.animation.play('bump');
 		danceLeft = !danceLeft;
 
 		if (danceLeft)
@@ -508,16 +530,20 @@ class TitleState extends MusicBeatState
 			// this sucks so much i hate it
 			// thanks lag
 			case 2:
-				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton', 'and many others']);
+				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton']);
+				credSpr.visible = true;
 			// credTextShit.visible = true;
-			case 4:
+			case 3:
+				credSpr.visible = false;
+				addMoreProductionText('oh and many others');
 				addMoreProductionText('present');
 			// credTextShit.visible = false;
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
-			case 5:
+			case 4:
 				deleteCoolText();
-			case 6:
+				
+			case 5:
 				createProductionText(['Powered', 'by']);
 			case 7:
 				addMoreProductionText('TWTEI Engine');
@@ -572,7 +598,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
-
+			remove(credSpr);
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;

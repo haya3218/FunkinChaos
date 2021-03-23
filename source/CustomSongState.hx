@@ -96,6 +96,11 @@ class CustomSongState extends MusicBeatState
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Freeplay", null);
+		#end
+
 		for (i in 0...songs.length)
 		{
 			songText = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);

@@ -8,7 +8,7 @@ using StringTools;
 
 class DiscordClient
 {
-	public function new(clientID:String)
+	public function new()
 	{
 		trace("Discord Client starting...");
 		// uses standard rpc connection
@@ -16,7 +16,7 @@ class DiscordClient
 		// https://www.reddit.com/r/discordapp/comments/a2c2un/how_to_setup_a_custom_discord_rich_presence_for/
 		// you dont need to get easyRP, just replace the client id
 		DiscordRpc.start({
-			clientID: clientID, // <----- right there
+			clientID: "822637729225375807", // <----- right there
 			onReady: onReady,
 			onError: onError,
 			onDisconnected: onDisconnected
@@ -64,11 +64,11 @@ class DiscordClient
 	* then instead of largeimagekey rename it to icon
 	* you dont need a smallimagekey
 	*/
-	public static function initialize(client:String)
+	public static function initialize()
 	{
 		var DiscordDaemon = sys.thread.Thread.create(() ->
 		{
-			new DiscordClient(client);
+			new DiscordClient();
 		});
 		trace("Discord Client initialized");
 	}
