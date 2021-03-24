@@ -54,11 +54,15 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [19, 20], 0, false, isPlayer);
 			case 'senpai':
 				animation.add('icon', [22, 22], 0, false, isPlayer);
+			case 'senpaidumb':
+			animation.add('icon', [22, 22], 0, false, isPlayer);
 			case 'senpai-angry':
 				animation.add('icon', [22, 22], 0, false, isPlayer);
 			case 'spirit':
 				animation.add('icon', [23, 23], 0, false, isPlayer);
 			case 'bf-pixel':
+				animation.add('icon', [21, 21], 0, false, isPlayer);
+			case 'bf-pixeldumb':
 				animation.add('icon', [21, 21], 0, false, isPlayer);
 			case 'diva':
 				animation.add('icon', [35, 36], 0, false, isPlayer);

@@ -944,6 +944,40 @@ class Character extends FlxSprite
 				antialiasing = false;
 
 				flipX = true;
+
+				case 'bf-pixeldumb':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/bfPixel.png', 'assets/images/pixelstreet/bfPixel.xml');
+				animation.addByPrefix('idle', 'BF IDLE', 24, false);
+				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'BF DOWN NOTE', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+				addOffset("singUPmiss");
+				addOffset("singRIGHTmiss");
+				addOffset("singLEFTmiss");
+				addOffset("singDOWNmiss");
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				playAnim('idle');
+
+				width -= 100;
+				height -= 100;
+
+				antialiasing = false;
+
+				flipX = true;
 			case 'bf-pixel-dead':
 				frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPixelsDEAD.png', 'assets/images/weeb/bfPixelsDEAD.xml');
 				animation.addByPrefix('idle', "BF Dies pixel", 24, false);
@@ -1063,6 +1097,8 @@ class Character extends FlxSprite
 
 				antialiasing = false;
 
+				
+
 			case 'spirit':
 				frames = FlxAtlasFrames.fromSpriteSheetPacker('assets/images/weeb/spirit.png', 'assets/images/weeb/spirit.txt');
 				animation.addByPrefix('idle', "idle spirit_", 24, false);
@@ -1128,6 +1164,27 @@ class Character extends FlxSprite
 				addOffset("singLEFT-alt", -30, 15);
 				addOffset("singDOWN-alt", -30, -27);
 
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				playAnim('idle');
+
+				antialiasing = false;
+
+				case 'senpaidumb':
+				frames = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/senpai.png', 'assets/images/pixelstreet/senpai.xml');
+				animation.addByPrefix('idle', 'Angry Senpai Idle', 24, false);
+				animation.addByPrefix('singUP', 'Angry Senpai UP NOTE', 24, false);
+				animation.addByPrefix('singLEFT', 'Angry Senpai LEFT NOTE', 24, false);
+				animation.addByPrefix('singRIGHT', 'Angry Senpai RIGHT NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", 5, 37);
+				addOffset("singRIGHT");
+				addOffset("singLEFT", 40);
+				addOffset("singDOWN", 14);
+				
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 

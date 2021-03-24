@@ -18,11 +18,10 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrail;
-import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.display.FlxBackdrop;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -136,6 +135,8 @@ class PlayState extends MusicBeatState
 	var trainSound:FlxSound;
 
 	var limo:FlxSprite;
+	var limoNight:FlxSprite;
+	var moonBG:FlxBackdrop;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var grpLemonDancers:FlxTypedGroup<LemonDancer>;
 	var fastCar:FlxSprite;
@@ -1023,6 +1024,75 @@ class PlayState extends MusicBeatState
 				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/lemonhell/fastCarLol.png');
 				// add(limo);
 			}
+		else if (SONG.stage == 'pixelstreet')
+		{
+
+		curStage = 'pixelstreet';
+				defaultCamZoom = 0.8;
+				//pixelnightBG = new FlxBackdrop('assets/images/nightdrive.png', 0.5, 0, true, false);
+				//pixelnightBG = new FlxBackdrop('assets/images/limo/nightdrive.png', 1, 0, true, false, 0, 0);
+				//pixelnightBG.screenCenter();
+				
+				//add(pixelnightBG);
+				
+					
+				moonBG= new FlxBackdrop('assets/images/pixelstreet/limoMoon.png', 1, 1, true, false);
+				moonBG.x = -150;
+				moonBG.y = -1550;
+				
+				moonBG.scrollFactor.set(0.1, 0.1);
+				moonBG.setGraphicSize(Std.int(moonBG.width * 3));
+				moonBG.updateHitbox();
+				
+
+				
+				add(moonBG);
+				moonBG.velocity.x = 50;
+			
+
+				//Nighttime Street
+				var road:FlxSprite = new FlxSprite(-650, 650);
+				road.frames = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/Mom_RoadNight.png', 'assets/images/pixelstreet/Mom_RoadNight.xml');
+				road.animation.addByPrefix('road', "ROAD", 24);
+				road.animation.play('road');
+				road.antialiasing = true;
+				road.scrollFactor.set(0.3, 0.3);
+				add(road);
+
+
+				
+				
+				
+				
+				
+	
+				var bgLimo:FlxSprite = new FlxSprite(-200, 480);
+				bgLimo.frames = FlxAtlasFrames.fromSparrow('assets/images/limo/bgLimoNight.png', 'assets/images/limo/bgLimoNight.xml');
+				bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
+				bgLimo.animation.play('drive');
+				bgLimo.antialiasing = true;
+				bgLimo.scrollFactor.set(0.4, 0.4);
+	
+		
+	
+				var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic('assets/images/limo/limoOverlayNight.png');
+				overlayShit.alpha = 0.5;
+				
+				
+				var limoTex = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/limoDrive.png', 'assets/images/pixelstreet/limoDrive.xml');
+	
+				limoNight = new FlxSprite(-50, 550);
+				limoNight.frames = limoTex;
+				limoNight.animation.addByPrefix('driveNight', "Limo stage", 24);
+				limoNight.animation.play('driveNight');
+				
+	
+				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarNight.png');
+				add(limoNight);
+			}
+
+
+	
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -1112,6 +1182,11 @@ class PlayState extends MusicBeatState
 				dad.x += 150;
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'senpaidumb':
+				dad.x += 150;
+				dad.y += 360;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			
 			case 'spirit':
 				dad.x -= 150;
 				dad.y += 100;
@@ -1233,6 +1308,16 @@ class PlayState extends MusicBeatState
 	
 				resetFastCar();
 				add(fastCar);
+			
+			case 'pixelstreet':
+				boyfriend.y -= 70;
+				boyfriend.x += 460;
+					
+				dad.y -= 75;
+				dad.x += 250;
+	
+				resetFastCar();
+				add(fastCar);
 
 			case 'mall':
 				boyfriend.x += 200;
@@ -1263,6 +1348,8 @@ class PlayState extends MusicBeatState
 		if (curStage == 'trick')
 			add(evilTrail3);
 		add(gf);
+		if(curStage == 'pixelstreet')
+			gf.visible = false;
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
@@ -1725,6 +1812,11 @@ class PlayState extends MusicBeatState
 				'weeb/pixelUI/set-pixel.png',
 				'weeb/pixelUI/date-pixel.png'
 			]);
+			introAssets.set('pixelstreet', [
+				'weeb/pixelUI/ready-pixel.png',
+				'weeb/pixelUI/set-pixel.png',
+				'weeb/pixelUI/date-pixel.png'
+			]);
 
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
@@ -1750,6 +1842,8 @@ class PlayState extends MusicBeatState
 
 					if (curStage.startsWith('school'))
 						ready.setGraphicSize(Std.int(ready.width * daPixelZoom));
+					if (curStage.startsWith('pixelstreet'))
+						ready.setGraphicSize(Std.int(ready.width * daPixelZoom));
 
 					ready.screenCenter();
 					add(ready);
@@ -1767,6 +1861,8 @@ class PlayState extends MusicBeatState
 
 					if (curStage.startsWith('school'))
 						set.setGraphicSize(Std.int(set.width * daPixelZoom));
+					if (curStage.startsWith('pixelstreet'))
+						set.setGraphicSize(Std.int(set.width * daPixelZoom));
 
 					set.screenCenter();
 					add(set);
@@ -1783,6 +1879,8 @@ class PlayState extends MusicBeatState
 					go.scrollFactor.set();
 
 					if (curStage.startsWith('school'))
+						go.setGraphicSize(Std.int(go.width * daPixelZoom));
+					if (curStage.startsWith('pixelstreet'))
 						go.setGraphicSize(Std.int(go.width * daPixelZoom));
 
 					go.updateHitbox();
@@ -2456,6 +2554,9 @@ class PlayState extends MusicBeatState
 					case 'senpai-angry':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;
+					case 'senpaidumb':
+						camFollow.y = dad.getMidpoint().y - 430;
+						camFollow.x = dad.getMidpoint().x - 100;
 				}
 
 				if (dad.curCharacter == 'mom')
@@ -2475,6 +2576,8 @@ class PlayState extends MusicBeatState
 				{
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
+					case 'pixelstreet':
+					camFollow.x = boyfriend.getMidpoint().x - 300;
 					case 'mall':
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'school':
@@ -3136,6 +3239,12 @@ class PlayState extends MusicBeatState
 			pixelShitPart1 = 'weeb/pixelUI/';
 			pixelShitPart2 = '-pixel';
 		}
+
+		if (curStage.startsWith('pixelstreet'))
+			{
+				pixelShitPart1 = 'weeb/pixelUI/';
+				pixelShitPart2 = '-pixel';
+			}
 		if (SONG.player1 == 'bf-pain')
 		{
 			pixelShitPart1 = 'pain/';
@@ -3159,6 +3268,9 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		if (comboText)
 			add(comboSpr);
+
+		
+	
 		
 		if(daTiming != "")
 		{
@@ -3192,6 +3304,12 @@ class PlayState extends MusicBeatState
 		comboSpr.updateHitbox();
 		rating.updateHitbox();
 		timing.updateHitbox();
+
+		if (curStage == 'pixelstreet') {
+		comboSpr.visible = false;
+		rating.visible = false;
+		timing.visible = false;
+		}
 
 		var seperatedScore:Array<Int> = [];
 
