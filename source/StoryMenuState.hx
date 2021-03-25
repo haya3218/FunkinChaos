@@ -319,20 +319,6 @@ class StoryMenuState extends MusicBeatState
 				if (controls.LEFT_P)
 					changeDifficulty(-1);
 
-				if (FlxG.keys.justPressed.CONTROL)
-				{
-					if (playingShit == false)
-					{
-						FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut});
-						playingShit = true;
-					}
-					else if (playingShit == true)
-					{
-						FlxTween.tween(levelInfo, {alpha: 0, y: -20}, 0.4, {ease: FlxEase.quartInOut});
-						playingShit = false;
-					}
-				}
-
 				if (FlxG.keys.pressed.SHIFT)
 				{
 					rankText.text = 'AUTOPLAY';
@@ -343,6 +329,18 @@ class StoryMenuState extends MusicBeatState
 				{
 					rankText.text = '';
 					autoModeSelected = false;
+				}
+
+				if (FlxG.keys.pressed.CONTROL)
+				{
+					FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut});
+					playingShit = true;
+				}
+		
+				if (FlxG.keys.justReleased.CONTROL)
+				{
+					FlxTween.tween(levelInfo, {alpha: 0, y: -20}, 0.4, {ease: FlxEase.quartInOut});
+					playingShit = false;
 				}
 			}
 
@@ -421,7 +419,7 @@ class StoryMenuState extends MusicBeatState
 						FlxG.switchState(new PlayState());
 				});
 			}
-			else if (playingShit == true)
+			else
 			{
 				audioJungle(0);
 			}
@@ -595,11 +593,8 @@ class StoryMenuState extends MusicBeatState
 
 	function audioJungle(curSong:Int, allowVoices:Bool = false)
 	{
-		if (!FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic('assets/music/' + weekData[curWeek][curSong] + '_Inst' + '.ogg');
-			if (allowVoices)
-				voices = new FlxSound().loadEmbedded('assets/music/' + weekData[curWeek][curSong] + '_Voices' + '.ogg');
-		}
+		FlxG.sound.playMusic('assets/music/' + weekData[curWeek][curSong] + '_Inst' + '.ogg');
+		if (allowVoices)
+			voices = new FlxSound().loadEmbedded('assets/music/' + weekData[curWeek][curSong] + '_Voices' + '.ogg');
 	}
 }

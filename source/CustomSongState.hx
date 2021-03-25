@@ -278,7 +278,10 @@ class CustomSongState extends MusicBeatState
 					FlxG.switchState(new ModifierState());
 				else
 				if (songs[curSelected].songName == 'Dumb')
-				FlxG.switchState(new PlayState());
+				{
+					PlayState.hasPlayedOnce = true;
+					FlxG.switchState(new PlayState());
+				}
 				else
 				FlxG.switchState(new CharMenu());
 		}

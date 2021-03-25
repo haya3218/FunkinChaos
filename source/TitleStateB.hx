@@ -37,7 +37,7 @@ import flash.system.System;
 import haxe.Json;
 using StringTools;
 
-class TitleState extends MusicBeatState
+class TitleStateB extends MusicBeatState
 {
 	static var initialized:Bool = false;
 	public static var nof:Bool = false;
@@ -95,11 +95,11 @@ class TitleState extends MusicBeatState
 		}
 
 		#if (!web)
-		TitleState.soundExt = '.ogg';
+		TitleStateB.soundExt = '.ogg';
 		#end
 
 		#if (!debug)
-		TitleState.versionGhi = "";
+		TitleStateB.versionGhi = "";
 		#end
 
 		PlayerSettings.init();
@@ -120,11 +120,6 @@ class TitleState extends MusicBeatState
 			FlxG.drawFramerate = 160;
 		}
 
-		if (OptionsHandler.options.bSidesIGuess)
-		{
-			FlxG.switchState(new TitleStateB());
-		}
-
 		shittyFPS = OptionsHandler.options.fpsLimit;
 		noteStrumShit = OptionsHandler.options.p2noteStrums;
 
@@ -140,8 +135,7 @@ class TitleState extends MusicBeatState
 		add(shittyReminder);
 
 		var levelInfo:FlxText = new FlxText(0, 550, 0, "", 16);
-		levelInfo.text = "A reminder that chaos is still in very early beta!"
-		 + "\nPlease report all bugs to the github repo.";
+		levelInfo.text = "You found a secret!";
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, CENTER);
 		levelInfo.updateHitbox();
@@ -221,7 +215,7 @@ class TitleState extends MusicBeatState
 				remove(levelInfo);
 				remove(shittyReminder);
 				// preload menu music cos lag
-				FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'), 0);
+				FlxG.sound.playMusic(Paths.music('freakyMenuB', 'shared'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
 				FlxG.sound.music.pause();
 				new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -266,7 +260,7 @@ class TitleState extends MusicBeatState
 			// https://github.com/HaxeFlixel/flixel-addons/pull/348
 
 			// var music:FlxSound = new FlxSound();
-			// music.loadStream('assets/music/freakyMenu' + TitleState.soundExt);
+			// music.loadStream('assets/music/freakyMenu' + TitleStateB.soundExt);
 			// FlxG.sound.list.add(music);
 			// music.play();
 		}
@@ -280,22 +274,22 @@ class TitleState extends MusicBeatState
 		
 		persistentUpdate = true;
 
-		bg = new FlxSprite().loadGraphic('assets/images/funneBG.png');
+		bg = new FlxSprite().loadGraphic('assets/images/funneBGB.png');
 		bg.antialiasing = true;
 		bg.setGraphicSize(Std.int(bg.width * 1));
 		bg.updateHitbox();
 		add(bg);
 
-		logoBl2 = new FlxSprite(-90, -60);
-		logoBl2.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');
+		logoBl2 = new FlxSprite(-150, -100);
+		logoBl2.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpinB.png', 'assets/images/logoBumpinB.xml');
 		logoBl2.antialiasing = true;
 		logoBl2.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl2.animation.play('bump');
 		logoBl2.updateHitbox();
 		logoBl2.color = FlxColor.BLACK;
 
-		logoBl = new FlxSprite(-90, -60);
-		logoBl.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpin.png', 'assets/images/logoBumpin.xml');
+		logoBl = new FlxSprite(-150, -100);
+		logoBl.frames = FlxAtlasFrames.fromSparrow('assets/images/logoBumpinB.png', 'assets/images/logoBumpinB.xml');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
@@ -304,7 +298,7 @@ class TitleState extends MusicBeatState
 		// logoBl.color = FlxColor.BLACK;
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = FlxAtlasFrames.fromSparrow('assets/images/gfDanceTitle.png', 'assets/images/gfDanceTitle.xml');
+		gfDance.frames = FlxAtlasFrames.fromSparrow('assets/images/gfDanceTitleB.png', 'assets/images/gfDanceTitleB.xml');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
@@ -433,7 +427,7 @@ class TitleState extends MusicBeatState
 			titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
-			FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
+			FlxG.sound.play('assets/music/titleShoot' + TitleStateB.soundExt, 0.7);
 
 			transitioning = true;
 			// FlxG.sound.music.stop();
@@ -533,12 +527,10 @@ class TitleState extends MusicBeatState
 			// this sucks so much i hate it
 			// thanks lag
 			case 2:
-				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton']);
-				credSpr.visible = true;
+				createProductionText(['A COMMUNITY']);
 			// credTextShit.visible = true;
 			case 3:
-				credSpr.visible = false;
-				addMoreProductionText('oh and many others');
+				addMoreProductionText('AND ITS MEMBERS');
 				addMoreProductionText('present');
 			// credTextShit.visible = false;
 			// credTextShit.text = 'In association \nwith';
@@ -579,15 +571,16 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 12:
 				deleteCoolText();
-				addMoreText('Friday');
 			// credTextShit.visible = true;
 			case 13:
-				addMoreText('Night');
+				addMoreText('Friday');
+				
 			// credTextShit.text += '\nNight';
 			case 14:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				addMoreText('Night');
+				 // credTextShit.text += '\nFunkin';
 			case 15:
-				addMoreText('Chaos'); // credTextShit.text += '\nFunkin';
+				addMoreText('Moddin');
 
 			case 16:
 				skipIntro();

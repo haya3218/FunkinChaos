@@ -18,10 +18,11 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrail;
+import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.display.FlxBackdrop;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -40,6 +41,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import flixel.util.FlxTimer.FlxTimerManager;
+import flixel.addons.display.FlxBackdrop;
 import haxe.Json;
 import lime.utils.Assets;
 import openfl.display.BlendMode;
@@ -371,7 +373,7 @@ class PlayState extends MusicBeatState
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
 		#end
 
-
+		FlxG.updateFramerate = 60;
 
 		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south' || SONG.stage == 'spooky')
 		{
@@ -1027,7 +1029,7 @@ class PlayState extends MusicBeatState
 		else if (SONG.stage == 'pixelstreet')
 		{
 
-		curStage = 'pixelstreet';
+			curStage = 'pixelstreet';
 				defaultCamZoom = 0.8;
 				//pixelnightBG = new FlxBackdrop('assets/images/nightdrive.png', 0.5, 0, true, false);
 				//pixelnightBG = new FlxBackdrop('assets/images/limo/nightdrive.png', 1, 0, true, false, 0, 0);
@@ -1090,9 +1092,6 @@ class PlayState extends MusicBeatState
 				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarNight.png');
 				add(limoNight);
 			}
-
-
-	
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -1186,7 +1185,6 @@ class PlayState extends MusicBeatState
 				dad.x += 150;
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			
 			case 'spirit':
 				dad.x -= 150;
 				dad.y += 100;
@@ -1308,7 +1306,6 @@ class PlayState extends MusicBeatState
 	
 				resetFastCar();
 				add(fastCar);
-			
 			case 'pixelstreet':
 				boyfriend.y -= 70;
 				boyfriend.x += 460;
@@ -2315,6 +2312,9 @@ class PlayState extends MusicBeatState
 	 /**
 	 * says it all lmao
 	 */
+
+	var frameRateRatio:Float = MusicBeatState.funkyFramerate / 60;
+
 	override public function update(elapsed:Float)
 	{
 		fakeFramerate = Math.round((1 / FlxG.elapsed) / 10);
@@ -2411,18 +2411,8 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		if (!OptionsHandler.options.fpsLimit)
-		{
-			new FlxTimer().start(0.375, function(tmr:FlxTimer){
-				iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-				iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
-			});
-		}
-		else if (OptionsHandler.options.fpsLimit)
-		{
-			iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-			iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
-		}
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 150, 0.50 / frameRateRatio)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, 150, 0.50 / frameRateRatio)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -2557,6 +2547,7 @@ class PlayState extends MusicBeatState
 					case 'senpaidumb':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;
+					
 				}
 
 				if (dad.curCharacter == 'mom')
@@ -2576,8 +2567,6 @@ class PlayState extends MusicBeatState
 				{
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
-					case 'pixelstreet':
-					camFollow.x = boyfriend.getMidpoint().x - 300;
 					case 'mall':
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'school':
@@ -2587,6 +2576,8 @@ class PlayState extends MusicBeatState
 						camFollow.x = boyfriend.getMidpoint().x - 200;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'mtc':
+						camFollow.x = boyfriend.getMidpoint().x - 300;
+					case 'pixelstreet':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
 				}
 
@@ -2679,6 +2670,8 @@ class PlayState extends MusicBeatState
 			trace("RESET = True");
 		}
 
+		var currentlyAttacking:Bool = false;
+
 		// CHEAT = brandon's a pussy
 		if (controls.CHEAT)
 		{
@@ -2688,13 +2681,25 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.pressed.Z)
 		{
-			boyfriend.playAnim("singpreattack", true);
+			if (!currentlyAttacking)
+				boyfriend.playAnim("singpreattack", true);
 		}
 
 		if (FlxG.keys.justReleased.Z)
 		{
-			health += 0.075;
-			boyfriend.playAnim("singattack", true);
+			if (!currentlyAttacking)
+			{
+				health += 0.075;
+				currentlyAttacking = true;
+				boyfriend.playAnim("singattack", true);
+				new FlxTimer().start(0.7, function(tmr:FlxTimer){
+					boyfriend.playAnim("singattack", true, true);
+					new FlxTimer().start(0.7, function(tmr:FlxTimer){
+						boyfriend.playAnim("singpreattack", true);
+						currentlyAttacking = false;
+					});
+				});
+			}
 		}
 		
 		if (FlxG.keys.justPressed.C)
@@ -3239,12 +3244,11 @@ class PlayState extends MusicBeatState
 			pixelShitPart1 = 'weeb/pixelUI/';
 			pixelShitPart2 = '-pixel';
 		}
-
 		if (curStage.startsWith('pixelstreet'))
-			{
-				pixelShitPart1 = 'weeb/pixelUI/';
-				pixelShitPart2 = '-pixel';
-			}
+		{
+			pixelShitPart1 = 'weeb/pixelUI/';
+			pixelShitPart2 = '-pixel';
+		}
 		if (SONG.player1 == 'bf-pain')
 		{
 			pixelShitPart1 = 'pain/';
@@ -3268,9 +3272,6 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		if (comboText)
 			add(comboSpr);
-
-		
-	
 		
 		if(daTiming != "")
 		{
@@ -3306,10 +3307,10 @@ class PlayState extends MusicBeatState
 		timing.updateHitbox();
 
 		if (curStage == 'pixelstreet') {
-		comboSpr.visible = false;
-		rating.visible = false;
-		timing.visible = false;
-		}
+			comboSpr.visible = false;
+			rating.visible = false;
+			timing.visible = false;
+		}	
 
 		var seperatedScore:Array<Int> = [];
 
@@ -3925,6 +3926,14 @@ class PlayState extends MusicBeatState
 		{
 			// dad.dance();
 		}
+
+		if (curStep == 254 && curSong == 'B-Sides-Bopeebo')
+		{
+			boyfriend.playAnim('hey', true);
+			gf.playAnim('cheer', true);
+			if (dad.curCharacter == 'gf')
+				dad.playAnim('cheer', true);
+		}
 	}
 
 	var lightningStrikeBeat:Int = 0;
@@ -4024,18 +4033,8 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (OptionsHandler.options.fpsLimit)
-		{
-			iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-			iconP2.setGraphicSize(Std.int(iconP2.width + 30));
-		}
-		else if (!OptionsHandler.options.fpsLimit)
-		{
-			new FlxTimer().start(0.375, function(tmr:FlxTimer){
-				iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-				iconP2.setGraphicSize(Std.int(iconP2.width + 30));
-			});
-		}
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 180, 0.7)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, 180, 0.7)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -4067,7 +4066,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 		}
 
-		if (curBeat % 8 == 7 && curSong == 'B-Sides-Bopeebo')
+		if (curBeat == 7 && curSong == 'B-Sides-Bopeebo')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);

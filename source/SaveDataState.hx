@@ -55,7 +55,8 @@ class SaveDataState extends MusicBeatState
 						{name: "Less LS Effect", value: false},
 						{name: "Bold Intro Alphabet", value: true},
 						{name: "Cinematic Mode", value: false},
-						{name: "Modifier Menu", value: false}
+						{name: "Modifier Menu", value: false},
+						{name: "B Type Title", value: false}
 						// {name: "Sample Option", value: false, int: 0}
 					];
 		// we use a var because if we don't it will read the file each time
@@ -69,6 +70,7 @@ class SaveDataState extends MusicBeatState
 		optionList[4].value = curOptions.boldText;
 		optionList[5].value = curOptions.cinematicMode;
 		optionList[6].value = curOptions.modifierMenu;
+		optionList[7].value = curOptions.bSidesIGuess;
 		// optionList[6].int = curOptions.sampleOption;
 		menuBG.color = 0xFF7194fc;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -207,6 +209,7 @@ class SaveDataState extends MusicBeatState
 	function saveOptions() {
 		OptionsHandler.options = 
 		{
+			"bSidesIGuess": optionList[7].value,
 			"modifierMenu": optionList[6].value,
 			"cinematicMode": optionList[5].value,
 			"boldText": optionList[4].value,
