@@ -1,105 +1,158 @@
-### Update
+![Friday_Night_Funkin_Logo](/art/logoREADME.png "FNF Logo")
 
-FULLY RELEASED LMAOOOOOOOOO
-CURRENTLY IN BETA
-UPDATES SOON
+### This is the repository for Friday Night Funkin Chaos, a mod originally made for fun that turned out to be a disaster.
 
-# Friday Night Funkin' Chaos
+## Original game
+Play the Newgrounds one [here](https://www.newgrounds.com/portal/view/770371)!
 
-This is the repository for Friday Night Funkin' Chaos, a fork of Friday Night Funkin', a game originally made for Ludum Dare 47 "Stuck In a Loop".
-Chaos is not responsible for the burning of your eyes and mouth.
-All proceeds go to no one.
-Chaos is a mod in which to goal is to jam as many shitty things into it as possible until it fits.
-Also better mod support lel
+Play the Ludum Dare prototype [here](https://ninja-muffin24.itch.io/friday-night-funkin)!
 
-Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-funkin
-Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371
-Support the original project on the itch.io page: https://ninja-muffin24.itch.io/funkin
+Support the project on the [Itch.io page](https://ninja-muffin24.itch.io/funkin)!
 
-## Credits / shoutouts
+## Mod
+You need to compile the game, info below.
 
-### Original Game
-- [ninjamuffin99 (me!)](https://twitter.com/ninja_muffin99) - Programmer
-- [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
-- [Kawaisprite](https://twitter.com/kawaisprite) - Musician
+## Credits / Shoutouts (for the original game)
+### Programmers:
+💻 [ninjamuffin99](https://twitter.com/ninja_muffin99) 
 
-### Mod Makers
-- [haya (me, the one who kicked this off)](https://example.com) - Programmer
-- [FriedFrick](https://example.com) - Second Programmer and the one who game me the idea
-- [Keaton Hoshida](https://example.com) - Art maker for some of the characters
-- [Saff](https://example.com) - Logo
-- [Bishop](https://example.com) - for being cute lmao
-- [LuciDin](https://example.com) - cool guy
-- [Smokey](https://example.com), [Rozebud](https://example.com), [KadeDev](https://example.com), [Verwex](https://example.com), [BulbyVR](https://example.com) and [Cval](https://example.com) - for being cool lmao
-- OTHERS I FORGOT FOR HELPING ME AND SOME OTHER SHIT THANK YALL
+### Artists:
+🎨 [PhantomArcade3K](https://twitter.com/phantomarcade3k)
 
-This game was made with love to Newgrounds and it's community. Extra love to Tom Fulp.
+🎨 [Evilsk8r](https://twitter.com/evilsk8r)
 
-## Build instructions
+### Musicians:
+🎶 [Kawaisprite](https://twitter.com/kawaisprite)
 
-### Installing shit
+## Credits / Shoutouts (for the mod)
+### Programmers:
+💻 [haya (me!)](https://twitter.com/notmrsgpt18) 
 
-First you need to install Haxe 4.1.5 and HaxeFlixel. I'm too lazy to write and keep updated with that setup (which is pretty simple). 
-The link to that is on the [HaxeFlixel website](https://haxeflixel.com/documentation/getting-started/)
+💻 [KadeDev](https://twitter.com/KadeDeveloper) 
 
-That should give you HaxeFlixel and all of it's setup and shit. If you run into issues, ask them in the #flixel channel in the [Haxe Discord Server](https://discord.gg/5ybrNNWx9S).
+💻 [FriedFrick](https://twitter.com/FriedFrick) 
 
-Other installations you'd need is the additional libraries, a fully updated list will be in `Project.xml` in the project root, but here are the one's I'm using as of writing.
+💻 [Smokey](https://twitter.com/Smokey36011945) 
 
+### Artists:
+🎨 [FriedFrick](https://twitter.com/FriedFrick) 
+
+🎨 [Keaton Hoshida](https://twitter.com/FoxArcana) 
+
+### Special Thanks 💖
+
+This game was made with love to Newgrounds and its community. Extra love to Tom Fulp. 💖
+
+![newgrounds_logo](/art/preloaderArt.png)
+
+## What can I do with compiling the game? Why should I compile the game instead of downloading it from [the Itch.io page of the game](https://ninja-muffin24.itch.io/friday-night-funkin)?
+
+Compiling the game gives access to the `/source` folder, allowing you to change the code of the game. You can add a lot of cool things with the open source code!
+
+I recommend having a good idea on how to program. Compiling the game is not for everyone!
+
+If you just want to download and play the game normally, you can click [here to go to the Itch.io page of the game](https://ninja-muffin24.itch.io/friday-night-funkin)!
+
+### **If you do want to compile, continue reading!**
+
+# Installing the Required Programs
+
+![haxe-logo-white-background](https://user-images.githubusercontent.com/72235309/112079978-81247d80-8b57-11eb-8735-bea15b9f4658.png)
+
+First you need to install Haxe and HaxeFlixel.
+1. [Install Haxe 4.1.5](https://haxe.org/download/version/4.1.5/) (Download 4.1.5 instead of 4.2.0 because 4.2.0 is broken and is not working with gits properly...)
+2. [Install HaxeFlixel](https://haxeflixel.com/documentation/install-haxeflixel/) after downloading Haxe
+
+Other installations you will need are the additional libraries. A fully updated list will be in `Project.xml` in the project root. Currently, these are all the things you need to install:
 ```
-hscript
+flixel
+flixel-addons
 flixel-ui
+hscript
 newgrounds
 ```
+So, for each of those type `haxelib install [library]` so shit like `haxelib install newgrounds`.
 
-So for each of those type `haxelib install [library]` so shit like `haxelib install newgrounds`
+You will also need to install a couple things that involve Gits. To do this, you need to do a few things first.
+1. Download [git-scm](https://git-scm.com/downloads). Works for Windows, Mac, and Linux, just select your build.
+2. Follow instructions to install the application properly.
+3. Run `haxelib git polymod https://github.com/larsiusprime/polymod.git` to install Polymod.
+4. Run `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc` to install Discord RPC.
+5. Optional: - Run `haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons` to update Flixel-Addons. This fixes the transition bug for zoomed out stage cameras.
 
-You'll also need to install some libraries not included in haxelib. 
-First, get git, which is as simple as [clicking this link, dumbo](https://gitforwindows.org/).
-Then use the command prompt and type these in.
+You should have everything ready for compiling the game! Follow the guide below to continue!
 
+# Adding `APIStuff.hx` into `/source`
+
+The API keys of the game were gitignored so no one could post fake high scores onto the leaderboards in Newgrounds. Unfortunately, because this game requires the `API` and `EncKey` values to compile, you will need to add a file called `APIStuff.hx` into `/source`.
+
+1. Create a new text file called `APIStuff.hx` inside of the `/source` folder.
+2. Copy the following text:
+```haxe
+package;
+class APIStuff
+{
+	public static var API:String = "";
+	public static var EncKey:String = "";
+}
 ```
-haxelib git polymod https://github.com/larsiusprime/polymod.git
-haxelib git discord-rpc https://github.com/larsiusprime/polymod.git
+3. Paste the text into the APIStuff.hx file and save the file.
+
+You should be good from there! Now, onto compiling!
+
+# Compiling the Game
+
+## HTML Building:
+
+Compiling the game is rather simple for HTML5 builds.
+1. Open your machine's command prompt/terminal and navigate to your root folder of the game. [An easy guide can be found here!](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+2. Type `lime build html5 -debug` to build the HTML5 version of the game.
+3. Type `lime run html5 -debug` to run the HTML5 version of the game from the command prompt/terminal. (You can also run the game from `funkin/export/debug/html5/bin`)
+
+You should be all good to play the HTML5 version of the game!
+
+## Desktop Building:
+
+Desktop building can be a bit tedious. Each different version requires a different setup.
+
+### Linux Building:
+
+1. Open your machine's command prompt/terminal and navigate to your root folder of the game. [An easy guide can be found here!](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+2. Type `lime build linux -debug` to build the Linux version of the game.
+3. Type `lime run linux -debug` to run the Linux version of the game from the command prompt/terminal. (You can also run the game from `funkin/export/debug/linux/bin`)
+
+### Mac Building:
+
+1. Open your machine's command prompt/terminal and navigate to your root folder of the game. [An easy guide can be found here!](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+2. Type `lime build mac -debug` to build the Mac version of the game.
+3. Type `lime run mac -debug` to run the Mac version of the game from the command prompt/terminal. (You can also run the game from `funkin/export/debug/mac/bin`)
+
+### Windows Building:
+**THIS METHOD REQUIRES AROUND 22 GIGABYTES OF STORAGE.**
+1. Install [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/).
+2. Open the installer and go to the individual workloads tab and download the following:
 ```
-
-### Ignored files
-
-I gitignore the export folder for the game, since it uses a lot of obj files from VS 2019 (we'll get to that later).
-
-### Compiling game
-
-Once you have all those installed, it's pretty easy to compile the game. You just need to run 'lime test html5 -debug' in the root of the project to build and run the HTML5 version. (command prompt navigation guide can be found here: [https://ninjamuffin99.newgrounds.com/news/post/1090480](https://ninjamuffin99.newgrounds.com/news/post/1090480))
-
-To run it from your desktop (Windows, Mac, Linux) it can be a bit more involved. 
-
-# Building to Linux
-
-For Linux, you only need to open a terminal in the project directory and run 'lime test linux -debug' and then run the executable file in export/release/linux/bin. 
-
-# Building to Windows
-
-For Windows, you need to install Visual Studio Community 2019. While installing VSC, don't click on any of the options to install workloads. Instead, go to the individual components tab and choose the following:
-* MSVC v142 - VS 2019 C++ x64/x86 build tools
-* Windows SDK (10.0.17763.0)
-* C++ Profiling tools
-* C++ CMake tools for windows
+* C++ CMake tools for windows 
+* C++ Profiling tools 
 * C++ ATL for v142 build tools (x86 & x64)
 * C++ MFC for v142 build tools (x86 & x64)
 * C++/CLI support for v142 build tools (14.21)
 * C++ Modules for v142 build tools (x64/x86)
 * Clang Compiler for Windows
-* Windows 10 SDK (10.0.17134.0)
-* Windows 10 SDK (10.0.16299.0)
+* MSVC v140 - VS 2015 C++ build tools (v14.00) 
 * MSVC v141 - VS 2017 C++ x64/x86 build tools
-* MSVC v140 - VS 2015 C++ build tools (v14.00)
+* MSVC v142 - VS 2019 C++ x64/x86 build tools
+* Windows 10 SDK (10.0.16299.0)
+* Windows 10 SDK (10.0.17134.0)
+* Windows SDK (10.0.17763.0)
+```
+3. Wait for the install to finish, which might take a while.
+4. Open your machine's command prompt/terminal and navigate to your root folder of the game. [An easy guide can be found here!](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+5. Once everything is installed, type `lime build windows -debug` to build the windows version of the game.
+6. Type `lime run windows -debug` after the game is compiled to run the windows version of the game. (You can also run the game from `funkin/export/debug/windows/bin`)
 
-This will install about 22GB of crap, but once that is done you can open up a command line in the project's directory and run `lime test windows -debug`. Once that command finishes (it takes forever even on a higher end PC), you can run FNF from the .exe file under export\release\windows\bin
+# All done!
+You should have been able to compile the whole game now! What can you do now? Well, you can mod to your heart's desire! Since this game is open source, the creator loves seeing what other talented artists and programmers can make!
+Special thanks to the amazing group of dedicated people that are making this game amazing!
 
-# Building to Mac
-
-As for Mac, 'lime test mac -debug' should work, if not the internet surely has a guide on how to compile Haxe stuff for Mac. Its semi-same with the Linux building steps.
-
-### Additional guides
-
-- [Command line basics](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+💖💖
