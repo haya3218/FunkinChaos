@@ -87,6 +87,7 @@ enum KeyboardScheme
 	Duo(first:Bool);
 	None;
 	Custom;
+	DFJK;
 }
 
 /**
@@ -441,6 +442,8 @@ class Controls extends FlxActionSet
 			{
 				case None:
 					keyboardScheme = scheme;
+				case DFJK:
+					keyboardScheme = scheme;
 				default:
 					keyboardScheme = Custom;
 			}
@@ -529,7 +532,16 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.RESET, [BACKSPACE]);
 				inline bindKeys(Control.CHEAT, [X]);
 			case None: // nothing
-			case Custom: // nothing
+			case Custom: 
+				inline bindKeys(Control.UP, [I]);
+				inline bindKeys(Control.DOWN, [K]);
+				inline bindKeys(Control.LEFT, [J]);
+				inline bindKeys(Control.RIGHT, [L]);
+			case DFJK: 
+				inline bindKeys(Control.UP, [J]);
+				inline bindKeys(Control.DOWN, [F]);
+				inline bindKeys(Control.LEFT, [D]);
+				inline bindKeys(Control.RIGHT, [K]);
 		}
 		#else
 		switch (scheme)

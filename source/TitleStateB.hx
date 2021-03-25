@@ -215,15 +215,11 @@ class TitleStateB extends MusicBeatState
 				remove(levelInfo);
 				remove(shittyReminder);
 				// preload menu music cos lag
-				FlxG.sound.playMusic(Paths.music('freakyMenuB', 'shared'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.7);
-				FlxG.sound.music.pause();
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					#if desktop
 					DiscordClient.initialize();
 					#end
-					FlxG.sound.music.play();
 					startIntro();
 				});
 			});
@@ -263,6 +259,8 @@ class TitleStateB extends MusicBeatState
 			// music.loadStream('assets/music/freakyMenu' + TitleStateB.soundExt);
 			// FlxG.sound.list.add(music);
 			// music.play();
+			FlxG.sound.playMusic(Paths.music('freakyMenuB', 'shared'), 0);
+			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
 		Conductor.changeBPM(102);

@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -33,6 +34,7 @@ class Alphabet extends FlxSpriteGroup
 	public static var invis:Bool = false;
 	public var invisModifier:Bool = false;
 	public var isPixel:Bool = false;
+	public var colorText:FlxColor = 0xFFFFFF;
 
 	public var text:String = "";
 
@@ -55,13 +57,14 @@ class Alphabet extends FlxSpriteGroup
 	
 	var hasBoldSymbols:Bool = false;
 
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, pixelated:Bool = false)
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, pixelated:Bool = false, colorText:FlxColor = 0xFFFFFF)
 	{
 		super(x, y);
 
 		_finalText = text;
 		this.text = text;
 		this.isPixel = pixelated;
+		this.colorText = colorText;
 		isBold = bold;
 
 		if (text != "")
@@ -108,7 +111,7 @@ class Alphabet extends FlxSpriteGroup
 				}
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
-				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, isPixel);
+				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, isPixel, colorText);
 				var isNumber:Bool = character.contains(numbers);
 				var isSymbol:Bool = character.contains(symbols);
 
@@ -304,7 +307,7 @@ class AlphaCharacter extends FlxSprite
 
 	public var invis:Bool = Alphabet.invis;
 
-	public function new(x:Float, y:Float, pixelated:Bool = false)
+	public function new(x:Float, y:Float, pixelated:Bool = false, colorText:FlxColor = 0xFFFFFF)
 	{
 		super(x, y);
 		var tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
@@ -313,6 +316,8 @@ class AlphaCharacter extends FlxSprite
 			tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/alphabet-pixel.png', 'assets/images/weeb/pixelUI/alphabet-pixel.xml');
 		else 
 			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
+
+		color = colorText;
 
 		frames = tex;
 

@@ -20,18 +20,20 @@ import lime.utils.Assets;
 class ControlMenu extends MusicBeatState
 {
 	var selector:FlxText;
+	var scoreText:FlxText;
 	var curSelected:Int = 0;
 
 	var controlsStrings:Array<String> = [];
+	var shittyAdons:Array<String> = ['DFJK INPUT', 'WASD INPUT', 'IJKL INPUT'];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var changingInput:Bool = false;
   
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/charSelect/BG4.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		controlsStrings = CoolUtil.coolTextFile('assets/data/controls.txt');
-		menuBG.color = 0xFFea71fd;
+		menuBG.color = 0x32CD32;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -46,21 +48,38 @@ class ControlMenu extends MusicBeatState
 		selector.setFormat("assets/fonts/funke.otf", 75, FlxColor.WHITE, CENTER);
 		selector.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 5.5, 5.5);
 		add(selector);
+		selector.visible = false;
+
+		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
+		// scoreText.autoSize = false;
+		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		// scoreText.alignment = RIGHT;
 
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Control Menu", null);
 		#end
 
+
 		for(key => value in Controls.keyboardMap)
 		{
 			var elements:Array<String> = controlsStrings[i].split(',');
-			var controlLabel:Alphabet = new Alphabet(0, (10 * i) + 10,'set ' + key + ': ' + value, true, false);
-			controlLabel.isControlItem = true;
-			controlLabel.targetY = 0;
-			controlLabel.visible = false;
+			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'set ' + key + ': ' + value, true, false);
+			controlLabel.isMenuItem = true;
+			controlLabel.targetY = i;
+			controlLabel.visible = true;
 			grpControls.add(controlLabel);
 			i++;
+		}
+
+		for (i in 0...shittyAdons.length)
+		{
+			var setLabel:Alphabet = new Alphabet(0, (70 * i) + 30,shittyAdons[i], true, false);
+			setLabel.isMenuItem = true;
+			setLabel.targetY = i;
+			setLabel.visible = true;
+
+			grpControls.add(setLabel);
 		}
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CUSTOMIZE CONTROLS', true, false);
@@ -102,10 +121,66 @@ class ControlMenu extends MusicBeatState
 			if(controls.DOWN_P)
 				changeSelection(1);
 			if(controls.ACCEPT)
-				changeInput();
+			{
+				switch (grpControls.members[curSelected].text)
+				{
+					// these are for other shitty strings
+					case 'DFJK INPUT':
+						Controls.keyboardMap.set('UP',J);
+						Controls.keyboardMap.set('DOWN',F);
+						Controls.keyboardMap.set('LEFT',D);
+						Controls.keyboardMap.set('RIGHT',K);
+						Controls.saveControls();
+						FlxG.switchState(new OptionsMenu());
+					case 'WASD INPUT':
+						Controls.keyboardMap.set('UP',W);
+						Controls.keyboardMap.set('DOWN',S);
+						Controls.keyboardMap.set('LEFT',A);
+						Controls.keyboardMap.set('RIGHT',D);
+						Controls.saveControls();
+						FlxG.switchState(new OptionsMenu());
+					case 'IJKL INPUT':
+						Controls.keyboardMap.set('UP',I);
+						Controls.keyboardMap.set('DOWN',K);
+						Controls.keyboardMap.set('LEFT',J);
+						Controls.keyboardMap.set('RIGHT',L);
+						Controls.saveControls();
+						FlxG.switchState(new OptionsMenu());
+					default:
+						changeInput();
+				}
+			}
 		}
 		else
-			inputChange();
+		{
+			switch (grpControls.members[curSelected].text)
+			{
+				// these are for other shitty strings
+				case 'DFJK INPUT':
+					Controls.keyboardMap.set('UP',J);
+					Controls.keyboardMap.set('DOWN',F);
+					Controls.keyboardMap.set('LEFT',D);
+					Controls.keyboardMap.set('RIGHT',K);
+					Controls.saveControls();
+					FlxG.switchState(new OptionsMenu());
+				case 'WASD INPUT':
+					Controls.keyboardMap.set('UP',W);
+					Controls.keyboardMap.set('DOWN',S);
+					Controls.keyboardMap.set('LEFT',A);
+					Controls.keyboardMap.set('RIGHT',D);
+					Controls.saveControls();
+					FlxG.switchState(new OptionsMenu());
+				case 'IJKL INPUT':
+					Controls.keyboardMap.set('UP',I);
+					Controls.keyboardMap.set('DOWN',K);
+					Controls.keyboardMap.set('LEFT',J);
+					Controls.keyboardMap.set('RIGHT',L);
+					Controls.saveControls();
+					FlxG.switchState(new OptionsMenu());
+				default:
+					inputChange();
+			}
+		}
 	}
 
 	function changeSelection(change:Int = 0)
@@ -125,18 +200,13 @@ class ControlMenu extends MusicBeatState
 
 		for (item in grpControls.members)
 		{
-			curSelected += change;
+			item.targetY = bullShit - curSelected;
+			bullShit++;
+
+			item.alpha = 0.6;
+			// item.setGraphicSize(Std.int(item.width * 0.8));
 	
-			if (curSelected < 0)
-				curSelected = grpControls.length - 1;
-			if (curSelected >= grpControls.length)
-				curSelected = 0;
-	
-			// selector.y = (70 * curSelected) + 30;
-	
-			var bullShit:Int = 0;
-	
-			for (item in grpControls.members)
+			if (item.targetY == 0)
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
@@ -150,11 +220,12 @@ class ControlMenu extends MusicBeatState
 	{
 		FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
 		changingInput = true;
-		FlxFlicker.flicker(selector,0);
+		FlxFlicker.flicker(grpControls.members[curSelected],0);
 	}
 
 	function inputChange()
-	{				
+	{			
+		var i = 0;	
 		if(FlxG.keys.pressed.ANY)
 		{
 			//Checks all known keys
@@ -168,10 +239,10 @@ class ControlMenu extends MusicBeatState
 					
 					var elements:Array<String> = grpControls.members[curSelected].text.split(':');
 					var name:String = StringTools.replace(elements[0],'set ','');
-					var controlLabel:Alphabet = new Alphabet(0, 0,'set ' + name + ': ' + key, true, false);
-					controlLabel.isControlItem = true;
-					controlLabel.targetY = 0;
-					controlLabel.visible = false;
+					var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'set ' + name + ': ' + key, true, false);
+					controlLabel.isMenuItem = true;
+					controlLabel.targetY = i;
+					controlLabel.visible = true;
 
 					grpControls.replace(grpControls.members[curSelected],controlLabel);
 					changingInput = false;
@@ -183,8 +254,6 @@ class ControlMenu extends MusicBeatState
 					
 					Controls.keyboardMap.set(name,keyMaps[key]);
 					FlxG.log.add(name + " is bound to " + keyMaps[key]);
-					
-
 					break;
 				}
 			}			
