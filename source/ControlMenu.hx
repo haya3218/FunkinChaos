@@ -64,7 +64,7 @@ class ControlMenu extends MusicBeatState
 		for(key => value in Controls.keyboardMap)
 		{
 			var elements:Array<String> = controlsStrings[i].split(',');
-			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'set ' + key + ': ' + value, true, false);
+			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'1' + key + ': ' + value, true, false);
 			controlLabel.isMenuItem = true;
 			controlLabel.targetY = i;
 			controlLabel.visible = true;
@@ -122,64 +122,12 @@ class ControlMenu extends MusicBeatState
 				changeSelection(1);
 			if(controls.ACCEPT)
 			{
-				switch (grpControls.members[curSelected].text)
-				{
-					// these are for other shitty strings
-					case 'DFJK INPUT':
-						Controls.keyboardMap.set('UP',J);
-						Controls.keyboardMap.set('DOWN',F);
-						Controls.keyboardMap.set('LEFT',D);
-						Controls.keyboardMap.set('RIGHT',K);
-						Controls.saveControls();
-						FlxG.switchState(new OptionsMenu());
-					case 'WASD INPUT':
-						Controls.keyboardMap.set('UP',W);
-						Controls.keyboardMap.set('DOWN',S);
-						Controls.keyboardMap.set('LEFT',A);
-						Controls.keyboardMap.set('RIGHT',D);
-						Controls.saveControls();
-						FlxG.switchState(new OptionsMenu());
-					case 'IJKL INPUT':
-						Controls.keyboardMap.set('UP',I);
-						Controls.keyboardMap.set('DOWN',K);
-						Controls.keyboardMap.set('LEFT',J);
-						Controls.keyboardMap.set('RIGHT',L);
-						Controls.saveControls();
-						FlxG.switchState(new OptionsMenu());
-					default:
-						changeInput();
-				}
+				changeInput();
 			}
 		}
 		else
 		{
-			switch (grpControls.members[curSelected].text)
-			{
-				// these are for other shitty strings
-				case 'DFJK INPUT':
-					Controls.keyboardMap.set('UP',J);
-					Controls.keyboardMap.set('DOWN',F);
-					Controls.keyboardMap.set('LEFT',D);
-					Controls.keyboardMap.set('RIGHT',K);
-					Controls.saveControls();
-					FlxG.switchState(new OptionsMenu());
-				case 'WASD INPUT':
-					Controls.keyboardMap.set('UP',W);
-					Controls.keyboardMap.set('DOWN',S);
-					Controls.keyboardMap.set('LEFT',A);
-					Controls.keyboardMap.set('RIGHT',D);
-					Controls.saveControls();
-					FlxG.switchState(new OptionsMenu());
-				case 'IJKL INPUT':
-					Controls.keyboardMap.set('UP',I);
-					Controls.keyboardMap.set('DOWN',K);
-					Controls.keyboardMap.set('LEFT',J);
-					Controls.keyboardMap.set('RIGHT',L);
-					Controls.saveControls();
-					FlxG.switchState(new OptionsMenu());
-				default:
-					inputChange();
-			}
+			inputChange();
 		}
 	}
 
@@ -219,8 +167,37 @@ class ControlMenu extends MusicBeatState
 	function changeInput()
 	{
 		FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-		changingInput = true;
-		FlxFlicker.flicker(grpControls.members[curSelected],0);
+		switch (grpControls.members[curSelected].text)
+		{
+			case 'DFJK INPUT':
+				Controls.keyboardMap.set('UP',J);
+				Controls.keyboardMap.set('DOWN',F);
+				Controls.keyboardMap.set('LEFT',D);
+				Controls.keyboardMap.set('RIGHT',K);
+				Controls.saveControls();
+				controls.setKeyboardScheme(Solo,true);
+				FlxG.switchState(new OptionsMenu());
+			case 'WASD INPUT':
+				Controls.keyboardMap.set('UP',W);
+				Controls.keyboardMap.set('DOWN',S);
+				Controls.keyboardMap.set('LEFT',A);
+				Controls.keyboardMap.set('RIGHT',D);
+				Controls.saveControls();
+				controls.setKeyboardScheme(Solo,true);
+				FlxG.switchState(new OptionsMenu());
+			case 'IJKL INPUT':
+				Controls.keyboardMap.set('UP',I);
+				Controls.keyboardMap.set('DOWN',K);
+				Controls.keyboardMap.set('LEFT',J);
+				Controls.keyboardMap.set('RIGHT',L);
+				Controls.saveControls();
+				controls.setKeyboardScheme(Solo,true);
+				FlxG.switchState(new OptionsMenu());
+			default:
+				changingInput = true;
+				FlxFlicker.flicker(grpControls.members[curSelected],0);
+		}
+		
 	}
 
 	function inputChange()
@@ -238,8 +215,8 @@ class ControlMenu extends MusicBeatState
 					FlxFlicker.stopFlickering(selector);
 					
 					var elements:Array<String> = grpControls.members[curSelected].text.split(':');
-					var name:String = StringTools.replace(elements[0],'set ','');
-					var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'set ' + name + ': ' + key, true, false);
+					var name:String = StringTools.replace(elements[0],'1','');
+					var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30,'1' + name + ': ' + key, true, false);
 					controlLabel.isMenuItem = true;
 					controlLabel.targetY = i;
 					controlLabel.visible = true;
