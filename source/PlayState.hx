@@ -3116,7 +3116,7 @@ class PlayState extends MusicBeatState
 			if (storyPlaylist.length <= 0)
 			{
 				TitleState.deathCounter = 0;
-				FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+				FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;

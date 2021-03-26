@@ -40,7 +40,7 @@ class OptionsMenu extends MusicBeatState
 	{
 		if (!FlxG.sound.music.playing)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+			FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 		}
 		
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');

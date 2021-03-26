@@ -140,7 +140,7 @@ class SaveDataState extends MusicBeatState
 		if (controls.BACK) 
 		{
             FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-            FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'), 70);
+            FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'), 70);
 			saveOptions();
 			FlxG.switchState(new OptionsMenu());
 		}

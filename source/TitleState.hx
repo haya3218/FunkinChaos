@@ -72,6 +72,7 @@ class TitleState extends MusicBeatState
 
 	var doneTalking:Bool = false;
 	public static var modListOn:Bool = false;
+	public static var bModdin:String = "";
 
 	override public function create():Void
 	{
@@ -122,6 +123,7 @@ class TitleState extends MusicBeatState
 
 		if (OptionsHandler.options.bSidesIGuess)
 		{
+			bModdin = "B";
 			FlxG.switchState(new TitleStateB());
 		}
 

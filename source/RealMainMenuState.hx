@@ -49,7 +49,7 @@ class RealMainMenuState extends MusicBeatState
 
 		if (!FlxG.sound.music.playing)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+			FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 		}
 
 		persistentUpdate = persistentDraw = true;

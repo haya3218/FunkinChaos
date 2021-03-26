@@ -75,7 +75,7 @@ class FreeplayState extends MusicBeatState
 			if (FlxG.sound.music != null)
 			{
 				if (!FlxG.sound.music.playing)
-					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+					FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 			}
 		 */
 
@@ -227,7 +227,7 @@ class FreeplayState extends MusicBeatState
 			if (controls.BACK)
 				{
 					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
-					FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'));
+					FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 					FlxG.switchState(new RemixState());
 				}
 
