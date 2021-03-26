@@ -3686,12 +3686,6 @@ class PlayState extends MusicBeatState
 		comboSpr.x = babyArrow.x - 50;
 		comboSpr.y += 140;
 
-		 coolText.destroy();
-		 comboSpr.destroy();
- 
-		 timing.destroy();
-		 rating.destroy();
-
 		 add(comboSpr);
 	
 		 add(rating);
