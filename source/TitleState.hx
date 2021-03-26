@@ -186,6 +186,8 @@ class TitleState extends MusicBeatState
 		FlxG.save.close();
 		FlxG.save.bind("save"+preferredSave, 'ninjamuffin99');
 
+		Saves.initSave();
+
 		Highscore.load();
 
 		if (FlxG.save.data.weekUnlocked != null)

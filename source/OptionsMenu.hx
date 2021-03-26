@@ -17,7 +17,7 @@ import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['CREDITS', 'CONTROLS', 'MISC OPTIONS', 'Exit to menu'];
+	var menuItems:Array<String> = ['CREDITS', 'CONTROLS', 'MISC OPTIONS', 'OTHER OPTIONS', 'Exit to menu'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var alreadySelectedShit:Bool = false;
@@ -30,6 +30,7 @@ class OptionsMenu extends MusicBeatState
 	var shittyNames:Array<String> = [
 		"CREDITS, DUH.",
 		"CONTROL SHIZ",
+		"MISC OPTIONS",
 		"MISC OPTIONS",
 		"bye bye"
 	];
@@ -136,6 +137,14 @@ class OptionsMenu extends MusicBeatState
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
 						FlxG.switchState(new SaveDataState());
+					});
+				case "OTHER OPTIONS":
+					alreadySelectedShit = true;
+					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxG.switchState(new MiscOptions());
 					});
 				case "CREDITS":
 					alreadySelectedShit = true;
