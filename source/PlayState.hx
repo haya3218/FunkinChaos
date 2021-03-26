@@ -3677,17 +3677,7 @@ class PlayState extends MusicBeatState
 			else if (combo > 4)
 				daRating = 'bad';
 		 */
-
-		 coolText.destroy();
-		 comboSpr.destroy();
- 
-		 timing.destroy();
-		 rating.destroy();
-
-		var pixelShitPart1:String = "";
-		var pixelShitPart2:String = '';
-
-		rating.loadGraphic('assets/images/' + daRating + ".png");
+		 rating.loadGraphic('assets/images/' + daRating + ".png");
 		rating.screenCenter();
 		rating.x = babyArrow.x - 50;
 
@@ -3696,9 +3686,19 @@ class PlayState extends MusicBeatState
 		comboSpr.x = babyArrow.x - 50;
 		comboSpr.y += 140;
 
-		add(comboSpr);
+		 coolText.destroy();
+		 comboSpr.destroy();
+ 
+		 timing.destroy();
+		 rating.destroy();
+
+		 add(comboSpr);
 	
-		add(rating);
+		 add(rating);
+
+		var pixelShitPart1:String = "";
+		var pixelShitPart2:String = '';
+
 		rating.cameras = [camHUD];
 		comboSpr.cameras = [camHUD];
 
