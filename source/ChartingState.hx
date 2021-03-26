@@ -1157,7 +1157,9 @@ class ChartingState extends MusicBeatState
 		updateGrid();
 		updateNoteUI();
 
-		autosaveSong();
+		// to reduce stinky lag
+		if (OptionsHandler.options.allowNoteAutosaving)
+			autosaveSong();
 	}
 
 	function getStrumTime(yPos:Float):Float

@@ -13,6 +13,7 @@ typedef TOptions = {
     var cinematicMode:Bool;
     var modifierMenu:Bool;
     var bSidesIGuess:Bool;
+    var allowNoteAutosaving:Bool;
     var preferredSave:Int;
 }
 class OptionsHandler {
