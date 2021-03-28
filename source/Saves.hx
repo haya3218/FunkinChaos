@@ -17,5 +17,8 @@ class Saves
 
         if (FlxG.save.data.itgPopupScore == null)
             FlxG.save.data.itgPopupScore = false;
+
+        if (FlxG.save.data.fireNoteSupremacy == null)
+            FlxG.save.data.fireNoteSupremacy = false;
     }
 }

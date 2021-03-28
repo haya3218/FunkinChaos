@@ -21,6 +21,7 @@ class Note extends FlxSprite
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
+	public var isMineNote:Bool = false;
 
 	public var noteScore:Float = 1;
 
@@ -30,7 +31,7 @@ class Note extends FlxSprite
 	public static var GREEN_NOTE:Int = 2;
 	public static var RED_NOTE:Int = 3;
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?mineNote:Bool = false)
 	{
 		super();
 
@@ -39,6 +40,7 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
+		isMineNote = mineNote;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -77,13 +79,21 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 
+			case 'philly':
+				loadGraphic('assets/images/NOTE_mine.png', true, 156, 156);
+
+				animation.add('purpleScroll', [0]);
+				animation.add('blueScroll', [0]);
+				animation.add('greenScroll', [0]);
+				animation.add('redScroll', [0]);
+
 			default:
 				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
 
 				animation.addByPrefix('purpleholdend', 'pruple end hold');
 				animation.addByPrefix('greenholdend', 'green hold end');
@@ -94,6 +104,13 @@ class Note extends FlxSprite
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
+
+				if (isMineNote)
+				{
+					loadGraphic('assets/images/NOTE_mine.png', true, 156, 156);
+
+					animation.add('mine', [0]);
+				}
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -144,8 +161,6 @@ class Note extends FlxSprite
 			if (PlayState.curStage.startsWith('school'))
 				x += 30;
 
-			offset.y -= 1.25 * PlayState.SONG.speed;
-
 			if (prevNote.isSustainNote)
 			{
 				switch (prevNote.noteData)
@@ -162,7 +177,6 @@ class Note extends FlxSprite
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
-				prevNote.offset.y -= 1.25 * PlayState.SONG.speed;
 				// prevNote.setGraphicSize();
 			}
 		}
@@ -174,14 +188,27 @@ class Note extends FlxSprite
 
 		if (mustPress)
 		{
-			// The * 0.5 us so that its easier to hit them too late, instead of too early
-			if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime <= Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
+			if (!PlayState.autoMode)
 			{
-				canBeHit = true;
+				// The * 0.5 us so that its easier to hit them too late, instead of too early
+				if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
+					&& strumTime <= Conductor.songPosition + (Conductor.safeZoneOffset * 0.5) && !isMineNote)
+				{
+					canBeHit = true;
+				}
+				else
+					canBeHit = false;
 			}
 			else
-				canBeHit = false;
+			{
+				if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
+					&& strumTime <= Conductor.songPosition && !isMineNote)
+				{
+					canBeHit = true;
+				}
+				else
+					canBeHit = false;
+			}
 
 			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
 				tooLate = true;
@@ -190,7 +217,7 @@ class Note extends FlxSprite
 		{
 			canBeHit = false;
 
-			if (strumTime <= Conductor.songPosition)
+			if (strumTime <= Conductor.songPosition && !isMineNote)
 			{
 				wasGoodHit = true;
 			}

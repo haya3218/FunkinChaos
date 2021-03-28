@@ -28,7 +28,8 @@ class MiscOptions extends MusicBeatState
 		controlsStrings = CoolUtil.coolStringFile(
 			"\nSong Position " + (!FlxG.save.data.songPosition ? "off" : "on") +
 			"\nEtterna Mode " + (!FlxG.save.data.etternaMode ? "off" : "on") +
-			"\nITG SCORE " + (!FlxG.save.data.itgPopupScore ? "off" : "on"));
+			"\nITG SCORE " + (!FlxG.save.data.itgPopupScore ? "off" : "on") +
+			"\nExperimental Mines " + (!FlxG.save.data.fireNoteSupremacy ? "off" : "on"));
 		
 		trace(controlsStrings);
 
@@ -65,7 +66,7 @@ class MiscOptions extends MusicBeatState
 		super.update(elapsed);
 
 			if (controls.BACK)
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(new OptionsMenu());
 			if (controls.UP_P)
 				changeSelection(-1);
 			if (controls.DOWN_P)
@@ -92,7 +93,13 @@ class MiscOptions extends MusicBeatState
 						FlxG.save.data.itgPopupScore = !FlxG.save.data.itgPopupScore;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "ITG SCORE " + (!FlxG.save.data.itgPopupScore ? "off" : "on"), true, false);
 						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 1;
+						ctrl.targetY = curSelected - 2;
+						grpControls.add(ctrl);
+					case 3:
+						FlxG.save.data.fireNoteSupremacy = !FlxG.save.data.fireNoteSupremacy;
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Experimental Mines " + (!FlxG.save.data.fireNoteSupremacy ? "off" : "on"), true, false);
+						ctrl.isMenuItem = true;
+						ctrl.targetY = curSelected - 3;
 						grpControls.add(ctrl);
 				}
 			}
