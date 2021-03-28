@@ -21,7 +21,6 @@ class Note extends FlxSprite
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
-	public var isMineNote:Bool = false;
 
 	public var noteScore:Float = 1;
 
@@ -31,7 +30,7 @@ class Note extends FlxSprite
 	public static var GREEN_NOTE:Int = 2;
 	public static var RED_NOTE:Int = 3;
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?mineNote:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
 		super();
 
@@ -40,7 +39,6 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
-		isMineNote = mineNote;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -79,14 +77,6 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 
-			case 'philly':
-				loadGraphic('assets/images/NOTE_mine.png', true, 156, 156);
-
-				animation.add('purpleScroll', [0]);
-				animation.add('blueScroll', [0]);
-				animation.add('greenScroll', [0]);
-				animation.add('redScroll', [0]);
-
 			default:
 				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 
@@ -104,13 +94,6 @@ class Note extends FlxSprite
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
-
-				if (isMineNote)
-				{
-					loadGraphic('assets/images/NOTE_mine.png', true, 156, 156);
-
-					animation.add('mine', [0]);
-				}
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -192,7 +175,7 @@ class Note extends FlxSprite
 			{
 				// The * 0.5 us so that its easier to hit them too late, instead of too early
 				if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
-					&& strumTime <= Conductor.songPosition + (Conductor.safeZoneOffset * 0.5) && !isMineNote)
+					&& strumTime <= Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 				{
 					canBeHit = true;
 				}
@@ -202,7 +185,7 @@ class Note extends FlxSprite
 			else
 			{
 				if (strumTime >= Conductor.songPosition - Conductor.safeZoneOffset
-					&& strumTime <= Conductor.songPosition && !isMineNote)
+					&& strumTime <= Conductor.songPositio)
 				{
 					canBeHit = true;
 				}
@@ -217,7 +200,7 @@ class Note extends FlxSprite
 		{
 			canBeHit = false;
 
-			if (strumTime <= Conductor.songPosition && !isMineNote)
+			if (strumTime <= Conductor.songPosition)
 			{
 				wasGoodHit = true;
 			}
