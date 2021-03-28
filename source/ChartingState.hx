@@ -841,6 +841,8 @@ class ChartingState extends MusicBeatState
 				curSelectedNote[2] = Math.max(curSelectedNote[2], 0);
 			}
 		}
+		else
+			trace('WHY AM I NULL');
 
 		updateNoteUI();
 		updateGrid();
@@ -1092,7 +1094,7 @@ class ChartingState extends MusicBeatState
 
 		for (i in _song.notes[curSection].sectionNotes)
 		{
-			if (i.strumTime == note.strumTime && i.noteData % 4 == note.noteData)
+			if (i.strumTime == note.strumTime && i.noteData % 12 == note.noteData)
 			{
 				curSelectedNote = _song.notes[curSection].sectionNotes[swagNum];
 			}
@@ -1114,7 +1116,7 @@ class ChartingState extends MusicBeatState
 				continue;
 			if ((i[0] == note.strumTime + (note.strumTime == 0 ? 0 : 1) 
 				? true : i[0] == note.strumTime) 
-				&& i[1] % 4 == note.noteData)
+				&& i[1] % 12 == note.noteData)
 				// Why does it do this?
 				// I DONT FUCKING KNOW!!!!!!!!!!!!!!
 			{
@@ -1155,7 +1157,7 @@ class ChartingState extends MusicBeatState
 
 		if (FlxG.keys.pressed.CONTROL)
 		{
-			_song.notes[curSection].sectionNotes.push([noteStrum, (noteData + 4) % 8, noteSus]);
+			_song.notes[curSection].sectionNotes.push([noteStrum, (noteData + 4) % 12, noteSus]);
 		}
 
 		trace(noteStrum);
