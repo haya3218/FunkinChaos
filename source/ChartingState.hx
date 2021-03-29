@@ -1108,19 +1108,11 @@ class ChartingState extends MusicBeatState
 
 	function deleteNote(note:Note):Void
 	{
-		trace(_song.notes[curSection].sectionNotes);
-		for (n in 0..._song.notes[curSection].sectionNotes.length)
+		for (i in _song.notes[curSection].sectionNotes)
 		{
-			var i = _song.notes[curSection].sectionNotes[n];
-			if (i == null)
-				continue;
-			if ((i[0] == note.strumTime + (note.strumTime == 0 ? 0 : 1) 
-				? true : i[0] == note.strumTime) 
-				&& i[1] % 16 == note.noteData)
-				// Why does it do this?
-				// I DONT FUCKING KNOW!!!!!!!!!!!!!!
+			if (i[0] == note.strumTime && i[1] % 4 == note.noteData)
 			{
-				trace('GAMING');
+				FlxG.log.add('GAMING');
 				_song.notes[curSection].sectionNotes.remove(i);
 			}
 		}

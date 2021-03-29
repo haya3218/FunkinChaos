@@ -4714,7 +4714,21 @@ class PlayState extends MusicBeatState
 			camHUD.angle = 180;
 		}
 
+		var deezNuts:Bool = false;
+
 		// soon
+		if (curSong.toLowerCase() == 'saitama' && curBeat >= 1 && curBeat < 47 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			deezNuts = true;
+		}
+		if (curSong.toLowerCase() == 'saitama' && curBeat == 10 && curBeat == 21 && curBeat == 32 && curBeat == 43)
+		{
+			deezNuts = false;
+		}
+		if (curSong.toLowerCase() == 'saitama' && curBeat == 12 && curBeat == 23 && curBeat == 34 && curBeat == 45)
+		{
+			deezNuts = false;
+		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
 			if (!cameraUpside)
@@ -4745,13 +4759,19 @@ class PlayState extends MusicBeatState
 			boyfriend.dance();
 		}
 
-		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
+		if (curBeat % 8 == 7 && curSong == 'Bopeebo' && deezNuts)
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
 
 			if (dad.curCharacter == 'gf')
 				dad.playAnim('cheer', true);
+		}
+
+		if (curBeat % 2 == 1 && curSong == 'Saitama' && deezNuts)
+		{
+			FlxG.camera.zoom += 0.015;
+			camHUD.zoom += 0.13;
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Friday-Night')
