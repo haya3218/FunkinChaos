@@ -2074,11 +2074,12 @@ class PlayState extends MusicBeatState
 			for (songNotes in section.sectionNotes)
 			{
 				var daStrumTime:Float = songNotes[0];
-				var daNoteData:Int = Std.int(songNotes[1] % 12);
+				var daNoteData:Int = Std.int(songNotes[1] % 16);
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
-				if (songNotes[1] > 3)
+				// sorry for all these if statemens sometimes && no work :sadman:
+				if (songNotes[1] > 3 || songNotes[1] > 7 && songNotes[1] < 12)
 				{
 					gottaHitNote = !section.mustHitSection;
 				}
@@ -3104,14 +3105,6 @@ class PlayState extends MusicBeatState
 								autoNoteHit(daNote);
 							case 7:
 								autoNoteHit(daNote);
-							case 8:
-								autoNoteHit(daNote);
-							case 9:
-								autoNoteHit(daNote);
-							case 10:
-								autoNoteHit(daNote);
-							case 11:
-								autoNoteHit(daNote);
 						}
 				
 						boyfriend.holdTimer = 0;
@@ -3119,9 +3112,12 @@ class PlayState extends MusicBeatState
 						if (SONG.needsVoices)
 							vocals.volume = 1;
 	
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
+						if (!daNote.mineNote)
+						{
+							daNote.kill();
+							notes.remove(daNote, true);
+							daNote.destroy();
+						}
 						// idleShit();
 					});	
 				}
@@ -3137,22 +3133,25 @@ class PlayState extends MusicBeatState
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit)
 							{
-								health -= 0.0475 + healthLossModifier;
-								misses += 1;
-								combo = 0;
-								songScore -= 10;
-								vocals.volume = 0;
-	
-								if (poisonPlus && poisonTimes < 5) {
-									poisonTimes += 1;
-									var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										health -= 0.05;
-									}, 0);
-									// stop timer after 3 seconds
-									new FlxTimer().start(3, function (tmr:FlxTimer) {
-										poisonPlusTimer.cancel();
-										poisonTimes -= 1;
-									});
+								if (!daNote.mineNote)
+								{
+									health -= 0.0475 + healthLossModifier;
+									misses += 1;
+									combo = 0;
+									songScore -= 10;
+									vocals.volume = 0;
+		
+									if (poisonPlus && poisonTimes < 5) {
+										poisonTimes += 1;
+										var poisonPlusTimer = new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+											health -= 0.05;
+										}, 0);
+										// stop timer after 3 seconds
+										new FlxTimer().start(3, function (tmr:FlxTimer) {
+											poisonPlusTimer.cancel();
+											poisonTimes -= 1;
+										});
+									}
 								}
 							}
 							if (fullComboMode || perfectMode) {
@@ -4043,6 +4042,18 @@ class PlayState extends MusicBeatState
 							case 11:
 								if (right)
 									goodNoteHit(daNote, controlHoldArray);
+							case 12:
+								if (left)
+									badNoteCheck(controlHoldArray, daNote);
+							case 13:
+								if (down)
+									badNoteCheck(controlHoldArray, daNote);
+							case 14:
+								if (up)
+									badNoteCheck(controlHoldArray, daNote);
+							case 15:
+								if (right)
+									badNoteCheck(controlHoldArray, daNote);
 						}
 					}
 				});
@@ -4116,6 +4127,26 @@ class PlayState extends MusicBeatState
 						if (upR)
 							spr.animation.play('static');
 					case 11:
+						if (rightP && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if (rightR)
+							spr.animation.play('static');
+					case 12:
+						if (leftP && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if (leftR)
+							spr.animation.play('static');
+					case 13:
+						if (downP && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if (downR)
+							spr.animation.play('static');
+					case 14:
+						if (upP && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if (upR)
+							spr.animation.play('static');
+					case 15:
 						if (rightP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
 						if (rightR)
@@ -4284,7 +4315,10 @@ class PlayState extends MusicBeatState
 		function noteCheck(keyP:Bool, controlList:Array<Bool>, note:Note):Void
 		{
 			if (controlList[note.noteData] || successThisFrame[note.noteData])
-				goodNoteHit(note, controlList);
+				if (!note.mineNote)
+					goodNoteHit(note, controlList);
+				else
+					badNoteCheck(controlList, note);
 			else
 			{
 				badNoteCheck(controlList, note);
@@ -4410,6 +4444,14 @@ class PlayState extends MusicBeatState
 					case 10:
 						boyfriend.playAnim('singUPmiss', true);
 					case 11:
+						boyfriend.playAnim('singRIGHTmiss', true);
+					case 12:
+						boyfriend.playAnim('singLEFTmiss', true);
+					case 13:
+						boyfriend.playAnim('singDOWNmiss', true);
+					case 14:
+						boyfriend.playAnim('singUPmiss', true);
+					case 15:
 						boyfriend.playAnim('singRIGHTmiss', true);
 				}
 	
