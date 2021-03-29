@@ -77,6 +77,8 @@ class PlayState extends MusicBeatState
 	public static var lateNoteHit:Bool = false;
 
 	var halloweenLevel:Bool = false;
+	var songLength:Float = 0;
+
 	var CameraSpin:Float = 0;
 
 	private var vocals:FlxSound;
@@ -181,7 +183,6 @@ class PlayState extends MusicBeatState
 	// Discord RPC variables
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
-	var songLength:Float = 0;
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
@@ -1971,6 +1972,9 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 
+		// Song duration in a float, useful for the time left feature
+		songLength = FlxG.sound.music.length;
+
 		if (FlxG.save.data.songPosition)
 			{
 				remove(songPosBG);
@@ -1986,7 +1990,8 @@ class PlayState extends MusicBeatState
 					songPosBG.y -= 45;
 
 				songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
-					'songPositionBar', 0, 90000);
+					'songPositionBar', 0, songLength - 1000);
+				songPosBar.numDivisions = 1000;
 				songPosBar.scrollFactor.set();
 				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 				add(songPosBar);
@@ -2005,9 +2010,6 @@ class PlayState extends MusicBeatState
 		songPosBar.cameras = [camHUD];
 
 		#if desktop
-		// Song duration in a float, useful for the time left feature
-		songLength = FlxG.sound.music.length;
-
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC, true, songLength);
 		#end
@@ -4712,6 +4714,7 @@ class PlayState extends MusicBeatState
 			camHUD.angle = 180;
 		}
 
+		// soon
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
 			if (!cameraUpside)
