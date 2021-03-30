@@ -82,9 +82,9 @@ class Note extends FlxSprite
 				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 
 				animation.addByPrefix('green', 'arrowUP');
-				animation.addByPrefix('blue', 'arrowUP');
-				animation.addByPrefix('purple', 'arrowUP');
-				animation.addByPrefix('red', 'arrowUP');
+				animation.addByPrefix('blue', 'arrowDOWN');
+				animation.addByPrefix('purple', 'arrowLEFT');
+				animation.addByPrefix('red', 'arrowRIGHT');
 
 				animation.addByPrefix('purpleScroll', 'purple0');
 				animation.addByPrefix('blueScroll', 'blue0');

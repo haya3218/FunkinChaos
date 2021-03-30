@@ -2110,7 +2110,6 @@ class PlayState extends MusicBeatState
 					oldNote = null;
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
-
 				if (!swagNote.isSustainNote) {
 					swagNote.flipX = flippedNotes;
 					swagNote.flipY = flippedNotes;
