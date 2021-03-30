@@ -3076,6 +3076,14 @@ class PlayState extends MusicBeatState
 							dad.playAnim('singUP' + altAnim + noteAnim, true);
 						case 11:
 							dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
+						case 12:
+							dad.playAnim('singLEFT' + altAnim + noteAnim, true);
+						case 13:
+							dad.playAnim('singDOWN' + altAnim + noteAnim, true);
+						case 14:
+							dad.playAnim('singUP' + altAnim + noteAnim, true);
+						case 15:
+							dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
 					}
 
 					var strummingNotes:Int = daNote.noteData % 4;
@@ -4720,14 +4728,17 @@ class PlayState extends MusicBeatState
 		if (curSong.toLowerCase() == 'saitama' && curBeat >= 1 && curBeat < 47 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			deezNuts = true;
+			camHUD.angle = 0;
 		}
 		if (curSong.toLowerCase() == 'saitama' && curBeat == 10 && curBeat == 21 && curBeat == 32 && curBeat == 43)
 		{
 			deezNuts = false;
+			camHUD.angle = 180;
 		}
 		if (curSong.toLowerCase() == 'saitama' && curBeat == 12 && curBeat == 23 && curBeat == 34 && curBeat == 45)
 		{
 			deezNuts = false;
+			camHUD.angle = 180;
 		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
@@ -4772,6 +4783,7 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.13;
+			camHUD.angle = 0;
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Friday-Night')
