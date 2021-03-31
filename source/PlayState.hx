@@ -157,6 +157,11 @@ class PlayState extends MusicBeatState
 	var mtc:FlxSprite;
 	var beepbop:FlxSprite;
 
+	var bgMiserable:FlxSprite;
+	var zeCracks:FlxSprite;
+	var waveSprite:FlxEffectSprite;
+	var itgLogo:FlxSprite;
+
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var etternaModeScore:Int = 0;
@@ -817,61 +822,6 @@ class PlayState extends MusicBeatState
 			add(waveSprite);
 			add(waveSpriteFG);
 		}
-		else if (SONG.stage == 'swiggly')
-		{
-			curStage = 'swiggly';
-
-			var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-			var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
-
-			var posX = 400;
-			var posY = 325;
-
-			/*
-			var bg:FlxSprite = new FlxSprite(posX, posY);
-			bg.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/animatedEvilSchool.png', 'assets/images/weeb/animatedEvilSchool.xml');
-			bg.animation.addByPrefix('idle', 'background 2', 24);
-			bg.animation.play('idle');
-			bg.scrollFactor.set(0.8, 0.9);
-			bg.scale.set(6, 6);
-			add(bg);
-			*/
-
-			var bg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/evilSchoolBG.png');
-			bg.scale.set(6, 6);
-			// bg.setGraphicSize(Std.int(bg.width * 6));
-			// bg.updateHitbox();
-			add(bg);
-
-			var fg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/evilSchoolFG.png');
-			fg.scale.set(6, 6);
-			// fg.setGraphicSize(Std.int(fg.width * 6));
-			// fg.updateHitbox();
-			add(fg);
-
-			wiggleShit.effectType = WiggleEffectType.DREAMY;
-			wiggleShit.waveAmplitude = 0.10;
-			wiggleShit.waveFrequency = 120;
-			wiggleShit.waveSpeed = 2.8;
-
-			bg.shader = wiggleShit.shader;
-			fg.shader = wiggleShit.shader;
-
-			var waveSprite = new FlxEffectSprite(bg, [waveEffectBG]);
-			var waveSpriteFG = new FlxEffectSprite(fg, [waveEffectFG]);
-
-			// Using scale since setGraphicSize() doesnt work???
-			waveSprite.scale.set(6, 6);
-			waveSpriteFG.scale.set(6, 6);
-			waveSprite.setPosition(posX, posY);
-			waveSpriteFG.setPosition(posX, posY);
-
-			waveSprite.scrollFactor.set(0.7, 0.8);
-			waveSpriteFG.scrollFactor.set(0.9, 0.8);
-
-			add(waveSprite);
-			add(waveSpriteFG);
-		}
 		else if (SONG.song.toLowerCase() == 'friday-night' || SONG.song.toLowerCase() == 'judgement' || SONG.song.toLowerCase() == 'machine-gun-kiss' || SONG.stage == 'yakuza')
 		{
 			defaultCamZoom = 0.9;
@@ -1099,6 +1049,55 @@ class PlayState extends MusicBeatState
 				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarNight.png');
 				add(limoNight);
 			}
+		else if (SONG.song.toLowerCase() == 'miserable')
+		{
+			defaultCamZoom = 0.9;
+			curStage = 'unluckyfellow';
+			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/blacklololol.png');
+			bg.antialiasing = true;
+			bg.scrollFactor.set();
+			bg.active = false;
+			add(bg);
+
+			bgMiserable = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/stageback.png');
+			bgMiserable.antialiasing = true;
+			bgMiserable.scrollFactor.set();
+			bgMiserable.visible = false;
+			add(bgMiserable);
+
+			zeCracks = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/stagecracks.png');
+			zeCracks.antialiasing = true;
+			zeCracks.scrollFactor.set();
+			zeCracks.visible = false;
+			zeCracks.cameras = [camHUD];
+			zeCracks.scale.set(FlxG.width, FlxG.height);
+			zeCracks.updateHitbox();
+			zeCracks.screenCenter(XY);
+			add(zeCracks);
+
+			var wackyEffect:FlxBackdrop = new FlxBackdrop('assets/images/uk/stagecurtains.png', 0, 1.5, false, true);
+			wackyEffect.antialiasing = true;
+			wackyEffect.scrollFactor.set();
+			wackyEffect.visible = false;
+			add(wackyEffect);
+
+			itgLogo = new FlxSprite().loadGraphic('assets/images/uk/itg.png');
+			itgLogo.antialiasing = true;
+			itgLogo.scrollFactor.set();
+			itgLogo.visible = false;
+			itgLogo.scale.set(FlxG.width, FlxG.height);
+			itgLogo.updateHitbox();
+			itgLogo.screenCenter(XY);
+			add(itgLogo);
+
+			var secondEffect = new FlxWaveEffect(FlxWaveMode.ALL, 4, -1, 6, 4);
+			waveSprite = new FlxEffectSprite(wackyEffect, [secondEffect]);
+			waveSprite.y = 0;
+			waveSprite.x = 0;
+			waveSprite.cameras = [camHUD];
+
+			add(waveSprite);
+		}
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -1685,6 +1684,13 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (curSong.toLowerCase() == 'miserable')
+		{
+			dad.visible = false;
+			gf.visible = false;
+			boyfriend.visible = false;
+		}
+
 		super.create();
 	}
 
@@ -2164,8 +2170,6 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
 	}
 
-	var babyArrow:FlxSprite;
-
 	 /**
 	 * static arrow generation
 	 *
@@ -2530,6 +2534,8 @@ class PlayState extends MusicBeatState
 
 	public static var songRate = 1.5;
 
+	var babyArrow:FlxSprite;
+
 	override public function update(elapsed:Float)
 	{
 		fakeFramerate = Math.round((1 / FlxG.elapsed) / 10);
@@ -2818,7 +2824,10 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+			// haha funny pico funny
+			if (curSong != 'Miserable' && curStep <= 462)
+				FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
@@ -4011,7 +4020,7 @@ class PlayState extends MusicBeatState
 				{
 					// No possible notes to hit lel
 					missQueue.missed = true;
-					for (i in 0...13)
+					for (i in 0...4)
 					{
 						if (controlArray[i])
 						{
@@ -4632,6 +4641,70 @@ class PlayState extends MusicBeatState
 			if (dad.curCharacter == 'gf')
 				dad.playAnim('cheer', true);
 		}
+
+		var oldX:Int = 0;
+
+		// sorry
+		if (curSong == 'Miserable')
+		{
+			switch (curStep)
+			{
+				case 1:
+					strumLineNotes.members[0].visible = false;
+					strumLineNotes.members[1].visible = false;
+					strumLineNotes.members[2].visible = false;
+					strumLineNotes.members[3].visible = false;
+					strumLineNotes.members[4].visible = false;
+				case 4:
+					bgMiserable.visible = true;
+				case 462:
+					camHUD.zoom += 0.03;
+					FlxG.camera.zoom += 0.2;
+				case 478:
+					camHUD.zoom += 0.03;
+					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
+					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
+				case 479:
+					FlxG.camera.x = 0;
+				case 494:
+					camHUD.zoom += 0.03;
+					bgMiserable.loadGraphic('assets/images/uk/stageback.png');
+					FlxG.camera.zoom += 0.2;
+					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
+				case 495:
+					FlxG.camera.x = 0;
+				case 510:
+					camHUD.zoom += 0.03;
+					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
+					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
+					FlxG.camera.zoom += 0.2;
+				case 511:
+					FlxG.camera.x = 0;
+				case 527:
+					camHUD.zoom += 0.03;
+					FlxG.camera.zoom += 0.2;
+				case 542:
+					camHUD.zoom += 0.03;
+					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
+					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
+				case 543:
+					FlxG.camera.x = 0;
+				case 559:
+					camHUD.zoom += 0.03;
+					bgMiserable.loadGraphic('assets/images/uk/stageback.png');
+					FlxG.camera.zoom += 0.2;
+					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
+				case 560:
+					FlxG.camera.x = 0;
+				case 575:
+					FlxG.camera.angle = 0;
+					FlxG.camera.zoom = defaultCamZoom;
+					bgMiserable.visible = false;
+					itgLogo.visible = true;
+				case 576:
+					// im continuing this tomorrow LEL
+			}
+		}
 	}
 
 	var lightningStrikeBeat:Int = 0;
@@ -4741,7 +4814,7 @@ class PlayState extends MusicBeatState
 		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
-			if (!cameraUpside)
+			if (!cameraUpside || curSong != 'Miserable')
 			{
 				FlxG.camera.angle = 0;
 			}
@@ -4749,7 +4822,8 @@ class PlayState extends MusicBeatState
 			{
 				camHUD.angle = 0;
 			}
-			FlxG.camera.zoom += 0.015;
+			if (curSong != 'Miserable')
+				FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
 
