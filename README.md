@@ -1,6 +1,6 @@
-![Friday_Night_Funkin_Logo](/art/logoREADME.png "FNF Logo")
+![Friday_Night_Funkin_Logo](Screenshot_2021-04-01-10-39-48-12.png "FNF Logo")
 
-### This is the repository for Friday Night Funkin Chaos, a mod originally made for fun that turned out to be a disaster.
+### The timer is ticking.
 
 ## Original game
 Play the Newgrounds one [here](https://www.newgrounds.com/portal/view/770371)!
