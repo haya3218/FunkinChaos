@@ -1049,55 +1049,6 @@ class PlayState extends MusicBeatState
 				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarNight.png');
 				add(limoNight);
 			}
-		else if (SONG.song.toLowerCase() == 'miserable')
-		{
-			defaultCamZoom = 0.9;
-			curStage = 'unluckyfellow';
-			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/blacklololol.png');
-			bg.antialiasing = true;
-			bg.scrollFactor.set();
-			bg.active = false;
-			add(bg);
-
-			bgMiserable = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/stageback.png');
-			bgMiserable.antialiasing = true;
-			bgMiserable.scrollFactor.set();
-			bgMiserable.visible = false;
-			add(bgMiserable);
-
-			zeCracks = new FlxSprite(-600, -200).loadGraphic('assets/images/uk/stagecracks.png');
-			zeCracks.antialiasing = true;
-			zeCracks.scrollFactor.set();
-			zeCracks.visible = false;
-			zeCracks.cameras = [camHUD];
-			zeCracks.scale.set(FlxG.width, FlxG.height);
-			zeCracks.updateHitbox();
-			zeCracks.screenCenter(XY);
-			add(zeCracks);
-
-			var wackyEffect:FlxBackdrop = new FlxBackdrop('assets/images/uk/stagecurtains.png', 0, 1.5, false, true);
-			wackyEffect.antialiasing = true;
-			wackyEffect.scrollFactor.set();
-			wackyEffect.visible = false;
-			add(wackyEffect);
-
-			itgLogo = new FlxSprite().loadGraphic('assets/images/uk/itg.png');
-			itgLogo.antialiasing = true;
-			itgLogo.scrollFactor.set();
-			itgLogo.visible = false;
-			itgLogo.scale.set(FlxG.width, FlxG.height);
-			itgLogo.updateHitbox();
-			itgLogo.screenCenter(XY);
-			add(itgLogo);
-
-			var secondEffect = new FlxWaveEffect(FlxWaveMode.ALL, 4, -1, 6, 4);
-			waveSprite = new FlxEffectSprite(wackyEffect, [secondEffect]);
-			waveSprite.y = 0;
-			waveSprite.x = 0;
-			waveSprite.cameras = [camHUD];
-
-			add(waveSprite);
-		}
 		else
 		{
 			defaultCamZoom = 0.9;
@@ -1682,13 +1633,6 @@ class PlayState extends MusicBeatState
 				default:
 					startCountdown();
 			}
-		}
-
-		if (curSong.toLowerCase() == 'miserable')
-		{
-			dad.visible = false;
-			gf.visible = false;
-			boyfriend.visible = false;
 		}
 
 		super.create();
@@ -2824,10 +2768,7 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			// haha funny pico funny
-			if (curSong != 'Miserable' && curStep <= 462)
-				FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
-
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
@@ -4642,69 +4583,11 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 		}
 
-		var oldX:Int = 0;
-
-		// sorry
-		if (curSong == 'Miserable')
-		{
-			switch (curStep)
-			{
-				case 1:
-					strumLineNotes.members[0].visible = false;
-					strumLineNotes.members[1].visible = false;
-					strumLineNotes.members[2].visible = false;
-					strumLineNotes.members[3].visible = false;
-					strumLineNotes.members[4].visible = false;
-				case 4:
-					bgMiserable.visible = true;
-				case 462:
-					camHUD.zoom += 0.03;
-					FlxG.camera.zoom += 0.2;
-				case 478:
-					camHUD.zoom += 0.03;
-					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
-					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
-				case 479:
-					FlxG.camera.x = 0;
-				case 494:
-					camHUD.zoom += 0.03;
-					bgMiserable.loadGraphic('assets/images/uk/stageback.png');
-					FlxG.camera.zoom += 0.2;
-					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
-				case 495:
-					FlxG.camera.x = 0;
-				case 510:
-					camHUD.zoom += 0.03;
-					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
-					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
-					FlxG.camera.zoom += 0.2;
-				case 511:
-					FlxG.camera.x = 0;
-				case 527:
-					camHUD.zoom += 0.03;
-					FlxG.camera.zoom += 0.2;
-				case 542:
-					camHUD.zoom += 0.03;
-					bgMiserable.loadGraphic('assets/images/uk/stageback2.png');
-					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
-				case 543:
-					FlxG.camera.x = 0;
-				case 559:
-					camHUD.zoom += 0.03;
-					bgMiserable.loadGraphic('assets/images/uk/stageback.png');
-					FlxG.camera.zoom += 0.2;
-					FlxG.camera.x = Math.sin(0.5)*40 * 1*2;
-				case 560:
-					FlxG.camera.x = 0;
-				case 575:
-					FlxG.camera.angle = 0;
-					FlxG.camera.zoom = defaultCamZoom;
-					bgMiserable.visible = false;
-					itgLogo.visible = true;
-				case 576:
-					// im continuing this tomorrow LEL
-			}
-		}
+		// peeeesh is hijacking my code pls help
+		var oldXFirstNote:Int = 0;
+		var oldXSecondNote:Int = 0;
+		var oldXThirdNote:Int = 0;
+		var oldXFourthNote:Int = 0;
 	}
 
 	var lightningStrikeBeat:Int = 0;
@@ -4814,7 +4697,7 @@ class PlayState extends MusicBeatState
 		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
-			if (!cameraUpside || curSong != 'Miserable')
+			if (!cameraUpside)
 			{
 				FlxG.camera.angle = 0;
 			}
@@ -4822,9 +4705,9 @@ class PlayState extends MusicBeatState
 			{
 				camHUD.angle = 0;
 			}
-			if (curSong != 'Miserable')
-				FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
+			FlxG.camera.zoom += 0.015;
+			if (curSong.toLowerCase() != 'Thread')
+				camHUD.zoom += 0.03;
 		}
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 180, 0.7)));
