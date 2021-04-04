@@ -17,13 +17,12 @@ class HealthIcon extends FlxSprite
 		this.char = char;
 
 		// reworked the entire icon system because default shit so it doesnt crash lmfao
-		//ignore the fefe for now i'll make sprites for it lmao
 		antialiasing = true;
 		switch (char) {
 			case 'bf':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 			case 'fefe':
-				animation.add('icon', [0, 1], 0, false, isPlayer);
+				animation.add('icon', [40], 0, false, isPlayer);
 			case 'bf-car':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 			case 'bf-christmas':
@@ -53,15 +52,15 @@ class HealthIcon extends FlxSprite
 			case 'monster-christmas':
 				animation.add('icon', [19, 20], 0, false, isPlayer);
 			case 'senpai':
-				animation.add('icon', [22, 22], 0, false, isPlayer);
+				animation.add('icon', [22, 52], 0, false, isPlayer);
 			case 'senpaidumb':
-			animation.add('icon', [22, 22], 0, false, isPlayer);
+			    animation.add('icon', [22, 22], 0, false, isPlayer);
 			case 'senpai-angry':
-				animation.add('icon', [22, 22], 0, false, isPlayer);
+				animation.add('icon', [53, 54], 0, false, isPlayer);
 			case 'spirit':
-				animation.add('icon', [23, 23], 0, false, isPlayer);
+				animation.add('icon', [23, 55], 0, false, isPlayer);
 			case 'bf-pixel':
-				animation.add('icon', [21, 21], 0, false, isPlayer);
+				animation.add('icon', [21, 51], 0, false, isPlayer);
 			case 'bf-pixeldumb':
 				animation.add('icon', [21, 21], 0, false, isPlayer);
 			case 'diva':
@@ -89,7 +88,7 @@ class HealthIcon extends FlxSprite
 			case 'bf-pain':
 				animation.add('icon', [37, 38], 0, false, isPlayer);
 			case 'bishop-gaming':
-				animation.add('icon', [40], 0, false, isPlayer);
+				animation.add('icon', [56], 0, false, isPlayer);
 			case 'bf-cursed-wh':
 				animation.add('icon', [41], 0, false, isPlayer);
 			case 'kiryu':
@@ -101,7 +100,7 @@ class HealthIcon extends FlxSprite
 			case 'annietall':
 				animation.add('icon', [49, 50], 0, false, isPlayer);
 			case 'geith':
-				animation.add('icon', [51, 52], 0, false, isPlayer);
+				animation.add('icon', [0, 1], 0, false, isPlayer);
 			
 			default:
 				animation.add('icon', [0, 1], 0, false, isPlayer);

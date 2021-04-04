@@ -70,7 +70,7 @@ class BSidesState extends MusicBeatState
 
 		addWeek(['B-Sides-Cocoa', 'B-Sides-Eggnog', 'B-Sides-Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
 
-		addWeek(['B-Sides-Senpai', 'B-Sides-Roses', 'B-Sides-Thorns'], 6, ['senpai', 'senpai', 'spirit']);
+		addWeek(['B-Sides-Senpai', 'B-Sides-Roses', 'B-Sides-Thorns'], 6, ['senpai', 'senpai-angry', 'spirit']);
 
 		/* 
 			if (FlxG.sound.music != null)

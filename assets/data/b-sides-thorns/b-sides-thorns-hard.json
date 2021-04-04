@@ -1,4 +1,4 @@
-{"song":{"song":"Thorns","notes":[
+{"song":{"song":"B-Sides-Thorns","notes":[
 {"mustHitSection":false,"typeOfSection":0,"lengthInSteps":16,"bpm":190,"changeBPM":true,"altAnim":false,"sectionNotes":[
 [0.0,3,0],
 [315.7894736842105,3,0],
@@ -806,4 +806,4 @@
 {"mustHitSection":false,"typeOfSection":0,"lengthInSteps":16,"bpm":190,"changeBPM":true,"altAnim":false,"sectionNotes":[]},
 {"mustHitSection":false,"typeOfSection":0,"lengthInSteps":16,"bpm":190,"changeBPM":true,"altAnim":false,"sectionNotes":[]},
 {"mustHitSection":false,"typeOfSection":0,"lengthInSteps":16,"bpm":190,"changeBPM":true,"altAnim":false,"sectionNotes":[]}
-],"bpm":190,"sections":0,"needsVoices":true,"player1":"bf-pixel","player2":"spirit","sectionLengths":[],"speed":2.5}}
+],"bpm":190,"sections":0,"needsVoices":true,"player1":"bf-pixel","player2":"spirit","gf":"gf-pixel", "sectionLengths":[],"speed":2.5}}
