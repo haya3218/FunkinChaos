@@ -446,18 +446,20 @@ class TitleState extends MusicBeatState
 
 				var version:String = "v" + Application.current.meta.get('version');
 
-				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
-				{
-					FlxG.switchState(new OutdatedSubState());
-					trace('OLD VERSION!');
-					trace('old ver');
-					trace(version.trim());
-					trace('cur ver');
-					trace(NGio.GAME_VER_NUMS.trim());
-				}
-				else
-				{
-					FlxG.switchState(new RealMainMenuState());
+				var http = new haxe.Http("https://raw.githubusercontent.com/The-SGPT/FunkinChaos/master/version.downloadMe");
+
+				http.onData = function (data:String) {
+				  
+				  	if (!RealMainMenuState.chaosVer.contains(data.trim()) && !OutdatedSubState.leftState && RealMainMenuState.nightly == "")
+					{
+						trace('outdated lmao! ' + data.trim() + ' != ' + RealMainMenuState.chaosVer);
+						OutdatedSubState.needVer = data;
+						FlxG.switchState(new OutdatedSubState());
+					}
+					else
+					{
+						FlxG.switchState(new RealMainMenuState());
+					}
 				}
 			});
 			

@@ -971,7 +971,6 @@ class PlayState extends MusicBeatState
 				var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic('assets/images/lemonhell/limoOverlay.png');
 				overlayShit.alpha = 0.5;
 				
-	
 				var limoTex = FlxAtlasFrames.fromSparrow('assets/images/lemonhell/limoDrivelemon.png', 'assets/images/lemonhell/limoDrivelemon.xml');
 	
 				limo = new FlxSprite(-120, 550);
@@ -985,16 +984,7 @@ class PlayState extends MusicBeatState
 			}
 		else if (SONG.stage == 'pixelstreet')
 		{
-
 			curStage = 'pixelstreet';
-				defaultCamZoom = 0.8;
-				//pixelnightBG = new FlxBackdrop('assets/images/nightdrive.png', 0.5, 0, true, false);
-				//pixelnightBG = new FlxBackdrop('assets/images/limo/nightdrive.png', 1, 0, true, false, 0, 0);
-				//pixelnightBG.screenCenter();
-				
-				//add(pixelnightBG);
-				
-					
 				moonBG= new FlxBackdrop('assets/images/pixelstreet/limoMoon.png', 1, 1, true, false);
 				moonBG.x = -150;
 				moonBG.y = -1550;
@@ -1003,12 +993,9 @@ class PlayState extends MusicBeatState
 				moonBG.setGraphicSize(Std.int(moonBG.width * 3));
 				moonBG.updateHitbox();
 				
-
-				
 				add(moonBG);
 				moonBG.velocity.x = 50;
 			
-
 				//Nighttime Street
 				var road:FlxSprite = new FlxSprite(-650, 650);
 				road.frames = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/Mom_RoadNight.png', 'assets/images/pixelstreet/Mom_RoadNight.xml');
@@ -1018,13 +1005,6 @@ class PlayState extends MusicBeatState
 				road.scrollFactor.set(0.3, 0.3);
 				add(road);
 
-
-				
-				
-				
-				
-				
-	
 				var bgLimo:FlxSprite = new FlxSprite(-200, 480);
 				bgLimo.frames = FlxAtlasFrames.fromSparrow('assets/images/limo/bgLimoNight.png', 'assets/images/limo/bgLimoNight.xml');
 				bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
@@ -1032,11 +1012,8 @@ class PlayState extends MusicBeatState
 				bgLimo.antialiasing = true;
 				bgLimo.scrollFactor.set(0.4, 0.4);
 	
-		
-	
 				var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic('assets/images/limo/limoOverlayNight.png');
 				overlayShit.alpha = 0.5;
-				
 				
 				var limoTex = FlxAtlasFrames.fromSparrow('assets/images/pixelstreet/limoDrive.png', 'assets/images/pixelstreet/limoDrive.xml');
 	
@@ -1045,7 +1022,6 @@ class PlayState extends MusicBeatState
 				limoNight.animation.addByPrefix('driveNight', "Limo stage", 24);
 				limoNight.animation.play('driveNight');
 				
-	
 				fastCar = new FlxSprite(-300, 160).loadGraphic('assets/images/limo/fastCarNight.png');
 				add(limoNight);
 			}
@@ -1459,6 +1435,17 @@ class PlayState extends MusicBeatState
 		songPosBar.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
+		if (curSong.toLowerCase() == 'Thread')
+		{
+			healthBar.visible = false;
+			healthBarBG.visible = false;
+			iconP1.visible = false;
+			iconP2.visible = false;
+			scoreTxt.visible = false;
+			songPosBG.visible = false;
+			songPosBar.visible = false;
+		}
+
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
@@ -1594,45 +1581,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			switch (curSong.toLowerCase())
-			{
-				case "luci-moment":
-					var blackScreen2:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-					add(blackScreen2);
-					blackScreen2.scrollFactor.set();
-					camHUD.visible = false;
-	
-					new FlxTimer().start(0.1, function(tmr:FlxTimer)
-					{
-						cheering = new FlxSound().loadEmbedded('assets/sounds/cheer' + TitleState.soundExt, true);
-						cheering.play();
-						remove(blackScreen2);
-						camFollow.y = -1050;
-						FlxG.camera.focusOn(camFollow.getPosition());
-						FlxG.camera.zoom = 1.5;
-						FlxG.sound.playMusic('assets/music/Luci-Moment_Inst' + TitleState.soundExt, 0);
-						FlxG.sound.music.fadeIn(1, 0, 0.8);
-	
-						new FlxTimer().start(0.8, function(tmr:FlxTimer)
-						{
-							camHUD.visible = true;
-							remove(blackScreen2);
-							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									camFollow.y = dad.getMidpoint().y;
-									if (!OptionsHandler.options.momentCutscene)
-										schoolIntro(doof);
-									else
-										startCountdown();
-								}
-							});
-						});
-					});
-				default:
-					startCountdown();
-			}
+			startCountdown();
 		}
 
 		super.create();
@@ -4679,22 +4628,6 @@ class PlayState extends MusicBeatState
 
 		var deezNuts:Bool = false;
 
-		// soon
-		if (curSong.toLowerCase() == 'saitama' && curBeat >= 1 && curBeat < 47 && camZooming && FlxG.camera.zoom < 1.35)
-		{
-			deezNuts = true;
-			camHUD.angle = 0;
-		}
-		if (curSong.toLowerCase() == 'saitama' && curBeat == 10 && curBeat == 21 && curBeat == 32 && curBeat == 43)
-		{
-			deezNuts = false;
-			camHUD.angle = 180;
-		}
-		if (curSong.toLowerCase() == 'saitama' && curBeat == 12 && curBeat == 23 && curBeat == 34 && curBeat == 45)
-		{
-			deezNuts = false;
-			camHUD.angle = 180;
-		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
 			if (!cameraUpside)
@@ -4705,9 +4638,12 @@ class PlayState extends MusicBeatState
 			{
 				camHUD.angle = 0;
 			}
-			FlxG.camera.zoom += 0.015;
 			if (curSong.toLowerCase() != 'Thread')
+			{
+				FlxG.camera.zoom += 0.015;
 				camHUD.zoom += 0.03;
+			}
+			
 		}
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 180, 0.7)));
@@ -4733,13 +4669,6 @@ class PlayState extends MusicBeatState
 
 			if (dad.curCharacter == 'gf')
 				dad.playAnim('cheer', true);
-		}
-
-		if (curBeat % 2 == 1 && curSong == 'Saitama' && deezNuts)
-		{
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.13;
-			camHUD.angle = 0;
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Friday-Night')

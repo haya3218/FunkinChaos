@@ -1,6 +1,5 @@
 package;
 
-import haxe.rtti.CType.Abstractdef;
 import flash.text.TextField;
 import Section.SwagSection;
 import Song.SwagSong;

@@ -50,6 +50,27 @@ class Note extends FlxSprite
 
 		var daStage:String = PlayState.curStage;
 
+		// mine note detection
+		switch (noteData)
+		{
+			case 8:
+				mineNote = true;
+			case 9:
+				mineNote = true;
+			case 10:
+				mineNote = true;
+			case 11:
+				mineNote = true;
+			case 12:
+				mineNote = true;
+			case 13:
+				mineNote = true;
+			case 14:
+				mineNote = true;
+			case 15:
+				mineNote = true;
+		}
+
 		switch (daStage)
 		{
 			case 'school' | 'schoolEvil':
@@ -81,11 +102,6 @@ class Note extends FlxSprite
 			default:
 				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 
-				animation.addByPrefix('green', 'arrowUP');
-				animation.addByPrefix('blue', 'arrowDOWN');
-				animation.addByPrefix('purple', 'arrowLEFT');
-				animation.addByPrefix('red', 'arrowRIGHT');
-
 				animation.addByPrefix('purpleScroll', 'purple0');
 				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('greenScroll', 'green0');
@@ -106,7 +122,9 @@ class Note extends FlxSprite
 				antialiasing = true;
 		}
 
-		switch (noteData)
+		var moduloData:Int = noteData % 4;
+
+		switch (moduloData)
 		{
 			case 0:
 				x += swagWidth * 0;
@@ -120,58 +138,6 @@ class Note extends FlxSprite
 			case 3:
 				x += swagWidth * 3;
 				animation.play('redScroll');
-			case 4:
-				x += swagWidth * 0;
-				animation.play('purpleScroll');
-			case 5:
-				x += swagWidth * 1;
-				animation.play('blueScroll');
-			case 6:
-				x += swagWidth * 2;
-				animation.play('greenScroll');
-			case 7:
-				x += swagWidth * 3;
-				animation.play('redScroll');
-			case 8:
-				x += swagWidth * 0;
-				color = 0xFF0000;
-				animation.play('purple');
-				mineNote = true;
-			case 9:
-				x += swagWidth * 1;
-				color = 0xFF0000;
-				animation.play('blue');
-				mineNote = true;
-			case 10:
-				x += swagWidth * 2;
-				color = 0xFF0000;
-				animation.play('green');
-				mineNote = true;
-			case 11:
-				x += swagWidth * 3;
-				color = 0xFF0000;
-				animation.play('red');
-				mineNote = true;
-			case 12:
-				x += swagWidth * 0;
-				color = 0xFF0000;
-				animation.play('purple');
-				mineNote = true;
-			case 13:
-				x += swagWidth * 1;
-				color = 0xFF0000;
-				animation.play('blue');
-				mineNote = true;
-			case 14:
-				x += swagWidth * 2;
-				color = 0xFF0000;
-				animation.play('green');
-				mineNote = true;
-			case 15:
-				x += swagWidth * 3;
-				color = 0xFF0000;
-				animation.play('red');
-				mineNote = true;
 		}
 
 		// trace(prevNote);
@@ -183,7 +149,7 @@ class Note extends FlxSprite
 
 			x += width / 2;
 
-			switch (noteData)
+			switch (moduloData)
 			{
 				case 0:
 					animation.play('purpleholdend');
@@ -193,38 +159,6 @@ class Note extends FlxSprite
 					animation.play('greenholdend');
 				case 3:
 					animation.play('redholdend');
-				case 4:
-					animation.play('purpleholdend');
-				case 5:
-					animation.play('blueholdend');
-				case 6:
-					animation.play('greenholdend');
-				case 7:
-					animation.play('redholdend');
-				case 8:
-					animation.play('purpleholdend');
-					mineNote = true;
-				case 9:
-					animation.play('blueholdend');
-					mineNote = true;
-				case 10:
-					animation.play('greenholdend');
-					mineNote = true;
-				case 11:
-					animation.play('redholdend');
-					mineNote = true;
-				case 12:
-					animation.play('purpleholdend');
-					mineNote = true;
-				case 13:
-					animation.play('blueholdend');
-					mineNote = true;
-				case 14:
-					animation.play('greenholdend');
-					mineNote = true;
-				case 15:
-					animation.play('redholdend');
-					mineNote = true;
 			}
 
 			updateHitbox();
@@ -236,7 +170,9 @@ class Note extends FlxSprite
 
 			if (prevNote.isSustainNote)
 			{
-				switch (prevNote.noteData)
+				var prevModulo:Int = prevNote.noteData % 4;
+
+				switch (prevModulo)
 				{
 					case 0:
 						prevNote.animation.play('purplehold');
@@ -246,41 +182,9 @@ class Note extends FlxSprite
 						prevNote.animation.play('greenhold');
 					case 3:
 						prevNote.animation.play('redhold');
-					case 4:
-						prevNote.animation.play('purplehold');
-					case 5:
-						prevNote.animation.play('bluehold');
-					case 6:
-						prevNote.animation.play('greenhold');
-					case 7:
-						prevNote.animation.play('redhold');
-					case 8:
-						prevNote.animation.play('purplehold');
-						mineNote = true;
-					case 9:
-						prevNote.animation.play('bluehold');
-						mineNote = true;
-					case 10:
-						prevNote.animation.play('greenhold');
-						mineNote = true;
-					case 11:
-						prevNote.animation.play('redhold');
-						mineNote = true;
-					case 12:
-						prevNote.animation.play('purplehold');
-						mineNote = true;
-					case 13:
-						prevNote.animation.play('bluehold');
-						mineNote = true;
-					case 14:
-						prevNote.animation.play('greenhold');
-						mineNote = true;
-					case 15:
-						prevNote.animation.play('redhold');
-						mineNote = true;
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
+				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.8 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}

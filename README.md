@@ -1,6 +1,7 @@
-![Friday_Night_Funkin_Logo](Screenshot_2021-04-01-10-39-48-12.png "FNF Logo")
+![Friday_Night_Funkin_Logo](art/aprilfoolschumbuds.png "FNF Logo")
 
-### The timer is ticking.
+### APRIL FOOLS IDOTS (VERY LATE TBH)
+Lol why would i rework chaos lol.
 
 ## Original game
 Play the Newgrounds one [here](https://www.newgrounds.com/portal/view/770371)!

@@ -42,6 +42,10 @@ class RealMainMenuState extends MusicBeatState
 	var scoreText:FlxText;
 	var diffText:FlxText;
 
+	public static var nightly:String = "-Nightly Build 20200404";
+
+	public static var chaosVer:String = "2.0" + nightly;
+
 	override function create()
 	{
 		transIn = FlxTransitionableState.defaultTransIn;
@@ -119,7 +123,7 @@ class RealMainMenuState extends MusicBeatState
 		else
 			FlxG.camera.follow(camFollow, null, 0.06);
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') + " || Chaos v1.0" + TitleState.versionGhi, 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') + " || " + chaosVer, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

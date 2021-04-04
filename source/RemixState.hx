@@ -37,7 +37,7 @@ class RemixState extends MusicBeatState
 
 	var shittyNames:Array<String> = [
 		"DEFAULT",
-		"B-SIDES FT. CVAL, ROZEBUD, AND JADS",
+		"B-SIDES FT. CVAL, ROZEBUD, JADS",
 		"SHITPOSTS FT. EVERYONE"
 	];
 
@@ -162,7 +162,7 @@ class RemixState extends MusicBeatState
 								FlxG.switchState(new BSidesState());
 							});
 						case "CUSTOM":
-							FlxG.sound.play('assets/sounds/confirmMenuluci' + TitleState.soundExt);
+							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
