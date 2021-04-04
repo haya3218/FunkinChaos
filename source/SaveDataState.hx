@@ -225,12 +225,10 @@ class SaveDataState extends MusicBeatState
 		};
         if (OptionsHandler.options.fpsLimit)
         {
-            MusicBeatState.funkyFramerate = 60;
             FlxG.drawFramerate = 60;
         }
         else if (!OptionsHandler.options.fpsLimit)
         {
-            MusicBeatState.funkyFramerate = 160;
             FlxG.drawFramerate = 160;
         }
 	}

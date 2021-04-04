@@ -442,25 +442,10 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				// Check if version is outdated
-
-				var version:String = "v" + Application.current.meta.get('version');
-
-				var http = new haxe.Http("https://raw.githubusercontent.com/The-SGPT/FunkinChaos/master/version.downloadMe");
-
-				http.onData = function (data:String) {
-				  
-				  	if (!RealMainMenuState.chaosVer.contains(data.trim()) && !OutdatedSubState.leftState && RealMainMenuState.nightly == "")
-					{
-						trace('outdated lmao! ' + data.trim() + ' != ' + RealMainMenuState.chaosVer);
-						OutdatedSubState.needVer = data;
-						FlxG.switchState(new OutdatedSubState());
-					}
-					else
-					{
-						FlxG.switchState(new RealMainMenuState());
-					}
-				}
+				if (FlxG.random.bool(50))
+					FlxG.switchState(new RealMainMenuState());
+				else
+					FlxG.switchState(new OutdatedSubState());
 			});
 			
 		}

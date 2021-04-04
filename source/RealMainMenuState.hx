@@ -118,10 +118,7 @@ class RealMainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 		}
 
-		if (PlayState.hasPlayedOnce)
-			FlxG.camera.follow(camFollow, null, 0.06 * (60.0 / MusicBeatState.funkyFramerate));
-		else
-			FlxG.camera.follow(camFollow, null, 0.06);
+		FlxG.camera.follow(camFollow, null, 0.06 * (60.0 / MusicBeatState.funkyFramerate));
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') + " || " + chaosVer, 12);
 		versionShit.scrollFactor.set();
@@ -145,7 +142,7 @@ class RealMainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		overlay1.x -= 0.5;
+		overlay1.x -= 0.5 * (60.0 / MusicBeatState.funkyFramerate);
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
