@@ -2510,6 +2510,11 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		if (FlxG.keys.justPressed.F8)
+		{
+			autoMode = !autoMode;
+		}
+
 		if (startingSong)
 		{
 			if (startedCountdown)
@@ -3793,7 +3798,7 @@ class PlayState extends MusicBeatState
 				{
 					// No possible notes to hit lel
 					missQueue.missed = true;
-					for (i in 0...13)
+					for (i in 0...4)
 					{
 						if (controlArray[i])
 						{
