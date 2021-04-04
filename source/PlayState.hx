@@ -202,6 +202,7 @@ class PlayState extends MusicBeatState
 	var sickFastTimer:FlxTimer;
 	var accelNotes:Bool = false;
 	public static var autoMode:Bool = false;
+	public static var cpuMode:Bool = false;
 	var cameraUpside:Bool = false;
 	var earthDeath:Bool = false;
 	private var regenTimer:FlxTimer;
@@ -2387,7 +2388,7 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (!autoMode)
-			scoreTxt.text = "Score:" + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%";
+			scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		else if (autoMode)
 			scoreTxt.text = "AUTO IS ENABLED | Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		
@@ -2513,6 +2514,13 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.F8)
 		{
 			autoMode = !autoMode;
+			cpuMode = false;
+		}
+
+		if (FlxG.keys.justPressed.F8 && FlxG.keys.pressed.SHIFT)
+		{
+			autoMode = !autoMode;
+			cpuMode = !cpuMode;
 		}
 
 		if (startingSong)
@@ -2909,7 +2917,12 @@ class PlayState extends MusicBeatState
 
 				if (daNote.canBeHit && daNote.mustPress && autoMode)
 				{
-					new FlxTimer().start(0.0675, function(tmr:FlxTimer)
+					var cpuFloat:Float = 0.00;
+					if (cpuMode)
+						cpuFloat = FlxG.random.float(0, 0.0675);
+					else
+						cpuFloat = 0.0675;
+					new FlxTimer().start(cpuFloat, function(tmr:FlxTimer)
 					{
 						switch(Math.abs(daNote.noteData))
 						{
