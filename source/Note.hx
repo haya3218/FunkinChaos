@@ -122,9 +122,7 @@ class Note extends FlxSprite
 				antialiasing = true;
 		}
 
-		var moduloData:Int = noteData % 4;
-
-		switch (moduloData)
+		switch (noteData)
 		{
 			case 0:
 				x += swagWidth * 0;
@@ -138,8 +136,43 @@ class Note extends FlxSprite
 			case 3:
 				x += swagWidth * 3;
 				animation.play('redScroll');
+			case 4:
+				x += swagWidth * 0;
+				animation.play('purpleScroll');
+			case 5:
+				x += swagWidth * 1;
+				animation.play('blueScroll');
+			case 6:
+				x += swagWidth * 2;
+				animation.play('greenScroll');
+			case 7:
+				x += swagWidth * 3;
+				animation.play('redScroll');
+			case 8:
+				x += swagWidth * 0;
+				animation.play('purpleScroll');
+			case 9:
+				x += swagWidth * 1;
+				animation.play('blueScroll');
+			case 10:
+				x += swagWidth * 2;
+				animation.play('greenScroll');
+			case 11:
+				x += swagWidth * 3;
+				animation.play('redScroll');
+			case 12:
+				x += swagWidth * 0;
+				animation.play('purpleScroll');
+			case 13:
+				x += swagWidth * 1;
+				animation.play('blueScroll');
+			case 14:
+				x += swagWidth * 2;
+				animation.play('greenScroll');
+			case 15:
+				x += swagWidth * 3;
+				animation.play('redScroll');
 		}
-
 		// trace(prevNote);
 
 		if (isSustainNote && prevNote != null)
@@ -149,7 +182,7 @@ class Note extends FlxSprite
 
 			x += width / 2;
 
-			switch (moduloData)
+			switch (noteData)
 			{
 				case 0:
 					animation.play('purpleholdend');
@@ -158,6 +191,30 @@ class Note extends FlxSprite
 				case 2:
 					animation.play('greenholdend');
 				case 3:
+					animation.play('redholdend');
+				case 4:
+					animation.play('purpleholdend');
+				case 5:
+					animation.play('blueholdend');
+				case 6:
+					animation.play('greenholdend');
+				case 7:
+					animation.play('redholdend');
+				case 8:
+					animation.play('purpleholdend');
+				case 9:
+					animation.play('blueholdend');
+				case 10:
+					animation.play('greenholdend');
+				case 11:
+					animation.play('redholdend');
+				case 12:
+					animation.play('purpleholdend');
+				case 13:
+					animation.play('blueholdend');
+				case 14:
+					animation.play('greenholdend');
+				case 15:
 					animation.play('redholdend');
 			}
 
@@ -170,9 +227,7 @@ class Note extends FlxSprite
 
 			if (prevNote.isSustainNote)
 			{
-				var prevModulo:Int = prevNote.noteData % 4;
-
-				switch (prevModulo)
+				switch (prevNote.noteData)
 				{
 					case 0:
 						prevNote.animation.play('purplehold');
@@ -181,6 +236,30 @@ class Note extends FlxSprite
 					case 2:
 						prevNote.animation.play('greenhold');
 					case 3:
+						prevNote.animation.play('redhold');
+					case 4:
+						prevNote.animation.play('purplehold');
+					case 5:
+						prevNote.animation.play('bluehold');
+					case 6:
+						prevNote.animation.play('greenhold');
+					case 7:
+						prevNote.animation.play('redhold');
+					case 8:
+						prevNote.animation.play('purplehold');
+					case 9:
+						prevNote.animation.play('bluehold');
+					case 10:
+						prevNote.animation.play('greenhold');
+					case 11:
+						prevNote.animation.play('redhold');
+					case 12:
+						prevNote.animation.play('purplehold');
+					case 13:
+						prevNote.animation.play('bluehold');
+					case 14:
+						prevNote.animation.play('greenhold');
+					case 15:
 						prevNote.animation.play('redhold');
 				}
 

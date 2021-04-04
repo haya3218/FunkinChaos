@@ -377,10 +377,8 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC);
+		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") ", iconRPC);
 		#end
-
-		FlxG.updateFramerate = 60;
 
 		if (SONG.song.toLowerCase() == 'spookeez' || SONG.song.toLowerCase() == 'monster' || SONG.song.toLowerCase() == 'south' || SONG.stage == 'spooky')
 		{
@@ -1966,7 +1964,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC, true, songLength);
+		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") ", iconRPC, true, songLength);
 		#end
 	}
 
@@ -2322,11 +2320,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC, true, songLength - Conductor.songPosition);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") ", iconRPC, true, songLength - Conductor.songPosition);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") ", iconRPC);
 			}
 			#end
 		}
@@ -2341,11 +2339,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC, true, songLength - Conductor.songPosition);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") ", iconRPC, true, songLength - Conductor.songPosition);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ") ", iconRPC);
 			}
 		}
 		#end
@@ -2358,7 +2356,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ") " + generateRanking(), iconRPC);
+			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ") ", iconRPC);
 		}
 		#end
 
@@ -2391,95 +2389,6 @@ class PlayState extends MusicBeatState
 		num = Math.round( num ) / Math.pow(10, precision);
 		return num;
 		}
-	
-	function generateRanking():String
-	{
-		var ranking:String = "N/A";
-
-		if (misses == 0 && accuracy >= 100) // Marvelous (SICK) Full Combo
-			ranking = "(MFC)";
-		else if (misses == 0) // Regular FC
-			ranking = "(FC)";
-		else // Combo Broken
-			ranking = "(CB)";
-
-		// WIFE TIME :)))) (based on Wife3)
-
-		var wifeConditions:Array<Bool> = [
-			accuracy >= 99.9935, // SSS
-			accuracy >= 99.980, // SS
-			accuracy >= 99.970, // S
-			accuracy >= 99.955, // AAAA
-			accuracy >= 99.90, // AAA:
-			accuracy >= 99.80, // AAA.
-			accuracy >= 99.70, // AAA
-			accuracy >= 99, // AA:
-			accuracy >= 96.50, // AA.
-			accuracy >= 93, // AA
-			accuracy >= 90, // A:
-			accuracy >= 85, // A.
-			accuracy >= 80, // A
-			accuracy >= 70, // B
-			accuracy >= 60, // C
-			accuracy >= 50, // D
-			accuracy >= 40, // E
-			accuracy < 40, // F
-		];
-
-		for(i in 0...wifeConditions.length)
-		{
-			var b = wifeConditions[i];
-			if (b)
-			{
-				switch(i)
-				{
-					case 0:
-						ranking += " SSS";
-					case 1:
-						ranking += " SS";
-					case 2:
-						ranking += " S";
-					case 3:
-						ranking += " AAAA";
-					case 4:
-						ranking += " AAA:";
-					case 5:
-						ranking += " AAA.";
-					case 6:
-						ranking += " AAA";
-					case 7:
-						ranking += " AA:";
-					case 8:
-						ranking += " AA.";
-					case 9:
-						ranking += " AA";
-					case 10:
-						ranking += " A:";
-					case 11:
-						ranking += " A.";
-					case 12:
-						ranking += " A";
-					case 13:
-						ranking += " B";
-					case 14:
-						ranking += " C";
-					case 15:
-						ranking += " D";
-					case 16:
-						ranking += " E";
-					case 17:
-						ranking += " F";
-				}
-				break;
-			}
-		}
-
-		if (accuracy == 0)
-			ranking = "N/A";
-
-		return ranking;
-	}
-
 
 	var frameRateRatio:Float = MusicBeatState.funkyFramerate / 60;
 
@@ -2492,11 +2401,6 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
-
-		if (FlxG.save.data.etternaMode)
-			Conductor.safeFrames = 5; // 116ms hit window (j3-4)
-		else
-			Conductor.safeFrames = 10; // 166ms hit window (j1)
 
 		if (autoMode)
 		{
@@ -2549,9 +2453,9 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (!autoMode)
-			scoreTxt.text = "Score:" + (FlxG.save.data.etternaMode ? etternaModeScore + " (" + songScore + ")" : "" + songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% | " + generateRanking();
+			scoreTxt.text = "Score:" + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		else if (autoMode)
-			scoreTxt.text = "AUTO IS ENABLED | Accuracy:" + truncateFloat(accuracy, 2) + "% | " + generateRanking();
+			scoreTxt.text = "AUTO IS ENABLED | Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		
 		if (OptionsHandler.options.cinematicMode)
 			scoreTxt.text = "Score:" + songScore;
@@ -3361,7 +3265,6 @@ class PlayState extends MusicBeatState
 	private function popUpScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = strumtime - Conductor.songPosition;
-		var wife:Float = EtternaFunctions.wife3(noteDiff, FlxG.save.data.etternaMode ? 1 : 1.7);
 		// boyfriend.playAnim('hey');
 		vocals.volume = 1;
 
@@ -3378,7 +3281,6 @@ class PlayState extends MusicBeatState
 
 		var daRating:String = "sick";
 		var daTiming:String = "";
-		totalNotesHit += wife;
 
 			if (noteDiff > Conductor.safeZoneOffset * 0.9)
 			{
@@ -3440,9 +3342,6 @@ class PlayState extends MusicBeatState
 			ss = true;
 			comboText = true;
 		}
-	
-		if (FlxG.save.data.etternaMode)
-			etternaModeScore += Math.round(score / wife);
 	
 		trace('hit ' + daRating);
 
@@ -3627,7 +3526,6 @@ class PlayState extends MusicBeatState
 	private function itgPopupScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = strumtime - Conductor.songPosition;
-		var wife:Float = EtternaFunctions.wife3(noteDiff, FlxG.save.data.etternaMode ? 1 : 1.7);
 		// boyfriend.playAnim('hey');
 		vocals.volume = 1;
 
@@ -3645,7 +3543,6 @@ class PlayState extends MusicBeatState
 
 		var daRating:String = "sick";
 		var daTiming:String = "";
-		totalNotesHit += wife;
 
 			if (noteDiff > Conductor.safeZoneOffset * 0.9)
 			{
@@ -3714,9 +3611,6 @@ class PlayState extends MusicBeatState
 			ss = true;
 			comboText = true;
 		}
-	
-		if (FlxG.save.data.etternaMode)
-			etternaModeScore += Math.round(score / wife);
 	
 		trace('hit ' + daRating);
 
