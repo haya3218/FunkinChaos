@@ -2035,10 +2035,27 @@ class PlayState extends MusicBeatState
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
-				// sorry for all these if statemens sometimes && no work :sadman:
-				if (songNotes[1] > 3 || songNotes[1] > 7 && songNotes[1] < 12)
+				// ok
+				switch (songNotes[1])
 				{
-					gottaHitNote = !section.mustHitSection;
+					case 0:
+						gottaHitNote = section.mustHitSection;
+					case 1:
+						gottaHitNote = section.mustHitSection;
+					case 2:
+						gottaHitNote = section.mustHitSection;
+					case 3:
+						gottaHitNote = section.mustHitSection;
+					case 8:
+						gottaHitNote = section.mustHitSection;
+					case 9:
+						gottaHitNote = section.mustHitSection;
+					case 10:
+						gottaHitNote = section.mustHitSection;	
+					case 11:
+						gottaHitNote = section.mustHitSection;
+					default:
+						gottaHitNote = !section.mustHitSection;
 				}
 
 				var oldNote:Note;
@@ -3023,18 +3040,19 @@ class PlayState extends MusicBeatState
 							dad.playAnim('singRIGHT' + altAnim + noteAnim, true);
 					}
 
+					var strummingNotes:Int = daNote.noteData % 4;
+
 					// lel
 					if (OptionsHandler.options.p2noteStrums)
 					{
 						player2Strums.forEach(function(spr:FlxSprite)
 						{
-							if (Math.abs(daNote.noteData) == spr.ID)
+							if (Math.abs(strummingNotes) == spr.ID)
 							{
 								spr.animation.play('confirm');
 								sustain2(spr.ID, spr, daNote);
 							}
 						});
-		
 					}
 					
 					dad.holdTimer = 0;
@@ -4338,13 +4356,13 @@ class PlayState extends MusicBeatState
 					case 11:
 						boyfriend.playAnim('singRIGHTmiss', true);
 				}
+
+				var strummingNotes:Int = note.noteData % 4;
 	
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
-					if (Math.abs(note.noteData) == spr.ID)
-					{
-						spr.animation.play('confirm', true);
-					}
+					if (Math.abs(strummingNotes) == spr.ID)
+						spr.animation.play('confirm', true);	
 				});
 	
 				note.wasGoodHit = true;
@@ -4382,6 +4400,8 @@ class PlayState extends MusicBeatState
 					health += 0.023;
 				else
 					health += 0.004;
+
+				var strummingNotes:Int = note.noteData % 4;
 	
 				switch (note.noteData)
 				{
@@ -4421,7 +4441,7 @@ class PlayState extends MusicBeatState
 	
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
-					if (Math.abs(note.noteData) == spr.ID)
+					if (Math.abs(strummingNotes) == spr.ID)
 					{
 						spr.animation.play('confirm', true);
 						if (!curStage.startsWith('school'))
@@ -4430,7 +4450,7 @@ class PlayState extends MusicBeatState
 							spr.offset.x -= 13;
 							spr.offset.y -= 13;
 						}
-					}
+					}	
 				});
 	
 				note.wasGoodHit = true;
