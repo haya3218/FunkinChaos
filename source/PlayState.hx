@@ -2920,9 +2920,9 @@ class PlayState extends MusicBeatState
 					var cpuFloat:Float = 0.00;
 					if (cpuMode)
 						cpuFloat = FlxG.random.float(0, 0.0675);
-					else
+					else if (!cpuMode)
 						cpuFloat = 0.0675;
-					new FlxTimer().start(cpuFloat, function(tmr:FlxTimer)
+					new FlxTimer().start(0.0675, function(tmr:FlxTimer)
 					{
 						switch(Math.abs(daNote.noteData))
 						{
