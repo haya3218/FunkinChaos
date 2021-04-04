@@ -157,11 +157,6 @@ class PlayState extends MusicBeatState
 	var mtc:FlxSprite;
 	var beepbop:FlxSprite;
 
-	var bgMiserable:FlxSprite;
-	var zeCracks:FlxSprite;
-	var waveSprite:FlxEffectSprite;
-	var itgLogo:FlxSprite;
-
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var etternaModeScore:Int = 0;
@@ -803,6 +798,61 @@ class PlayState extends MusicBeatState
 			wiggleShit.waveAmplitude = 0.01;
 			wiggleShit.waveFrequency = 60;
 			wiggleShit.waveSpeed = 0.8;
+
+			bg.shader = wiggleShit.shader;
+			fg.shader = wiggleShit.shader;
+
+			var waveSprite = new FlxEffectSprite(bg, [waveEffectBG]);
+			var waveSpriteFG = new FlxEffectSprite(fg, [waveEffectFG]);
+
+			// Using scale since setGraphicSize() doesnt work???
+			waveSprite.scale.set(6, 6);
+			waveSpriteFG.scale.set(6, 6);
+			waveSprite.setPosition(posX, posY);
+			waveSpriteFG.setPosition(posX, posY);
+
+			waveSprite.scrollFactor.set(0.7, 0.8);
+			waveSpriteFG.scrollFactor.set(0.9, 0.8);
+
+			add(waveSprite);
+			add(waveSpriteFG);
+		}
+		else if (SONG.stage == 'swiggly')
+		{
+			curStage = 'swiggly';
+
+			var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
+			var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
+
+			var posX = 400;
+			var posY = 325;
+
+			/*
+			var bg:FlxSprite = new FlxSprite(posX, posY);
+			bg.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/animatedEvilSchool.png', 'assets/images/weeb/animatedEvilSchool.xml');
+			bg.animation.addByPrefix('idle', 'background 2', 24);
+			bg.animation.play('idle');
+			bg.scrollFactor.set(0.8, 0.9);
+			bg.scale.set(6, 6);
+			add(bg);
+			*/
+
+			var bg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/evilSchoolBG.png');
+			bg.scale.set(6, 6);
+			// bg.setGraphicSize(Std.int(bg.width * 6));
+			// bg.updateHitbox();
+			add(bg);
+
+			var fg:FlxSprite = new FlxSprite(posX, posY).loadGraphic('assets/images/evilSchoolFG.png');
+			fg.scale.set(6, 6);
+			// fg.setGraphicSize(Std.int(fg.width * 6));
+			// fg.updateHitbox();
+			add(fg);
+
+			wiggleShit.effectType = WiggleEffectType.DREAMY;
+			wiggleShit.waveAmplitude = 0.10;
+			wiggleShit.waveFrequency = 120;
+			wiggleShit.waveSpeed = 2.8;
 
 			bg.shader = wiggleShit.shader;
 			fg.shader = wiggleShit.shader;
@@ -1581,7 +1631,13 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			startCountdown();
+			switch (curSong.toLowerCase())
+			{
+				case "luci-moment":
+					startCountdown();
+				default:
+					startCountdown();
+			}
 		}
 
 		super.create();
@@ -2063,6 +2119,8 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
 	}
 
+	var babyArrow:FlxSprite;
+
 	 /**
 	 * static arrow generation
 	 *
@@ -2426,8 +2484,6 @@ class PlayState extends MusicBeatState
 	var frameRateRatio:Float = MusicBeatState.funkyFramerate / 60;
 
 	public static var songRate = 1.5;
-
-	var babyArrow:FlxSprite;
 
 	override public function update(elapsed:Float)
 	{
@@ -3910,7 +3966,7 @@ class PlayState extends MusicBeatState
 				{
 					// No possible notes to hit lel
 					missQueue.missed = true;
-					for (i in 0...4)
+					for (i in 0...13)
 					{
 						if (controlArray[i])
 						{
@@ -4638,7 +4694,7 @@ class PlayState extends MusicBeatState
 			{
 				camHUD.angle = 0;
 			}
-			if (curSong.toLowerCase() != 'Thread')
+			if (curSong.toLowerCase() != 'thread')
 			{
 				FlxG.camera.zoom += 0.015;
 				camHUD.zoom += 0.03;
