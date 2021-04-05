@@ -1464,6 +1464,23 @@ class Character extends FlxSprite
 					playAnim('idle');
 	
 					flipX = true;
+
+			case 'tankman':
+				tex = FlxAtlasFrames.fromSparrow('assets/images/tankman.png', 'assets/images/tankman.xml');
+				frames = tex;
+				animation.addByPrefix('idle', "Idle", 24);
+				animation.addByPrefix('singUP', 'Sing Up', 24, false);
+				animation.addByPrefix('singDOWN', 'Sing Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Sing Left', 24, false);
+				animation.addByPrefix('singRIGHT', 'Sing Right', 24, false);
+
+				addOffset('idle', 0, -80);
+				addOffset("singUP", 60, -45);
+				addOffset("singRIGHT", -8, -111);
+				addOffset("singLEFT", 90, -96);
+				addOffset("singDOWN", 52, -191);
+
+				playAnim('idle');
 		}
 
 		dance();
