@@ -50,27 +50,6 @@ class Note extends FlxSprite
 
 		var daStage:String = PlayState.curStage;
 
-		// mine note detection
-		switch (noteData)
-		{
-			case 8:
-				mineNote = true;
-			case 9:
-				mineNote = true;
-			case 10:
-				mineNote = true;
-			case 11:
-				mineNote = true;
-			case 12:
-				mineNote = true;
-			case 13:
-				mineNote = true;
-			case 14:
-				mineNote = true;
-			case 15:
-				mineNote = true;
-		}
-
 		switch (daStage)
 		{
 			case 'school' | 'schoolEvil':
@@ -151,27 +130,35 @@ class Note extends FlxSprite
 			case 8:
 				x += swagWidth * 0;
 				animation.play('purpleScroll');
+				mineNote = true;
 			case 9:
 				x += swagWidth * 1;
 				animation.play('blueScroll');
+				mineNote = true;
 			case 10:
 				x += swagWidth * 2;
 				animation.play('greenScroll');
+				mineNote = true;
 			case 11:
 				x += swagWidth * 3;
 				animation.play('redScroll');
+				mineNote = true;
 			case 12:
 				x += swagWidth * 0;
 				animation.play('purpleScroll');
+				mineNote = true;
 			case 13:
 				x += swagWidth * 1;
 				animation.play('blueScroll');
+				mineNote = true;
 			case 14:
 				x += swagWidth * 2;
 				animation.play('greenScroll');
+				mineNote = true;
 			case 15:
 				x += swagWidth * 3;
 				animation.play('redScroll');
+				mineNote = true;
 		}
 		// trace(prevNote);
 
@@ -202,20 +189,28 @@ class Note extends FlxSprite
 					animation.play('redholdend');
 				case 8:
 					animation.play('purpleholdend');
+					mineNote = true;
 				case 9:
 					animation.play('blueholdend');
+					mineNote = true;
 				case 10:
 					animation.play('greenholdend');
+					mineNote = true;
 				case 11:
 					animation.play('redholdend');
+					mineNote = true;
 				case 12:
 					animation.play('purpleholdend');
+					mineNote = true;
 				case 13:
 					animation.play('blueholdend');
+					mineNote = true;
 				case 14:
 					animation.play('greenholdend');
+					mineNote = true;
 				case 15:
 					animation.play('redholdend');
+					mineNote = true;
 			}
 
 			updateHitbox();
@@ -247,27 +242,38 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 					case 8:
 						prevNote.animation.play('purplehold');
+						mineNote = true;
 					case 9:
 						prevNote.animation.play('bluehold');
+						mineNote = true;
 					case 10:
 						prevNote.animation.play('greenhold');
+						mineNote = true;
 					case 11:
 						prevNote.animation.play('redhold');
+						mineNote = true;
 					case 12:
 						prevNote.animation.play('purplehold');
+						mineNote = true;
 					case 13:
 						prevNote.animation.play('bluehold');
+						mineNote = true;
 					case 14:
 						prevNote.animation.play('greenhold');
+						mineNote = true;
 					case 15:
 						prevNote.animation.play('redhold');
+						mineNote = true;
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.8 * PlayState.SONG.speed;
+				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
 		}
+
+		if (sustainNote && PlayState.downScrollTime)
+			flipY = true;
 	}
 
 	override function update(elapsed:Float)

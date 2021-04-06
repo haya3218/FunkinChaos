@@ -1464,7 +1464,6 @@ class Character extends FlxSprite
 					playAnim('idle');
 	
 					flipX = true;
-
 			case 'tankman':
 				tex = FlxAtlasFrames.fromSparrow('assets/images/tankman.png', 'assets/images/tankman.xml');
 				frames = tex;
