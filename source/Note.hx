@@ -271,9 +271,6 @@ class Note extends FlxSprite
 				// prevNote.setGraphicSize();
 			}
 		}
-
-		if (sustainNote && PlayState.downScrollTime)
-			flipY = true;
 	}
 
 	override function update(elapsed:Float)

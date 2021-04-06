@@ -2664,80 +2664,70 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'Lootus')
 		{
-			// tbh more freedom with curStep than curBeat
 			switch (curStep)
 			{
-				case 26:
-					currentlyScaled = true;
+				case 38:
+					camHUD.y -= 20;
 					camHUD.angle -= 10;
-				case 27: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 31:
-					camHUD.angle += 10;
-				case 32: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 37:
-					camHUD.angle -= 10;
-				case 38: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 42:
-					camHUD.angle += 10;
-				case 43: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
+					camTurn(camHUD, 0, 2);
 				case 47:
-					camHUD.angle -= 10;
-				case 48: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 53:
 					camHUD.angle += 10;
-				case 54: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 59:
+					camTurn(camHUD, 0, 2);
+				case 55:
 					camHUD.angle -= 10;
-				case 60: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 64:
+					camTurn(camHUD, 0, 2);
+				case 63:
 					camHUD.angle += 10;
-				case 65: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 69: // HAHA FUNNE NUMBER
+					camTurn(camHUD, 0, 2);
+				case 71:
 					camHUD.angle -= 10;
-				case 70: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 74:
+					camTurn(camHUD, 0, 2);
+				case 79:
 					camHUD.angle += 10;
-				case 75: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 80:
-					camHUD.angle -= 10;
-				case 81: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 85:
+					camTurn(camHUD, 0, 2);
+				case 87:
 					camHUD.angle += 10;
-				case 86: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 90:
+					camTurn(camHUD, 0, 2);
+				case 95:
 					camHUD.angle -= 10;
-				case 91: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 96:
+					camTurn(camHUD, 0, 2);
+				case 103:
 					camHUD.angle += 10;
-				case 97: 
-					FlxTween.tween(camHUD, { angle: 0 }, 0.5, { ease: FlxEase.circOut });
-				case 102:
+					camTurn(camHUD, 0, 2);
+				case 111:
 					camHUD.angle -= 10;
-				case 103: 
-					FlxTween.tween(camHUD, { angle: 0 }, 2, { ease: FlxEase.circOut });
-				case 112:
-					// fuck you downscroll time
-					currentlyScaled = false;
-					camHUD.setScale(1, 1);
-					camHUD.y = 0;
-					downScrollTime = true;
-					strumLine.y = FlxG.height - 165;
-					strumLineNotes.forEach(function(spr:FlxSprite){
-						FlxTween.tween(spr, { y: strumLine.y }, 2, { ease: FlxEase.circOut });
-					});
+					camTurn(camHUD, 0, 2);
+				case 119:
+					camHUD.angle += 10;
+					camTurn(camHUD, 0, 2);
+				case 127:
+					camHUD.angle += 10;
+					camTurn(camHUD, 0, 2);
+				case 135:
+					camHUD.angle -= 10;
+					camTurn(camHUD, 0, 2);
+				case 143:
+					camHUD.angle += 10;
+					camTurn(camHUD, 0, 2);
+				case 153:
+					camHUD.angle -= 10;
+					camTurn(camHUD, 0, 5);
+				case 163:
+					scrollSet(true, 2);
+				case 183:
+					scrollSet(false, 2);
+				case 200:
+					scrollSet(true, 2);
+				case 215:
+					scrollSet(false, 2);
+				case 231:
+					scrollSet(true, 2);
+				case 247:
+					scrollSet(false, 2);
+				case 263:
+					scrollSet(true, 2);
+				case 278:
+					scrollSet(false, 5);
 			}
 		}
 
@@ -2916,6 +2906,8 @@ class PlayState extends MusicBeatState
 				else
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
+				if (!downScrollTime)
+				{
 					// i am so fucking sorry for this if condition
 					if (daNote.isSustainNote && daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth/2
 						&& (!daNote.mustPress || (daNote.wasGoodHit || 
@@ -2937,7 +2929,8 @@ class PlayState extends MusicBeatState
 	
 						daNote.clipRect = swagRect;
 					}
-
+				}
+				
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
 					if (SONG.song != 'Tutorial')
@@ -3067,9 +3060,9 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.y < -daNote.height && !downScrollTime || daNote.y >= strumLine.y + 106 && downScrollTime)
 					{
+						FlxTween.color(daNote, 0.5, 0xffffff, 0x000000, { ease: FlxEase.circOut });
 						if (daNote.tooLate || !daNote.wasGoodHit)
 							{
-								FlxTween.color(daNote, 0.5, 0xffffff, 0x000000, { ease: FlxEase.circOut });
 								if (!daNote.mineNote)
 								{
 									health -= 0.0475 + healthLossModifier;
@@ -4760,6 +4753,51 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.playAnim('idle');
 		});
+	}
+
+	function camTurn(camera:FlxCamera, angle:Float = 0, duration:Float = 1)
+	{
+		FlxTween.tween(camera, { angle: angle }, duration, { ease: FlxEase.sineOut, type: ONESHOT });
+	}
+
+	function scrollSet(downScroll:Bool = false, duration:Float = 10)
+	{
+		if (downScroll)
+		{
+			downScrollTime = true;
+			strumLine.y = FlxG.height - 165;
+			// move arrows
+			strumLineNotes.forEach(function(spr:FlxSprite){
+				FlxTween.tween(spr, { y: strumLine.y }, duration, { ease: FlxEase.sineOut });
+			});
+			// flip notes
+			notes.forEachAlive(function(daNote:Note){
+				if (daNote.isSustainNote)
+					daNote.flipY = true;
+			});
+		}
+		else
+		{
+			downScrollTime = false;
+			strumLine.y = 50;
+			// move arrows
+			strumLineNotes.forEach(function(spr:FlxSprite){
+				FlxTween.tween(spr, { y: strumLine.y }, duration, { ease: FlxEase.sineOut });
+			});
+			// flip notes
+			notes.forEachAlive(function(daNote:Note){
+				if (daNote.isSustainNote)
+					daNote.flipY = false;
+			});
+		}
+	}
+
+	// ik this shouldnt be a function but whatevs
+	function xScroll(min:Float = 0, max:Float = 0):Float
+	{
+		var returnedNum:Float;
+		returnedNum = FlxG.random.float(min, max) / 2;
+		return returnedNum;
 	}
 }
 /* I swear to god if you delete this you're a fucking racist
