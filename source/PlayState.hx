@@ -2667,7 +2667,6 @@ class PlayState extends MusicBeatState
 			switch (curStep)
 			{
 				case 38:
-					camHUD.y += 20;
 					camHUD.angle -= 10;
 					camTurn(camHUD, 0, 2);
 				case 47:
@@ -4757,7 +4756,8 @@ class PlayState extends MusicBeatState
 
 	function camTurn(camera:FlxCamera, angle:Float = 0, duration:Float = 1)
 	{
-		FlxTween.tween(camera, { angle: angle }, duration, { ease: FlxEase.sineOut, type: ONESHOT });
+		camera.x = Math.sin(duration / 0.5)*angle * 1*2; // shake
+		FlxTween.tween(camera, { angle: angle }, duration, { ease: FlxEase.sineOut });
 	}
 
 	function scrollSet(downScroll:Bool = false, duration:Float = 10)
