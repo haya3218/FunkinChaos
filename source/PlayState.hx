@@ -134,6 +134,10 @@ class PlayState extends MusicBeatState
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 
 	// stage shit
+	var bgStage:FlxSprite;
+	var stageCurtainsStage:FlxSprite;
+	var stageFrontStage:FlxSprite;
+
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
 
@@ -1078,28 +1082,28 @@ class PlayState extends MusicBeatState
 		{
 			defaultCamZoom = 0.9;
 			curStage = 'stage';
-			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/stageback.png');
-			bg.antialiasing = true;
-			bg.scrollFactor.set(0.9, 0.9);
-			bg.active = false;
-			add(bg);
+			var bgStage:FlxSprite = new FlxSprite(-600, -200).loadGraphic('assets/images/stageback.png');
+			bgStage.antialiasing = true;
+			bgStage.scrollFactor.set(0.9, 0.9);
+			bgStage.active = false;
+			add(bgStage);
 
-			var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/stagefront.png');
-			stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-			stageFront.updateHitbox();
-			stageFront.antialiasing = true;
-			stageFront.scrollFactor.set(0.9, 0.9);
-			stageFront.active = false;
-			add(stageFront);
+			var stageFrontStage:FlxSprite = new FlxSprite(-650, 600).loadGraphic('assets/images/stagefront.png');
+			stageFrontStage.setGraphicSize(Std.int(stageFrontStage.width * 1.1));
+			stageFrontStage.updateHitbox();
+			stageFrontStage.antialiasing = true;
+			stageFrontStage.scrollFactor.set(0.9, 0.9);
+			stageFrontStage.active = false;
+			add(stageFrontStage);
 
-			var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic('assets/images/stagecurtains.png');
-			stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-			stageCurtains.updateHitbox();
-			stageCurtains.antialiasing = true;
-			stageCurtains.scrollFactor.set(1.3, 1.3);
-			stageCurtains.active = false;
+			var stageCurtainsStage:FlxSprite = new FlxSprite(-500, -300).loadGraphic('assets/images/stagecurtains.png');
+			stageCurtainsStage.setGraphicSize(Std.int(stageCurtainsStage.width * 0.9));
+			stageCurtainsStage.updateHitbox();
+			stageCurtainsStage.antialiasing = true;
+			stageCurtainsStage.scrollFactor.set(1.3, 1.3);
+			stageCurtainsStage.active = false;
 
-			add(stageCurtains);
+			add(stageCurtainsStage);
 		}
 
 		var gfVersion:String = 'gf';
@@ -2323,6 +2327,7 @@ class PlayState extends MusicBeatState
 	private var paused:Bool = false;
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
+	var no:Bool = false;
 
 	 /**
 	 * no idea what this does
@@ -2337,6 +2342,11 @@ class PlayState extends MusicBeatState
 	var frameRateRatio:Float = MusicBeatState.funkyFramerate / 60;
 
 	public static var songRate = 1.5;
+
+	// stolen from exr lololololol
+	var camShake:Bool = false;
+	var noteSnake:Bool = false;
+	var noteHyper:Bool = false;
 
 	override public function update(elapsed:Float)
 	{
@@ -2374,6 +2384,11 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.x = Math.sin(songTime)*40 * 1*2;
 			camHUD.x = Math.sin(songTime)*97 * 1*2;
+		}
+
+		if (camShake)
+		{
+			camHUD.x = Math.sin(songTime)*40 * 1*2;
 		}
 
 		if (doof.cutsceneShitTest && inCutscene)
@@ -2651,7 +2666,7 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
-
+		
 		// nof
 		if (combo == 1000)
 			combo == 10;
@@ -2660,57 +2675,65 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("stepShit", curStep);
 		FlxG.watch.addQuick("healthShit", lastHealth);
 
-		var yes:Bool = true;
+		var yes:Bool = false;
+
+		if (yes)
+		{
+			noteHyper = true;
+			noteSnake = true;
+		}
 
 		if (curSong == 'Lootus')
 		{
+			camHUD.angle = FlxMath.lerp(0, camHUD.angle, 0.95);
+
 			switch (curStep)
 			{
 				case 38:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 47:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 55:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 63:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 71:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 79:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 87:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 95:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 103:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 111:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 119:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 127:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 135:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 143:
 					camHUD.angle += 10;
-					camTurn(camHUD, 0, 2);
+					camTurn();
 				case 153:
 					camHUD.angle -= 10;
-					camTurn(camHUD, 0, 5);
+					camTurn();
 				case 163:
 					scrollSet(true, 2);
 				case 183:
@@ -2726,7 +2749,23 @@ class PlayState extends MusicBeatState
 				case 263:
 					scrollSet(true, 2);
 				case 278:
-					scrollSet(false, 5);
+					scrollSet(false, 3);
+				case 295:
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						FlxTween.tween(spr, { alpha: 0 }, 0.5, { ease: FlxEase.circOut });
+					});
+					no = true;
+				case 420:
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						FlxTween.tween(spr, { alpha: 1 }, 0.5, { ease: FlxEase.circOut });
+					});
+					no = false;
+				case 555:
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						FlxTween.tween(spr, {y: spr.y + FlxG.random.float(25, 50), x: spr.x + FlxG.random.float(2, 10)}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+					});
+					noteSnake = true;
+					no = false;
 			}
 		}
 
@@ -2905,6 +2944,9 @@ class PlayState extends MusicBeatState
 				else
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
+				if (noteSnake)
+					daNote.x += (1*2) * Math.sin(songTime/300)*6;
+
 				if (!downScrollTime)
 				{
 					// i am so fucking sorry for this if condition
@@ -3055,11 +3097,21 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				// say no to missing
+
+				if (no)
+				{
+					if (daNote.y <= 200 * SONG.speed && !downScrollTime || daNote.y >= strumLine.y + 86 && downScrollTime)
+					{
+						FlxTween.tween(daNote, { color: FlxColor.BLACK }, 0.5, { ease: FlxEase.circOut });
+						daNote.alpha -= 0.1;
+					}
+				}
+
 				if (!autoMode)
 				{
 					if (daNote.y < -daNote.height && !downScrollTime || daNote.y >= strumLine.y + 106 && downScrollTime)
 					{
-						FlxTween.color(daNote, 0.5, 0xffffff, 0x000000, { ease: FlxEase.circOut });
+						FlxTween.tween(daNote, { color: FlxColor.BLACK }, 0.5, { ease: FlxEase.circOut });
 						if (daNote.tooLate || !daNote.wasGoodHit)
 							{
 								if (!daNote.mineNote)
@@ -4754,10 +4806,15 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	function camTurn(camera:FlxCamera, angle:Float = 0, duration:Float = 1)
+	function camTurn()
 	{
-		camera.x = Math.sin(duration / 0.5)*angle * 1*2; // shake
-		FlxTween.tween(camera, { angle: angle }, duration, { ease: FlxEase.sineOut });
+		// put some stuff here
+		// REDO!
+		camShake = true;
+		new FlxTimer().start(0.5, function(tmr:FlxTimer){
+			camShake = false;
+			camHUD.x = 0;
+		});
 	}
 
 	function scrollSet(downScroll:Bool = false, duration:Float = 10)
@@ -4774,6 +4831,8 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note){
 				if (daNote.isSustainNote)
 					daNote.flipY = true;
+				if (daNote.prevNote.isSustainNote)
+					daNote.flipY = true;
 			});
 		}
 		else
@@ -4787,6 +4846,8 @@ class PlayState extends MusicBeatState
 			// flip notes
 			notes.forEachAlive(function(daNote:Note){
 				if (daNote.isSustainNote)
+					daNote.flipY = false;
+				if (daNote.prevNote.isSustainNote)
 					daNote.flipY = false;
 			});
 		}
