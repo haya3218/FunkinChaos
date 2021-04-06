@@ -2667,7 +2667,7 @@ class PlayState extends MusicBeatState
 			switch (curStep)
 			{
 				case 38:
-					camHUD.y -= 20;
+					camHUD.y += 20;
 					camHUD.angle -= 10;
 					camTurn(camHUD, 0, 2);
 				case 47:
@@ -2930,7 +2930,7 @@ class PlayState extends MusicBeatState
 						daNote.clipRect = swagRect;
 					}
 				}
-				
+
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
 					if (SONG.song != 'Tutorial')
