@@ -45,9 +45,9 @@ class SaveDataState extends MusicBeatState
 	var scoreBG:FlxSprite;
 	override function create()
 	{
-        FlxG.sound.playMusic('assets/sounds/HGGJ' + TitleState.soundExt);
+        FlxG.sound.playMusic('assetss/sounds/HGGJ' + TitleState.soundExt);
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		optionList = [
 						{name: "Limit FPS", value: false}, 
 						{name: "Notestrum Test", value: false},
@@ -93,8 +93,8 @@ class SaveDataState extends MusicBeatState
 			swagOption.targetY = j;
 			swagOption.x += 50;
 			trace("l57");
-			var coolCheckmark = new FlxSprite(0, -15).loadGraphic('assets/images/on.png');
-			var coolCheckmark2 = new FlxSprite(0, -15).loadGraphic('assets/images/off.png');
+			var coolCheckmark = new FlxSprite(0, -15).loadGraphic('assetss/images/on.png');
+			var coolCheckmark2 = new FlxSprite(0, -15).loadGraphic('assetss/images/off.png');
 			coolCheckmark.scale.set(1.1, 1.1);
 			coolCheckmark2.scale.set(1.1, 1.1);
 			coolCheckmark.updateHitbox();
@@ -113,12 +113,12 @@ class SaveDataState extends MusicBeatState
 		}
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 64);
 		// scoreText.autoSize = false;
-		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		fpText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
 		// scoreText.autoSize = false;
-		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		fpText.setFormat("assetss/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
@@ -141,7 +141,7 @@ class SaveDataState extends MusicBeatState
 		super.update(elapsed);
 		if (controls.BACK) 
 		{
-            FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+            FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
             FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'), 70);
 			saveOptions();
 			FlxG.switchState(new OptionsMenu());
@@ -161,13 +161,13 @@ class SaveDataState extends MusicBeatState
 			optionList[optionsSelected].value = checkmarks.members[optionsSelected].visible;
 			saveOptions();
 			changeSelection();
-			FlxG.sound.play('assets/sounds/confirmMenu.ogg');
+			FlxG.sound.play('assetss/sounds/confirmMenu.ogg');
 		}
 
 	}
 	function changeSelection(change:Int = 0)
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		optionsSelected += change;
 

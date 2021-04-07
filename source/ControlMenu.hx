@@ -31,8 +31,8 @@ class ControlMenu extends MusicBeatState
   
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
-		controlsStrings = CoolUtil.coolTextFile('assets/data/controls.txt');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
+		controlsStrings = CoolUtil.coolTextFile('assetss/data/controls.txt');
 		menuBG.color = 0x32CD32;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -45,14 +45,14 @@ class ControlMenu extends MusicBeatState
 		var i = 0;
 
 		selector = new FlxText(0, 0, 0, "", 100);
-		selector.setFormat("assets/fonts/funke.otf", 75, FlxColor.WHITE, CENTER);
+		selector.setFormat("assetss/fonts/funke.otf", 75, FlxColor.WHITE, CENTER);
 		selector.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 5.5, 5.5);
 		add(selector);
 		selector.visible = false;
 
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
 		// scoreText.autoSize = false;
-		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		#if desktop
@@ -111,7 +111,7 @@ class ControlMenu extends MusicBeatState
 		{
 			if (controls.BACK)
 			{
-				FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 				FlxG.switchState(new OptionsMenu());
 				Controls.saveControls();
 				controls.setKeyboardScheme(Solo,true);
@@ -133,7 +133,7 @@ class ControlMenu extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 
 		curSelected += change;
 
@@ -166,7 +166,7 @@ class ControlMenu extends MusicBeatState
 
 	function changeInput()
 	{
-		FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 		switch (grpControls.members[curSelected].text)
 		{
 			case 'DFJK INPUT':
@@ -211,7 +211,7 @@ class ControlMenu extends MusicBeatState
 			{
 				if(FlxG.keys.checkStatus(key,2) && key != "ANY")
 				{			
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);		
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);		
 					FlxFlicker.stopFlickering(selector);
 					
 					var elements:Array<String> = grpControls.members[curSelected].text.split(':');

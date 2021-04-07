@@ -20,10 +20,10 @@ class OptionsHandler {
     public static var options(get, set):TOptions;
     static function get_options() {
         // update the file
-        return Json.parse(Assets.getText('assets/data/options.json'));
+        return Json.parse(Assets.getText('assetss/data/options.json'));
     }
     static function set_options(opt:TOptions) {
-        File.saveContent('assets/data/options.json', CoolUtil.coolStringifyJson(opt));
+        File.saveContent('assetss/data/options.json', CoolUtil.coolStringifyJson(opt));
         return opt;
     }
 }

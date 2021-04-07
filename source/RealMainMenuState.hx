@@ -58,7 +58,7 @@ class RealMainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite().loadGraphic('assets/images/menuBGMagenta.png');
+		bg = new FlxSprite().loadGraphic('assetss/images/menuBGMagenta.png');
 		bg.x -= 80;
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
@@ -71,7 +71,7 @@ class RealMainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		magenta = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		magenta.x -= 80;
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.18;
@@ -83,7 +83,7 @@ class RealMainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 
-		overlay1 = new FlxBackdrop('assets/images/menuMagentaOverlay.png', 0.5, 0, true, false);
+		overlay1 = new FlxBackdrop('assetss/images/menuMagentaOverlay.png', 0.5, 0, true, false);
 		overlay1.x -= 80;
 		overlay1.scrollFactor.x = 0;
 		overlay1.scrollFactor.y = 0.18;
@@ -103,7 +103,7 @@ class RealMainMenuState extends MusicBeatState
 		DiscordClient.changePresence("Main Menu", null);
 		#end
 
-		var tex = FlxAtlasFrames.fromSparrow('assets/images/select_menu_assets.png', 'assets/images/select_menu_assets.xml');
+		var tex = FlxAtlasFrames.fromSparrow('assetss/images/select_menu_assets.png', 'assetss/images/select_menu_assets.xml');
 
 		for (i in 0...optionShit.length)
 		{
@@ -157,13 +157,13 @@ class RealMainMenuState extends MusicBeatState
 		{
 			if (controls.UP_P)
 			{
-				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 				changeItem(-1);
 			}
 
 			if (controls.DOWN_P)
 			{
-				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 				changeItem(1);
 			}
 
@@ -180,7 +180,7 @@ class RealMainMenuState extends MusicBeatState
 				else
 				{
 					selectedSomethin = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 
 					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 

@@ -47,7 +47,7 @@ class RemixState extends MusicBeatState
 
 	override function create()
 	{
-		menuBG = new FlxSprite().loadGraphic('assets/images/remixSelect/BG1.png');
+		menuBG = new FlxSprite().loadGraphic('assetss/images/remixSelect/BG1.png');
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -75,13 +75,13 @@ class RemixState extends MusicBeatState
 
 		txtDescription = new FlxText(FlxG.width * 0.075, menuBG.y + 200, 0, "", 32);
 		txtDescription.alignment = CENTER;
-		txtDescription.setFormat("assets/fonts/vcr.ttf", 32);
+		txtDescription.setFormat("assetss/fonts/vcr.ttf", 32);
 		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
 
 		remixCharacter = new FlxSprite(0, -20);
-		remixCharacter.frames = FlxAtlasFrames.fromSparrow('assets/images/remixSelect/menubop.png', 'assets/images/remixSelect/menubop.xml');
+		remixCharacter.frames = FlxAtlasFrames.fromSparrow('assetss/images/remixSelect/menubop.png', 'assetss/images/remixSelect/menubop.xml');
 		remixCharacter.animation.addByPrefix('dancenormal', 'menu normal', 24);
 		remixCharacter.animation.addByPrefix('dancebside', 'menu bside', 24);
 		remixCharacter.animation.addByPrefix('danceshitpost', 'menu shitpost', 24);
@@ -96,7 +96,7 @@ class RemixState extends MusicBeatState
 		remixSelHeaderText.screenCenter(X);
 		add(remixSelHeaderText);
 
-		var shittyArrows:FlxSprite = new FlxSprite().loadGraphic('assets/images/remixSelect/arrowsz.png');
+		var shittyArrows:FlxSprite = new FlxSprite().loadGraphic('assetss/images/remixSelect/arrowsz.png');
 		shittyArrows.screenCenter();
 		shittyArrows.antialiasing = true;
 		add(shittyArrows);
@@ -148,21 +148,21 @@ class RemixState extends MusicBeatState
 					switch (daSelected)
 					{
 						case "DEFAULT":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								FlxG.switchState(new FreeplayState());
 							});
 						case "BSIDES":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								FlxG.switchState(new BSidesState());
 							});
 						case "CUSTOM":
-							FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
@@ -184,7 +184,7 @@ class RemixState extends MusicBeatState
 
 	function changeSelection(change:Int = 0):Void
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
 	
@@ -220,16 +220,16 @@ class RemixState extends MusicBeatState
 		{
 			case "DEFAULT":
 				remixCharacter.animation.play('dancenormal');
-				menuBG.loadGraphic('assets/images/remixSelect/BG1.png');
+				menuBG.loadGraphic('assetss/images/remixSelect/BG1.png');
 			case "BSIDES":
 				remixCharacter.animation.play('dancebside');
-				menuBG.loadGraphic('assets/images/remixSelect/BG2.png');
+				menuBG.loadGraphic('assetss/images/remixSelect/BG2.png');
 			case "CUSTOM":
 				remixCharacter.animation.play('danceshitpost');
-				menuBG.loadGraphic('assets/images/remixSelect/BG3.png');
+				menuBG.loadGraphic('assetss/images/remixSelect/BG3.png');
 			default:
 				remixCharacter.animation.play('dancenormal');
-				menuBG.loadGraphic('assets/images/remixSelect/BG1.png');
+				menuBG.loadGraphic('assetss/images/remixSelect/BG1.png');
 		}
 	}
 }

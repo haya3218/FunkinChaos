@@ -56,7 +56,7 @@ class BSidesState extends MusicBeatState
 
 	override function create()
 	{
-		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
+		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assetss/data/freeplayLangshit.txt'));
 
 		// LOAD MUSIC
 		
@@ -88,7 +88,7 @@ class BSidesState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		bg = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		bg.color = 0x800080;
 		add(bg);
 
@@ -114,12 +114,12 @@ class BSidesState extends MusicBeatState
 
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
 		// scoreText.autoSize = false;
-		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		fpText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
 		// scoreText.autoSize = false;
-		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		fpText.setFormat("assetss/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
@@ -129,14 +129,14 @@ class BSidesState extends MusicBeatState
 		diffText.font = scoreText.font;
 		
 		rankText = new FlxText(0, FlxG.height - 32);
-		rankText.setFormat("assets/fonts/vcr.ttf", 32);
+		rankText.setFormat("assetss/fonts/vcr.ttf", 32);
 		rankText.size = scoreText.size;
 		rankText.alpha = 0.7;
 
 		changeSelection();
 		changeDiff();
 
-		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
+		// FlxG.sound.playMusic('assetss/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
 		selector = new FlxText();
 
@@ -227,7 +227,7 @@ class BSidesState extends MusicBeatState
 
 			if (controls.BACK)
 				{
-					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 					FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 					FlxG.switchState(new RemixState());
 				}
@@ -249,7 +249,7 @@ class BSidesState extends MusicBeatState
 
 				if (!FlxG.sound.music.playing)
 				{
-					FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+					FlxG.sound.playMusic('assetss/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 				}
 
 				FlxG.sound.music.volume = 1;
@@ -298,7 +298,7 @@ class BSidesState extends MusicBeatState
 			// #end
 	
 			// NGio.logEvent('Fresh');
-			FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+			FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 	
 			curSelected += change;
 	
@@ -317,7 +317,7 @@ class BSidesState extends MusicBeatState
 				FlxG.sound.music.stop();
 			FlxTimer.globalManager.clear();
 			new FlxTimer(FlxTimer.globalManager).start(1, function(tmr:FlxTimer){
-				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 			});
 			for (i in 0...iconArray.length)
 				{

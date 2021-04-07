@@ -58,12 +58,12 @@ class CustomSongState extends MusicBeatState
 
 	override function create()
 	{
-		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assets/data/freeplayLangshit.txt'));
+		textObjects = FlxG.random.getObject(CoolUtil.coolTextArray('assetss/data/freeplayLangshit.txt'));
 
 		randomizedIcon = FlxG.random.getObject(iconRandomizer);
 		// LOAD MUSIC
 		
-		var initSonglist = CoolUtil.coolTextFile('assets/data/customSonglist.txt');
+		var initSonglist = CoolUtil.coolTextFile('assetss/data/customSonglist.txt');
 
 		for (i in 0...initSonglist.length)
 		{
@@ -89,7 +89,7 @@ class CustomSongState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		bg = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		bg = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		bg.color = 0xFFA500;
 		add(bg);
 
@@ -120,7 +120,7 @@ class CustomSongState extends MusicBeatState
 
 		scoreText = new FlxText(FlxG.width * 0.77, 5, 0, "", 32);
 		// scoreText.autoSize = false;
-		scoreText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
@@ -131,7 +131,7 @@ class CustomSongState extends MusicBeatState
 		
 		var fpText:FlxText = new FlxText(scoreText.x + 120, 5, 0, "", 64);
 		// scoreText.autoSize = false;
-		fpText.setFormat("assets/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		fpText.setFormat("assetss/fonts/vcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		add(scoreBG);
@@ -143,7 +143,7 @@ class CustomSongState extends MusicBeatState
 		changeSelection();
 		changeDiff();
 
-		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
+		// FlxG.sound.playMusic('assetss/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
 		selector = new FlxText();
 
@@ -230,7 +230,7 @@ class CustomSongState extends MusicBeatState
 
 		if (controls.BACK)
 		{
-			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+			FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 			FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 			FlxG.switchState(new RemixState());
 		}
@@ -244,7 +244,7 @@ class CustomSongState extends MusicBeatState
 			var diffic = "";
 
 			// man i sure do hate vs code for saying its a fucking error when it compiles anyway lolololol
-			if (!FileSystem.exists('assets/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json')) {
+			if (!FileSystem.exists('assetss/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json')) {
 				// assume we pecked up the difficulty, return to default difficulty
 				trace("UH OH SONG IN SPECIFIED DIFFICULTY DOESN'T EXIST\nUSING DEFAULT DIFFICULTY");
 				poop = songs[curSelected].songName;
@@ -263,9 +263,9 @@ class CustomSongState extends MusicBeatState
 			if (!FlxG.sound.music.playing)
 			{
 				#if sys
-				FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
+				FlxG.sound.playMusic(Sound.fromFile("assetss/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
 				#else
-				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 				#end
 			}
 
@@ -323,7 +323,7 @@ class CustomSongState extends MusicBeatState
 			// #end
 	
 			// NGio.logEvent('Fresh');
-			FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+			FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 	
 			curSelected += change;
 	
@@ -343,9 +343,9 @@ class CustomSongState extends MusicBeatState
 			FlxTimer.globalManager.clear();
 			new FlxTimer(FlxTimer.globalManager).start(1, function(tmr:FlxTimer){
 				#if sys
-				FlxG.sound.playMusic(Sound.fromFile("assets/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
+				FlxG.sound.playMusic(Sound.fromFile("assetss/music/"+songs[curSelected].songName+"_Inst"+TitleState.soundExt), 0);
 				#else
-				FlxG.sound.playMusic('assets/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/' + songs[curSelected].songName + "_Inst" + TitleState.soundExt, 0);
 				#end
 			});
 			

@@ -42,7 +42,7 @@ class ModifierState extends MusicBeatState
 	public static var scoreMultiplier:Float = 1;
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		menuBG.color = 0x379708;
 		grpAlphabet = new FlxTypedGroup<Alphabet>();
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -50,7 +50,7 @@ class ModifierState extends MusicBeatState
 		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		multiTxt = new FlxText(800, 60, 0, "", 200);
-		multiTxt.setFormat("assets/fonts/vcr.ttf", 40, FlxColor.WHITE, RIGHT);
+		multiTxt.setFormat("assetss/fonts/vcr.ttf", 40, FlxColor.WHITE, RIGHT);
 		multiTxt.text = "Multiplier: 1";
 		multiTxt.scrollFactor.set();
 		// save between files
@@ -76,7 +76,7 @@ class ModifierState extends MusicBeatState
 			];
 		}
 
-		var tex = FlxAtlasFrames.fromSparrow('assets/images/Modifiers.png', 'assets/images/Modifiers.xml');
+		var tex = FlxAtlasFrames.fromSparrow('assetss/images/Modifiers.png', 'assetss/images/Modifiers.xml');
 
 		for (modifier in 0...modifiers.length) {
 			var swagModifier = new Alphabet(0, 0, "*     "+modifiers[modifier].name, true, false);
@@ -84,7 +84,7 @@ class ModifierState extends MusicBeatState
 			swagModifier.screenCenter(X);
 			swagModifier.targetY = modifier;
 			swagModifier.x += 250;
-			var coolCheckmark:FlxSprite = new FlxSprite(-130, -10).loadGraphic('assets/images/checkmark.png');
+			var coolCheckmark:FlxSprite = new FlxSprite(-130, -10).loadGraphic('assetss/images/checkmark.png');
 			coolCheckmark.visible = modifiers[modifier].value;
 			menuItem = new FlxSprite(-140, -20);
 			menuItem.frames = tex;
@@ -140,7 +140,7 @@ class ModifierState extends MusicBeatState
 	function changeSelection(change:Int = 0)
 	{
 
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
 
@@ -183,7 +183,7 @@ class ModifierState extends MusicBeatState
 		}
 	}
 	function toggleSelection() {
-		FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 		if (modifiers[curSelected].name != 'z'){
 			checkmarks[curSelected].visible = !checkmarks[curSelected].visible;
 			modifiers[curSelected].value = checkmarks[curSelected].visible;

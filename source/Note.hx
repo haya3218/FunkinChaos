@@ -53,7 +53,7 @@ class Note extends FlxSprite
 		switch (daStage)
 		{
 			case 'school' | 'schoolEvil':
-				loadGraphic('assets/images/weeb/pixelUI/arrows-pixels.png', true, 17, 17);
+				loadGraphic('assetss/images/weeb/pixelUI/arrows-pixels.png', true, 17, 17);
 
 				animation.add('greenScroll', [6]);
 				animation.add('redScroll', [7]);
@@ -62,7 +62,7 @@ class Note extends FlxSprite
 
 				if (isSustainNote)
 				{
-					loadGraphic('assets/images/weeb/pixelUI/arrowEnds.png', true, 7, 6);
+					loadGraphic('assetss/images/weeb/pixelUI/arrowEnds.png', true, 7, 6);
 
 					animation.add('purpleholdend', [4]);
 					animation.add('greenholdend', [6]);
@@ -79,7 +79,7 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
+				frames = FlxAtlasFrames.fromSparrow('assetss/images/NOTE_assets.png', 'assetss/images/NOTE_assets.xml');
 
 				animation.addByPrefix('purpleScroll', 'purple0');
 				animation.addByPrefix('blueScroll', 'blue0');

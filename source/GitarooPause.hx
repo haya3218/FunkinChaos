@@ -21,27 +21,27 @@ class GitarooPause extends MusicBeatState
 	override function create()
 	{
 		if (FlxG.sound.music != null)
-			FlxG.sound.playMusic('assets/music/title.ogg', 1, true);
+			FlxG.sound.playMusic('assetss/music/title.ogg', 1, true);
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/pauseAlt/pauseBG.png');
+		var bg:FlxSprite = new FlxSprite().loadGraphic('assetss/images/pauseAlt/pauseBG.png');
 		add(bg);
 
 		var bf:FlxSprite = new FlxSprite(0, 30);
-		bf.frames = FlxAtlasFrames.fromSparrow('assets/images/pauseAlt/bfLol.png', 'assets/images/pauseAlt/bfLol.xml');
+		bf.frames = FlxAtlasFrames.fromSparrow('assetss/images/pauseAlt/bfLol.png', 'assetss/images/pauseAlt/bfLol.xml');
 		bf.animation.addByPrefix('lol', "funnyThing", 13);
 		bf.animation.play('lol');
 		add(bf);
 		bf.screenCenter(X);
 
 		replayButton = new FlxSprite(FlxG.width * 0.28, FlxG.height * 0.7);
-		replayButton.frames = FlxAtlasFrames.fromSparrow('assets/images/pauseAlt/pauseUI.png', 'assets/images/pauseAlt/pauseUI.xml');
+		replayButton.frames = FlxAtlasFrames.fromSparrow('assetss/images/pauseAlt/pauseUI.png', 'assetss/images/pauseAlt/pauseUI.xml');
 		replayButton.animation.addByPrefix('selected', 'bluereplay', 0, false);
 		replayButton.animation.appendByPrefix('selected', 'yellowreplay');
 		replayButton.animation.play('selected');
 		add(replayButton);
 
 		cancelButton = new FlxSprite(FlxG.width * 0.58, replayButton.y);
-		cancelButton.frames = FlxAtlasFrames.fromSparrow('assets/images/pauseAlt/pauseUI.png', 'assets/images/pauseAlt/pauseUI.xml');
+		cancelButton.frames = FlxAtlasFrames.fromSparrow('assetss/images/pauseAlt/pauseUI.png', 'assetss/images/pauseAlt/pauseUI.xml');
 		cancelButton.animation.addByPrefix('selected', 'bluecancel', 0, false);
 		cancelButton.animation.appendByPrefix('selected', 'cancelyellow');
 		cancelButton.animation.play('selected');
@@ -59,7 +59,7 @@ class GitarooPause extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-            FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+            FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 			if (replaySelect)
 			{
                 FlxFlicker.flicker(replayButton,0);
@@ -86,7 +86,7 @@ class GitarooPause extends MusicBeatState
 
 	function changeThing():Void
 	{
-        FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+        FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 		replaySelect = !replaySelect;
 
 		if (replaySelect)

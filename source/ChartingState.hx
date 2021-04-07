@@ -267,10 +267,10 @@ class ChartingState extends MusicBeatState
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 
-		var characters:Array<String> = CoolUtil.coolTextFile('assets/data/characterList.txt');
-		var characters2:Array<String> = CoolUtil.coolTextFile('assets/data/characterListPt2.txt');
+		var characters:Array<String> = CoolUtil.coolTextFile('assetss/data/characterList.txt');
+		var characters2:Array<String> = CoolUtil.coolTextFile('assetss/data/characterListPt2.txt');
 
-		var stages:Array<String> = CoolUtil.coolTextFile('assets/data/stages.txt');
+		var stages:Array<String> = CoolUtil.coolTextFile('assetss/data/stages.txt');
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -439,10 +439,10 @@ class ChartingState extends MusicBeatState
 			// vocals.stop();
 		}
 
-		FlxG.sound.playMusic('assets/music/' + daSong + "_Inst" + TitleState.soundExt, 0.6);
+		FlxG.sound.playMusic('assetss/music/' + daSong + "_Inst" + TitleState.soundExt, 0.6);
 
 		// WONT WORK FOR TUTORIAL OR TEST SONG!!! REDO LATER
-		vocals = new FlxSound().loadEmbedded("assets/music/" + daSong + "_Voices" + TitleState.soundExt);
+		vocals = new FlxSound().loadEmbedded("assetss/music/" + daSong + "_Voices" + TitleState.soundExt);
 		FlxG.sound.list.add(vocals);
 
 		FlxG.sound.music.pause();

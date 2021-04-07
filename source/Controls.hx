@@ -769,7 +769,7 @@ class Controls extends FlxActionSet
 			{			
 				var keyMaps:Map<String, FlxKey> = FlxMacroUtil.buildMap("flixel.input.keyboard.FlxKey");
 	
-				var controlsStrings = CoolUtil.coolTextFile('assets/data/controls.txt');
+				var controlsStrings = CoolUtil.coolTextFile('assetss/data/controls.txt');
 	
 				keyboardMap = new Map();
 				for (i in 0...controlsStrings.length){

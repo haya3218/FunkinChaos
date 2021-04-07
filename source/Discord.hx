@@ -73,6 +73,11 @@ class DiscordClient
 		trace("Discord Client initialized");
 	}
 
+	public static function shutdown()
+		{
+			DiscordRpc.shutdown();
+		}	
+
 	public static function changePresence(details:String, state:Null<String>, ?smallImageKey : String, ?hasStartTimestamp : Bool, ?endTimestamp: Float)
 	{
 		var startTimestamp:Float = if(hasStartTimestamp) Date.now().getTime() else 0;

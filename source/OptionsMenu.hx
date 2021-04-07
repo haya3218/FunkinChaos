@@ -44,7 +44,7 @@ class OptionsMenu extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('freakyMenu' + TitleState.bModdin, 'shared'));
 		}
 		
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		menuBG.color = 0xCE27E2;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -71,12 +71,12 @@ class OptionsMenu extends MusicBeatState
 		
 		txtDescription = new FlxText(0, menuBG.y + 200, 0, "", 32);
 		txtDescription.alignment = CENTER;
-		txtDescription.setFormat("assets/fonts/vcr.ttf", 36);
+		txtDescription.setFormat("assetss/fonts/vcr.ttf", 36);
 		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
 
-		var header:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGOptionsHeader.png');
+		var header:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuBGOptionsHeader.png');
 		header.screenCenter();
 		header.antialiasing = true;
 		add(header);
@@ -124,7 +124,7 @@ class OptionsMenu extends MusicBeatState
 			{
 				case "DEBUG MENU":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -132,7 +132,7 @@ class OptionsMenu extends MusicBeatState
 					});
 				case "MISC OPTIONS":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -140,7 +140,7 @@ class OptionsMenu extends MusicBeatState
 					});
 				case "OTHER OPTIONS":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -148,7 +148,7 @@ class OptionsMenu extends MusicBeatState
 					});
 				case "CREDITS":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -159,11 +159,11 @@ class OptionsMenu extends MusicBeatState
 					});
 				case "Exit to menu":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 					FlxG.switchState(new RealMainMenuState());
 				case "CONTROLS":
 					alreadySelectedShit = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 					FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 					FlxG.switchState(new ControlMenu());
 				default:
@@ -178,7 +178,7 @@ class OptionsMenu extends MusicBeatState
 
 	function changeSelection(change:Int = 0):Void
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
 	

@@ -12,7 +12,7 @@ class SwitchSprite extends FlxSprite
 	public function new(whichSprite:String)
 	{
 		super();
-		loadGraphic('assets/images/' + whichSprite + '.png');
+		loadGraphic('assetss/images/' + whichSprite + '.png');
 		antialiasing = true;
 		scale.set(1.1, 1.1);
 		updateHitbox();

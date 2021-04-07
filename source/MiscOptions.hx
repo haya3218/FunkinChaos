@@ -24,7 +24,7 @@ class MiscOptions extends MusicBeatState
 	var versionShit:FlxText;
 	override function create()
 	{
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuDesat.png');
 		controlsStrings = CoolUtil.coolStringFile(
 			"\nSong Position " + (!FlxG.save.data.songPosition ? "off" : "on") +
 			"\nEtterna Mode " + (!FlxG.save.data.etternaMode ? "off" : "on") +
@@ -114,7 +114,7 @@ class MiscOptions extends MusicBeatState
 		// NGio.logEvent('Fresh');
 		#end
 		
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
 

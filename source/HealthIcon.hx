@@ -13,7 +13,7 @@ class HealthIcon extends FlxSprite
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		loadGraphic('assets/images/iconGrid.png', true, 150, 150);
+		loadGraphic('assetss/images/iconGrid.png', true, 150, 150);
 		this.char = char;
 
 		// reworked the entire icon system because default shit so it doesnt crash lmfao

@@ -18,7 +18,7 @@ class MenuItem extends FlxSpriteGroup
 	{
 		super(x, y);
 		// TUTORIAL IS WEEK 0
-		week = new FlxSprite().loadGraphic('assets/images/storymenu/week' + weekNum + '.png');
+		week = new FlxSprite().loadGraphic('assetss/images/storymenu/week' + weekNum + '.png');
 		add(week);
 	}
 

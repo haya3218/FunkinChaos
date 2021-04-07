@@ -30,7 +30,7 @@ class MusicBeatState extends FlxUIState
 
 	override function create()
 	{
-		var optionsJson = Json.parse(Assets.getText('assets/data/options.json'));
+		var optionsJson = Json.parse(Assets.getText('assetss/data/options.json'));
 		vocalVolume = optionsJson.vocalShiz;
 		musicVolume = optionsJson.musicVolume;
 		if (transIn != null)

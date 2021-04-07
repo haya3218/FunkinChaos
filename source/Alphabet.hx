@@ -225,7 +225,7 @@ class Alphabet extends FlxSpriteGroup
 				if (FlxG.random.bool(40))
 				{
 					var daSound:String = "GF_";
-					FlxG.sound.play('assets/sounds/' + daSound + FlxG.random.int(1, 4) + TitleState.soundExt, 0.4);
+					FlxG.sound.play('assetss/sounds/' + daSound + FlxG.random.int(1, 4) + TitleState.soundExt, 0.4);
 				}
 
 				add(letter);
@@ -290,12 +290,12 @@ class AlphaCharacter extends FlxSprite
 	public function new(x:Float, y:Float, pixelated:Bool = false, colorText:FlxColor = 0xFFFFFF)
 	{
 		super(x, y);
-		var tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
+		var tex = FlxAtlasFrames.fromSparrow('assetss/images/alphabet.png', 'assetss/images/alphabet.xml');
 
 		if (pixelated)
-			tex = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/alphabet-pixel.png', 'assets/images/weeb/pixelUI/alphabet-pixel.xml');
+			tex = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/alphabet-pixel.png', 'assetss/images/weeb/pixelUI/alphabet-pixel.xml');
 		else 
-			tex = FlxAtlasFrames.fromSparrow('assets/images/alphabet.png', 'assets/images/alphabet.xml');
+			tex = FlxAtlasFrames.fromSparrow('assetss/images/alphabet.png', 'assetss/images/alphabet.xml');
 
 		color = colorText;
 

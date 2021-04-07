@@ -40,38 +40,22 @@
 
 	<classpath name="source" />
 
-	<assets path="assets/images" />
-	<assets path="assets/data" />
-	<assets path='assets/mods' />
+	<assets path="assets/images" rename= 'assetss/images'/>
+	<assets path="assets/data" rename= 'assetss/data'/>
 	
 	<!-- <library name="noPreload" preload='false'/> -->
 	<!-- <library name="noPreload"/> -->
-	<assets path="assets/music" include="*.mp3" if="web"/>
-	<assets path="assets/music" include="*.ogg" unless="web"/>
-	<assets path="assets/sounds" include="*.mp3" if="web" />
-	<assets path="assets/sounds" include="*.ogg" unless="web" />
-
-	<!-- I'm implementing the preload system in a different way to support sum shit -->
-	<define name="PRELOAD_ALL" unless="web" />
-	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
-	
-	<section if="PRELOAD_ALL">
-		<library name="shared"   preload="true" />
-	</section>
-	
-	<section if="NO_PRELOAD_ALL">
-		<library name="shared"   preload="true" />
-	</section>
-	
-	<assets path="assets/shared"   library="shared"   exclude="*.ogg" if="web"/>
-	<assets path="assets/shared"   library="shared"   exclude="*.mp3" unless="web"/>
+	<assets path="assets/music" rename= 'assetss/music' include="*.mp3" if="web"/>
+	<assets path="assets/music" rename= 'assetss/music' include="*.ogg" unless="web"/>
+	<assets path="assets/sounds" rename= 'assetss/sounds' include="*.mp3" if="web" />
+	<assets path="assets/sounds" rename= 'assetss/sounds' include="*.ogg" unless="web" />
 
 	<assets path="CHANGELOG.md"/>
+	<assets path='assets/mods' rename='mods' embed='false'/>
 
-
-	<assets path="assets/fonts/vcr.ttf" embed="true" />
-	<assets path="assets/fonts/pixel.otf" embed="true" />
-	<assets path="assets/fonts/funke.otf" embed="true" />
+	<assets path="assets/fonts/vcr.ttf" rename= 'assetss/fonts/vcr.ttf' embed="true" />
+	<assets path="assets/fonts/pixel.otf" rename= 'assetss/fonts/pixel.otf' embed="true" />
+	<assets path="assets/fonts/funke.otf" rename= 'assetss/fonts/funke.otf' embed="true" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

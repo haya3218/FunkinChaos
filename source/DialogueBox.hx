@@ -48,28 +48,28 @@ class DialogueBox extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai':
-				FlxG.sound.playMusic('assets/music/Lunchbox' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/Lunchbox' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'roses':
 				trace('MUSIC IS ALREADY PLAYING!');
 			case 'thorns':
-				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'b-sides-senpai':
-				FlxG.sound.playMusic('assets/music/Lunchbox' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/Lunchbox' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'b-sides-roses':
 				trace('MUSIC IS ALREADY PLAYING!');
 			case 'b-sides-thorns':
-				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'luci-moment':
 				trace('MUSIC IS ALREADY PLAYING!');
 			case 'disappear':
-				FlxG.sound.playMusic('assets/music/LunchboxScary' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/LunchboxScary' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			default:
-				FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
+				FlxG.sound.playMusic('assetss/music/title' + TitleState.soundExt, 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 
@@ -91,7 +91,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
-			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/senpaiPortrait.png', 'assets/images/weeb/senpaiPortrait.xml');
+			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/senpaiPortrait.png', 'assetss/images/weeb/senpaiPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 			portraitLeft.updateHitbox();
@@ -100,7 +100,7 @@ class DialogueBox extends FlxSpriteGroup
 		else if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		{
 			portraitLeft = new FlxSprite(0, 20);
-			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortraitEnemy.png', 'assets/images/gfPortrait.xml');
+			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assetss/images/gfPortraitEnemy.png', 'assetss/images/gfPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
@@ -108,7 +108,7 @@ class DialogueBox extends FlxSpriteGroup
 		else 
 		{
 			portraitLeft = new FlxSprite(0, 20);
-			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assets/images/dadPortrait.png', 'assets/images/dadPortrait.xml');
+			portraitLeft.frames = FlxAtlasFrames.fromSparrow('assetss/images/dadPortrait.png', 'assetss/images/dadPortrait.xml');
 			portraitLeft.animation.addByPrefix('enter', 'Dad Portrait Enter', 24, false);
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
@@ -119,7 +119,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'b-sides-senpai' || PlayState.SONG.song.toLowerCase() == 'b-sides-thorns' || PlayState.SONG.song.toLowerCase() == 'b-sides-roses')
 		{
 			portraitRight = new FlxSprite(0, 40);
-			portraitRight.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/bfPortrait.png', 'assets/images/weeb/bfPortrait.xml');
+			portraitRight.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/bfPortrait.png', 'assetss/images/weeb/bfPortrait.xml');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 			portraitRight.updateHitbox();
@@ -128,7 +128,7 @@ class DialogueBox extends FlxSpriteGroup
 		else
 		{
 			portraitRight = new FlxSprite(0, 20);
-			portraitRight.frames = FlxAtlasFrames.fromSparrow('assets/images/bfPortrait.png', 'assets/images/bfPortrait.xml');
+			portraitRight.frames = FlxAtlasFrames.fromSparrow('assetss/images/bfPortrait.png', 'assetss/images/bfPortrait.xml');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend Portrait Enter', 24, false);
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
@@ -137,7 +137,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRight.visible = false;
 
 		portraitRightGF = new FlxSprite(0, 20);
-		portraitRightGF.frames = FlxAtlasFrames.fromSparrow('assets/images/gfPortrait.png', 'assets/images/gfPortrait.xml');
+		portraitRightGF.frames = FlxAtlasFrames.fromSparrow('assetss/images/gfPortrait.png', 'assetss/images/gfPortrait.xml');
 		portraitRightGF.animation.addByPrefix('enter', 'GF portrait enter', 24, false);
 		portraitRightGF.updateHitbox();
 		portraitRightGF.scrollFactor.set();
@@ -145,7 +145,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRightGF.visible = false;
 
 		portraitLeft2 = new FlxSprite(0, 20);
-		portraitLeft2.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/portrait.png', 'assets/images/miku/portrait.xml');
+		portraitLeft2.frames = FlxAtlasFrames.fromSparrow('assetss/images/miku/portrait.png', 'assetss/images/miku/portrait.xml');
 		portraitLeft2.animation.addByPrefix('enter', 'Sample portrait enter', 24, false);
 		portraitLeft2.updateHitbox();
 		portraitLeft2.scrollFactor.set();
@@ -153,7 +153,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitLeft2.visible = false;
 
 		portraitLeft3 = new FlxSprite(0, 20);
-		portraitLeft3.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/brother.png', 'assets/images/miku/brother.xml');
+		portraitLeft3.frames = FlxAtlasFrames.fromSparrow('assetss/images/miku/brother.png', 'assetss/images/miku/brother.xml');
 		portraitLeft3.animation.addByPrefix('enter', 'Sample portrait enter', 24, false);
 		portraitLeft3.updateHitbox();
 		portraitLeft3.scrollFactor.set();
@@ -161,7 +161,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitLeft3.visible = false;
 
 		portraitLeft4 = new FlxSprite(0, 20);
-		portraitLeft4.frames = FlxAtlasFrames.fromSparrow('assets/images/miku/mysterious.png', 'assets/images/miku/mysterious.xml');
+		portraitLeft4.frames = FlxAtlasFrames.fromSparrow('assetss/images/miku/mysterious.png', 'assetss/images/miku/mysterious.xml');
 		portraitLeft4.animation.addByPrefix('enter', 'Sample portrait enter', 24, false);
 		portraitLeft4.updateHitbox();
 		portraitLeft4.scrollFactor.set();
@@ -169,7 +169,7 @@ class DialogueBox extends FlxSpriteGroup
 		portraitLeft4.visible = false;
 
 		portraitPcio = new FlxSprite(0, 20);
-		portraitPcio.frames = FlxAtlasFrames.fromSparrow('assets/images/pcio.png', 'assets/images/portrait.xml');
+		portraitPcio.frames = FlxAtlasFrames.fromSparrow('assetss/images/pcio.png', 'assetss/images/portrait.xml');
 		portraitPcio.animation.addByPrefix('enter', 'Portrait Enter', 24, false);
 		portraitPcio.updateHitbox();
 		portraitPcio.scrollFactor.set();
@@ -181,58 +181,58 @@ class DialogueBox extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'bopeebo':
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/speech_bubble_talking.png',
-				'assets/images/speech_bubble_talking.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/speech_bubble_talking.png',
+				'assetss/images/speech_bubble_talking.xml');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
 				box.animation.addByPrefix('normal', 'speech bubble normal', 24, false);
 
 			case 'senpai':
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-pixel.png',
-					'assets/images/weeb/pixelUI/dialogueBox-pixel.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-pixel.png',
+					'assetss/images/weeb/pixelUI/dialogueBox-pixel.xml');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
 			case 'roses':
-				FlxG.sound.play('assets/sounds/ANGRY_TEXT_BOX' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/ANGRY_TEXT_BOX' + TitleState.soundExt);
 
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-senpaiMad.png',
-					'assets/images/weeb/pixelUI/dialogueBox-senpaiMad.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-senpaiMad.png',
+					'assetss/images/weeb/pixelUI/dialogueBox-senpaiMad.xml');
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
 
 			case 'thorns':
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-evil.png', 'assets/images/weeb/pixelUI/dialogueBox-evil.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-evil.png', 'assetss/images/weeb/pixelUI/dialogueBox-evil.xml');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
 
-				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic('assets/images/weeb/spiritFaceForward.png');
+				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic('assetss/images/weeb/spiritFaceForward.png');
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
 
 			case 'b-sides-senpai':
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-pixel.png',
-					'assets/images/weeb/pixelUI/dialogueBox-pixel.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-pixel.png',
+					'assetss/images/weeb/pixelUI/dialogueBox-pixel.xml');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
 			case 'b-sides-roses':
-				FlxG.sound.play('assets/sounds/ANGRY_TEXT_BOX' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/ANGRY_TEXT_BOX' + TitleState.soundExt);
 
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-senpaiMad.png',
-					'assets/images/weeb/pixelUI/dialogueBox-senpaiMad.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-senpaiMad.png',
+					'assetss/images/weeb/pixelUI/dialogueBox-senpaiMad.xml');
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
 
 			case 'b-sides-thorns':
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/weeb/pixelUI/dialogueBox-evil.png', 'assets/images/weeb/pixelUI/dialogueBox-evil.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/weeb/pixelUI/dialogueBox-evil.png', 'assetss/images/weeb/pixelUI/dialogueBox-evil.xml');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
 
-				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic('assets/images/weeb/spiritFaceForward.png');
+				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic('assetss/images/weeb/spiritFaceForward.png');
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
 
 			default:
-				box.frames = FlxAtlasFrames.fromSparrow('assets/images/speech_bubble_talking.png',
-				'assets/images/speech_bubble_talking.xml');
+				box.frames = FlxAtlasFrames.fromSparrow('assetss/images/speech_bubble_talking.png',
+				'assetss/images/speech_bubble_talking.xml');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
 				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
 		}
@@ -249,7 +249,7 @@ class DialogueBox extends FlxSpriteGroup
 		box.updateHitbox();
 		add(box);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic('assets/images/weeb/pixelUI/hand_textbox.png');
+		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic('assetss/images/weeb/pixelUI/hand_textbox.png');
 		add(handSelect);
 
 		box.screenCenter(X);
@@ -275,7 +275,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'schoolEvil':
 				font = 'Pixel Arial 11 Bold';
 			default:
-				font = 'assets/fonts/vcr.ttf';
+				font = 'assetss/fonts/vcr.ttf';
 
 		}
 		dropText.font = font;
@@ -359,7 +359,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			remove(dialogue);
 
-			FlxG.sound.play('assets/sounds/clickText' + TitleState.soundExt, 0.8);
+			FlxG.sound.play('assetss/sounds/clickText' + TitleState.soundExt, 0.8);
 
 			if (dialogueList[1] == null && dialogueList[0] != null)
 			{
@@ -442,7 +442,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			soundPerChar = 'pixelText';
 		}
-		swagDialogue.sounds = [FlxG.sound.load('assets/sounds/' + soundPerChar + TitleState.soundExt, 0.6)];
+		swagDialogue.sounds = [FlxG.sound.load('assetss/sounds/' + soundPerChar + TitleState.soundExt, 0.6)];
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 

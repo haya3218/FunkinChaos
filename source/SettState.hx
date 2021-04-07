@@ -31,7 +31,7 @@ class SettState extends MusicBeatState
 
 	override function create()
 	{
-		var bg:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuBGBlue.png');
+		var bg:FlxSprite = new FlxSprite().loadGraphic('assetss/images/menuBGBlue.png');
 		bg.color = 0xfa6746;
 		add(bg);
 
@@ -48,7 +48,7 @@ class SettState extends MusicBeatState
 
 		thingText = new FlxText(FlxG.width * 0.905, 5, 0, "", 32);
 		// scoreText.autoSize = false;
-		thingText.setFormat("assets/fonts/truvcr.ttf", 64, FlxColor.WHITE, RIGHT);
+		thingText.setFormat("assetss/fonts/truvcr.ttf", 64, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
 		var thingBG:FlxSprite = new FlxSprite(thingText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.405), 66, 0xFF000000);
@@ -60,7 +60,7 @@ class SettState extends MusicBeatState
 		thingText.text = 'OFF';
 		changeSelection();
 
-		// FlxG.sound.playMusic('assets/music/title' + TitleState.soundExt, 0);
+		// FlxG.sound.playMusic('assetss/music/title' + TitleState.soundExt, 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
 		selector = new FlxText();
 
@@ -125,7 +125,7 @@ class SettState extends MusicBeatState
 		if (accepted)
 		{
 			// to alarm an error lolz
-			FlxG.sound.play('assets/sounds/beep.ogg');
+			FlxG.sound.play('assetss/sounds/beep.ogg');
 
 			var daSelected:String = menuShit[curSelected];
 
@@ -188,7 +188,7 @@ class SettState extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt, 0.4);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt, 0.4);
 
 		curSelected += change;
 

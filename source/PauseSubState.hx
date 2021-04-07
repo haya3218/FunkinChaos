@@ -32,7 +32,7 @@ class PauseSubState extends MusicBeatSubstate
 			menuItems = ['Resume', 'Restart Song', 'Practice', 'Autoplay', 'Exit to menu'];
 
 		pauseMusic = new FlxSound();
-		pauseMusic.loadEmbedded('assets/music/breakfast' + TitleState.soundExt, true, true);
+		pauseMusic.loadEmbedded('assetss/music/breakfast' + TitleState.soundExt, true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
@@ -48,7 +48,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.text += '\n' + CoolUtil.difficultyString();
 		levelInfo.text += '\n' + 'Deaths:' + TitleState.deathCounter;
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
+		levelInfo.setFormat('assetss/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		levelInfo.alpha = 0;
@@ -116,23 +116,23 @@ class PauseSubState extends MusicBeatSubstate
 				case "Practice":
 					if (!PlayState.practiceMode)
 					{
-						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 						PlayState.practiceMode = true;
 					}
 					else
 					{
-						FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+						FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 						PlayState.practiceMode = false;
 					}
 				case "Autoplay":
 					if (!PlayState.autoMode)
 					{
-						FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+						FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 						PlayState.autoMode = true;
 					}
 					else
 					{
-						FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+						FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 						PlayState.autoMode = false;
 					}
 				case "Exit to menu":

@@ -117,11 +117,11 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.alpha = 0.7;
 
 		rankText = new FlxText(0, FlxG.height - 32);
-		rankText.setFormat("assets/fonts/vcr.ttf", 32);
+		rankText.setFormat("assetss/fonts/vcr.ttf", 32);
 		rankText.size = scoreText.size;
 		rankText.alpha = 0.7;
 
-		var ui_tex = FlxAtlasFrames.fromSparrow('assets/images/campaign_menu_UI_assets.png', 'assets/images/campaign_menu_UI_assets.xml');
+		var ui_tex = FlxAtlasFrames.fromSparrow('assetss/images/campaign_menu_UI_assets.png', 'assetss/images/campaign_menu_UI_assets.xml');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
@@ -246,7 +246,7 @@ class StoryMenuState extends MusicBeatState
 
 		levelInfo = new FlxText(20, scoreText.y, 0, "SOUND TEST", 32);
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
+		levelInfo.setFormat('assetss/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
 		levelInfo.updateHitbox();
 		levelInfo.alpha = 0;
 
@@ -352,7 +352,7 @@ class StoryMenuState extends MusicBeatState
 
 		if (controls.BACK && !movedBack && !selectedWeek)
 		{
-			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+			FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 			movedBack = true;
 			FlxG.switchState(new MainMenuState());
 		}
@@ -373,7 +373,7 @@ class StoryMenuState extends MusicBeatState
 				if (stopspamming == false)
 				{
 					// character shit
-					FlxG.sound.play('assets/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
+					FlxG.sound.play('assetss/sounds/confirmMenu' + weekCharacters[curWeek][1] + TitleState.soundExt);
 
 					switch (curDifficulty)
 					{
@@ -512,7 +512,7 @@ class StoryMenuState extends MusicBeatState
 			bullShit++;
 		}
 
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 
 		updateText();
 	}
@@ -593,8 +593,8 @@ class StoryMenuState extends MusicBeatState
 
 	function audioJungle(curSong:Int, allowVoices:Bool = false)
 	{
-		FlxG.sound.playMusic('assets/music/' + weekData[curWeek][curSong] + '_Inst' + '.ogg');
+		FlxG.sound.playMusic('assetss/music/' + weekData[curWeek][curSong] + '_Inst' + '.ogg');
 		if (allowVoices)
-			voices = new FlxSound().loadEmbedded('assets/music/' + weekData[curWeek][curSong] + '_Voices' + '.ogg');
+			voices = new FlxSound().loadEmbedded('assetss/music/' + weekData[curWeek][curSong] + '_Voices' + '.ogg');
 	}
 }

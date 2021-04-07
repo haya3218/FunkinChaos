@@ -57,19 +57,19 @@ class BSidesMenuState extends MusicBeatState
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)
-				FlxG.sound.playMusic('assets/music/freakyMenu' + TitleState.soundExt);
+				FlxG.sound.playMusic('assetss/music/freakyMenu' + TitleState.soundExt);
 		}
 
 		persistentUpdate = persistentDraw = true;
 
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
-		scoreText.setFormat("assets/fonts/vcr.ttf", 32);
+		scoreText.setFormat("assetss/fonts/vcr.ttf", 32);
 
-		var ui_tex = FlxAtlasFrames.fromSparrow('assets/images/campaign_menu_UI_assets.png', 'assets/images/campaign_menu_UI_assets.xml');
+		var ui_tex = FlxAtlasFrames.fromSparrow('assetss/images/campaign_menu_UI_assets.png', 'assetss/images/campaign_menu_UI_assets.xml');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
 
 		rankText = new FlxText(FlxG.width * 0.01, yellowBG.x + yellowBG.height - 20, 0, "Modifier: DEATHLESS\nDescription: Turn off dying.", 32);
-		rankText.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		rankText.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
@@ -171,7 +171,7 @@ class BSidesMenuState extends MusicBeatState
 		add(grpWeekCharacters);
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height - 250, 0, "Tracks", 32);
-		txtTracklist.setFormat("assets/fonts/vcr.ttf", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		txtTracklist.setFormat("assetss/fonts/vcr.ttf", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		add(txtTracklist);
 		add(rankText);
 		add(scoreText);
@@ -230,7 +230,7 @@ class BSidesMenuState extends MusicBeatState
 
 		if (controls.BACK && !movedBack && !selectedWeek)
 		{
-			FlxG.sound.play('assets/sounds/cancelMenu' + TitleState.soundExt);
+			FlxG.sound.play('assetss/sounds/cancelMenu' + TitleState.soundExt);
 			movedBack = true;
 			FlxG.switchState(new MainMenuState());
 		}
@@ -248,7 +248,7 @@ class BSidesMenuState extends MusicBeatState
 		{
 			if (stopspamming == false)
 			{
-				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+				FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
 
 				grpWeekText.members[curWeek].startFlashing();
 				grpWeekCharacters.members[2].animation.play('bfConfirm');
@@ -320,7 +320,7 @@ class BSidesMenuState extends MusicBeatState
 	function changeMode(change:Int = 0)
 	{
 		curNoMiss += change;
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 		
 		if (curNoMiss < 0)
 			curNoMiss = 6;
@@ -370,7 +370,7 @@ class BSidesMenuState extends MusicBeatState
 			bullShit++;
 		}
 
-		FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
+		FlxG.sound.play('assetss/sounds/scrollMenu' + TitleState.soundExt);
 
 		updateText();
 	}
