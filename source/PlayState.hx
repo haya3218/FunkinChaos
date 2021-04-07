@@ -2679,8 +2679,14 @@ class PlayState extends MusicBeatState
 
 		if (yes)
 		{
-			noteHyper = true;
-			noteSnake = true;
+			strumLineNotes.forEach(function(spr:FlxSprite){
+				spr.flipY = !spr.flipY;
+				spr.flipX = !spr.flipX;
+			});
+			notes.forEach(function(spr:Note){
+				spr.flipY = !spr.flipY;
+				spr.flipX = !spr.flipX;
+			});
 		}
 
 		if (curSong == 'Lootus')
@@ -2735,6 +2741,7 @@ class PlayState extends MusicBeatState
 					camHUD.angle -= 10;
 					camTurn();
 				case 163:
+					yes = true;
 					scrollSet(true, 2);
 				case 183:
 					scrollSet(false, 2);
@@ -2750,6 +2757,15 @@ class PlayState extends MusicBeatState
 					scrollSet(true, 2);
 				case 278:
 					scrollSet(false, 3);
+					yes = false;
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						spr.flipY = false;
+						spr.flipX = false;
+					});
+					notes.forEach(function(spr:Note){
+						spr.flipY = false;
+						spr.flipX = false;
+					});
 				case 295:
 					strumLineNotes.forEach(function(spr:FlxSprite){
 						FlxTween.tween(spr, { alpha: 0 }, 0.5, { ease: FlxEase.circOut });
@@ -2762,7 +2778,7 @@ class PlayState extends MusicBeatState
 					no = false;
 				case 555:
 					strumLineNotes.forEach(function(spr:FlxSprite){
-						FlxTween.tween(spr, {y: spr.y + FlxG.random.float(25, 50), x: spr.x + FlxG.random.float(2, 10)}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+						FlxTween.tween(spr, { x: spr.x + spr.width / 2 }, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 					});
 					noteSnake = true;
 					no = false;
@@ -2945,7 +2961,7 @@ class PlayState extends MusicBeatState
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
 				if (noteSnake)
-					daNote.x += (1*2) * Math.sin(songTime/300)*6;
+					daNote.x += FlxG.random.float(-50, 50);
 
 				if (!downScrollTime)
 				{
