@@ -160,6 +160,7 @@ class PlayState extends MusicBeatState
 
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
+	var sustainWiggle:WiggleEffect = new WiggleEffect();
 
 	var mtc:FlxSprite;
 	var beepbop:FlxSprite;
@@ -215,6 +216,17 @@ class PlayState extends MusicBeatState
 	private var regenTimer:FlxTimer;
 	var autoTimer:FlxTimerManager;
 	var songName:FlxText;
+
+	// minigame hell
+	// first game
+	var clickButton:FlxSprite;
+	var clickBG:FlxSprite;
+	// second game
+	var hardestPlayer:FlxSprite;
+	var hardestBG:FlxSprite;
+	var hardestWalls:FlxSprite;
+	var hardestEnemies1:FlxSprite;
+	var hardestEnemies2:FlxSprite;
 
 	 /**
 	 * hello and welcome to code hell
@@ -1453,14 +1465,11 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
-		strumLineNotes.cameras = [camHUD];
-		notes.cameras = [camHUD];
-		healthBar.cameras = [camHUD];
-		healthBarBG.cameras = [camHUD];
-		iconP1.cameras = [camHUD];
-		iconP2.cameras = [camHUD];
-		scoreTxt.cameras = [camHUD];
-		doof.cameras = [camHUD];
+		clickBG = new FlxSprite();
+		add(clickBG);
+
+		clickButton = new FlxSprite();
+		add(clickButton);
 
 		if (curSong == 'Lootus')
 		{
@@ -1469,7 +1478,28 @@ class PlayState extends MusicBeatState
 			iconP1.visible = false;
 			iconP2.visible = false;
 			scoreTxt.visible = false;
+
+			clickBG.loadGraphic('assetss/images/uk/clicer/bg.png');
+			clickBG.screenCenter(X);
+			clickBG.scrollFactor.set();
+			clickBG.visible = false;
+			clickBG.cameras = [camHUD];
+
+			clickButton.loadGraphic('assetss/images/uk/clicer/buton.png');
+			clickButton.screenCenter(X);
+			clickButton.scrollFactor.set();
+			clickButton.visible = false;
+			clickButton.cameras = [camHUD];
 		}
+
+		strumLineNotes.cameras = [camHUD];
+		notes.cameras = [camHUD];
+		healthBar.cameras = [camHUD];
+		healthBarBG.cameras = [camHUD];
+		iconP1.cameras = [camHUD];
+		iconP2.cameras = [camHUD];
+		scoreTxt.cameras = [camHUD];
+		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -2033,21 +2063,34 @@ class PlayState extends MusicBeatState
 
 					sustainNote.mustPress = gottaHitNote;
 
-					if (sustainNote.mustPress)
+					if (sustainNote.mustPress && curSong != 'Lootus')
 					{
 						sustainNote.x += FlxG.width / 2; // general offset
 					}
+					else if (sustainNote.mustPress && curSong == 'Lootus' )
+					{
+						sustainNote.x += FlxG.width / 3;
+						sustainNote.x -= 40;
+					}
+
+					if (!sustainNote.mustPress && curSong == 'Lootus')
+						sustainNote.alpha = 0;
 				}
 
 				swagNote.mustPress = gottaHitNote;
 
-				if (swagNote.mustPress)
+				if (swagNote.mustPress && curSong != 'Lootus')
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else
+				else if (swagNote.mustPress && curSong == 'Lootus')
 				{
+					swagNote.x += FlxG.width / 3;
+					swagNote.x -= 40;
 				}
+
+				if (!swagNote.mustPress && curSong == 'Lootus')
+					swagNote.alpha = 0;
 			}
 			daBeats += 1;
 		}
@@ -2194,19 +2237,30 @@ class PlayState extends MusicBeatState
 			babyArrow.alpha = 0;
 			if (!OptionsHandler.options.cinematicMode)
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+			else
+				babyArrow.alpha = 1;
 
 			babyArrow.ID = i;
 
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
-			} else {
+			} else if (player == 2 && curSong != 'Lootus') {
 				player2Strums.add(babyArrow);
 			}
 
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
-			babyArrow.x += ((FlxG.width / 2) * player);
+			if (player == 2)
+				babyArrow.alpha = 0;
+
+			if (curSong == 'Lootus')
+			{
+				babyArrow.x += FlxG.width / 3;
+				babyArrow.x -= 40;
+			}
+			else
+				babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
 		}
@@ -2347,6 +2401,10 @@ class PlayState extends MusicBeatState
 	var camShake:Bool = false;
 	var noteSnake:Bool = false;
 	var noteHyper:Bool = false;
+	var inMiniGame1:Bool = false;
+	var inMiniGame2:Bool = false;
+	var won:Bool = false;
+	var clicks:Int = 0;
 
 	override public function update(elapsed:Float)
 	{
@@ -2420,6 +2478,7 @@ class PlayState extends MusicBeatState
 		}
 
 		wiggleShit.update(Conductor.crochet);
+		sustainWiggle.update(Conductor.crochet);
 
 		super.update(elapsed);
 
@@ -2683,7 +2742,7 @@ class PlayState extends MusicBeatState
 				spr.flipY = !spr.flipY;
 				spr.flipX = !spr.flipX;
 			});
-			notes.forEach(function(spr:Note){
+			notes.forEachAlive(function(spr:Note){
 				spr.flipY = !spr.flipY;
 				spr.flipX = !spr.flipX;
 			});
@@ -2691,54 +2750,52 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'Lootus')
 		{
-			camHUD.angle = FlxMath.lerp(0, camHUD.angle, 0.95);
-
 			switch (curStep)
 			{
 				case 38:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: 10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 47:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: -10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 55:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: 5 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 63:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: -10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 71:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: -5 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 79:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: 10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 87:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: -10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 95:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: 5 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 103:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: 10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 111:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: -10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 119:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: 15 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 127:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: -10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 135:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: 10 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 143:
-					camHUD.angle += 10;
+					FlxTween.tween(camHUD, { angle: -5 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 153:
-					camHUD.angle -= 10;
+					FlxTween.tween(camHUD, { angle: 0 }, 1, { ease: FlxEase.circOut });
 					camTurn();
 				case 163:
 					yes = true;
@@ -2762,7 +2819,7 @@ class PlayState extends MusicBeatState
 						spr.flipY = false;
 						spr.flipX = false;
 					});
-					notes.forEach(function(spr:Note){
+					notes.forEachAlive(function(spr:Note){
 						spr.flipY = false;
 						spr.flipX = false;
 					});
@@ -2776,12 +2833,45 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(spr, { alpha: 1 }, 0.5, { ease: FlxEase.circOut });
 					});
 					no = false;
+				case 549:
+					clickBG.visible = true;
+					clickButton.visible = true;
+					clickBG.alpha = 0;
+					clickButton.alpha = 0;
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						FlxTween.tween(spr, { alpha: 0 }, 0.5, { ease: FlxEase.circOut });
+					});
+					notes.forEachAlive(function(daNote:Note){
+						FlxTween.tween(daNote, { alpha: 0 }, 0.5, {ease: FlxEase.quadInOut});
+					});
+					FlxTween.tween(clickBG, { alpha: 1 }, 0.5, {ease: FlxEase.quadInOut});
+					FlxTween.tween(clickButton, { alpha: 1 }, 0.5, {ease: FlxEase.quadInOut});
+				case 553:
+					inMiniGame1 = true;
 				case 555:
 					strumLineNotes.forEach(function(spr:FlxSprite){
 						FlxTween.tween(spr, { x: spr.x + spr.width / 2 }, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 					});
+					notes.forEachAlive(function(spr:Note){
+						FlxTween.tween(spr, { x: spr.x - spr.width / 2 }, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+					});
 					noteSnake = true;
 					no = false;
+				case 625:
+					inMiniGame1 = false;
+					strumLineNotes.forEach(function(spr:FlxSprite){
+						FlxTween.tween(spr, { alpha: 1 }, 0.5, { ease: FlxEase.circOut });
+					});
+					notes.forEachAlive(function(daNote:Note){
+						FlxTween.tween(daNote, { alpha: 1 }, 0.5, {ease: FlxEase.quadInOut});
+					});
+					FlxTween.tween(clickBG, { alpha: 0 }, 0.5, {ease: FlxEase.quadInOut});
+					FlxTween.tween(clickButton, { alpha: 0 }, 0.5, {ease: FlxEase.quadInOut});
+					showRate(won);
+					won = false;
+				case 635:
+					clickBG.visible = false;
+					clickButton.visible = false;
 			}
 		}
 
@@ -2960,9 +3050,6 @@ class PlayState extends MusicBeatState
 				else
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
-				if (noteSnake)
-					daNote.x += FlxG.random.float(-50, 50);
-
 				if (!downScrollTime)
 				{
 					// i am so fucking sorry for this if condition
@@ -3048,7 +3135,7 @@ class PlayState extends MusicBeatState
 					var strummingNotes:Int = daNote.noteData % 4;
 
 					// lel
-					if (OptionsHandler.options.p2noteStrums)
+					if (OptionsHandler.options.p2noteStrums && curSong != "Lootus")
 					{
 						player2Strums.forEach(function(spr:FlxSprite)
 						{
@@ -3123,9 +3210,14 @@ class PlayState extends MusicBeatState
 					}
 				}
 
+				if (daNote.y <= 30 * SONG.speed && !downScrollTime || daNote.y >= strumLine.y + 116 && downScrollTime)
+				{
+					FlxTween.tween(daNote, { color: FlxColor.BLACK }, 0.5, { ease: FlxEase.circOut });
+				}
+
 				if (!autoMode)
 				{
-					if (daNote.y < -daNote.height && !downScrollTime || daNote.y >= strumLine.y + 106 && downScrollTime)
+					if (daNote.y < -daNote.height && !downScrollTime && !inMiniGame1 || daNote.y >= strumLine.y + 106 && downScrollTime && !inMiniGame1 )
 					{
 						FlxTween.tween(daNote, { color: FlxColor.BLACK }, 0.5, { ease: FlxEase.circOut });
 						if (daNote.tooLate || !daNote.wasGoodHit)
@@ -3166,7 +3258,7 @@ class PlayState extends MusicBeatState
 				}
 			});
 
-			if (OptionsHandler.options.p2noteStrums)
+			if (OptionsHandler.options.p2noteStrums && curSong != "Lootus")
 			{
 				player2Strums.forEach(function(spr:FlxSprite)
 				{
@@ -3187,8 +3279,10 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (!inCutscene && !autoMode)
+		if (!inCutscene && !autoMode && inMiniGame1 == false)
 			keyShit();
+		else if (inMiniGame1 == true)
+			miniKeyShit();
 
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
@@ -4875,6 +4969,65 @@ class PlayState extends MusicBeatState
 		var returnedNum:Float;
 		returnedNum = FlxG.random.float(min, max) / 2;
 		return returnedNum;
+	}
+
+	function showRate(winornot:Bool = false)
+	{
+		var ratingShit:FlxSprite = new FlxSprite();
+		ratingShit.screenCenter(X);
+		ratingShit.scrollFactor.set();
+		ratingShit.cameras = [camHUD];
+		if (winornot)
+			ratingShit.loadGraphic('assetss/images/uk/goodjob.png');
+		else
+			ratingShit.loadGraphic('assetss/images/uk/badjob.png');
+		add(ratingShit);
+		flixel.effects.FlxFlicker.flicker(ratingShit, 0.5, 0.15, false, false, function(flick:flixel.effects.FlxFlicker){
+			remove(ratingShit);
+		});
+	}
+
+	function miniKeyShit()
+	{
+		clickButton.scale.set(1, 1);
+		if (clicks < 30)
+		{
+			//gang shit
+			if (FlxG.keys.justPressed.LEFT)
+			{
+				FlxG.sound.play('assetss/sounds/butonpres.ogg');
+				clickButton.scale.add(0.05, 0.05);	
+				clicks += 1;
+			}
+			if (FlxG.keys.justPressed.RIGHT)
+			{
+				FlxG.sound.play('assetss/sounds/butonpres.ogg');
+				clickButton.scale.add(0.05, 0.05);
+				clicks += 1;
+			}
+			if (FlxG.keys.justPressed.UP)
+			{
+				FlxG.sound.play('assetss/sounds/butonpres.ogg');
+				clickButton.scale.add(0.05, 0.05);
+				clicks += 1;
+			}
+			if (FlxG.keys.justPressed.DOWN)
+			{
+				FlxG.sound.play('assetss/sounds/butonpres.ogg');
+				clickButton.scale.add(0.05, 0.05);
+				clicks += 1;
+			}
+		}
+		else if (clicks == 30)
+		{
+			FlxG.sound.play('assetss/sounds/good.ogg');
+			clickButton.scale.set(1, 1);
+			clickButton.visible = false;
+			showRate(true);
+			won = true;
+			clickBG.loadGraphic('assetss/images/uk/clicer/bgWin.png');
+			clicks += 1;
+		}
 	}
 }
 /* I swear to god if you delete this you're a fucking racist
