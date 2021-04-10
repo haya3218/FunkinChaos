@@ -165,7 +165,7 @@ class TitleStateB extends MusicBeatState
 		noteStrumShit = OptionsHandler.options.p2noteStrums;
 
 
-		// shittyBG = new FlxSprite().loadGraphic('assetss/images/menuLoading.png');
+		// shittyBG = new FlxSprite().loadGraphic(Paths.image('menuLoading.png'));
 		// // add(shittyBG);
 		// ranbowTexto = new FlxRainbowEffect(1, 1, 0.5, 1);
 		// txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
@@ -184,7 +184,7 @@ class TitleStateB extends MusicBeatState
 		add(levelInfo);
 		levelInfo.alpha = 0;
 
-		healthBarBG = new FlxSprite(0, 40).loadGraphic('assetss/images/loadingBar.png');
+		healthBarBG = new FlxSprite(0, 40).loadGraphic(Paths.image('loadingBar.png'));
 		/*
 		if (OptionsHandler.options.downScroll)
 			healthBarBG.y = 50;
@@ -318,22 +318,22 @@ class TitleStateB extends MusicBeatState
 		
 		persistentUpdate = true;
 
-		bg = new FlxSprite().loadGraphic('assetss/images/funneBGB.png');
+		bg = new FlxSprite().loadGraphic(Paths.image('funneBGB.png'));
 		bg.antialiasing = true;
 		bg.setGraphicSize(Std.int(bg.width * 1));
 		bg.updateHitbox();
 		add(bg);
 
-		logoBl2 = new FlxSprite(-150, -100);
-		logoBl2.frames = FlxAtlasFrames.fromSparrow('assetss/images/logoBumpinB.png', 'assetss/images/logoBumpinB.xml');
+		logoBl2 = new FlxSprite(-90, -60);
+		logoBl2.frames = Paths.getSparrowAtlas('logoBumpinB');
 		logoBl2.antialiasing = true;
 		logoBl2.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl2.animation.play('bump');
 		logoBl2.updateHitbox();
 		logoBl2.color = FlxColor.BLACK;
 
-		logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = FlxAtlasFrames.fromSparrow('assetss/images/logoBumpinB.png', 'assetss/images/logoBumpinB.xml');
+		logoBl = new FlxSprite(-90, -60);
+		logoBl.frames = Paths.getSparrowAtlas('logoBumpinB');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
@@ -342,7 +342,7 @@ class TitleStateB extends MusicBeatState
 		// logoBl.color = FlxColor.BLACK;
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = FlxAtlasFrames.fromSparrow('assetss/images/gfDanceTitleB.png', 'assetss/images/gfDanceTitleB.xml');
+		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitleB');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
@@ -351,7 +351,7 @@ class TitleStateB extends MusicBeatState
 		add(logoBl);
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
-		titleText.frames = FlxAtlasFrames.fromSparrow('assetss/images/titleEnter.png', 'assetss/images/titleEnter.xml');
+		titleText.frames = Paths.getSparrowAtlas('titleEnterB');
 		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 		titleText.antialiasing = true;
@@ -360,7 +360,7 @@ class TitleStateB extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic('assetss/images/logo.png');
+		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo.png'));
 		logo.screenCenter();
 		logo.antialiasing = true;
 		// add(logo);
@@ -382,7 +382,7 @@ class TitleStateB extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assetss/images/poweredby.png');
+		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic(Paths.image('poweredby.png'));
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
@@ -391,7 +391,7 @@ class TitleStateB extends MusicBeatState
 		ngSpr.y += 70;
 		ngSpr.antialiasing = true;
 
-		credSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assetss/images/creds.png');
+		credSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic(Paths.image('creds.png'));
 		add(credSpr);
 		credSpr.visible = false;
 		credSpr.screenCenter(XY);

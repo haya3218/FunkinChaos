@@ -41,8 +41,6 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [10, 11], 0, false, isPlayer);
 			case 'dad':
 				animation.add('icon', [12, 13], 0, false, isPlayer);
-			case 'bf-old':
-				animation.add('icon', [14, 15], 0, false, isPlayer);
 			case 'gf':
 				animation.add('icon', [16, 16], 0, false, isPlayer);
 			case 'parents-christmas':
@@ -101,10 +99,10 @@ class HealthIcon extends FlxSprite
 				animation.add('icon', [49, 50], 0, false, isPlayer);
 			case 'geith':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
-			
 			default:
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 		}
+		animation.add('old', [14, 15], 0, false, isPlayer);
 		animation.play('icon');
 		scrollFactor.set();
 	}
@@ -112,6 +110,8 @@ class HealthIcon extends FlxSprite
 	override function update(elapsed:Float)
 		{
 			super.update(elapsed);
+
+
 	
 			if (sprTracker != null)
 				setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);

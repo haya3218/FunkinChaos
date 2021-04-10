@@ -45,12 +45,12 @@ class Paths
 
 	inline static public function txt(key:String, ?library:String)
 	{
-		return getPath('data/$key.txt', TEXT, library);
+		return 'assetss/data/$key.txt';
 	}
 
 	inline static public function xml(key:String, ?library:String)
 	{
-		return getPath('data/$key.xml', TEXT, library);
+		return 'assetss/data/$key.xml';
 	}
 
 	inline static public function json(key:String, ?library:String)
@@ -70,7 +70,7 @@ class Paths
 
 	inline static public function music(key:String, ?library:String)
 	{
-		return getPath('music/$key.$SOUND_EXT', MUSIC, library);
+		return 'assetss/music/$key.$SOUND_EXT';
 	}
 
 	inline static public function voices(song:String)
@@ -85,7 +85,7 @@ class Paths
 
 	inline static public function image(key:String, ?library:String)
 	{
-		return getPath('images/$key.png', IMAGE, library);
+		return 'assetss/images/$key.png';
 	}
 
 	inline static public function font(key:String)
@@ -95,11 +95,11 @@ class Paths
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)
 	{
-		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+		return FlxAtlasFrames.fromSparrow(image(key), 'assetss/images/$key.xml');
 	}
 
-	inline static public function getPackerAtlas(key:String, key2:String, ?library:String)
+	inline static public function getPackerAtlas(key:String, ?library:String)
 	{
-		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt'));
+		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), 'assetss/images/$key.txt');
 	}
 }

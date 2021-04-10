@@ -56,7 +56,7 @@ class CharMenu extends MusicBeatState
 
 	override function create()
 	{
-		menuBG = new FlxSprite().loadGraphic('assetss/images/charSelect/BG4.png');
+		menuBG = new FlxSprite().loadGraphic(Paths.image('charSelect/BG4'));
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();

@@ -172,7 +172,7 @@ class TitleState extends MusicBeatState
 		noteStrumShit = OptionsHandler.options.p2noteStrums;
 
 
-		// shittyBG = new FlxSprite().loadGraphic('assetss/images/menuLoading.png');
+		// shittyBG = new FlxSprite().loadGraphic(Paths.image('menuLoading'));
 		// // add(shittyBG);
 		// ranbowTexto = new FlxRainbowEffect(1, 1, 0.5, 1);
 		// txt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
@@ -192,7 +192,7 @@ class TitleState extends MusicBeatState
 		add(levelInfo);
 		levelInfo.alpha = 0;
 
-		healthBarBG = new FlxSprite(0, 40).loadGraphic('assetss/images/loadingBar.png');
+		healthBarBG = new FlxSprite(0, 40).loadGraphic(Paths.image('loadingBar'));
 		/*
 		if (OptionsHandler.options.downScroll)
 			healthBarBG.y = 50;
@@ -213,7 +213,7 @@ class TitleState extends MusicBeatState
 
 		// #if ng
 		// var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		// trace('NEWGROUNDS LOL');
+		// trace('NEWGROUNDS LOL'));
 		// #end
 
 		FlxG.save.bind("preferredSave", "ninjamuffin99");
@@ -253,10 +253,11 @@ class TitleState extends MusicBeatState
 
 		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
+			
 			remove(healthBarBG);
 			remove(healthBar);
 			remove(shittyReminder);
-			shittyReminder = new Alphabet(0, 0, "PLEASE WAIT", OptionsHandler.options.boldText, false);
+			shittyReminder = new Alphabet(0, 0, "PLEASE WAIT", true, false);
 			shittyReminder.color = FlxColor.WHITE;
 			shittyReminder.screenCenter(XY);
 			add(shittyReminder);
@@ -313,8 +314,7 @@ class TitleState extends MusicBeatState
 			// music.loadStream('assetss/music/freakyMenu' + TitleState.soundExt);
 			// FlxG.sound.list.add(music);
 			// music.play();
-			FlxG.sound.playMusic(Paths.music('freakyMenu', 'shared'), 0);
-			FlxG.sound.music.fadeIn(4, 0, 0.7);
+			FlxG.sound.playMusic('assetss/music/freakyMenu.ogg', 0.7);
 		}
 
 		Conductor.changeBPM(102);
@@ -326,14 +326,14 @@ class TitleState extends MusicBeatState
 		
 		persistentUpdate = true;
 
-		bg = new FlxSprite().loadGraphic('assetss/images/funneBG.png');
+		bg = new FlxSprite().loadGraphic(Paths.image('funneBG'));
 		bg.antialiasing = true;
 		bg.setGraphicSize(Std.int(bg.width * 1));
 		bg.updateHitbox();
 		add(bg);
 
 		logoBl2 = new FlxSprite(-90, -60);
-		logoBl2.frames = FlxAtlasFrames.fromSparrow('assetss/images/logoBumpin.png', 'assetss/images/logoBumpin.xml');
+		logoBl2.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl2.antialiasing = true;
 		logoBl2.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl2.animation.play('bump');
@@ -341,7 +341,7 @@ class TitleState extends MusicBeatState
 		logoBl2.color = FlxColor.BLACK;
 
 		logoBl = new FlxSprite(-90, -60);
-		logoBl.frames = FlxAtlasFrames.fromSparrow('assetss/images/logoBumpin.png', 'assetss/images/logoBumpin.xml');
+		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
@@ -350,7 +350,7 @@ class TitleState extends MusicBeatState
 		// logoBl.color = FlxColor.BLACK;
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = FlxAtlasFrames.fromSparrow('assetss/images/gfDanceTitle.png', 'assetss/images/gfDanceTitle.xml');
+		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
@@ -359,7 +359,7 @@ class TitleState extends MusicBeatState
 		add(logoBl);
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
-		titleText.frames = FlxAtlasFrames.fromSparrow('assetss/images/titleEnter.png', 'assetss/images/titleEnter.xml');
+		titleText.frames = Paths.getSparrowAtlas('titleEnter');
 		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 		titleText.antialiasing = true;
@@ -368,7 +368,7 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic('assetss/images/logo.png');
+		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.screenCenter();
 		logo.antialiasing = true;
 		// add(logo);
@@ -383,14 +383,14 @@ class TitleState extends MusicBeatState
 		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		credGroup.add(blackScreen);
 
-		credTextShit = new Alphabet(0, 0, "ninjamuffin99\nPhantomArcade\nkawaisprite\nevilsk8er", OptionsHandler.options.boldText);
+		credTextShit = new Alphabet(0, 0, "ninjamuffin99\nPhantomArcade\nkawaisprite\nevilsk8er", true, false);
 		credTextShit.screenCenter();
 
 		// credTextShit.alignment = CENTER;
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assetss/images/poweredby.png');
+		ngSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic(Paths.image('poweredby'));
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
@@ -399,7 +399,7 @@ class TitleState extends MusicBeatState
 		ngSpr.y += 70;
 		ngSpr.antialiasing = true;
 
-		credSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic('assetss/images/creds.png');
+		credSpr = new FlxSprite(0, FlxG.height * 0.6).loadGraphic(Paths.image('creds'));
 		add(credSpr);
 		credSpr.visible = false;
 		credSpr.screenCenter(XY);
@@ -436,6 +436,8 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		FlxG.watch.addQuick("curBeat", curBeat);
+		FlxG.watch.addQuick("curStep", curStep);
 		health += 0.08;
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
@@ -515,7 +517,7 @@ class TitleState extends MusicBeatState
 	{
 		for (i in 0...textArray.length)
 		{
-			var money:Alphabet = new Alphabet(0, 0, textArray[i], OptionsHandler.options.boldText, false);
+			var money:Alphabet = new Alphabet(0, 0, textArray[i], true, false);
 			money.screenCenter(X);
 			money.y += (i * 60) + 200;
 			credGroup.add(money);
@@ -525,7 +527,7 @@ class TitleState extends MusicBeatState
 
 	function addMoreText(text:String)
 	{
-		var coolText:Alphabet = new Alphabet(0, 0, text, OptionsHandler.options.boldText, false);
+		var coolText:Alphabet = new Alphabet(0, 0, text, true, false);
 		coolText.screenCenter(X);
 		coolText.y += (textGroup.length * 60) + 200;
 		credGroup.add(coolText);
@@ -536,7 +538,7 @@ class TitleState extends MusicBeatState
 	{
 		for (i in 0...textArray.length)
 		{
-			var money:Alphabet = new Alphabet(0, 0, textArray[i], OptionsHandler.options.boldText, false);
+			var money:Alphabet = new Alphabet(0, 0, textArray[i], true, false);
 			money.screenCenter(X);
 			money.y += (i * 60) + 80;
 			credGroup.add(money);
@@ -546,7 +548,7 @@ class TitleState extends MusicBeatState
 
 	function addMoreProductionText(text:String)
 	{
-		var coolText:Alphabet = new Alphabet(0, 0, text, OptionsHandler.options.boldText, false);
+		var coolText:Alphabet = new Alphabet(0, 0, text, true, false);
 		coolText.screenCenter(X);
 		coolText.y += (textGroup.length * 60) + 80;
 		credGroup.add(coolText);
@@ -581,7 +583,7 @@ class TitleState extends MusicBeatState
 		{
 			// this sucks so much i hate it
 			// thanks lag
-			case 2:
+			case 1:
 				createProductionText(['haya', 'friedfrick', 'smokey555', 'keaton']);
 				credSpr.visible = true;
 			// credTextShit.visible = true;

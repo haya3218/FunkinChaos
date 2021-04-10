@@ -33,7 +33,7 @@ class Character extends FlxSprite
 		{
 			case 'gf':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('GF_assets', 'GF_assets');
+				tex = Paths.getSparrowAtlas('GF_assets');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -66,7 +66,7 @@ class Character extends FlxSprite
 			
 				case 'sexy-lemon':
 					// GIRLFRIEND CODE
-					tex = Paths.getSparrowAtlas('sexylemongf', 'sexylemongf');
+					tex = Paths.getSparrowAtlas('sexylemongf');
 					frames = tex;
 					animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 					animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -98,7 +98,7 @@ class Character extends FlxSprite
 
 			case 'gaming':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('divaGF_assets', 'divaGF_assets');
+				tex = Paths.getSparrowAtlas('divaGF_assets');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -129,7 +129,7 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'gaming-car':
-				tex = Paths.getSparrowAtlas('divaGF_car', 'divaGF_car');
+				tex = Paths.getSparrowAtlas('divaGF_car');
 				frames = tex;
 				// KEATON YOU FORGOT THESE LMAO
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
@@ -501,8 +501,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('idle', "Pico Idle Dance", 24);
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
-				animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'Pico NOTE Right miss', 24, false);
 				animation.addByPrefix('singLEFTmiss', 'Pico Note Left Miss', 24, false);
 	
