@@ -615,64 +615,6 @@ class Character extends FlxSprite
 					playAnim('idle');
 	
 					flipX = true;
-					//ignore the fefe for now i'll make sprites for it lmao
-			case 'fefe':
-				var tex = Paths.getSparrowAtlas('fefe', 'fefe');
-				frames = tex;
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				}
-				else
-				{
-					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
-				}
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-				animation.addByPrefix('singpreattack', 'bf pre attack', 24, false);
-				animation.addByPrefix('singattack', 'boyfriend attack', 24, false);
-				animation.addByPrefix('singahfuckivebeenhit', 'BF hit', 24, false);
-				animation.addByPrefix('singnoscope', 'boyfriend dodge', 24, false);
-	
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-	
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
-	
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
-				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
-				addOffset('singpreattack', -10, -44);
-				addOffset('singattack', 291, 271);
-				addOffset('singahfuckivebeenhit', 23, 17);
-				addOffset('singnoscope', -7, 1);
-	
-				playAnim('idle');
-	
-				flipX = true;
-
 	
 				case 'bf-old':
 					var tex = Paths.getSparrowAtlas('BOYFRIEND', 'BOYFRIEND');
@@ -1057,20 +999,20 @@ class Character extends FlxSprite
 	
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 		
-				addOffset('idle');
-				addOffset("singUP", -47, 26);
-				addOffset("singRIGHT", -47, -8);
-				addOffset("singLEFT", 8, -7);
-				addOffset("singDOWN", -6, -53);
-				addOffset("singUPmiss", -55, 47);
-				addOffset("singRIGHTmiss", -40, 3);
-				addOffset("singLEFTmiss", 15, 1);
-				addOffset("singDOWNmiss", -3, -59);
-				addOffset("hey", 0, 13);
-				addOffset('firstDeath', 28, 8);
-				addOffset('deathLoop', 28, 8);
-				addOffset('deathConfirm', 28, 74);
-				addOffset('scared', 4);
+				addOffset('idle', -2, 71);
+				addOffset("singUP", 28, 67);
+				addOffset("singRIGHT", -9, 54);
+				addOffset("singLEFT", 4, 44);
+				addOffset("singDOWN", 28, 39);
+				addOffset("singUPmiss", 33, 55);
+				addOffset("singRIGHTmiss", -7, 55);
+				addOffset("singLEFTmiss", 27, 42);
+				addOffset("singDOWNmiss", 28, 39);
+				addOffset("hey", 3, 56);
+				addOffset('firstDeath', 31, 60);
+				addOffset('deathLoop', 23, 60);
+				addOffset('deathConfirm', 22, 78);
+				addOffset('scared', 6, 64);
 		
 				playAnim('idle');
 		
