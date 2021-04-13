@@ -1,6 +1,8 @@
 package;
+import haxe.Template;
 import lime.utils.Assets;
 import haxe.Json;
+import unsys.save.FileJS;
 #if sys
 import sys.io.File;
 #end
@@ -23,7 +25,12 @@ class OptionsHandler {
         return Json.parse(Assets.getText('assetss/data/options.json'));
     }
     static function set_options(opt:TOptions) {
+        #if sys
         File.saveContent('assetss/data/options.json', CoolUtil.coolStringifyJson(opt));
+        #else
+        // remove vscode error demons
+        FileJS.saveJson(opt, "options.json", 'application/json', true);
+        #end
         return opt;
     }
 }

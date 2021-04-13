@@ -42,7 +42,7 @@ class RealMainMenuState extends MusicBeatState
 	var scoreText:FlxText;
 	var diffText:FlxText;
 
-	public static var nightly:String = "-Nightly Build 20200404";
+	public static var nightly:String = "-Nightly Build 20200412";
 
 	public static var chaosVer:String = "2.0" + nightly;
 

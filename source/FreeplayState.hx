@@ -1,5 +1,6 @@
 package;
 
+import io.newgrounds.swf.LoadingBar;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -253,6 +254,11 @@ class FreeplayState extends MusicBeatState
 				PlayState.isBSidesMode = false;
 				PlayState.isShitpostMode = false;
 				PlayState.storyDifficulty = curDifficulty;
+				// ik this sucks but i dont wanna add any shitty bool statements
+				var loopArray:Array<Dynamic> = [
+					[songs[curSelected].songName]
+				];
+				LoadingState.songs = loopArray[0];
 
 				if (!FlxG.sound.music.playing)
 				{

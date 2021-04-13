@@ -1,6 +1,15 @@
 package;
 
 import flixel.FlxSprite;
+#if sys
+import sys.io.File;
+import haxe.io.Path;
+import openfl.utils.ByteArray;
+import flash.display.BitmapData;
+import sys.FileSystem;
+#end
+import haxe.Json;
+import haxe.format.JsonParser;
 
 class HealthIcon extends FlxSprite
 {
@@ -100,7 +109,19 @@ class HealthIcon extends FlxSprite
 			case 'geith':
 				animation.add('icon', [0, 1], 0, false, isPlayer);
 			default:
-				animation.add('icon', [0, 1], 0, false, isPlayer);
+				// check if there is an icon file
+				#if sys
+				if (sys.FileSystem.exists('mods/characters/'+char+"/healthicon.png")) {
+					var rawPic:BitmapData = BitmapData.fromFile('mods/characters/'+char+"/healthicon.png");
+					loadGraphic(rawPic, true, 150, 150);
+					animation.add('icon', [0, 1], false, isPlayer);
+				} else {
+					loadGraphic('assets/images/iconGrid.png', true, 150, 150);
+					animation.add('icon', [0, 1], false, isPlayer);
+				}
+				#else
+				animation.add('icon', [0, 1], false, isPlayer);
+				#end
 		}
 		animation.add('old', [14, 15], 0, false, isPlayer);
 		animation.play('icon');

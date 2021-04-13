@@ -244,7 +244,7 @@ class CustomSongState extends MusicBeatState
 			var diffic = "";
 
 			// man i sure do hate vs code for saying its a fucking error when it compiles anyway lolololol
-			if (!FileSystem.exists('assetss/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json')) {
+			if (#if sys !FileSystem.exists('assetss/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json') #else Assets.exists('assetss/data/'+songs[curSelected].songName.toLowerCase()+'/'+poop.toLowerCase()+'.json', TEXT) #end) {
 				// assume we pecked up the difficulty, return to default difficulty
 				trace("UH OH SONG IN SPECIFIED DIFFICULTY DOESN'T EXIST\nUSING DEFAULT DIFFICULTY");
 				poop = songs[curSelected].songName;
@@ -259,6 +259,11 @@ class CustomSongState extends MusicBeatState
 			PlayState.isCreditsMode = false;
 			PlayState.isBSidesMode = false;
 			PlayState.storyDifficulty = curDifficulty;
+			// ik this sucks but i dont wanna add any shitty bool statements
+			var loopArray:Array<Dynamic> = [
+				[songs[curSelected].songName]
+			];
+			LoadingState.songs = loopArray[0];
 
 			if (!FlxG.sound.music.playing)
 			{
@@ -280,7 +285,7 @@ class CustomSongState extends MusicBeatState
 				if (songs[curSelected].songName == 'Dumb')
 				{
 					PlayState.hasPlayedOnce = true;
-					FlxG.switchState(new PlayState());
+					LoadingState.loadAndSwitchState(new PlayState());
 				}
 				else
 				FlxG.switchState(new CharMenu());

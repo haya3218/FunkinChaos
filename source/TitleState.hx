@@ -35,6 +35,7 @@ import flixel.util.FlxTimer;
 import flixel.ui.FlxBar;
 import io.newgrounds.NG;
 import lime.app.Application;
+import lime.utils.Assets;
 import openfl.Assets;
 import polymod.Polymod;
 import openfl.Lib;
@@ -44,7 +45,7 @@ using StringTools;
 
 class TitleState extends MusicBeatState
 {
-	static var initialized:Bool = false;
+	static var initialized:Bool =  false;
 	public static var nof:Bool = false;
 	public static var thefunny:Array<String> = [];
 	static public var soundExt:String = ".mp3";
@@ -79,6 +80,8 @@ class TitleState extends MusicBeatState
 	public static var modListOn:Bool = false;
 	public static var bModdin:String = "";
 
+	public static var charMod:Bool = false;
+
 	override public function create():Void
 	{
 		OptionsMenu.onshit = 'off';
@@ -90,6 +93,7 @@ class TitleState extends MusicBeatState
 		// Get all directories in the mod folder
 		var modDirectory:Array<String> = [];
 		var mods = sys.FileSystem.readDirectory("mods");
+		
 
 		for (fileText in mods) {
 			if (sys.FileSystem.isDirectory("mods/"+fileText)) {
@@ -100,7 +104,7 @@ class TitleState extends MusicBeatState
 
 		// Handle mod errors
 		var errors = (error:PolymodError) -> {
-			trace(error.severity+": "+error.code+" - "+ error.message + " ORIGIN: "+error.origin);
+			FlxG.log.add(error.severity+": "+error.code+" - "+ error.message + " ORIGIN: "+error.origin);
 		};
 
 		//Initialize polymod
@@ -488,10 +492,8 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				if (FlxG.random.bool(50))
-					FlxG.switchState(new RealMainMenuState());
-				else
-					FlxG.switchState(new OutdatedSubState());
+				// warning
+				FlxG.switchState(new OutdatedSubState());
 			});
 			
 		}

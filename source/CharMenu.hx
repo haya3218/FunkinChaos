@@ -26,7 +26,7 @@ typedef CharacterMenu = {
 
 class CharMenu extends MusicBeatState
 {
-	var menuItems:Array<String> = ['BOYFRIEND', 'BOYFRIENDSECOND', 'YAKUZA', 'BOXMAN', 'FUNNEMAN', 'DEFAULT'];
+	var menuItems:Array<String> = ['bf', 'diva', 'bf-yakuza', 'bf-boxman', 'luci-moment'];
 	var curSelected:Int = 0;
 	var txtDescription:FlxText;
 	var shitCharacter:FlxSprite;
@@ -42,14 +42,14 @@ class CharMenu extends MusicBeatState
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 	var alreadySelectedShit:Bool = false;
 	var doesntExist:Bool = false;
+	private var iconArray:Array<Boyfriend> = [];
 
 	var shittyNames:Array<String> = [
 		"BOYFRIEND",
 		"SOMEONE HELP ME I AM IN DANGER",
 		"FUNNE MAN KIL FUNNE MAN",
 		"BOX",
-		"THE LOUD GUY",
-		"DEFAULT"
+		"THE LOUD GUY"
 	];
 
 	var txtOptionTitle:FlxText;
@@ -71,11 +71,21 @@ class CharMenu extends MusicBeatState
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-			songText.isOptionItem = true;
-			songText.screenCenter(X);
+			var songText:Alphabet = new Alphabet(170, (70 * i) + 230, menuItems[i], true, false);
+			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpMenuShit.add(songText);
+			// songText.x += 40;
+			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
+			// songText.screenCenter(X);
+			var icon:Boyfriend = new Boyfriend(0, 0, menuItems[i]);
+			
+			icon.sprTracker = songText;
+			icon.scale.set(0.8, 0.8);
+
+			// using a FlxGroup is too much fuss!
+			iconArray.push(icon);
+			add(icon);
 		}
 
 		txtDescription = new FlxText(FlxG.width * 0.075, menuBG.y + 200, 0, "", 32);
@@ -85,15 +95,13 @@ class CharMenu extends MusicBeatState
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
 
-		shitCharacter = new FlxSprite(0, -20);
-		shitCharacter.scale.set(0.45, 0.45);
-		shitCharacter.updateHitbox();
-		shitCharacter.screenCenter(XY);
-		shitCharacter.antialiasing = true;
-		shitCharacter.y += 30;
-		add(shitCharacter);
-
-		shitCharacterBetter = new Boyfriend(0, 0, 'bf');
+		// shitCharacter = new FlxSprite(0, -20);
+		// shitCharacter.scale.set(0.45, 0.45);
+		// shitCharacter.updateHitbox();
+		// shitCharacter.screenCenter(XY);
+		// shitCharacter.antialiasing = true;
+		// shitCharacter.y += 30;
+		// add(shitCharacter);
 
 		var charSelHeaderText:Alphabet = new Alphabet(0, 50, 'CHARACTER SELECT', true, false);
 		charSelHeaderText.screenCenter(X);
@@ -126,8 +134,8 @@ class CharMenu extends MusicBeatState
 			txtOptionTitle.text = 'NO DESCRIPTION';
 		}
 
-		if (shitCharacterBetter.animation.curAnim.name == 'idle' && shitCharacterBetter.animation.curAnim.finished && doesntExist)
-			shitCharacterBetter.playAnim('idle', true);
+		if (iconArray[curSelected].animation.curAnim.name == 'idle' && iconArray[curSelected].animation.curAnim.finished && doesntExist)
+			iconArray[curSelected].playAnim('idle', true);
 			
 		var upP = controls.LEFT_P;
 		var downP = controls.RIGHT_P;
@@ -148,77 +156,16 @@ class CharMenu extends MusicBeatState
 				{
 					alreadySelectedShit = true;
 					var daSelected:String = menuItems[curSelected];
-					FlxFlicker.flicker(shitCharacter, 0);
-					FlxFlicker.flicker(shitCharacterBetter, 0);
 					PlayState.hasPlayedOnce = true;
-					if (shitCharacterBetter.animOffsets.exists('hey'))
-						shitCharacterBetter.playAnim('hey');
-					else
-						shitCharacterBetter.playAnim('singUP');
-		
-					switch (daSelected)
+					if (menuItems[curSelected] != 'bf')
+						PlayState.SONG.player1 = daSelected;
+
+					FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
+					FlxFlicker.flicker(iconArray[curSelected],0);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						case "BOYFRIENDSECOND":
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'diva';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						case "BOYFRIEND":
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'bf';
-							if (PlayState.SONG.song.toLowerCase() == 'mtc')
-								PlayState.SONG.player1 = 'bf-cursed';
-							if (PlayState.SONG.song.toLowerCase() == 'friday-night' || PlayState.SONG.song.toLowerCase() == 'judgement' ||PlayState.SONG.song.toLowerCase() == 'machine-gun-kiss')
-								PlayState.SONG.player1 = 'bf-yakuza';
-							if (PlayState.SONG.song.toLowerCase() == 'satin-panties' || PlayState.SONG.song.toLowerCase() == 'high' || PlayState.SONG.song.toLowerCase() == 'milf')
-								PlayState.SONG.player1 = 'bf-car';
-							if (PlayState.SONG.song.toLowerCase() == 'cocoa' || PlayState.SONG.song.toLowerCase() == 'eggnog' || PlayState.SONG.song.toLowerCase() == 'winter-horrorland')
-								PlayState.SONG.player1 = 'bf-christmas';
-							if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
-								PlayState.SONG.player1 = 'bf-pixel';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						case 'BOXMAN':
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'bf-boxman';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						case 'YAKUZA':
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'bf-yakuza';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						case 'FUNNEMAN':
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							PlayState.SONG.player1 = 'luci-moment';
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						case 'DEFAULT':
-							FlxG.sound.play('assetss/sounds/confirmMenu' + TitleState.soundExt);
-							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								FlxG.switchState(new PlayState());
-							});
-						default:
-							// so it doesnt crash lol
-							trace('what the fuck');
-					}
+						LoadingState.loadAndSwitchState(new PlayState());
+					});
 				}
 		
 				if (controls.BACK)
@@ -260,16 +207,23 @@ class CharMenu extends MusicBeatState
 			curSelected = 0;
 	
 		var bullShit:Int = 0;
+
+		for (i in 0...iconArray.length)
+		{
+			iconArray[i].alpha = 0.6;
+		}
+	
+		iconArray[curSelected].alpha = 1;
 	
 		for (item in grpMenuShit.members)
 		{
-			item.x = bullShit - curSelected;
+			item.targetY = bullShit - curSelected;
 			bullShit++;
 
 			item.alpha = 0;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 	
-			if (item.x == 0)
+			if (item.targetY == 0)
 			{
 				// item.setGraphicSize(Std.int(item.width));
 			}
@@ -283,54 +237,32 @@ class CharMenu extends MusicBeatState
 		doesntExist = false;
 		var daSelected:String = menuItems[curSelected];
 		var storedColor:FlxColor = 0xFFFFFF;
-		var charSelected:String = 'bf';
-		remove(shitCharacterBetter);
 		remove(icon);
 
 		switch (daSelected)
 		{
-			case "BOXMAN":
-				charSelected = 'bf-boxman';
+			case "bf-boxman":
 				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
 				menuBG.color = 0x87ceeb;
-			case "BOYFRIEND":
-				charSelected = 'bf';
+			case "bf":
 				menuBG.loadGraphic('assetss/images/charSelect/BG1.png');
 				menuBG.color = 0xFFFFFF;
-			case "BOYFRIENDSECOND":
-				charSelected = 'diva';
+			case "diva":
 				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
 				menuBG.color = 0xEE82EE;
-			case "YAKUZA":
-				charSelected = 'bf-yakuza';
+			case "bf-yakuza":
 				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
 				menuBG.color = 0xFF0000;
-			case "FUNNEMAN":
-				charSelected = 'luci-moment';
+			case "luci-moment":
 				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
 				menuBG.color = 0xFF00FF;
-			case 'DEFAULT':
-				charSelected = 'bf';
-				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
-				menuBG.color = 0xFFFFFF;
-				storedColor = 0x000000;
 			default:
-				// so it doesnt crash lol
-				charSelected = 'bf';
 				menuBG.loadGraphic('assetss/images/charSelect/BG4.png');
 				menuBG.color = 0xFFFFFF;
 		}
 
-		shitCharacter.updateHitbox();
-		shitCharacter.screenCenter(XY);
-
-		shitCharacterBetter = new Boyfriend(0, 0, charSelected);
-		shitCharacterBetter.scale.set(0.7, 0.7);
-		shitCharacterBetter.screenCenter(XY);
-		shitCharacterBetter.antialiasing = true;
-		shitCharacterBetter.playAnim('idle', true);
-		shitCharacterBetter.color = storedColor;
-		add(shitCharacterBetter);
+		// shitCharacter.updateHitbox();
+		// shitCharacter.screenCenter(XY);
 
 		doesntExist = true;
 
@@ -347,7 +279,7 @@ class CharMenu extends MusicBeatState
 		healthBar.visible = false;
 			// healthBar
 		add(healthBar);
-		icon = new HealthIcon(charSelected, true);
+		icon = new HealthIcon(menuItems[curSelected], true);
 		icon.y = healthBar.y - (icon.height / 2);
 		icon.screenCenter(X);
 		icon.setGraphicSize(-4);

@@ -411,12 +411,13 @@ class StoryMenuState extends MusicBeatState
 				PlayState.storyWeek = curWeek;
 				PlayState.campaignScore = 0;
 				PlayState.autoMode = autoModeSelected;
+				LoadingState.songs = weekData[curWeek];
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					if (OptionsHandler.options.modifierMenu)
 						FlxG.switchState(new ModifierState());
 					else
-						FlxG.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 				});
 			}
 			else
