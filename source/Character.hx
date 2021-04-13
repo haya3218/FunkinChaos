@@ -1059,7 +1059,7 @@ class Character extends FlxSprite
 				
 
 			case 'spirit':
-				frames = FlxAtlasFrames.fromSpriteSheetPacker('weeb/spirit', 'weeb/spirit.txt');
+				frames = Paths.getPackerAtlas('weeb/spirit');
 				animation.addByPrefix('idle', "idle spirit_", 24, false);
 				animation.addByPrefix('singUP', "up_", 24, false);
 				animation.addByPrefix('singRIGHT', "right_", 24, false);
