@@ -2475,9 +2475,7 @@ class PlayState extends MusicBeatState
 		else if (autoMode)
 			scoreTxt.text = "AUTO IS ENABLED";
 		if (!autoMode)
-			accurTxt.text = "Accuracy:" + truncateFloat(accuracy, 2) + "%" + "                                               Health:" + Math.round(health * 50) + "%";
-		else if (autoMode)
-			accurTxt.text = "Accuracy:" + truncateFloat(accuracy, 2) + "%";
+			accurTxt.text = "                                                          Health:" + Math.round(health * 50) + "%";
 		
 		if (OptionsHandler.options.cinematicMode)
 			scoreTxt.text = "Score:" + songScore;
@@ -3585,7 +3583,6 @@ class PlayState extends MusicBeatState
 			ss = true;
 			comboText = true;
 		}
-		totalNotesHit += noteDiff;
 	
 		trace('hit ' + daRating);
 
@@ -3855,7 +3852,6 @@ class PlayState extends MusicBeatState
 			ss = true;
 			comboText = true;
 		}
-		totalNotesHit += noteDiff;
 	
 		trace('hit ' + daRating);
 
@@ -4302,7 +4298,6 @@ class PlayState extends MusicBeatState
 	
 		function noteMiss(direction:Int = 1, note:Note):Void
 		{
-			var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition);
 			if (note != null)
 			{
 				if (note.wasGoodHit || successThisFrame[note.noteData])
@@ -4318,9 +4313,6 @@ class PlayState extends MusicBeatState
 				}
 				combo = 0;
 				misses += 1;
-
-				updateAccuracy();
-
 				songScore -= 10;
 
 				var dammit:String = "";
@@ -4372,7 +4364,6 @@ class PlayState extends MusicBeatState
 			var hitNote:Bool = false;
 			var dupNote:Bool = false;
 			var missDir:Int = 0;
-			updateAccuracy();
 			var noteData:Int = note.noteData % 4;
 			for (i in 0...5)
 			{
@@ -4455,10 +4446,6 @@ class PlayState extends MusicBeatState
 						itgPopupScore(note.strumTime);
 					combo += 1;
 				}
-				else
-					totalNotesHit += 1;
-
-				updateAccuracy();
 	
 				if (note.noteData >= 8)
 					health -= 0.004;
@@ -4604,8 +4591,6 @@ class PlayState extends MusicBeatState
 					notes.remove(note, true);
 					note.destroy();
 				}
-
-				updateAccuracy();
 			}
 		}
 
