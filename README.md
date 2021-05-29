@@ -1,7 +1,9 @@
 ![Friday_Night_Funkin_Logo](art/aprilfoolschumbuds.png "FNF Logo")
 
-### APRIL FOOLS IDOTS (VERY LATE TBH)
-Lol why would i rework chaos lol.
+### THIS PROJECT IS OVER
+This mod is now cancelled. Most chaos features will be moving to Mic'd Up, so keep an eye out for that ;)
+Thank you all for the support. For now, this project is now dead and there will (probably) no future attempts
+to recreate this mod.
 
 ## Original game
 Play the Newgrounds one [here](https://www.newgrounds.com/portal/view/770371)!
