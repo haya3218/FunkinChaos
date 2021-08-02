@@ -1,10 +1,13 @@
 ![Friday_Night_Funkin_Logo](art/aprilfoolschumbuds.png "FNF Logo")
 
-### THIS PROJECT IS OVER
-This mod is now cancelled. Most chaos features will be moving to Mic'd Up, so keep an eye out for that ;)
-Thank you all for the support. For now, this project is now dead and there will (probably) no future attempts
-to recreate this mod.
+### THIS PROJECT IS OVER?
+No. This project is now gonna be bugfixed, whilest adding some features.
 
+Now you might be saying, "Why haya? Why?".
+
+For the longest time I've neglected this pet project of mine and considered it cancelled. But today's the day that changes.
+
+Welcome, to hell's first layer.
 ## Original game
 Play the Newgrounds one [here](https://www.newgrounds.com/portal/view/770371)!
 
